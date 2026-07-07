@@ -26,6 +26,12 @@ Null runs at tau_strength=0:        score 0 across v1, v2, and v3
 Permutation p-values at strong tau: p ~= 0.001996 in the fixed-seed runs
 ```
 
+The v0.2 package also includes a 32-seed robustness replay on null and
+strong-injection cases. The replay keeps null false positives low in the toy
+and shows stable recovery for TCDR-v1/v2 strong injections and TCDR-v3 strong
+split injection. The intermediate TCDR-v3 split case remains sensitivity
+limited and is reported as a caveat, not hidden.
+
 The scientific value is protocol-level: the toys show a recovery/failure
 discipline for a morphology-seeded residual family and motivate a real-data
 TCDR-v4 ladder.
@@ -48,6 +54,9 @@ Only compact synthetic derived artifacts are included:
 data/derived/tcdr_summary.csv
 data/derived/tcdr_summary.json
 data/derived/tcdr_v3_example_data.csv
+data/derived/tcdr_multiseed_robustness.csv
+data/derived/tcdr_multiseed_robustness_summary.csv
+data/derived/tcdr_threshold_sensitivity.csv
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -65,11 +74,12 @@ python scripts/reproduce.py
 The command:
 
 1. regenerates the TCDR synthetic toy outputs;
-2. copies figures into the paper source tree;
-3. compiles `paper19_submission_source/main.tex`;
-4. builds `arxiv_submission_source.zip`;
-5. runs public package tests;
-6. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
+2. runs the multi-seed robustness replay and threshold sensitivity sweep;
+3. copies figures into the paper source tree;
+4. compiles `paper19_submission_source/main.tex`;
+5. builds `arxiv_submission_source.zip`;
+6. runs public package tests;
+7. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
 
 ## arXiv Source Package
 

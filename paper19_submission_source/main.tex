@@ -359,6 +359,62 @@ signals.}
 \label{fig:score}
 \end{figure}
 
+\section{Multi-Seed Robustness Replay}
+
+The fixed-seed result is not enough by itself.  To test whether the toy result
+is brittle, the package also runs a 32-seed replay on the null and
+stronger-injection cases.  This is still synthetic, but it probes whether the
+reported pattern depends on one random draw.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{llrrrr}
+\toprule
+Module & \(\tau\) & \(n\) & Mean \(\Delta R^2\) & Pass floor & Null false positive\\
+\midrule
+TCDR-v1 & 0.00 & 32 & 0.0059 & 1.000 & 0.062\\
+TCDR-v1 & 0.60 & 32 & 0.2514 & 1.000 & --\\
+TCDR-v2 & 0.00 & 32 & 0.0037 & 1.000 & 0.031\\
+TCDR-v2 & 0.60 & 32 & 0.1470 & 1.000 & --\\
+TCDR-v3 & 0.00 & 32 & 0.0026 & 1.000 & 0.000\\
+TCDR-v3 & 0.35 & 32 & 0.0183 & 0.563 & --\\
+TCDR-v3 & 0.60 & 32 & 0.0402 & 0.969 & --\\
+\bottomrule
+\end{tabular}
+\caption{Multi-seed replay summary.  The pass floor is the fraction passing the
+predeclared toy score floor for that case.  For null rows, the relevant
+quantity is the false-positive rate, not the pass floor, because the expected
+score floor is zero.}
+\label{tab:multiseed}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.84\linewidth]{figures/tcdr_multiseed_passrate.png}
+\caption{Multi-seed replay pass fractions.  TCDR-v1 and TCDR-v2 strong
+injections are stable in this toy.  TCDR-v3 at \(\tau=0.35\) is only partially
+stable, while the stronger split case is much more robust.}
+\label{fig:multiseed}
+\end{figure}
+
+The threshold sweep supports the same cautious reading.  For example, at
+\(p\le 0.01\) and \(\Delta R^2\ge 0.015\), the injected-positive recovery
+fraction is \(0.883\), while the null false-positive fraction is \(0.000\).
+At the looser \(p\le 0.05\), \(\Delta R^2\ge 0.010\) setting, recovery rises
+to \(0.953\), but the null false-positive fraction becomes \(0.031\).  These
+numbers are not discovery statistics; they are robustness checks for the
+synthetic protocol thresholds.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{figures/tcdr_threshold_sensitivity.png}
+\caption{Threshold sensitivity for the multi-seed replay.  The plot reports
+the tradeoff between injected-positive recovery and null false positives under
+different \(p\)-value and \(\Delta R^2\) thresholds.}
+\label{fig:threshold-sensitivity}
+\end{figure}
+
 \section{TCDR-v4 Real-Data Protocol Skeleton}
 
 The TCDR-v4 protocol is the real-data-facing output of the package.  Its

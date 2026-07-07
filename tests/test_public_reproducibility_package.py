@@ -13,6 +13,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "paper19_submission_source" / "main.pdf").exists()
     assert (ROOT / "arxiv_submission_source.zip").exists()
     assert (ROOT / "data" / "derived" / "tcdr_summary.csv").exists()
+    assert (ROOT / "data" / "derived" / "tcdr_multiseed_robustness_summary.csv").exists()
+    assert (ROOT / "data" / "derived" / "tcdr_threshold_sensitivity.csv").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -52,3 +54,19 @@ def test_arxiv_zip_is_source_only() -> None:
     assert "refs.bib" in names
     assert "main.pdf" not in names
     assert any(name.startswith("figures/") and name.endswith(".png") for name in names)
+
+
+def test_multiseed_robustness_has_null_and_positive_cases() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "derived" / "tcdr_multiseed_robustness_summary.csv").open()
+        )
+    )
+    assert len(rows) == 7
+    null_rows = [row for row in rows if float(row["tau_strength"]) == 0.0]
+    assert len(null_rows) == 3
+    for row in null_rows:
+        assert float(row["false_positive_rate"]) <= 0.35
+    positive_rows = [row for row in rows if float(row["tau_strength"]) > 0.0]
+    assert positive_rows
+    assert max(float(row["pass_rate_floor"]) for row in positive_rows) >= 0.75

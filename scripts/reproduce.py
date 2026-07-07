@@ -31,6 +31,7 @@ def build_pdf() -> None:
 
 def main() -> None:
     run([sys.executable, "scripts/run_tcdr_toys.py"])
+    run([sys.executable, "scripts/run_tcdr_robustness.py"])
     run([sys.executable, "scripts/build_figures.py"])
     build_pdf()
     run([sys.executable, "scripts/build_arxiv_source.py"])
