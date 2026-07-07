@@ -52,6 +52,12 @@ family-balanced homogeneous-S4G pilot subset for later scoring work. It is not
 a fit table, does not inspect rotation endpoints, and does not claim that the
 selected family will improve any galaxy.
 
+The committed P0 holdout endpoint-readiness manifest records only availability
+and coarse count/radial metadata for the frozen holdout objects. The actual
+SPARC endpoint curve packet is written locally under `data/external/` and is
+not committed. The readiness manifest is not an endpoint score, baseline
+comparison, or observational claim.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.

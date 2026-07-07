@@ -101,6 +101,13 @@ objects in the `PILOT_TRAIN_POOL`, and marks 23 non-homogeneous source-tier
 objects as outside the first homogeneous-S4G pilot. This is a scoring-prep
 ledger only; it is not an endpoint result.
 
+The first endpoint-readiness pass checks those 8 holdout objects against the
+local SPARC preflight files. All 8 have available SPARC mass-model/rotation
+rows, with 224 total local rotation points. The committed readiness manifest
+records only availability and coarse radial/count metadata; the actual
+endpoint curve packet is written under `data/external/` and remains
+gitignored. No endpoint score or baseline comparison is run.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -142,6 +149,8 @@ data/source_manifests/tcdr_v4_p0_source_family_freeze_v0_1.csv
 data/source_manifests/tcdr_v4_p0_source_family_freeze_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_pilot_holdout_manifest_v0_1.csv
 data/source_manifests/tcdr_v4_p0_pilot_holdout_manifest_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv
+data/source_manifests/tcdr_v4_p0_holdout_endpoint_readiness_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -257,6 +266,19 @@ to two homogeneous S4G objects per available source family, preferring objects
 without projection caveats and then sorting by galaxy name. It produces a
 source-side holdout/train-pool ledger for later endpoint work. It does not read
 rotation residuals, fit amplitudes, or score baselines.
+
+Prepare the local endpoint-readiness packet for the 8 holdout objects:
+
+```bash
+python scripts/build_tcdr_v4_p0_holdout_endpoint_packet.py
+```
+
+This requires the optional SPARC files in `data/external/sparc_preflight/`.
+It writes a committed readiness manifest without `Vobs`, `Vflat`, residual, or
+score fields, and writes the actual local endpoint curve packet only under
+`data/external/`, which is ignored by git. The carrier is frozen as
+`fixed_baryonic_mlr_disk_0p5_bulge_0p7_no_amplitude_fit`; this is a preflight
+carrier policy, not an endpoint fit.
 
 ## arXiv Source Package
 

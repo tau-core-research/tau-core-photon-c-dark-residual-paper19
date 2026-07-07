@@ -721,6 +721,24 @@ residuals, fit amplitudes, compare baselines, or claim that the matched family
 improves any galaxy.  The CSV and JSON artifacts are stored in the repository
 source-manifest directory with the pilot-holdout prefix.
 
+Finally, the current local preflight checks endpoint availability for the
+frozen holdout without committing the endpoint curves.  The script
+\begin{center}
+\texttt{python scripts/build\_tcdr\_v4\_p0\_holdout\_endpoint\_packet.py}
+\end{center}
+requires the optional local SPARC preflight files and writes two classes of
+output.  The committed readiness manifest records only availability and coarse
+curve metadata:
+\begin{align*}
+  8   &\quad {\rm holdout\ objects\ with\ endpoint\ rows},\\
+ 224  &\quad {\rm total\ local\ rotation\ points}.
+\end{align*}
+The actual SPARC endpoint curve packet is written only under
+\path{data/external/}, which is ignored by git.  The frozen carrier policy is
+\({\rm disk}\ M/L=0.5\) and \({\rm bulge}\ M/L=0.7\), with no amplitude fit.
+This is endpoint-readiness only: no score, residual comparison, baseline
+ranking, or physical claim is made at this stage.
+
 \begin{table}[H]
 \centering
 \scriptsize

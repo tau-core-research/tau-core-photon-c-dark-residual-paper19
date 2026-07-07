@@ -33,6 +33,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_family_freeze_summary_v0_1.json").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_pilot_holdout_manifest_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_pilot_holdout_manifest_summary_v0_1.json").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_summary_v0_1.json").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -63,6 +65,7 @@ def test_manuscript_claim_boundary() -> None:
         "K\\_BARRED\\_M2",
         "PILOT\\_HOLDOUT",
         "PILOT\\_TRAIN\\_POOL",
+        "endpoint-readiness only",
         "TCDR-v4",
     ]
     for marker in required:
@@ -291,3 +294,30 @@ def test_p0_pilot_holdout_manifest_is_endpoint_blind_and_balanced() -> None:
             == "endpoint_blind_homogeneous_s4g_family_balanced_projection_caveat_no_first_then_galaxy_name"
         )
         assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_for_pilot_holdout_selection"
+
+
+def test_p0_holdout_endpoint_readiness_excludes_endpoint_values() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv").open()
+        )
+    )
+    assert len(rows) == 8
+    assert sum(1 for row in rows if row["endpoint_availability"] == "available") == 8
+    assert sum(int(row["n_rotation_points"]) for row in rows) == 224
+    forbidden_columns = {
+        "Vflat",
+        "vflat",
+        "Vobs",
+        "vobs",
+        "e_Vobs",
+        "rotation_residual",
+        "delta_r2",
+        "score",
+        "rmse",
+    }
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+    for row in rows:
+        assert row["endpoint_policy"] == "endpoint_values_local_only_not_committed"
+        assert row["score_policy"] == "readiness_only_no_endpoint_score"
+        assert row["source_label_policy"] == "source_family_already_frozen_before_endpoint_packet"
