@@ -635,7 +635,7 @@ current name-based lookup returns:
 \end{align*}
 The unmatched objects are not failures; they require alias review or a
 different source-side morphology route.  The lookup artifact is
-\texttt{data/source\_manifests/tcdr\_v4\_p0\_s4g\_lookup\_v0\_1.csv}.
+\path{data/source_manifests/tcdr_v4_p0_s4g_lookup_v0_1.csv}.
 
 A second resolver pass uses SIMBAD coordinates for the 34 name-unmatched
 objects and performs a 1 arcmin nearest-neighbour cross-match against S4G
@@ -647,7 +647,7 @@ positions.  This adds:
 Thus the present P0 S4G source-side coverage is 43/66 before endpoint scoring.
 This remains an availability ledger only; it is not a residual or rotation
 curve result.  The coordinate artifact is
-\texttt{data/source\_manifests/tcdr\_v4\_p0\_s4g\_coordinate\_lookup\_v0\_1.csv}.
+\path{data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv}.
 
 For the remaining 23 non-S4G P0 objects, a SIMBAD fallback pass resolves all
 23 object identities and provides morphology-type fields for 22:
@@ -660,7 +660,22 @@ This fallback is deliberately lower in the source hierarchy than S4G: it
 records catalogue identity, object type, morphology type, morphology bibcode,
 and aliases, but it is not a homogeneous infrared morphology measurement.  It
 is retained as a source-side fallback ledger only.  The artifact is
-\texttt{data/source\_manifests/tcdr\_v4\_p0\_simbad\_fallback\_lookup\_v0\_1.csv}.
+\path{data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv}.
+
+Combining the three source ledgers gives the first freeze-ready P0 source-tier
+manifest:
+\begin{align*}
+  32 &\quad {\rm S4G\_STRONG},\\
+  11 &\quad {\rm S4G\_COORD\_RESCUE},\\
+  22 &\quad {\rm SIMBAD\_FALLBACK},\\
+   1 &\quad {\rm SIMBAD\_IDENTITY\_ONLY}.
+\end{align*}
+Equivalently, all 66 P0 objects have an identity tier, 65 have some
+source-side morphology type, and 43 have homogeneous S4G structural morphology.
+These tiers are source-quality classes only.  They are not fit classes,
+endpoint scores, or claims that the corresponding readout family will improve
+a rotation curve.  The artifact is
+\path{data/source_manifests/tcdr_v4_p0_source_tier_manifest_v0_1.csv}.
 
 \begin{table}[H]
 \centering

@@ -1,0 +1,10 @@
+{
+  "n_p0_objects": 66,
+  "n_s4g_strong": 32,
+  "n_s4g_coord_rescue": 11,
+  "n_simbad_fallback": 22,
+  "n_simbad_identity_only": 1,
+  "n_source_unresolved": 0,
+  "n_homogeneous_s4g_structural": 43,
+  "n_any_source_side_morphology_type": 65
+}

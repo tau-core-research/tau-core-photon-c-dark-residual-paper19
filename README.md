@@ -81,6 +81,12 @@ weaker than S4G structural morphology because it is a catalogue type/identity
 source, not a homogeneous infrared morphology table, but it closes the first
 P0 identity/morphology source ledger without touching rotation endpoints.
 
+The combined P0 source-tier manifest freezes this source hierarchy:
+`S4G_STRONG=32`, `S4G_COORD_RESCUE=11`, `SIMBAD_FALLBACK=22`, and
+`SIMBAD_IDENTITY_ONLY=1`. Thus all 66 P0 objects have an identity tier, 65 have
+some source-side morphology type, and 43 have homogeneous S4G structural
+morphology before any endpoint scoring.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -116,6 +122,8 @@ data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv
 data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv
 data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_source_tier_manifest_v0_1.csv
+data/source_manifests/tcdr_v4_p0_source_tier_manifest_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -198,6 +206,15 @@ python scripts/build_tcdr_v4_p0_simbad_fallback_lookup.py
 This records SIMBAD identity, object type, morphology type, morphology
 bibcode, and aliases for non-S4G source review. It is intentionally a fallback
 source ledger, not an endpoint or validation input.
+
+Build the combined P0 source-tier manifest:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_tier_manifest.py
+```
+
+This combines the name, coordinate, and SIMBAD fallback ledgers into a frozen
+source-tier hierarchy. It still does not inspect rotation endpoints.
 
 ## arXiv Source Package
 

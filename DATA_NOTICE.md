@@ -38,6 +38,10 @@ morphological-type fields for non-S4G P0 objects. It is a weaker fallback
 source ledger, not a homogeneous morphology catalogue and not endpoint
 evidence.
 
+The committed P0 source-tier manifest combines S4G and SIMBAD source ledgers
+into a freeze-ready source-quality hierarchy. The tiers describe source
+availability only and must not be read as endpoint performance classes.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.

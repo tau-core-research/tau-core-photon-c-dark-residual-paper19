@@ -27,6 +27,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_coordinate_lookup_summary_v0_1.json").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_simbad_fallback_lookup_summary_v0_1.json").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_tier_manifest_v0_1.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_tier_manifest_summary_v0_1.json").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -53,6 +55,7 @@ def test_manuscript_claim_boundary() -> None:
         "S4G\\ matched\\ by\\ name",
         "S4G\\ coordinate\\ matched",
         "SIMBAD\\ morphology\\ type\\ available",
+        "S4G\\_STRONG",
         "TCDR-v4",
     ]
     for marker in required:
@@ -194,3 +197,28 @@ def test_p0_simbad_fallback_lookup_is_source_side_only() -> None:
     assert forbidden_columns.isdisjoint(rows[0].keys())
     for row in with_morphology:
         assert row["source_freeze_policy"] == "simbad_source_side_morphology_available_before_endpoint_scoring"
+
+
+def test_p0_source_tier_manifest_is_freeze_ready_without_endpoint_fields() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_tier_manifest_v0_1.csv").open()
+        )
+    )
+    assert len(rows) == 66
+    counts: dict[str, int] = {}
+    for row in rows:
+        counts[row["source_tier"]] = counts.get(row["source_tier"], 0) + 1
+    assert counts == {
+        "S4G_STRONG": 32,
+        "S4G_COORD_RESCUE": 11,
+        "SIMBAD_FALLBACK": 22,
+        "SIMBAD_IDENTITY_ONLY": 1,
+    }
+    forbidden_columns = {"Vflat", "vflat", "rotation_residual", "delta_r2", "score"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+    assert sum(1 for row in rows if row["homogeneous_structural_morphology"] == "yes") == 43
+    assert sum(1 for row in rows if row["morphology_type"]) == 65
+    for row in rows:
+        assert row["source_freeze_policy"] == "source_tier_may_be_frozen_before_endpoint_scoring"
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_for_source_tier"
