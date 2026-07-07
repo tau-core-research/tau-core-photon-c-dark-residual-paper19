@@ -702,17 +702,20 @@ manifest.  It is generated from the already frozen family manifest by:
 \end{center}
 The selection is deterministic and endpoint-blind: within each homogeneous
 S4G source family, the script selects up to two objects, preferring entries
-without projection caveats and then sorting by galaxy name.  The current
+without projection caveats and then sorting by galaxy name, while leaving at
+least one train object in every selected homogeneous family.  This calibration
+aware guard prevents small families from being exhausted into holdout before
+any family-level amplitude or control can be estimated.  The current
 artifact contains:
 \begin{align*}
-   8 &\quad {\rm PILOT\_HOLDOUT},\\
-  35 &\quad {\rm PILOT\_TRAIN\_POOL},\\
+   7 &\quad {\rm PILOT\_HOLDOUT},\\
+  36 &\quad {\rm PILOT\_TRAIN\_POOL},\\
   23 &\quad {\rm NON\_HOMOGENEOUS\_SOURCE\_TIER}.
 \end{align*}
 The holdout family counts are:
 \begin{align*}
   2 &\quad {\rm K\_BARRED\_M2},\\
-  2 &\quad {\rm K\_DIFFUSE\_LATE\_DISK},\\
+  1 &\quad {\rm K\_DIFFUSE\_LATE\_DISK},\\
   2 &\quad {\rm K\_EXPONENTIAL\_SPIRAL\_DISK},\\
   2 &\quad {\rm K\_RING\_RESONANCE}.
 \end{align*}
@@ -730,14 +733,39 @@ requires the optional local SPARC preflight files and writes two classes of
 output.  The committed readiness manifest records only availability and coarse
 curve metadata:
 \begin{align*}
-  8   &\quad {\rm holdout\ objects\ with\ endpoint\ rows},\\
- 224  &\quad {\rm total\ local\ rotation\ points}.
+  7   &\quad {\rm holdout\ objects\ with\ endpoint\ rows},\\
+ 215  &\quad {\rm total\ local\ rotation\ points}.
 \end{align*}
 The actual SPARC endpoint curve packet is written only under
 \path{data/external/}, which is ignored by git.  The frozen carrier policy is
 \({\rm disk}\ M/L=0.5\) and \({\rm bulge}\ M/L=0.7\), with no amplitude fit.
 This is endpoint-readiness only: no score, residual comparison, baseline
 ranking, or physical claim is made at this stage.
+
+A separate optional local scoring preflight is provided only as a diagnostic.
+It fits non-negative family amplitudes on the \({\rm PILOT\_TRAIN\_POOL}\)
+and scores only the frozen holdout.  Families with fewer than two train
+galaxies are marked calibration-blocked and are not allowed to act as matched
+endpoint results or wrong-family controls.  This rule is deliberately
+conservative: an under-supported source family may remain endpoint-ready for
+future data, but it is not treated as a calibrated control in the present
+preflight.
+
+The current author-local scoring pass uses a train-pool-only
+specificity-first v4 kernel policy:
+\[
+{\rm train\_pool\_only\_specificity\_first\_v4\_penalty\_1p5\_no\_holdout\_shape\_tuning}.
+\]
+In that diagnostic run, six holdout galaxies are scoreable and one diffuse
+late-disk holdout is calibration-blocked.  The matched family improves the
+frozen baryonic carrier in \(6/6\) scoreable cases, beats the calibrated
+wrong-family mean in \(3/6\), and beats the best calibrated wrong family in
+\(2/6\).  The median wrong-family-mean minus matched weighted RMSE is
+\(-0.074\,{\rm km\,s^{-1}}\), while the median matched minus baryonic-carrier
+weighted RMSE is \(-0.392\,{\rm km\,s^{-1}}\).  This is a useful
+kernel-development diagnostic, not a validation result: the present
+source-family kernels are still too primitive for robust endpoint-level
+family separation.
 
 \begin{table}[H]
 \centering

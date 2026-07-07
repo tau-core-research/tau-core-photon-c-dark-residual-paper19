@@ -52,6 +52,12 @@ family-balanced homogeneous-S4G pilot subset for later scoring work. It is not
 a fit table, does not inspect rotation endpoints, and does not claim that the
 selected family will improve any galaxy.
 
+The pilot split is calibration aware. It leaves train support in each selected
+homogeneous family and the optional local scoring script blocks families with
+fewer than two train galaxies from acting as calibrated matched or wrong-family
+controls. This prevents a one-object family amplitude from being promoted into
+an endpoint result.
+
 The committed P0 holdout endpoint-readiness manifest records only availability
 and coarse count/radial metadata for the frozen holdout objects. The actual
 SPARC endpoint curve packet is written locally under `data/external/` and is
@@ -62,7 +68,11 @@ The optional holdout endpoint-scoring preflight writes its results only under
 `data/external/`. Those local outputs are diagnostic and are not part of the
 released source package. They must not be cited as population validation or as
 evidence for a physical dark residual without a separate frozen endpoint
-protocol and public-result promotion step.
+protocol and public-result promotion step. The current author-local scoring
+pass uses train-pool-only specificity-first v4 kernels. It improves the frozen
+baryonic carrier on all scoreable holdout objects, but it does not yet
+systematically beat calibrated wrong-family controls; this is recorded as a
+kernel-development diagnostic rather than an endpoint result.
 
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational

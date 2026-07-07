@@ -96,14 +96,16 @@ fit outcomes.
 
 The first homogeneous-S4G pilot holdout manifest then selects an
 endpoint-blind, family-balanced pilot subset from the 43 homogeneous S4G P0
-objects only. It freezes 8 `PILOT_HOLDOUT` objects, leaves 35 homogeneous S4G
+objects only. It freezes 7 `PILOT_HOLDOUT` objects, leaves 36 homogeneous S4G
 objects in the `PILOT_TRAIN_POOL`, and marks 23 non-homogeneous source-tier
-objects as outside the first homogeneous-S4G pilot. This is a scoring-prep
-ledger only; it is not an endpoint result.
+objects as outside the first homogeneous-S4G pilot. The split is calibration
+aware: it leaves at least one train object in each selected homogeneous family
+instead of exhausting small families into holdout. This is a scoring-prep ledger
+only; it is not an endpoint result.
 
-The first endpoint-readiness pass checks those 8 holdout objects against the
-local SPARC preflight files. All 8 have available SPARC mass-model/rotation
-rows, with 224 total local rotation points. The committed readiness manifest
+The first endpoint-readiness pass checks those 7 holdout objects against the
+local SPARC preflight files. All 7 have available SPARC mass-model/rotation
+rows, with 215 total local rotation points. The committed readiness manifest
 records only availability and coarse radial/count metadata; the actual
 endpoint curve packet is written under `data/external/` and remains
 gitignored. No endpoint score or baseline comparison is run.
@@ -263,11 +265,12 @@ python scripts/build_tcdr_v4_p0_pilot_holdout_manifest.py
 
 This reads the source-family freeze artifact and deterministically selects up
 to two homogeneous S4G objects per available source family, preferring objects
-without projection caveats and then sorting by galaxy name. It produces a
+without projection caveats and then sorting by galaxy name while leaving at
+least one train object in each selected homogeneous family. It produces a
 source-side holdout/train-pool ledger for later endpoint work. It does not read
 rotation residuals, fit amplitudes, or score baselines.
 
-Prepare the local endpoint-readiness packet for the 8 holdout objects:
+Prepare the local endpoint-readiness packet for the 7 holdout objects:
 
 ```bash
 python scripts/build_tcdr_v4_p0_holdout_endpoint_packet.py
@@ -288,10 +291,19 @@ python scripts/run_tcdr_v4_holdout_endpoint_scoring.py
 
 This command uses only the frozen pilot split and the local SPARC endpoint
 packet under `data/external/`. Family amplitudes are fit on the
-`PILOT_TRAIN_POOL` only, then evaluated on the 8 `PILOT_HOLDOUT` objects
-against wrong-family controls. The outputs stay local under `data/external/`
-and are not part of the public release. This is diagnostic scoring, not
-population validation or a physical dark-residual claim.
+`PILOT_TRAIN_POOL` only, then evaluated on the `PILOT_HOLDOUT` objects against
+calibrated wrong-family controls. Families with fewer than two train galaxies
+are marked calibration-blocked and are not allowed to act as endpoint controls.
+The current local kernel pass uses
+`train_pool_only_specificity_first_v4_penalty_1p5_no_holdout_shape_tuning`,
+meaning the radial kernel shapes were selected from train-pool specificity
+criteria rather than holdout performance. In the author-local diagnostic run,
+6 holdout galaxies are scoreable and 1 is calibration-blocked; the matched
+family beats the frozen baryonic carrier in 6/6 scoreable cases, beats the
+calibrated wrong-family mean in 3/6, and beats the best calibrated wrong family
+in 2/6. The outputs stay local under `data/external/` and are not part of the
+public release. This is diagnostic scoring, not population validation or a
+physical dark-residual claim.
 
 ## arXiv Source Package
 

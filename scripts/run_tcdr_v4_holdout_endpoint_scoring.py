@@ -28,8 +28,16 @@ FAMILIES = [
 ]
 
 CARRIER_POLICY = "fixed_baryonic_mlr_disk_0p5_bulge_0p7_no_amplitude_fit"
-AMPLITUDE_POLICY = "family_amplitude_fit_on_pilot_train_pool_only_nonnegative_weighted_v2"
-SCORING_POLICY = "holdout_only_matched_vs_wrong_family_preflight_no_validation"
+MIN_TRAIN_GALAXIES_PER_FAMILY = 2
+KERNEL_SHAPE_POLICY = "train_pool_only_specificity_first_v4_penalty_1p5_no_holdout_shape_tuning"
+AMPLITUDE_POLICY = (
+    "family_amplitude_fit_on_pilot_train_pool_only_nonnegative_weighted_v3_"
+    "specificity_guarded_min2_train"
+)
+SCORING_POLICY = (
+    "holdout_only_matched_vs_calibrated_wrong_family_specificity_guarded_"
+    "preflight_no_validation"
+)
 
 
 def _sample_rows(galaxies: set[str]) -> dict[str, dict[str, float]]:
@@ -87,18 +95,24 @@ def _kernel(family: str, radius: pd.Series, rdisk: pd.Series, rhi: pd.Series) ->
     x = (radius / rd).clip(lower=0)
     h = (radius / rh).clip(lower=0)
     if family == "K_BARRED_M2":
-        # Axisymmetric projection of an m=2/bar disturbance: inner-to-mid disk,
-        # fading in the outer disk.
-        return (x * np.exp(-x / 1.6)).clip(lower=0)
+        # Specificity-first train-pool scan selects compact inner/mid-disk
+        # support: a bar control should not behave like a generic outer tail.
+        return (x**1.2 * np.exp(-x / 0.45) / (1.0 + np.exp((x - 1.6) / 0.35))).clip(lower=0)
     if family == "K_DIFFUSE_LATE_DISK":
-        # Broad late/HI-dominated tail, slowly saturating with HI-scaled radius.
-        return (1.0 - np.exp(-h / 0.55)).clip(lower=0)
+        # HI-dominated support must turn on late; otherwise this family becomes
+        # a generic outer-tail control for ordinary disks.
+        radial_gate = 1.0 / (1.0 + np.exp(-(x - 2.5) / 0.35))
+        return ((1.0 - np.exp(-h / 0.45)) * radial_gate).clip(lower=0)
     if family == "K_EXPONENTIAL_SPIRAL_DISK":
-        # Smooth disk tail with no sharp resonance.
-        return (1.0 - np.exp(-x / 2.2)).clip(lower=0)
+        # Ordinary exponential disks get a disk-scale bump with an explicit
+        # outer guard. This intentionally avoids the old saturating tail that
+        # acted as a near-universal missing-velocity control.
+        outer_guard = 1.0 / (1.0 + np.exp((x - 2.5) / 0.2))
+        return ((x / 1.4) * np.exp(1.0 - x / 1.4) * outer_guard).clip(lower=0)
     if family == "K_RING_RESONANCE":
-        # Broad resonance shell around the ordinary disk/ring radius.
-        return np.exp(-0.5 * ((x - 2.2) / 0.75) ** 2)
+        # Specificity-first narrow shell. A broad ring kernel too easily
+        # becomes an ordinary-disk correction in wrong-family controls.
+        return np.exp(-0.5 * ((x - 1.4) / 0.18) ** 2)
     raise ValueError(f"unknown family: {family}")
 
 
@@ -114,6 +128,29 @@ def _fit_amplitude(train: pd.DataFrame, family: str) -> float:
         return 0.0
     amp = float(np.sum(w * k * y) / denom)
     return max(0.0, amp)
+
+
+def _family_calibration(train: pd.DataFrame) -> dict[str, dict[str, object]]:
+    calibration: dict[str, dict[str, object]] = {}
+    for family in FAMILIES:
+        subset = train[train["source_family_candidate"] == family].copy()
+        n_galaxies = int(subset["galaxy"].nunique())
+        n_points = int(len(subset))
+        if n_galaxies < MIN_TRAIN_GALAXIES_PER_FAMILY:
+            calibration[family] = {
+                "family_amplitude_v2": 0.0,
+                "n_train_galaxies": n_galaxies,
+                "n_train_points": n_points,
+                "calibration_status": "calibration_blocked_underpowered_train_family",
+            }
+        else:
+            calibration[family] = {
+                "family_amplitude_v2": _fit_amplitude(train, family),
+                "n_train_galaxies": n_galaxies,
+                "n_train_points": n_points,
+                "calibration_status": "calibrated_min2_train_galaxies",
+            }
+    return calibration
 
 
 def _rmse(group: pd.DataFrame, family: str, amp: float) -> tuple[float, float]:
@@ -155,7 +192,15 @@ def run_scoring() -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
     train = data[data["pilot_role"] == "PILOT_TRAIN_POOL"].copy()
     holdout = data[data["pilot_role"] == "PILOT_HOLDOUT"].copy()
 
-    amplitudes = {family: _fit_amplitude(train, family) for family in FAMILIES}
+    calibration = _family_calibration(train)
+    amplitudes = {
+        family: float(values["family_amplitude_v2"]) for family, values in calibration.items()
+    }
+    calibrated_families = {
+        family
+        for family, values in calibration.items()
+        if values["calibration_status"] == "calibrated_min2_train_galaxies"
+    }
 
     detail_rows = []
     summary_rows = []
@@ -166,27 +211,50 @@ def run_scoring() -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
         for family in FAMILIES:
             rmse, wrmse = _rmse(group, family, amplitudes[family])
             family_scores[family] = {"rmse": rmse, "wrmse": wrmse}
+            calibration_row = calibration[family]
             detail_rows.append(
                 {
                     "galaxy": galaxy,
                     "matched_source_family": matched_family,
                     "scored_family": family,
                     "is_matched_family": "yes" if family == matched_family else "no",
+                    "is_calibrated_family": "yes" if family in calibrated_families else "no",
                     "n_points": int(len(group)),
                     "rmse_kms": rmse,
                     "weighted_rmse_kms": wrmse,
                     "baseline_carrier_rmse_kms": baseline_rmse,
                     "baseline_carrier_weighted_rmse_kms": baseline_wrmse,
                     "family_amplitude_v2": amplitudes[family],
+                    "family_train_galaxy_count": calibration_row["n_train_galaxies"],
+                    "family_train_point_count": calibration_row["n_train_points"],
+                    "family_calibration_status": calibration_row["calibration_status"],
+                    "kernel_shape_policy": KERNEL_SHAPE_POLICY,
                     "carrier_policy": CARRIER_POLICY,
                     "amplitude_policy": AMPLITUDE_POLICY,
                     "scoring_policy": SCORING_POLICY,
                 }
             )
-        matched = family_scores[matched_family]["wrmse"]
-        wrong = [value["wrmse"] for fam, value in family_scores.items() if fam != matched_family]
-        wrong_mean = float(np.mean(wrong))
-        wrong_best = float(np.min(wrong))
+        matched_status = str(calibration[matched_family]["calibration_status"])
+        wrong = [
+            value["wrmse"]
+            for fam, value in family_scores.items()
+            if fam != matched_family and fam in calibrated_families
+        ]
+        scoreable = matched_family in calibrated_families and len(wrong) > 0
+        if scoreable:
+            matched = float(family_scores[matched_family]["wrmse"])
+            wrong_mean = float(np.mean(wrong))
+            wrong_best = float(np.min(wrong))
+            matched_minus_baseline = matched - baseline_wrmse
+            wrong_mean_minus_matched = wrong_mean - matched
+            best_wrong_minus_matched = wrong_best - matched
+        else:
+            matched = float("nan")
+            wrong_mean = float("nan")
+            wrong_best = float("nan")
+            matched_minus_baseline = float("nan")
+            wrong_mean_minus_matched = float("nan")
+            best_wrong_minus_matched = float("nan")
         summary_rows.append(
             {
                 "galaxy": galaxy,
@@ -196,12 +264,16 @@ def run_scoring() -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
                 "matched_weighted_rmse_kms": matched,
                 "wrong_family_mean_weighted_rmse_kms": wrong_mean,
                 "best_wrong_family_weighted_rmse_kms": wrong_best,
-                "matched_minus_baseline_weighted_rmse_kms": matched - baseline_wrmse,
-                "wrong_mean_minus_matched_weighted_rmse_kms": wrong_mean - matched,
-                "best_wrong_minus_matched_weighted_rmse_kms": wrong_best - matched,
-                "matched_beats_baryonic_carrier": "yes" if matched < baseline_wrmse else "no",
-                "matched_beats_wrong_mean": "yes" if matched < wrong_mean else "no",
-                "matched_beats_best_wrong": "yes" if matched < wrong_best else "no",
+                "matched_minus_baseline_weighted_rmse_kms": matched_minus_baseline,
+                "wrong_mean_minus_matched_weighted_rmse_kms": wrong_mean_minus_matched,
+                "best_wrong_minus_matched_weighted_rmse_kms": best_wrong_minus_matched,
+                "matched_beats_baryonic_carrier": "yes" if scoreable and matched < baseline_wrmse else "no",
+                "matched_beats_wrong_mean": "yes" if scoreable and matched < wrong_mean else "no",
+                "matched_beats_best_wrong": "yes" if scoreable and matched < wrong_best else "no",
+                "endpoint_scoring_status": "scoreable" if scoreable else "calibration_blocked",
+                "matched_family_calibration_status": matched_status,
+                "n_calibrated_wrong_family_controls": int(len(wrong)),
+                "kernel_shape_policy": KERNEL_SHAPE_POLICY,
                 "carrier_policy": CARRIER_POLICY,
                 "amplitude_policy": AMPLITUDE_POLICY,
                 "scoring_policy": SCORING_POLICY,
@@ -210,22 +282,44 @@ def run_scoring() -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
 
     detail = pd.DataFrame(detail_rows).sort_values(["galaxy", "scored_family"])
     summary = pd.DataFrame(summary_rows).sort_values(["matched_source_family", "galaxy"])
+    scoreable_summary = summary[summary["endpoint_scoring_status"] == "scoreable"].copy()
     aggregate = {
         "n_train_pool_galaxies": int(train["galaxy"].nunique()),
         "n_holdout_galaxies": int(holdout["galaxy"].nunique()),
+        "n_scoreable_holdout_galaxies": int(len(scoreable_summary)),
+        "n_calibration_blocked_holdout_galaxies": int(
+            (summary["endpoint_scoring_status"] == "calibration_blocked").sum()
+        ),
         "n_train_points": int(len(train)),
         "n_holdout_points": int(len(holdout)),
         "family_amplitudes_v2": amplitudes,
-        "matched_beats_baryonic_carrier": int((summary["matched_beats_baryonic_carrier"] == "yes").sum()),
-        "matched_beats_wrong_mean": int((summary["matched_beats_wrong_mean"] == "yes").sum()),
-        "matched_beats_best_wrong": int((summary["matched_beats_best_wrong"] == "yes").sum()),
+        "family_calibration": calibration,
+        "matched_beats_baryonic_carrier": int(
+            (scoreable_summary["matched_beats_baryonic_carrier"] == "yes").sum()
+        ),
+        "matched_beats_wrong_mean": int(
+            (scoreable_summary["matched_beats_wrong_mean"] == "yes").sum()
+        ),
+        "matched_beats_best_wrong": int(
+            (scoreable_summary["matched_beats_best_wrong"] == "yes").sum()
+        ),
         "median_wrong_mean_minus_matched_weighted_rmse_kms": float(
-            summary["wrong_mean_minus_matched_weighted_rmse_kms"].median()
-        ),
+            scoreable_summary["wrong_mean_minus_matched_weighted_rmse_kms"].median()
+        )
+        if not scoreable_summary.empty
+        else None,
+        "median_best_wrong_minus_matched_weighted_rmse_kms": float(
+            scoreable_summary["best_wrong_minus_matched_weighted_rmse_kms"].median()
+        )
+        if not scoreable_summary.empty
+        else None,
         "median_matched_minus_baseline_weighted_rmse_kms": float(
-            summary["matched_minus_baseline_weighted_rmse_kms"].median()
-        ),
+            scoreable_summary["matched_minus_baseline_weighted_rmse_kms"].median()
+        )
+        if not scoreable_summary.empty
+        else None,
         "carrier_policy": CARRIER_POLICY,
+        "kernel_shape_policy": KERNEL_SHAPE_POLICY,
         "amplitude_policy": AMPLITUDE_POLICY,
         "scoring_policy": SCORING_POLICY,
         "claim_boundary": "local_preflight_endpoint_scoring_not_population_validation",

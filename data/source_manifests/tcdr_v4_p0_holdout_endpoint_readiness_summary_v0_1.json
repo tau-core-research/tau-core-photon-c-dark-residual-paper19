@@ -1,9 +1,9 @@
 {
-  "n_holdout_objects": 8,
+  "n_holdout_objects": 7,
   "endpoint_availability_counts": {
-    "available": 8
+    "available": 7
   },
-  "n_total_rotation_points_local": 224,
+  "n_total_rotation_points_local": 215,
   "carrier_policy": "fixed_baryonic_mlr_disk_0p5_bulge_0p7_no_amplitude_fit",
   "endpoint_policy": "endpoint_values_local_only_not_committed",
   "local_curve_packet": "data/external/sparc_preflight/tcdr_v4_p0_holdout_endpoint_curves_local.csv",

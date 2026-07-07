@@ -12,9 +12,10 @@ OUT_DIR = ROOT / "data" / "source_manifests"
 FAMILY_FREEZE = OUT_DIR / "tcdr_v4_p0_source_family_freeze_v0_1.csv"
 
 HOLDOUT_PER_FAMILY = 2
+MIN_TRAIN_PER_FAMILY = 1
 SELECTION_POLICY = (
     "endpoint_blind_homogeneous_s4g_family_balanced_"
-    "projection_caveat_no_first_then_galaxy_name"
+    "calibration_aware_projection_caveat_no_first_then_galaxy_name"
 )
 ENDPOINT_DATA_POLICY = "do_not_use_rotation_residuals_for_pilot_holdout_selection"
 
@@ -29,7 +30,8 @@ def build_pilot_holdout() -> tuple[pd.DataFrame, dict[str, object]]:
         ordered = group.assign(
             _projection_rank=group["projection_caveat"].map({"no": 0, "yes": 1}).fillna(2)
         ).sort_values(["_projection_rank", "galaxy"])
-        holdout = ordered.head(HOLDOUT_PER_FAMILY)
+        n_holdout = min(HOLDOUT_PER_FAMILY, max(1, len(ordered) - MIN_TRAIN_PER_FAMILY))
+        holdout = ordered.head(n_holdout)
         family_holdout_counts[family] = int(len(holdout))
         selected.update(str(galaxy) for galaxy in holdout["galaxy"].tolist())
 
@@ -53,6 +55,7 @@ def build_pilot_holdout() -> tuple[pd.DataFrame, dict[str, object]]:
                 "pilot_selection_policy": SELECTION_POLICY,
                 "holdout_selection_reason": reason,
                 "holdout_per_family_target": HOLDOUT_PER_FAMILY,
+                "min_train_per_family": MIN_TRAIN_PER_FAMILY,
                 "endpoint_data_policy": ENDPOINT_DATA_POLICY,
             }
         )
@@ -69,6 +72,7 @@ def build_pilot_holdout() -> tuple[pd.DataFrame, dict[str, object]]:
         "selection_policy": SELECTION_POLICY,
         "endpoint_data_policy": ENDPOINT_DATA_POLICY,
         "holdout_per_family_target": HOLDOUT_PER_FAMILY,
+        "min_train_per_family": MIN_TRAIN_PER_FAMILY,
         "n_p0_objects": int(len(detail)),
         "n_homogeneous_s4g": int(len(homogeneous)),
         "n_pilot_holdout": int(len(holdout)),

@@ -1,20 +1,21 @@
 {
-  "selection_policy": "endpoint_blind_homogeneous_s4g_family_balanced_projection_caveat_no_first_then_galaxy_name",
+  "selection_policy": "endpoint_blind_homogeneous_s4g_family_balanced_calibration_aware_projection_caveat_no_first_then_galaxy_name",
   "endpoint_data_policy": "do_not_use_rotation_residuals_for_pilot_holdout_selection",
   "holdout_per_family_target": 2,
+  "min_train_per_family": 1,
   "n_p0_objects": 66,
   "n_homogeneous_s4g": 43,
-  "n_pilot_holdout": 8,
-  "n_pilot_train_pool": 35,
+  "n_pilot_holdout": 7,
+  "n_pilot_train_pool": 36,
   "n_non_homogeneous_source_tier": 23,
   "pilot_role_counts": {
     "NON_HOMOGENEOUS_SOURCE_TIER": 23,
-    "PILOT_HOLDOUT": 8,
-    "PILOT_TRAIN_POOL": 35
+    "PILOT_HOLDOUT": 7,
+    "PILOT_TRAIN_POOL": 36
   },
   "family_holdout_counts": {
     "K_BARRED_M2": 2,
-    "K_DIFFUSE_LATE_DISK": 2,
+    "K_DIFFUSE_LATE_DISK": 1,
     "K_EXPONENTIAL_SPIRAL_DISK": 2,
     "K_RING_RESONANCE": 2
   },
@@ -22,7 +23,6 @@
     "ESO116-G012",
     "NGC1090",
     "UGC08490",
-    "UGC06399",
     "NGC5033",
     "NGC6503",
     "NGC2841",
