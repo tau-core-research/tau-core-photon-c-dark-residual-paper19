@@ -86,6 +86,17 @@ convert available S4G bar/ring angular radii into physical kernel coordinates.
 It does not read endpoint curves, residuals, wrong-family scores, or fitted
 improvement margins. Uncovered objects remain explicit source-proxy fallbacks.
 
+The committed P0 source-native component-mixture audit is endpoint-blind. It
+uses the same S4G source-route and coordinate-freeze artifacts to record
+whether source-native bar, ring, and spiral-pitch components coexist in a
+galaxy. It does not score curves. Its role is to distinguish pure wrong-family
+controls from source-visible secondary/mixed components.
+
+The committed P0 source-native mixed-component kernel freeze is also
+endpoint-blind. It converts the component-mixture audit into a fixed component
+weight rule before endpoint scoring. It does not inspect endpoint curves,
+residuals, fitted amplitudes, wrong-family scores, or validation outcomes.
+
 The optional holdout endpoint-scoring preflight writes its results only under
 `data/external/`. Those local outputs are diagnostic and are not part of the
 released source package. They must not be cited as population validation or as
@@ -111,6 +122,12 @@ holdout endpoint packet. Its current role is diagnostic: source-native
 bar/ring coordinates improve some matched objects and the median
 matched-minus-baryonic-carrier margin, but they do not yet systematically beat
 calibrated wrong-family controls.
+
+The optional mixed-component scoring replay also writes only under
+`data/external/`. It tests one source-frozen mixed-component model against the
+same local holdout packet. Its current role is diagnostic: it improves several
+pure matched-family cases but still does not systematically beat calibrated
+wrong-family controls.
 
 No real endpoint curve packets, lensing maps, cosmological likelihood products,
 or population-validation survey products are included. The committed source

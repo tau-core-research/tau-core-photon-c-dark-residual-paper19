@@ -60,6 +60,27 @@ def test_publication_artifacts_exist() -> None:
         / "source_manifests"
         / "tcdr_v4_p0_source_native_kernel_coordinate_freeze_summary_v0_1.json"
     ).exists()
+    assert (
+        ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_native_component_mixture_audit_v0_1.csv"
+    ).exists()
+    assert (
+        ROOT
+        / "data"
+        / "source_manifests"
+        / "tcdr_v4_p0_source_native_component_mixture_audit_summary_v0_1.json"
+    ).exists()
+    assert (
+        ROOT
+        / "data"
+        / "source_manifests"
+        / "tcdr_v4_p0_source_native_mixed_component_kernel_freeze_v0_1.csv"
+    ).exists()
+    assert (
+        ROOT
+        / "data"
+        / "source_manifests"
+        / "tcdr_v4_p0_source_native_mixed_component_kernel_freeze_summary_v0_1.json"
+    ).exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_summary_v0_1.json").exists()
 
@@ -413,6 +434,84 @@ def test_p0_source_native_kernel_coordinate_freeze_is_endpoint_blind() -> None:
         "source_native_ring_radius_frozen": 4,
         "source_native_spiral_pitch_recorded_disk_proxy_center": 2,
         "source_proxy_kernel_fallback": 48,
+    }
+    forbidden_columns = {"Vobs", "vobs", "rotation_residual", "delta_r2", "score", "rmse"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+
+
+def test_p0_source_native_component_mixture_audit_is_endpoint_blind() -> None:
+    rows = list(
+        csv.DictReader(
+            (
+                ROOT
+                / "data"
+                / "source_manifests"
+                / "tcdr_v4_p0_source_native_component_mixture_audit_v0_1.csv"
+            ).open()
+        )
+    )
+    assert len(rows) == 66
+    status_counts: dict[str, int] = {}
+    holdout_status_counts: dict[str, int] = {}
+    for row in rows:
+        status = row["component_mixture_status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+        if row["pilot_role"] == "PILOT_HOLDOUT":
+            holdout_status_counts[status] = holdout_status_counts.get(status, 0) + 1
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_or_endpoint_scores_for_component_mixture_audit"
+        assert row["claim_boundary"] == "source_native_component_mixture_audit_not_endpoint_validation"
+    assert status_counts == {
+        "mixed_source_native_multicomponent": 17,
+        "no_source_native_bar_ring_spiral_component": 42,
+        "single_source_native_primary_component": 4,
+        "single_source_native_secondary_component_only": 3,
+    }
+    assert holdout_status_counts == {
+        "mixed_source_native_multicomponent": 3,
+        "no_source_native_bar_ring_spiral_component": 3,
+        "single_source_native_primary_component": 1,
+    }
+    forbidden_columns = {"Vobs", "vobs", "rotation_residual", "delta_r2", "score", "rmse"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+
+
+def test_p0_source_native_mixed_component_kernel_freeze_is_endpoint_blind() -> None:
+    rows = list(
+        csv.DictReader(
+            (
+                ROOT
+                / "data"
+                / "source_manifests"
+                / "tcdr_v4_p0_source_native_mixed_component_kernel_freeze_v0_1.csv"
+            ).open()
+        )
+    )
+    assert len(rows) == 66
+    status_counts: dict[str, int] = {}
+    holdout_status_counts: dict[str, int] = {}
+    for row in rows:
+        status = row["mixed_kernel_status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+        if row["pilot_role"] == "PILOT_HOLDOUT":
+            holdout_status_counts[status] = holdout_status_counts.get(status, 0) + 1
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_or_endpoint_scores_for_mixed_component_kernel_freeze"
+        assert row["claim_boundary"] == "source_native_mixed_component_kernel_freeze_not_endpoint_validation"
+        total_weight = (
+            float(row["bar_component_weight"])
+            + float(row["ring_component_weight"])
+            + float(row["spiral_component_weight"])
+            + float(row["fallback_family_proxy_weight"])
+        )
+        assert abs(total_weight - 1.0) < 1e-12
+    assert status_counts == {
+        "fallback_family_proxy_kernel": 42,
+        "mixed_source_native_component_kernel": 17,
+        "single_source_native_component_kernel": 7,
+    }
+    assert holdout_status_counts == {
+        "fallback_family_proxy_kernel": 3,
+        "mixed_source_native_component_kernel": 3,
+        "single_source_native_component_kernel": 1,
     }
     forbidden_columns = {"Vobs", "vobs", "rotation_residual", "delta_r2", "score", "rmse"}
     assert forbidden_columns.isdisjoint(rows[0].keys())

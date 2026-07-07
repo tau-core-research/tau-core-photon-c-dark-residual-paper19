@@ -39,6 +39,8 @@ def main() -> None:
     run([sys.executable, "scripts/build_tcdr_v4_p0_source_native_kernel_coordinate_audit.py"])
     run([sys.executable, "scripts/build_tcdr_v4_p0_bar_ring_decomposition_source_route.py"])
     run([sys.executable, "scripts/build_tcdr_v4_p0_source_native_kernel_coordinate_freeze.py"])
+    run([sys.executable, "scripts/build_tcdr_v4_p0_source_native_component_mixture_audit.py"])
+    run([sys.executable, "scripts/build_tcdr_v4_p0_source_native_mixed_component_kernel_freeze.py"])
     run([sys.executable, "scripts/build_figures.py"])
     build_pdf()
     run([sys.executable, "scripts/build_arxiv_source.py"])

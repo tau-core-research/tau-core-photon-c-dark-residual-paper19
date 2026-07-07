@@ -157,6 +157,8 @@ data/source_manifests/tcdr_v4_p0_bar_ring_decomposition_source_route_v0_1.csv
 data/source_manifests/tcdr_v4_p0_bar_ring_decomposition_source_route_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_source_native_kernel_coordinate_freeze_v0_1.csv
 data/source_manifests/tcdr_v4_p0_source_native_kernel_coordinate_freeze_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_source_native_component_mixture_audit_v0_1.csv
+data/source_manifests/tcdr_v4_p0_source_native_component_mixture_audit_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv
 data/source_manifests/tcdr_v4_p0_holdout_endpoint_readiness_summary_v0_1.json
 figures/*.png
@@ -186,8 +188,9 @@ The command:
 6. regenerates the endpoint-blind P0 pilot holdout manifest from the committed
    source-family freeze artifact;
 7. regenerates the source-native kernel-coordinate audit, S4G bar/ring
-   decomposition source-route artifact, and endpoint-blind coordinate-freeze
-   manifest;
+   decomposition source-route artifact, endpoint-blind coordinate-freeze
+   manifest, source-native component-mixture audit, and source-native
+   mixed-component kernel freeze;
 8. copies figures into the paper source tree;
 9. compiles `paper19_submission_source/main.tex`;
 10. builds `arxiv_submission_source.zip`;
@@ -397,6 +400,55 @@ best calibrated wrong family in 2/6. The scientific interpretation is not
 validation; it is that source-native coordinates improve several matched
 objects, while mixed/multi-component galaxies can also activate wrong-family
 controls unless the next rule separates mixed components source-side.
+
+Build the source-native component-mixture audit:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_component_mixture_audit.py
+```
+
+This endpoint-blind manifest records whether source-native bar, ring, and
+spiral-pitch components coexist in the same P0 galaxy. The current audit finds
+17 `mixed_source_native_multicomponent` objects, 42 objects with no
+source-native bar/ring/spiral component in the current S4G route, 4 single
+primary-component objects, and 3 single secondary-component-only objects. In
+the 7-object holdout, 3 galaxies are mixed: NGC1090 (`bar;ring;spiral`),
+NGC5033 (`ring;spiral`), and NGC3198 (`bar;ring;spiral`). This explains why a
+calibrated wrong-family control can sometimes be a physically meaningful
+component control rather than a pure false label. It does not promote any
+endpoint validation claim.
+
+Freeze the endpoint-blind mixed-component kernel weights:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_mixed_component_kernel_freeze.py
+```
+
+This source-side artifact turns the component-mixture audit into an auditable
+kernel rule before endpoint scoring. The current freeze contains 17
+`mixed_source_native_component_kernel` rows, 7
+`single_source_native_component_kernel` rows, and 42
+`fallback_family_proxy_kernel` rows. Its rule gives a primary component weight
+of `0.5` and lets source-visible secondary components share the remaining
+`0.5` in multicomponent cases; single-component cases get weight `1.0`, and
+uncovered objects remain family-proxy fallbacks. This is a kernel-freeze
+artifact, not endpoint validation.
+
+Run the optional mixed-component local scoring replay:
+
+```bash
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_mixed_components.py
+```
+
+This local diagnostic fits one source-frozen `K_SOURCE_NATIVE_MIXED_COMPONENT`
+amplitude on the pilot train pool and evaluates it on the holdout. The current
+author-local replay beats the baryonic carrier in 6/6 scoreable cases and
+beats the pure matched family in 4/6, but it still beats the calibrated
+wrong-family mean in only 3/6 and the best wrong family in 2/6. Among the
+three mixed holdout objects, the mixed model beats the pure matched model in
+2/3 and the wrong-family mean in 1/3. This is not an endpoint validation
+claim; it shows that source-side mixed components are useful but not yet
+sufficiently selective.
 
 ## arXiv Source Package
 

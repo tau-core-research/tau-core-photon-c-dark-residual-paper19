@@ -1,0 +1,16 @@
+{
+  "n_rows": 66,
+  "mixed_kernel_status_counts": {
+    "fallback_family_proxy_kernel": 42,
+    "mixed_source_native_component_kernel": 17,
+    "single_source_native_component_kernel": 7
+  },
+  "holdout_mixed_kernel_status_counts": {
+    "fallback_family_proxy_kernel": 3,
+    "mixed_source_native_component_kernel": 3,
+    "single_source_native_component_kernel": 1
+  },
+  "weight_policy": "source_native_mixed_component_freeze_v0_1_primary_0p5_secondary_equal_when_multicomponent_single_component_1p0_no_component_family_proxy_fallback",
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_mixed_component_kernel_freeze",
+  "verdict": "The source-native mixed-component kernel weights are frozen before endpoint scoring. This creates an auditable mixed-kernel rule for later shuffled-component nulls; it is not endpoint validation."
+}

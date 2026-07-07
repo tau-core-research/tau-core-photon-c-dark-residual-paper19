@@ -843,6 +843,48 @@ help several matched objects, but mixed or multi-component galaxies can also
 activate wrong-family controls unless the next rule separates components on
 the source side before endpoint scoring.
 
+The next committed source-side audit in this version therefore records
+component coexistence explicitly:
+\begin{center}
+\path{python scripts/build_tcdr_v4_p0_source_native_component_mixture_audit.py}.
+\end{center}
+It uses the same S4G source-route and coordinate-freeze artifacts and does not
+read endpoint curves.  Across the 66 P0 objects it finds 17
+source-native mixed/multicomponent cases, 42 objects with no source-native
+bar/ring/spiral component in the current S4G route, 4 single
+primary-component cases, and 3 single secondary-component-only cases.  In the
+7-object holdout, 3 galaxies are already mixed at source level:
+NGC1090 carries bar, ring, and spiral components; NGC5033 carries ring and
+spiral components; and NGC3198 carries bar, ring, and spiral components.  This
+does not make wrong-family controls ``correct''.  It means that, for mixed
+objects, a wrong-family control can be a source-visible secondary-component
+control rather than a pure false label.  The next fair endpoint test should
+therefore compare source-frozen mixed-component kernels against pure-family
+and shuffled-component controls.
+
+We therefore freeze the first mixed-component kernel rule as a separate
+endpoint-blind artifact:
+\begin{center}
+\path{python scripts/build_tcdr_v4_p0_source_native_mixed_component_kernel_freeze.py}.
+\end{center}
+It assigns primary component weight \(0.5\) and lets source-visible secondary
+components share the remaining \(0.5\) when multiple source-native components
+are present.  Single-component cases receive weight \(1.0\), and objects
+without source-native bar/ring/spiral support remain family-proxy fallbacks.
+The current freeze contains 17 mixed source-native component kernels, 7
+single-component kernels, and 42 fallback family-proxy kernels.  This artifact
+is still source-side only: it freezes a later endpoint test rule, not a fitted
+endpoint result.
+
+A local mixed-component replay then implements the first such diagnostic with
+one train-pool-fitted mixed amplitude and the frozen component-weight rule.  It beats
+the baryonic carrier in \(6/6\) scoreable cases and beats the pure matched
+family in \(4/6\), but it still beats the calibrated wrong-family mean in only
+\(3/6\) and the best wrong family in \(2/6\).  Among the three mixed holdout
+objects, it beats the pure matched family in \(2/3\) and the wrong-family mean
+in \(1/3\).  This is again diagnostic only: mixed components are useful, but
+the current rule is not yet selective enough for endpoint promotion.
+
 \begin{table}[H]
 \centering
 \scriptsize

@@ -1,0 +1,18 @@
+{
+  "n_rows": 66,
+  "component_mixture_status_counts": {
+    "mixed_source_native_multicomponent": 17,
+    "no_source_native_bar_ring_spiral_component": 42,
+    "single_source_native_primary_component": 4,
+    "single_source_native_secondary_component_only": 3
+  },
+  "holdout_component_mixture_status_counts": {
+    "mixed_source_native_multicomponent": 3,
+    "no_source_native_bar_ring_spiral_component": 3,
+    "single_source_native_primary_component": 1
+  },
+  "n_mixed_source_native_multicomponent": 17,
+  "n_holdout_mixed_source_native_multicomponent": 3,
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_component_mixture_audit",
+  "verdict": "Several P0 galaxies have multiple source-native structural components. Wrong-family controls can therefore be physically meaningful component controls rather than pure false labels; future scoring should test mixed-component kernels source-side."
+}
