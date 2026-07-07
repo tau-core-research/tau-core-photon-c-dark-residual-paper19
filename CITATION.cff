@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Tau Core Photon-C Dark Residual Protocol"
+message: "If you use this repository, please cite the repository and manuscript."
+type: software
+authors:
+  - family-names: "Olcsak"
+    given-names: "Jozsef"
+repository-code: "https://github.com/tau-core-research/tau-core-photon-c-dark-residual-paper19"
+date-released: "2026-07-07"
+license: MIT

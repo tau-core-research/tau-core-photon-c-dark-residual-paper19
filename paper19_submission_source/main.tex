@@ -1,0 +1,394 @@
+\documentclass[11pt]{article}
+
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{array}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{Photon-C Dark Residuals: A Synthetic Null/Time Split Protocol for Morphology-Seeded Tau Core Tests}
+\author{Tau Core Research}
+\date{Draft v0.1 -- 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper defines a controlled synthetic protocol for a Tau Core research
+line connecting a Photon-C/null-probe interpretation with dark-residual
+classification.  The paper does not claim that photons, special relativity,
+gravity, or dark matter have been derived from Tau Core.  It instead asks a
+smaller methodological question: if a residual component tied to
+pre-registered morphology, filament-boundary, break-radius, or null/time split
+seed variables is present in mock data, can a frozen protocol recover it; and
+if it is absent, does the same protocol avoid strong false positives?
+
+The package implements three synthetic audits.  TCDR-v1 tests clean
+morphology-seed recovery.  TCDR-v2 adds halo misspecification, baryonic
+uncertainty, orientation errors, inclination-like nuisance, and survey-like
+systematics.  TCDR-v3 tests a null/time split proxy, where a lensing-like
+residual and a dynamics-like residual receive different morphology-seeded
+responses.  The fixed-seed reproduction gives score 0 for all no-injection
+runs, reaches score 5 in the clean strong-injection toy, score 4 in the noisy
+strong-injection toy, and score 3 in the null/time split toy.  These are
+synthetic recovery results only.  They motivate a TCDR-v4 real-data protocol
+with halo, baryonic, dynamical, lensing, environment, survey, permutation, and
+out-of-sample controls.  The result should be read as a reproducible protocol
+and prevalidation scaffold, not as observational evidence or as a new
+gravitational law.
+\end{abstract}
+
+\section{Claim Boundary}
+
+This is a controlled synthetic protocol paper.  Its central object is the
+Tau Core Dark Residual protocol, abbreviated TCDR.  The paper claims:
+\begin{itemize}
+  \item a reproducible synthetic recovery/failure test for morphology-seeded
+  residuals;
+  \item a null/time split toy motivated by the distinction between null probes
+  and dynamical probes;
+  \item a real-data-ready protocol skeleton, TCDR-v4, with declared controls.
+\end{itemize}
+
+It does not prove Tau Core.  It does not detect dark matter residuals in real
+data.  It does not reject dark matter, general relativity, quantum
+electrodynamics, MOND, or \(\Lambda\)CDM.  It does not derive photons or the
+speed of light from bare Tau principles.  It also does not claim that a
+morphological residual is present in nature.
+
+The phrase ``Photon-C'' is used here as a motivation for treating lensing as a
+null-probe channel.  It is not a replacement for standard electrodynamics.
+The phrase ``dark residual'' means a residual left after a declared standard
+modeling stage; it does not mean that dark matter is false.
+
+\section{Motivation}
+
+Standard relativistic physics distinguishes null probes and timelike probes.
+Photons trace null geodesic structure, while rotation curves and many dynamical
+measurements use massive matter as timelike or approximately timelike probes
+\cite{Einstein1905,Einstein1916}.  Dark-sector inference often combines
+multiple probe families: dynamics, weak lensing, strong lensing, clustering,
+gas, and background cosmology \cite{Rubin1980,Navarro1996,Mandelbaum2018}.
+
+Tau Core adds a cautious organizing question.  Suppose some part of an
+effective residual is not an arbitrary fluid term, but a source-conditioned
+readout contribution tied to morphology, boundary, or environment variables.
+Then a claim-safe test should not begin by fitting an arbitrary correction.
+It should predeclare source-side seeds and ask whether residual structure
+survives standard controls.
+
+The guiding decomposition is not asserted as a physical law:
+\begin{equation}
+  R_{\rm obs}
+  =
+  R_{\rm standard}
+  +
+  R_{\tau}
+  +
+  \epsilon .
+\end{equation}
+Here \(R_{\tau}\) is admissible only if it is selected from source-side
+variables before endpoint inspection and survives controls.  If improved halo,
+baryonic, dynamical, lensing, or survey-systematics modeling absorbs the
+residual, the TCDR candidate fails.
+
+\section{Photon-C as Null-Probe Motivation}
+
+The source package motivates TCDR through a Photon-C reading: a photon is
+treated, in Tau Core language, as a stable null-compatible electromagnetic
+readout response.  This paper uses only the following operational consequence:
+lensing is a null-probe channel of effective geometry.  Dynamics and rotation
+curves are not identical probes; they are timelike or massive-matter-facing
+channels.  A Tau Core-compatible dark-residual programme may therefore compare
+two residual families:
+\begin{align}
+  R_{\rm null} &= \hbox{lensing-like residual},\\
+  R_{\rm time} &= \hbox{dynamics-like residual}.
+\end{align}
+The TCDR-v3 toy studies the split
+\begin{equation}
+  \Delta_{\tau}=R_{\rm null}-R_{\rm time}.
+\end{equation}
+
+This is a toy proxy.  In real data, the split must account for source redshift
+uncertainty, shear calibration, mass-sheet degeneracy, non-circular motions,
+asymmetric drift, distance errors, inclination errors, halo-family choices,
+and baryonic modeling.
+
+\section{The TCDR Hypotheses}
+
+The protocol defines three source-side hypotheses.
+
+\paragraph{H1: Morphological residual hypothesis.}
+After standard baryon+halo modeling, residuals may correlate with
+pre-registered galaxy morphology seeds:
+\[
+  \theta_{\rm disk},\quad
+  \theta_{\rm bar},\quad
+  \hbox{bar strength},\quad
+  B/D,\quad
+  r_{\rm break},\quad
+  \hbox{gas extent}.
+\]
+
+\paragraph{H2: Filament-boundary hypothesis.}
+Residuals may correlate with environment or boundary variables:
+\[
+  \theta_{\rm filament},\quad
+  D_{\rm filament},\quad
+  D_{\rm node},\quad
+  \theta_{\rm tidal},\quad
+  D_{\rm void},\quad
+  \hbox{isolation flag}.
+\]
+
+\paragraph{H3: Null/time split hypothesis.}
+Lensing-like and dynamics-like residuals may differ in a morphology- or
+environment-dependent way:
+\[
+  \Delta_{\tau}
+  \sim
+  A_{\rm disk}+A_{\rm fil}+B_{\rm break}+{\rm controls}.
+\]
+
+For axial quantities the toy uses alignment statistics
+\begin{align}
+  A_{\rm disk} &= \cos 2(\theta_{\rm disk}-\theta_{\rm filament}),\\
+  A_{\rm bar}  &= \cos 2(\theta_{\rm bar}-\theta_{\rm filament}).
+\end{align}
+
+\section{Synthetic Protocol}
+
+For each mock object the source-side seed is
+\begin{equation}
+  P_{\tau}
+  =
+  0.55 A_{\rm disk}
+  +
+  0.25 A_{\rm bar}
+  +
+  0.20 B_{\rm break}.
+  \label{eq:ptau}
+\end{equation}
+The coefficient values are protocol constants for the synthetic package, not
+universal Tau Core constants.  The base model uses halo and mass-like nuisance
+variables.  The Tau-extended model adds the predeclared seed variables:
+\begin{align}
+  R &\sim X_{\rm base},\\
+  R &\sim X_{\rm base}+X_{\tau}.
+\end{align}
+The reported statistic is
+\begin{equation}
+  \Delta R^2 = R^2_{\tau}-R^2_{\rm base},
+\end{equation}
+with a permutation control in which the Tau columns are independently
+permuted relative to the residual.
+
+The package uses a conservative toy score:
+\begin{center}
+\begin{tabular}{L{0.15\linewidth}L{0.70\linewidth}}
+\toprule
+Score & Meaning\\
+\midrule
+0 & residual absent or absorbed by controls\\
+1 & residual present but unstructured\\
+2 & weak pre-registered seed correlation\\
+3 & structured residual survives basic controls\\
+4 & structured residual survives strong toy permutation control\\
+5 & strong synthetic morphology residual and split support in the toy\\
+\bottomrule
+\end{tabular}
+\end{center}
+Even score 5 is not physical validation.
+
+\section{TCDR-v1: Clean Morphology Recovery}
+
+TCDR-v1 injects a clean morphology/filament seed into otherwise simple mock
+residuals.  The base model includes a halo-shape-like variable and a mass-like
+variable.  The Tau model adds the source-side alignment and break variables.
+The no-injection cases remain score 0.  At \(\tau=0.30\), the toy reaches
+\(\Delta R^2=0.1178\) and score 4.  At \(\tau=0.60\), it reaches
+\(\Delta R^2=0.2987\) and score 5.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/tcdr_delta_r2.png}
+\caption{Additional explained variance from predeclared Tau seed variables in
+the synthetic TCDR toys.  Stronger injected seed strength is recovered in
+TCDR-v1 and TCDR-v2; TCDR-v3 is deliberately harder because it uses a
+differential null/time split.}
+\label{fig:delta-r2}
+\end{figure}
+
+\section{TCDR-v2: Noisy Controls}
+
+TCDR-v2 adds halo nonlinearity, baryonic uncertainty, inclination-like error,
+filament angle error, bar/disk orientation error, and survey-like directional
+systematics.  This version asks whether the seed recovery collapses under
+more realistic nuisance structure.  It does not.  The no-injection case
+remains score 0, while \(\tau=0.30\) and \(\tau=0.60\) reach score 4 with
+permutation \(p\simeq0.001996\).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/tcdr_pvalues.png}
+\caption{Permutation control for the TCDR toys.  The horizontal line marks
+\(p=0.05\).  These p-values are toy permutation statistics under the package
+simulation; they are not observational p-values.}
+\label{fig:pvalues}
+\end{figure}
+
+\section{TCDR-v3: Null/Time Split}
+
+TCDR-v3 is the most Tau-Core-specific toy in the package.  It creates two
+mock residual channels:
+\begin{align}
+  R_{\rm time} &= R_{\rm common}+0.35\,\tau P_{\tau}+\eta_{\rm time},\\
+  R_{\rm null} &= R_{\rm common}+1.00\,\tau P_{\tau}+\eta_{\rm null}.
+\end{align}
+The tested endpoint is the differential split
+\[
+  \Delta_{\tau}=R_{\rm null}-R_{\rm time}.
+\]
+The no-injection and very weak injection runs remain score 0.  The
+\(\tau=0.20\) run reaches score 2, while \(\tau=0.35\) and \(\tau=0.60\)
+reach score 3.  This is weaker than the clean morphology toy, as expected,
+because the split is noisier and differential.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\linewidth]{figures/tcdr_v3_split_scatter.png}
+\caption{TCDR-v3 example split.  The plotted relation is between the
+predefined seed \(P_{\tau}\) and the toy null/time split \(\Delta_{\tau}\) for
+the fixed \(\tau=0.35\) example dataset.}
+\label{fig:split-scatter}
+\end{figure}
+
+\section{Numerical Summary}
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{llrrrr}
+\toprule
+Module & \(\tau\) & \(R^2_{\rm base}\) & \(R^2_{\tau}\) & \(\Delta R^2\) & Score\\
+\midrule
+TCDR-v1 & 0.00 & 0.1303 & 0.1422 & 0.0119 & 0\\
+TCDR-v1 & 0.15 & 0.0757 & 0.0790 & 0.0032 & 0\\
+TCDR-v1 & 0.30 & 0.0795 & 0.1973 & 0.1178 & 4\\
+TCDR-v1 & 0.60 & 0.0444 & 0.3431 & 0.2987 & 5\\
+TCDR-v2 & 0.00 & 0.1587 & 0.1595 & 0.0008 & 0\\
+TCDR-v2 & 0.15 & 0.1781 & 0.1877 & 0.0096 & 0\\
+TCDR-v2 & 0.30 & 0.1305 & 0.1940 & 0.0635 & 4\\
+TCDR-v2 & 0.60 & 0.1557 & 0.2916 & 0.1360 & 4\\
+TCDR-v3 & 0.00 & 0.0012 & 0.0036 & 0.0024 & 0\\
+TCDR-v3 & 0.10 & 0.0135 & 0.0157 & 0.0023 & 0\\
+TCDR-v3 & 0.20 & 0.0038 & 0.0142 & 0.0104 & 2\\
+TCDR-v3 & 0.35 & 0.0155 & 0.0337 & 0.0182 & 3\\
+TCDR-v3 & 0.60 & 0.0012 & 0.0349 & 0.0337 & 3\\
+\bottomrule
+\end{tabular}
+\caption{Fixed-seed TCDR summary generated by the package script.  The table
+is synthetic and should not be read as empirical evidence.}
+\label{tab:summary}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\linewidth]{figures/tcdr_score.png}
+\caption{Toy TCDR score by injected morphology/readout strength.  The null
+runs score zero, while stronger injections produce recoverable synthetic
+signals.}
+\label{fig:score}
+\end{figure}
+
+\section{TCDR-v4 Real-Data Protocol Skeleton}
+
+The TCDR-v4 protocol is the real-data-facing output of the package.  Its
+recommended sequence is:
+\begin{enumerate}
+  \item nearby spiral galaxies with rotation curves and baryonic profiles;
+  \item add source-side morphology and filament/environment variables;
+  \item stack galaxy-galaxy lensing by morphology/environment class;
+  \item compare null and timelike residuals where both are available;
+  \item only then move to cluster lensing plus dynamics.
+\end{enumerate}
+
+The required controls include halo-family variation, cored versus cusped
+comparison, baryonic mass-to-light marginalization, gas uncertainty, distance
+and inclination uncertainty, non-circular motion flags, pressure support,
+source redshift uncertainty, shear calibration, mass-sheet/projection effects,
+neighbor catalogues, tidal indices, survey footprint controls, and
+permutation controls within matched mass/morphology bins.
+
+\section{Relationship to Existing Frameworks}
+
+The TCDR protocol does not replace MOND, \(\Lambda\)CDM, or halo modeling.
+MOND-like phenomenology can be an effective acceleration-scale relation
+\cite{Milgrom1983}; halo models can fit broad gravitational phenomenology
+\cite{Navarro1996,Burkert1995}; lensing and cluster systems provide strong
+evidence that any serious model must account for null-probe mass mapping
+\cite{Clowe2006,Mandelbaum2018}.  TCDR is a different diagnostic question:
+after conventional modeling and controls, is there a residual component tied
+to predeclared morphology, boundary, or null/time split variables?
+
+If the answer is no, the TCDR branch fails for that dataset.  If the answer is
+yes, the result is still only a candidate; it must survive independent data,
+out-of-sample validation, and shared-parent covariance checks.
+
+\section{Failure Modes}
+
+The protocol is designed to fail.  Failure occurs if:
+\begin{itemize}
+  \item improved halo or baryonic modeling absorbs the residual;
+  \item seed correlations vanish under permutation or matched-bin shuffling;
+  \item the signal follows survey footprint, inclination, or selection bias;
+  \item the apparent null/time split is dominated by ordinary lensing or
+  dynamics systematics;
+  \item out-of-sample validation fails.
+\end{itemize}
+These failures would not disprove Tau Core globally, but they would block the
+TCDR dark-residual branch in the tested domain.
+
+\section{Discussion}
+
+The strongest result of this package is not the presence of high scores under
+strong synthetic injection.  That is expected.  The useful result is the
+combination of recovery under injected source-side structure and score-zero
+behavior in the no-injection runs.  This provides a minimal audit grammar for
+future data work.
+
+The TCDR-v3 null/time split is especially important because it is more
+specific than a generic residual-amplitude test.  It asks whether null probes
+and timelike probes separate in a way that follows source-side structure.  A
+real-data version would be scientifically interesting only if the split
+survived lensing, dynamics, baryonic, halo, and survey controls.
+
+\section{Conclusion}
+
+Paper 19 promotes the Photon-C dark residual package into a reproducible
+synthetic paper.  The package defines a careful test ladder:
+\begin{align*}
+  \hbox{source-side seeds}
+  &\rightarrow \hbox{standard controls}\\
+  &\rightarrow \hbox{Tau-extended recovery}\\
+  &\rightarrow \hbox{permutation/null tests}\\
+  &\rightarrow \hbox{real-data TCDR-v4 protocol}.
+\end{align*}
+The current status is
+\[
+  \textsc{Controlled Synthetic Photon-C Dark Residual Protocol}.
+\]
+It is not observational evidence and not physical validation.  It is a
+structured way to ask, in future real data, whether dark-sector residuals
+contain a morphology-seeded null/time component that standard controls do not
+absorb.
+
+\bibliographystyle{plain}
+\bibliography{refs}
+
+\end{document}
