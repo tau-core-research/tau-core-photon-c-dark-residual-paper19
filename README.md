@@ -69,6 +69,12 @@ leaves 34 objects as `not_found_by_name` for alias/manual-source review. This
 is source-side morphology acquisition only; no SPARC endpoint residual is
 inspected.
 
+A second source-side resolver pass uses SIMBAD coordinates for those 34
+name-unmatched objects and cross-matches them to S4G within 1 arcmin. It
+recovers 11 additional coordinate matches, bringing the current P0 S4G
+source-side coverage to 43/66 and leaving 23 P0 objects for non-S4G routes or
+manual source review.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -100,6 +106,8 @@ data/source_manifests/tcdr_v4_sparc_source_freeze_queue_v0_1.csv
 data/source_manifests/tcdr_v4_sparc_source_freeze_queue_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_s4g_lookup_v0_1.csv
 data/source_manifests/tcdr_v4_p0_s4g_lookup_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv
+data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -161,6 +169,16 @@ python scripts/build_tcdr_v4_p0_s4g_lookup.py
 This uses IRSA TAP table `s4gcat` and records only source-side morphology
 columns such as type, bar/ring flags, position angle, ellipticity,
 concentration, and stellar-mass proxy fields.
+
+For P0 objects not found by name, run the coordinate resolver pass:
+
+```bash
+python scripts/build_tcdr_v4_p0_s4g_coordinate_lookup.py
+```
+
+This uses SIMBAD name resolution and a 1 arcmin S4G coordinate match. It is
+still source-side morphology acquisition only and must not be used as endpoint
+scoring.
 
 ## arXiv Source Package
 

@@ -23,6 +23,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_sparc_source_freeze_queue_summary_v0_1.json").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_lookup_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_lookup_summary_v0_1.json").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_coordinate_lookup_summary_v0_1.json").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -47,6 +49,7 @@ def test_manuscript_claim_boundary() -> None:
         "endpoint/baseline inputs only",
         "P0\\_SOURCE\\_REVIEW",
         "S4G\\ matched\\ by\\ name",
+        "S4G\\ coordinate\\ matched",
         "TCDR-v4",
     ]
     for marker in required:
@@ -155,3 +158,19 @@ def test_p0_s4g_lookup_is_source_side_only() -> None:
     assert forbidden_columns.isdisjoint(rows[0].keys())
     for row in matched:
         assert row["source_freeze_policy"] == "source_side_morphology_available_before_endpoint_scoring"
+
+
+def test_p0_s4g_coordinate_lookup_is_source_side_only() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv").open()
+        )
+    )
+    assert len(rows) == 34
+    matched = [row for row in rows if row["coordinate_lookup_status"] == "matched_by_coordinate"]
+    assert len(matched) == 11
+    forbidden_columns = {"Vflat", "vflat", "rotation_residual", "delta_r2", "score"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+    for row in matched:
+        assert float(row["nearest_sep_arcmin"]) <= 1.0
+        assert row["source_freeze_policy"] == "source_side_morphology_available_by_coordinate_before_endpoint_scoring"

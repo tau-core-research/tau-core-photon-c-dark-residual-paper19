@@ -637,6 +637,18 @@ The unmatched objects are not failures; they require alias review or a
 different source-side morphology route.  The lookup artifact is
 \texttt{data/source\_manifests/tcdr\_v4\_p0\_s4g\_lookup\_v0\_1.csv}.
 
+A second resolver pass uses SIMBAD coordinates for the 34 name-unmatched
+objects and performs a 1 arcmin nearest-neighbour cross-match against S4G
+positions.  This adds:
+\begin{align*}
+  11 &\quad {\rm S4G\ coordinate\ matched},\\
+  23 &\quad {\rm still\ outside\ the\ S4G\ coordinate\ match\ radius}.
+\end{align*}
+Thus the present P0 S4G source-side coverage is 43/66 before endpoint scoring.
+This remains an availability ledger only; it is not a residual or rotation
+curve result.  The coordinate artifact is
+\texttt{data/source\_manifests/tcdr\_v4\_p0\_s4g\_coordinate\_lookup\_v0\_1.csv}.
+
 \begin{table}[H]
 \centering
 \scriptsize

@@ -29,6 +29,10 @@ fields for matched P0 candidates only. It is derived from the public IRSA TAP
 `s4gcat` table and remains a source-freeze aid, not a rotation-curve endpoint
 analysis.
 
+The committed P0 S4G coordinate-lookup artifact uses SIMBAD name resolution
+and S4G coordinates to resolve name-alias cases. It is still a source-side
+morphology-availability artifact and does not inspect rotation endpoints.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.
