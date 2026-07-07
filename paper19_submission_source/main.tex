@@ -607,6 +607,24 @@ For local preflight only, the repository also provides an optional downloader:
 The downloaded files are ignored by git and are endpoint/baseline inputs only.
 They must not be used for source-label selection.
 
+After the SPARC sample table is available locally, the source-freeze queue is
+built by:
+\begin{center}
+\texttt{python scripts/build\_tcdr\_v4\_sparc\_source\_freeze\_queue.py}.
+\end{center}
+The script reads SPARC sample metadata only and intentionally excludes
+\(V_{\rm flat}\) and rotation-curve endpoint values.  Its current output
+contains 175 SPARC objects:
+\begin{align*}
+  66 &\quad {\rm P0\_SOURCE\_REVIEW},\\
+  60 &\quad {\rm P1\_SOURCE\_REVIEW},\\
+  49 &\quad {\rm P2\_SOURCE\_REVIEW}.
+\end{align*}
+The priority labels are source-review logistics, not evidence levels.  They
+rank objects for later S4G/Galaxy Zoo morphology lookup using quality,
+inclination, HI-extent availability, and catalogue-name queryability.  No
+endpoint residual is inspected.
+
 \begin{table}[H]
 \centering
 \scriptsize

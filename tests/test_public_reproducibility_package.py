@@ -19,6 +19,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "derived" / "tcdr_realistic_mock_challenge_summary.csv").exists()
     assert (ROOT / "data" / "derived" / "tcdr_realistic_mock_threshold_curve.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_real_data_source_manifest_v0_1.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_sparc_source_freeze_queue_v0_1.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_sparc_source_freeze_queue_summary_v0_1.json").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -41,6 +43,7 @@ def test_manuscript_claim_boundary() -> None:
         "real-data source manifest",
         "SPARC dynamics products",
         "endpoint/baseline inputs only",
+        "P0\\_SOURCE\\_REVIEW",
         "TCDR-v4",
     ]
     for marker in required:
@@ -119,3 +122,18 @@ def test_real_data_manifest_separates_source_labels_from_endpoints() -> None:
     assert source_rows
     for row in source_rows:
         assert row["allowed_for_endpoint_scoring"] == "no"
+
+
+def test_sparc_source_freeze_queue_excludes_rotation_endpoints() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "source_manifests" / "tcdr_v4_sparc_source_freeze_queue_v0_1.csv").open()
+        )
+    )
+    assert len(rows) == 175
+    forbidden_columns = {"Vflat", "vflat", "e_Vflat", "rotation_residual", "delta_r2"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+    priorities = {row["source_review_priority"] for row in rows}
+    assert {"P0_SOURCE_REVIEW", "P1_SOURCE_REVIEW", "P2_SOURCE_REVIEW"}.issubset(priorities)
+    for row in rows:
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_for_source_label"

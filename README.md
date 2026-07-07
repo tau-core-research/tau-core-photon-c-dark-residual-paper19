@@ -57,6 +57,12 @@ particular, SPARC rotation/mass-model products are endpoint/baseline data and
 are explicitly forbidden for morphology-label rescue, while S4G and Galaxy Zoo
 are source-side morphology routes that must be frozen before scoring.
 
+The next preflight artifact builds a SPARC source-freeze queue from SPARC
+sample metadata only, intentionally excluding `Vflat` and rotation endpoint
+values. It currently lists 175 SPARC objects: 66 `P0_SOURCE_REVIEW`, 60
+`P1_SOURCE_REVIEW`, and 49 `P2_SOURCE_REVIEW` candidates for external
+morphology/source review.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -84,6 +90,8 @@ data/derived/tcdr_realistic_mock_challenge_results.csv
 data/derived/tcdr_realistic_mock_challenge_summary.csv
 data/derived/tcdr_realistic_mock_threshold_curve.csv
 data/source_manifests/tcdr_v4_real_data_source_manifest_v0_1.csv
+data/source_manifests/tcdr_v4_sparc_source_freeze_queue_v0_1.csv
+data/source_manifests/tcdr_v4_sparc_source_freeze_queue_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -125,6 +133,16 @@ This downloads `Rotmod_LTG.zip`, `MassModels_Lelli2016c.mrt`, and
 `SPARC_Lelli2016c.mrt`, plus a local checksum manifest. These files are
 endpoint/baseline inputs only. They must not be used to choose or rescue
 source-side morphology labels.
+
+After the SPARC sample table is available locally, build the endpoint-free
+source-review queue:
+
+```bash
+python scripts/build_tcdr_v4_sparc_source_freeze_queue.py
+```
+
+This generates a candidate list for later S4G/Galaxy Zoo source-side morphology
+lookup. It does not read SPARC rotation residuals or run endpoint scoring.
 
 ## arXiv Source Package
 

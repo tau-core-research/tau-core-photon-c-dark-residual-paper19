@@ -19,6 +19,11 @@ compact SPARC endpoint/baseline files into `data/external/`, which is ignored
 by git. Those downloaded files are local preflight inputs and are not part of
 the repository release.
 
+The committed SPARC source-freeze queue is derived from SPARC sample metadata
+and intentionally excludes `Vflat` and rotation-curve endpoint values. It is a
+candidate-review ledger for future external morphology lookup, not an endpoint
+analysis.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.
