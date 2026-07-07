@@ -695,6 +695,32 @@ High ellipticity or high inclination is recorded only as a projection caveat,
 not as an endpoint correction.  The family-freeze artifact is
 \path{data/source_manifests/tcdr_v4_p0_source_family_freeze_v0_1.csv}.
 
+The next source-side artifact is a first homogeneous-S4G pilot holdout
+manifest.  It is generated from the already frozen family manifest by:
+\begin{center}
+\texttt{python scripts/build\_tcdr\_v4\_p0\_pilot\_holdout\_manifest.py}.
+\end{center}
+The selection is deterministic and endpoint-blind: within each homogeneous
+S4G source family, the script selects up to two objects, preferring entries
+without projection caveats and then sorting by galaxy name.  The current
+artifact contains:
+\begin{align*}
+   8 &\quad {\rm PILOT\_HOLDOUT},\\
+  35 &\quad {\rm PILOT\_TRAIN\_POOL},\\
+  23 &\quad {\rm NON\_HOMOGENEOUS\_SOURCE\_TIER}.
+\end{align*}
+The holdout family counts are:
+\begin{align*}
+  2 &\quad {\rm K\_BARRED\_M2},\\
+  2 &\quad {\rm K\_DIFFUSE\_LATE\_DISK},\\
+  2 &\quad {\rm K\_EXPONENTIAL\_SPIRAL\_DISK},\\
+  2 &\quad {\rm K\_RING\_RESONANCE}.
+\end{align*}
+This is a scoring-preparation ledger only.  It does not inspect rotation
+residuals, fit amplitudes, compare baselines, or claim that the matched family
+improves any galaxy.  The CSV and JSON artifacts are stored in the repository
+source-manifest directory with the pilot-holdout prefix.
+
 \begin{table}[H]
 \centering
 \scriptsize
@@ -703,12 +729,12 @@ not as an endpoint correction.  The family-freeze artifact is
 \toprule
 Source & TCDR role & Source-label use & Endpoint use & Leakage guard\\
 \midrule
-SPARC sample table & sample metadata/control & conditional & no & no residual-based label rescue\\
-SPARC mass models & baseline/endpoint component & no & yes & no morphology-family choice\\
+SPARC sample table & sample metadata and control & conditional & no & no residual label rescue\\
+SPARC mass models & baseline and endpoint component & no & yes & no family choice\\
 SPARC Rotmod files & endpoint dynamics & no & yes & labels must already be frozen\\
 S4G/IRSA & source-side morphology & yes & no & no rotation residual scoring\\
 Galaxy Zoo & morphology crosscheck & yes & no & freeze before endpoint inspection\\
-EDD/Cosmicflows & distance/environment control & conditional & conditional & no post-hoc amplitude tuning\\
+EDD/Cosmicflows & distance and environment control & conditional & conditional & no post-hoc tuning\\
 \bottomrule
 \end{tabular}
 \caption{TCDR-v4 real-data source manifest v0.1.  This table is a protocol

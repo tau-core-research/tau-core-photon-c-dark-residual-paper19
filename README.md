@@ -94,6 +94,13 @@ candidate readout families by morphology alone: `K_BARRED_M2=30`,
 `K_UNFREEZABLE_IDENTITY_ONLY=1`. These are source-side family candidates, not
 fit outcomes.
 
+The first homogeneous-S4G pilot holdout manifest then selects an
+endpoint-blind, family-balanced pilot subset from the 43 homogeneous S4G P0
+objects only. It freezes 8 `PILOT_HOLDOUT` objects, leaves 35 homogeneous S4G
+objects in the `PILOT_TRAIN_POOL`, and marks 23 non-homogeneous source-tier
+objects as outside the first homogeneous-S4G pilot. This is a scoring-prep
+ledger only; it is not an endpoint result.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -133,6 +140,8 @@ data/source_manifests/tcdr_v4_p0_source_tier_manifest_v0_1.csv
 data/source_manifests/tcdr_v4_p0_source_tier_manifest_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_source_family_freeze_v0_1.csv
 data/source_manifests/tcdr_v4_p0_source_family_freeze_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_pilot_holdout_manifest_v0_1.csv
+data/source_manifests/tcdr_v4_p0_pilot_holdout_manifest_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -154,11 +163,13 @@ The command:
 3. runs the blind synthetic injection challenge with wrong-seed controls;
 4. runs the realistic-mock nuisance challenge with threshold-free diagnostics;
 5. regenerates the TCDR-v4 real-data source manifest;
-6. copies figures into the paper source tree;
-7. compiles `paper19_submission_source/main.tex`;
-8. builds `arxiv_submission_source.zip`;
-9. runs public package tests;
-10. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
+6. regenerates the endpoint-blind P0 pilot holdout manifest from the committed
+   source-family freeze artifact;
+7. copies figures into the paper source tree;
+8. compiles `paper19_submission_source/main.tex`;
+9. builds `arxiv_submission_source.zip`;
+10. runs public package tests;
+11. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
 
 ## Optional Real-Data Preflight
 
@@ -234,6 +245,18 @@ python scripts/build_tcdr_v4_p0_source_family_freeze.py
 This assigns candidate morphology/readout families from source-side morphology
 fields only. The output is not a score table and must not be interpreted as
 showing which family fits a galaxy.
+
+Build the first homogeneous-S4G pilot holdout manifest:
+
+```bash
+python scripts/build_tcdr_v4_p0_pilot_holdout_manifest.py
+```
+
+This reads the source-family freeze artifact and deterministically selects up
+to two homogeneous S4G objects per available source family, preferring objects
+without projection caveats and then sorting by galaxy name. It produces a
+source-side holdout/train-pool ledger for later endpoint work. It does not read
+rotation residuals, fit amplitudes, or score baselines.
 
 ## arXiv Source Package
 

@@ -46,6 +46,12 @@ The committed P0 source-family freeze maps source-side morphology tiers to
 candidate readout families. These family labels are allowed pre-endpoint
 hypotheses only; they are not fit results and do not use rotation residuals.
 
+The committed P0 pilot holdout manifest is derived only from the committed
+source-family freeze artifact. It selects a small, endpoint-blind,
+family-balanced homogeneous-S4G pilot subset for later scoring work. It is not
+a fit table, does not inspect rotation endpoints, and does not claim that the
+selected family will improve any galaxy.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.
