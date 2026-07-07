@@ -1,0 +1,28 @@
+{
+  "n_rows": 66,
+  "kernel_coordinate_status_counts": {
+    "not_in_first_homogeneous_s4g_pilot": 5,
+    "not_kernel_freeze_ready": 1,
+    "partial_source_proxy_disk_hi_coordinates_available": 14,
+    "source_proxy_only_needs_bar_decomposition": 30,
+    "source_proxy_only_needs_ring_decomposition": 10,
+    "underpowered_family_needs_more_train_support": 6
+  },
+  "family_counts": {
+    "K_BARRED_M2": 30,
+    "K_COMPACT_EARLY_DISK": 5,
+    "K_DIFFUSE_LATE_DISK": 6,
+    "K_EXPONENTIAL_SPIRAL_DISK": 14,
+    "K_RING_RESONANCE": 10,
+    "K_UNFREEZABLE_IDENTITY_ONLY": 1
+  },
+  "pilot_role_counts": {
+    "NON_HOMOGENEOUS_SOURCE_TIER": 23,
+    "PILOT_HOLDOUT": 7,
+    "PILOT_TRAIN_POOL": 36
+  },
+  "n_has_binary_bar_or_type_proxy": 38,
+  "n_has_binary_ring_or_type_proxy": 11,
+  "n_has_disk_hi_scale_proxy": 66,
+  "verdict": "The current family labels are endpoint-blind source proxies. Barred and ring/resonance kernels require source-native structural decomposition before endpoint-level family separation can be claimed."
+}

@@ -64,6 +64,28 @@ SPARC endpoint curve packet is written locally under `data/external/` and is
 not committed. The readiness manifest is not an endpoint score, baseline
 comparison, or observational claim.
 
+The committed P0 source-native kernel-coordinate audit is also endpoint-blind.
+It records that the present family labels are source proxies: barred and ring
+families require structural decomposition, exponential disks have only partial
+disk/H I proxy coordinates, diffuse late disks need more train support, and
+identity-only cases are not kernel-freeze ready. This audit may guide future
+source acquisition but must not be read as endpoint scoring.
+
+The committed P0 bar/ring decomposition source-route artifact is endpoint-blind
+as well. It queries the machine-readable S4G Pipeline 4 decomposition catalogue
+(`J/ApJS/219/4`) and S4G feature catalogue (`J/A+A/582/A86`) through VizieR and
+records only source-side structural-coordinate availability. It does not read
+SPARC rotation curves, residuals, endpoint scores, or wrong-family margins. Its
+role is to identify which P0 barred/ring/spiral objects already have public
+bar length, ring radius, or pitch-angle coordinates that could support a later
+frozen kernel rule.
+
+The committed P0 source-native kernel-coordinate freeze is endpoint-blind. It
+uses only the source-route artifact plus source-side SPARC sample metadata to
+convert available S4G bar/ring angular radii into physical kernel coordinates.
+It does not read endpoint curves, residuals, wrong-family scores, or fitted
+improvement margins. Uncovered objects remain explicit source-proxy fallbacks.
+
 The optional holdout endpoint-scoring preflight writes its results only under
 `data/external/`. Those local outputs are diagnostic and are not part of the
 released source package. They must not be cited as population validation or as
@@ -74,6 +96,24 @@ baryonic carrier on all scoreable holdout objects, but it does not yet
 systematically beat calibrated wrong-family controls; this is recorded as a
 kernel-development diagnostic rather than an endpoint result.
 
-No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
-are included. The numerical results are methodology checks, not observational
-evidence.
+The optional kernel-specificity diagnosis also writes only under
+`data/external/`. It is allowed to inspect the already frozen local scoring
+outputs to decide what source-native morphology coordinate is missing next,
+but it is not allowed to change the frozen holdout labels or promote a
+matched-family score to validation. Its current role is to document whether
+wrong-family wins are generic or structured; the present local diagnosis points
+to exponential-disk leakage into barred/ring cases, not to a validated endpoint
+readout.
+
+The optional source-native coordinate scoring replay also writes only under
+`data/external/`. It tests the frozen coordinate rule against the same local
+holdout endpoint packet. Its current role is diagnostic: source-native
+bar/ring coordinates improve some matched objects and the median
+matched-minus-baryonic-carrier margin, but they do not yet systematically beat
+calibrated wrong-family controls.
+
+No real endpoint curve packets, lensing maps, cosmological likelihood products,
+or population-validation survey products are included. The committed source
+manifests do include compact source-side catalogue metadata needed to
+reproduce the endpoint-blind morphology and kernel-coordinate ledgers. The
+numerical results are methodology checks, not observational evidence.

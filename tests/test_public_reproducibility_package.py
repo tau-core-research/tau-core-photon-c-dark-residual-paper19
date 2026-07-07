@@ -33,6 +33,33 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_family_freeze_summary_v0_1.json").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_pilot_holdout_manifest_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_pilot_holdout_manifest_summary_v0_1.json").exists()
+    assert (
+        ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_native_kernel_coordinate_audit_v0_1.csv"
+    ).exists()
+    assert (
+        ROOT
+        / "data"
+        / "source_manifests"
+        / "tcdr_v4_p0_source_native_kernel_coordinate_audit_summary_v0_1.json"
+    ).exists()
+    assert (
+        ROOT / "data" / "source_manifests" / "tcdr_v4_p0_bar_ring_decomposition_source_route_v0_1.csv"
+    ).exists()
+    assert (
+        ROOT
+        / "data"
+        / "source_manifests"
+        / "tcdr_v4_p0_bar_ring_decomposition_source_route_summary_v0_1.json"
+    ).exists()
+    assert (
+        ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_native_kernel_coordinate_freeze_v0_1.csv"
+    ).exists()
+    assert (
+        ROOT
+        / "data"
+        / "source_manifests"
+        / "tcdr_v4_p0_source_native_kernel_coordinate_freeze_summary_v0_1.json"
+    ).exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_summary_v0_1.json").exists()
 
@@ -295,6 +322,100 @@ def test_p0_pilot_holdout_manifest_is_endpoint_blind_and_balanced() -> None:
         )
         assert row["min_train_per_family"] == "1"
         assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_for_pilot_holdout_selection"
+
+
+def test_p0_source_native_kernel_coordinate_audit_is_endpoint_blind() -> None:
+    rows = list(
+        csv.DictReader(
+            (
+                ROOT
+                / "data"
+                / "source_manifests"
+                / "tcdr_v4_p0_source_native_kernel_coordinate_audit_v0_1.csv"
+            ).open()
+        )
+    )
+    assert len(rows) == 66
+    status_counts: dict[str, int] = {}
+    for row in rows:
+        status = row["kernel_coordinate_status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_for_kernel_coordinate_audit"
+        assert row["claim_boundary"] == "source_proxy_coordinate_audit_not_endpoint_scoring"
+    assert status_counts == {
+        "not_in_first_homogeneous_s4g_pilot": 5,
+        "not_kernel_freeze_ready": 1,
+        "partial_source_proxy_disk_hi_coordinates_available": 14,
+        "source_proxy_only_needs_bar_decomposition": 30,
+        "source_proxy_only_needs_ring_decomposition": 10,
+        "underpowered_family_needs_more_train_support": 6,
+    }
+    forbidden_columns = {"Vobs", "vobs", "rotation_residual", "delta_r2", "score", "rmse"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+
+
+def test_p0_bar_ring_decomposition_source_route_is_endpoint_blind() -> None:
+    rows = list(
+        csv.DictReader(
+            (
+                ROOT
+                / "data"
+                / "source_manifests"
+                / "tcdr_v4_p0_bar_ring_decomposition_source_route_v0_1.csv"
+            ).open()
+        )
+    )
+    assert len(rows) == 66
+    status_counts: dict[str, int] = {}
+    for row in rows:
+        status = row["bar_ring_decomposition_route_status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_or_endpoint_scores_for_source_route"
+        assert row["claim_boundary"] == "source_native_coordinate_route_not_kernel_validation"
+    assert status_counts == {
+        "compact_family_not_primary_bar_ring_route": 5,
+        "diffuse_family_needs_additional_lsb_hi_support": 6,
+        "disk_scale_proxy_available_no_spiral_feature": 12,
+        "not_kernel_route_ready": 1,
+        "source_native_feature_bar_available": 12,
+        "source_native_feature_ring_available": 4,
+        "source_native_spiral_pitch_available": 2,
+        "source_proxy_only_bar_decomposition_missing": 18,
+        "source_proxy_only_ring_decomposition_missing": 6,
+    }
+    forbidden_columns = {"Vobs", "vobs", "rotation_residual", "delta_r2", "score", "rmse"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+    assert sum(1 for row in rows if int(row["p4_row_count"]) > 0) == 31
+    assert sum(1 for row in rows if int(row["feature_row_count"]) > 0) == 21
+    assert sum(1 for row in rows if int(row["spiral_row_count"]) > 0) == 16
+
+
+def test_p0_source_native_kernel_coordinate_freeze_is_endpoint_blind() -> None:
+    rows = list(
+        csv.DictReader(
+            (
+                ROOT
+                / "data"
+                / "source_manifests"
+                / "tcdr_v4_p0_source_native_kernel_coordinate_freeze_v0_1.csv"
+            ).open()
+        )
+    )
+    assert len(rows) == 66
+    status_counts: dict[str, int] = {}
+    for row in rows:
+        status = row["kernel_coordinate_status"]
+        status_counts[status] = status_counts.get(status, 0) + 1
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_or_endpoint_scores_for_coordinate_freeze"
+        assert row["claim_boundary"] == "source_native_coordinate_freeze_not_kernel_validation"
+    assert status_counts == {
+        "source_native_bar_radius_frozen": 12,
+        "source_native_ring_radius_frozen": 4,
+        "source_native_spiral_pitch_recorded_disk_proxy_center": 2,
+        "source_proxy_kernel_fallback": 48,
+    }
+    forbidden_columns = {"Vobs", "vobs", "rotation_residual", "delta_r2", "score", "rmse"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
 
 
 def test_p0_holdout_endpoint_readiness_excludes_endpoint_values() -> None:

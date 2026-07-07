@@ -151,6 +151,12 @@ data/source_manifests/tcdr_v4_p0_source_family_freeze_v0_1.csv
 data/source_manifests/tcdr_v4_p0_source_family_freeze_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_pilot_holdout_manifest_v0_1.csv
 data/source_manifests/tcdr_v4_p0_pilot_holdout_manifest_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_source_native_kernel_coordinate_audit_v0_1.csv
+data/source_manifests/tcdr_v4_p0_source_native_kernel_coordinate_audit_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_bar_ring_decomposition_source_route_v0_1.csv
+data/source_manifests/tcdr_v4_p0_bar_ring_decomposition_source_route_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_source_native_kernel_coordinate_freeze_v0_1.csv
+data/source_manifests/tcdr_v4_p0_source_native_kernel_coordinate_freeze_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv
 data/source_manifests/tcdr_v4_p0_holdout_endpoint_readiness_summary_v0_1.json
 figures/*.png
@@ -159,7 +165,10 @@ source_package_figures/
 code/toy_simulation_source.py
 ```
 
-No real galaxy, lensing, rotation-curve, or cosmology survey data are included.
+No real endpoint curve packets, lensing maps, cosmology survey products, or
+population-validation datasets are included. The committed source manifests do
+include compact source-side catalogue metadata needed to reproduce the
+endpoint-blind morphology and kernel-coordinate ledgers.
 
 ## Reproduce
 
@@ -176,11 +185,14 @@ The command:
 5. regenerates the TCDR-v4 real-data source manifest;
 6. regenerates the endpoint-blind P0 pilot holdout manifest from the committed
    source-family freeze artifact;
-7. copies figures into the paper source tree;
-8. compiles `paper19_submission_source/main.tex`;
-9. builds `arxiv_submission_source.zip`;
-10. runs public package tests;
-11. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
+7. regenerates the source-native kernel-coordinate audit, S4G bar/ring
+   decomposition source-route artifact, and endpoint-blind coordinate-freeze
+   manifest;
+8. copies figures into the paper source tree;
+9. compiles `paper19_submission_source/main.tex`;
+10. builds `arxiv_submission_source.zip`;
+11. runs public package tests;
+12. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
 
 ## Optional Real-Data Preflight
 
@@ -270,6 +282,21 @@ least one train object in each selected homogeneous family. It produces a
 source-side holdout/train-pool ledger for later endpoint work. It does not read
 rotation residuals, fit amplitudes, or score baselines.
 
+Build the source-native kernel-coordinate audit:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_kernel_coordinate_audit.py
+```
+
+This committed source-side audit records which P0 family labels are only
+binary/proxy morphology labels and which source-native coordinates are still
+needed before the kernels can be promoted. The current summary is: 30 barred
+objects need bar decomposition, 10 ring/resonance objects need ring
+decomposition, 14 exponential disks have partial disk/H I proxy coordinates,
+6 diffuse late disks are underpowered for train support, 5 compact early disks
+are outside the first homogeneous-S4G pilot, and 1 identity-only case is not
+kernel-freeze ready. It does not read rotation residuals or endpoint scores.
+
 Prepare the local endpoint-readiness packet for the 7 holdout objects:
 
 ```bash
@@ -304,6 +331,72 @@ calibrated wrong-family mean in 3/6, and beats the best calibrated wrong family
 in 2/6. The outputs stay local under `data/external/` and are not part of the
 public release. This is diagnostic scoring, not population validation or a
 physical dark-residual claim.
+
+Diagnose why the current source-family kernels do or do not separate matched
+families from calibrated wrong-family controls:
+
+```bash
+python scripts/diagnose_tcdr_v4_kernel_specificity.py
+```
+
+This writes local-only diagnosis files under `data/external/`. It reports the
+matched-family rank, the best calibrated wrong family, and the next
+source-native coordinate needed for each holdout family. It is a kernel
+development aid, not an endpoint score or validation artifact. In the current
+author-local run, the calibrated wrong-family winners are all
+`K_EXPONENTIAL_SPIRAL_DISK` against barred or ring/resonance holdout objects,
+which points to missing source-native bar/ring coordinates rather than an
+amplitude-tuning target.
+
+Build the machine-readable S4G bar/ring decomposition source route:
+
+```bash
+python scripts/build_tcdr_v4_p0_bar_ring_decomposition_source_route.py
+```
+
+This uses VizieR catalogues `J/ApJS/219/4` and `J/A+A/582/A86` to check
+whether P0 galaxies already have source-native Pipeline 4 bar-decomposition
+rows, bar/ring feature sizes, or spiral pitch-angle segments. The current
+committed route summary finds 31 P0 objects with Pipeline 4 rows, 21 with
+feature-catalogue rows, and 16 with spiral-segment rows. Within the frozen
+family labels, 12 barred objects already have source-native bar features, 4
+ring/resonance objects have source-native ring features, and 2 exponential
+spiral disks have source-native spiral pitch information. The remaining
+barred/ring objects are still source-proxy cases requiring additional
+decomposition review. This route artifact is endpoint-blind and must not be
+read as kernel validation.
+
+Build the endpoint-blind source-native kernel-coordinate freeze:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_kernel_coordinate_freeze.py
+```
+
+This converts covered S4G bar/ring angular coordinates to physical source
+coordinates using source-side SPARC sample distances and disk scales, without
+reading rotation curves or endpoint residuals. The frozen v0.1 rule sets the
+bar kernel center to the S4G bar radius when available, sets the ring kernel
+center to the S4G ring radius when available, records spiral pitch information
+without using it to tune endpoint curves, and leaves uncovered objects on the
+proxy fallback. The current freeze records 12 `source_native_bar_radius_frozen`
+objects, 4 `source_native_ring_radius_frozen` objects, 2
+`source_native_spiral_pitch_recorded_disk_proxy_center` objects, and 48
+`source_proxy_kernel_fallback` objects.
+
+Run the optional source-native coordinate local scoring replay:
+
+```bash
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_source_native_coordinates.py
+```
+
+This is a local endpoint diagnostic only. In the current author-local replay,
+the source-native coordinate rule improves the median matched-minus-baryonic
+carrier margin from `-0.392` to `-0.682 km/s`, but the matched family still
+beats the calibrated wrong-family mean in only 3/6 scoreable cases and the
+best calibrated wrong family in 2/6. The scientific interpretation is not
+validation; it is that source-native coordinates improve several matched
+objects, while mixed/multi-component galaxies can also activate wrong-family
+controls unless the next rule separates mixed components source-side.
 
 ## arXiv Source Package
 

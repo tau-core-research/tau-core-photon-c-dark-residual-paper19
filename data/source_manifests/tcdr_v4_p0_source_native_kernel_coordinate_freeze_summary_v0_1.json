@@ -1,0 +1,16 @@
+{
+  "n_rows": 66,
+  "kernel_coordinate_status_counts": {
+    "source_native_bar_radius_frozen": 12,
+    "source_native_ring_radius_frozen": 4,
+    "source_native_spiral_pitch_recorded_disk_proxy_center": 2,
+    "source_proxy_kernel_fallback": 48
+  },
+  "pilot_role_counts": {
+    "NON_HOMOGENEOUS_SOURCE_TIER": 23,
+    "PILOT_HOLDOUT": 7,
+    "PILOT_TRAIN_POOL": 36
+  },
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_coordinate_freeze",
+  "verdict": "Source-native bar/ring coordinates can be frozen for the covered subset before endpoint scoring. Uncovered objects remain source-proxy fallback cases; no endpoint validation follows."
+}

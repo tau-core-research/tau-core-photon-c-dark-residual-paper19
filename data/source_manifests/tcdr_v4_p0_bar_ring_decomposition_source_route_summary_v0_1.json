@@ -1,0 +1,30 @@
+{
+  "n_rows": 66,
+  "route_status_counts": {
+    "compact_family_not_primary_bar_ring_route": 5,
+    "diffuse_family_needs_additional_lsb_hi_support": 6,
+    "disk_scale_proxy_available_no_spiral_feature": 12,
+    "not_kernel_route_ready": 1,
+    "source_native_feature_bar_available": 12,
+    "source_native_feature_ring_available": 4,
+    "source_native_spiral_pitch_available": 2,
+    "source_proxy_only_bar_decomposition_missing": 18,
+    "source_proxy_only_ring_decomposition_missing": 6
+  },
+  "family_counts": {
+    "K_BARRED_M2": 30,
+    "K_COMPACT_EARLY_DISK": 5,
+    "K_DIFFUSE_LATE_DISK": 6,
+    "K_EXPONENTIAL_SPIRAL_DISK": 14,
+    "K_RING_RESONANCE": 10,
+    "K_UNFREEZABLE_IDENTITY_ONLY": 1
+  },
+  "n_with_pipeline4_rows": 31,
+  "n_with_feature_rows": 21,
+  "n_with_spiral_rows": 16,
+  "vizier_catalogs_used": [
+    "J/ApJS/219/4",
+    "J/A+A/582/A86"
+  ],
+  "verdict": "A machine-readable S4G route exists for a nontrivial subset of P0 galaxies. Bar/ring endpoint promotion still requires a frozen coordinate rule and coverage review; this artifact is source-route evidence, not endpoint validation."
+}
