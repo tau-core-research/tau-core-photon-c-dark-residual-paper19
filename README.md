@@ -75,6 +75,12 @@ recovers 11 additional coordinate matches, bringing the current P0 S4G
 source-side coverage to 43/66 and leaving 23 P0 objects for non-S4G routes or
 manual source review.
 
+For the 23 non-S4G P0 objects, a SIMBAD fallback manifest resolves all 23
+objects and records morphology-type fields for 22 of them. This fallback is
+weaker than S4G structural morphology because it is a catalogue type/identity
+source, not a homogeneous infrared morphology table, but it closes the first
+P0 identity/morphology source ledger without touching rotation endpoints.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -108,6 +114,8 @@ data/source_manifests/tcdr_v4_p0_s4g_lookup_v0_1.csv
 data/source_manifests/tcdr_v4_p0_s4g_lookup_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv
 data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv
+data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -179,6 +187,17 @@ python scripts/build_tcdr_v4_p0_s4g_coordinate_lookup.py
 This uses SIMBAD name resolution and a 1 arcmin S4G coordinate match. It is
 still source-side morphology acquisition only and must not be used as endpoint
 scoring.
+
+Finally, build the SIMBAD fallback manifest for the remaining non-S4G P0
+objects:
+
+```bash
+python scripts/build_tcdr_v4_p0_simbad_fallback_lookup.py
+```
+
+This records SIMBAD identity, object type, morphology type, morphology
+bibcode, and aliases for non-S4G source review. It is intentionally a fallback
+source ledger, not an endpoint or validation input.
 
 ## arXiv Source Package
 

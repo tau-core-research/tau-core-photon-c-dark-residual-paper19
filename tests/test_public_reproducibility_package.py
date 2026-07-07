@@ -25,6 +25,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_lookup_summary_v0_1.json").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_s4g_coordinate_lookup_summary_v0_1.json").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_simbad_fallback_lookup_summary_v0_1.json").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -50,6 +52,7 @@ def test_manuscript_claim_boundary() -> None:
         "P0\\_SOURCE\\_REVIEW",
         "S4G\\ matched\\ by\\ name",
         "S4G\\ coordinate\\ matched",
+        "SIMBAD\\ morphology\\ type\\ available",
         "TCDR-v4",
     ]
     for marker in required:
@@ -174,3 +177,20 @@ def test_p0_s4g_coordinate_lookup_is_source_side_only() -> None:
     for row in matched:
         assert float(row["nearest_sep_arcmin"]) <= 1.0
         assert row["source_freeze_policy"] == "source_side_morphology_available_by_coordinate_before_endpoint_scoring"
+
+
+def test_p0_simbad_fallback_lookup_is_source_side_only() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv").open()
+        )
+    )
+    assert len(rows) == 23
+    resolved = [row for row in rows if row["simbad_lookup_status"] != "not_resolved"]
+    with_morphology = [row for row in rows if row["simbad_lookup_status"] == "resolved_with_morphology"]
+    assert len(resolved) == 23
+    assert len(with_morphology) == 22
+    forbidden_columns = {"Vflat", "vflat", "rotation_residual", "delta_r2", "score"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+    for row in with_morphology:
+        assert row["source_freeze_policy"] == "simbad_source_side_morphology_available_before_endpoint_scoring"

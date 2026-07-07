@@ -649,6 +649,19 @@ This remains an availability ledger only; it is not a residual or rotation
 curve result.  The coordinate artifact is
 \texttt{data/source\_manifests/tcdr\_v4\_p0\_s4g\_coordinate\_lookup\_v0\_1.csv}.
 
+For the remaining 23 non-S4G P0 objects, a SIMBAD fallback pass resolves all
+23 object identities and provides morphology-type fields for 22:
+\begin{align*}
+  23 &\quad {\rm SIMBAD\ resolved},\\
+  22 &\quad {\rm SIMBAD\ morphology\ type\ available},\\
+   1 &\quad {\rm SIMBAD\ identity\ only}.
+\end{align*}
+This fallback is deliberately lower in the source hierarchy than S4G: it
+records catalogue identity, object type, morphology type, morphology bibcode,
+and aliases, but it is not a homogeneous infrared morphology measurement.  It
+is retained as a source-side fallback ledger only.  The artifact is
+\texttt{data/source\_manifests/tcdr\_v4\_p0\_simbad\_fallback\_lookup\_v0\_1.csv}.
+
 \begin{table}[H]
 \centering
 \scriptsize
