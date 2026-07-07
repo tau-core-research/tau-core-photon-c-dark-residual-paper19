@@ -12,7 +12,7 @@
 
 \title{Photon-C Dark Residuals: A Synthetic Null/Time Split Protocol for Morphology-Seeded Tau Core Tests}
 \author{Tau Core Research}
-\date{Draft v0.3 -- 2026}
+\date{Draft v0.4 -- 2026}
 
 \begin{document}
 \maketitle
@@ -42,7 +42,12 @@ nuisance columns and a wrong-seed control: the frozen classifier rejects all
 null cases and recovers the stronger injected cases, while missing several
 weak/borderline injections.  The result should be read as a reproducible
 protocol and prevalidation scaffold, not as observational evidence or as a new
-gravitational law.
+gravitational law.  A further realistic-mock stress test adds shared survey
+mask structure, foreground-like contamination, source selection bias, and
+multiple wrong-family controls.  It keeps the null false-positive rate at zero
+in the synthetic run, but recovers only half of the injected cases; this is
+evidence for conservative specificity in the toy, not evidence for universal
+sensitivity.
 \end{abstract}
 
 \section{Claim Boundary}
@@ -248,6 +253,7 @@ Artifact & Role\\
 \begin{tabular}[t]{@{}l@{}}\texttt{data/derived/}\\\texttt{tcdr\_summary.csv}\end{tabular} & reproduced numerical summary\\
 \begin{tabular}[t]{@{}l@{}}\texttt{data/derived/}\\\texttt{tcdr\_summary.json}\end{tabular} & machine-readable summary\\
 \begin{tabular}[t]{@{}l@{}}\texttt{data/derived/}\\\texttt{tcdr\_v3\_example\_data.csv}\end{tabular} & example split dataset for Figure~\ref{fig:split-scatter}\\
+\begin{tabular}[t]{@{}l@{}}\texttt{data/derived/}\\\texttt{tcdr\_realistic}\\\texttt{\_mock\_challenge}\\\texttt{\_summary.csv}\end{tabular} & v0.4 realistic nuisance stress summary\\
 \texttt{figures/*.png} & generated paper figures\\
 \begin{tabular}[t]{@{}l@{}}\texttt{tests/}\\\texttt{test\_public}\\\texttt{\_reproducibility}\\\texttt{\_package.py}\end{tabular} & package smoke and claim-boundary tests\\
 \bottomrule
@@ -478,6 +484,94 @@ positives in this synthetic challenge, but it misses 6 weak or borderline
 injections.  This should be read as controlled specificity, not universal
 sensitivity.}
 \label{fig:blind-confusion}
+\end{figure}
+
+\section{Realistic-Mock Nuisance Stress Test}
+
+The v0.3 blind challenge is still too clean to mimic the way false residual
+structure can appear in survey-facing work.  The v0.4 stress test therefore
+adds nuisance layers that are deliberately capable of producing misleading
+structure:
+\begin{itemize}
+  \item a shared sky-mask variable;
+  \item foreground-like contamination;
+  \item source-selection bias;
+  \item line-of-sight orientation structure;
+  \item a wrong-seed morphology/environment control;
+  \item an orientation-only control;
+  \item a random-control channel.
+\end{itemize}
+The base model receives the survey-mask, foreground, selection, sky-position,
+halo, baryonic, inclination-like, shear-calibration-like, and local-density
+variables.  The candidate model then adds only the predeclared source seed
+columns.  The frozen positive rule is:
+\[
+  p \le 0.05,\qquad
+  \Delta R^2_{\rm candidate}\ge 0.020,\qquad
+  \Delta R^2_{\rm candidate}-\max(\Delta R^2_{\rm controls})\ge 0.008 .
+\]
+This is a realistic nuisance robustness check, not a real survey analysis.
+The hidden injection labels are used only after scoring to build the confusion
+matrix.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{L{0.46\linewidth}r}
+\toprule
+Quantity & Value\\
+\midrule
+Number of realistic-mock challenges & 32\\
+Hidden injected mocks & 22\\
+No-injection null mocks & 10\\
+True positives & 11\\
+False positives & 0\\
+True negatives & 10\\
+False negatives & 11\\
+Accuracy & 0.656\\
+True-positive rate & 0.500\\
+False-positive rate & 0.000\\
+Median candidate \(\Delta R^2\) & 0.0079\\
+Median strongest-control \(\Delta R^2\) & 0.0085\\
+Median candidate-minus-control margin & -0.0012\\
+\bottomrule
+\end{tabular}
+\caption{Realistic-mock nuisance stress test.  The classifier is intentionally
+specificity-first: it rejects every null case in this synthetic run, but misses
+half of the injected cases.  This is a useful caution, not a validation
+result.}
+\label{tab:realistic-mock}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.80\linewidth]{figures/tcdr_realistic_candidate_vs_controls.png}
+\caption{Candidate seed versus strongest control in the realistic-mock stress
+test.  The strongest control is the maximum of wrong-seed, orientation-only,
+and random-control \(\Delta R^2\).  Points above the dashed line favor the
+candidate source seed, but the frozen classifier also requires the \(p\)-value,
+\(\Delta R^2\), and margin cuts.}
+\label{fig:realistic-candidate-controls}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.56\linewidth]{figures/tcdr_realistic_confusion.png}
+\caption{Confusion matrix for the realistic-mock stress test.  The zero
+false-positive result is encouraging for specificity, while the 11 false
+negatives show that weak and borderline signals are not reliably recovered
+under harder nuisance structure.}
+\label{fig:realistic-confusion}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.76\linewidth]{figures/tcdr_realistic_threshold_curve.png}
+\caption{Threshold-free stress view for the realistic-mock challenge.  The
+curves show the tradeoff between true-positive and false-positive rate as the
+\(\Delta R^2\), margin, and permutation thresholds vary.  This figure is meant
+to prevent over-reading a single frozen threshold.}
+\label{fig:realistic-threshold}
 \end{figure}
 
 \section{TCDR-v4 Real-Data Protocol Skeleton}

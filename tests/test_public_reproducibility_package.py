@@ -16,6 +16,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "derived" / "tcdr_multiseed_robustness_summary.csv").exists()
     assert (ROOT / "data" / "derived" / "tcdr_threshold_sensitivity.csv").exists()
     assert (ROOT / "data" / "derived" / "tcdr_blind_challenge_summary.csv").exists()
+    assert (ROOT / "data" / "derived" / "tcdr_realistic_mock_challenge_summary.csv").exists()
+    assert (ROOT / "data" / "derived" / "tcdr_realistic_mock_threshold_curve.csv").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -34,6 +36,7 @@ def test_manuscript_claim_boundary() -> None:
         "does not prove Tau Core",
         "does not detect dark matter residuals",
         "controlled synthetic protocol paper",
+        "realistic nuisance robustness",
         "TCDR-v4",
     ]
     for marker in required:
@@ -83,3 +86,15 @@ def test_blind_challenge_keeps_null_controls_visible() -> None:
     assert int(row["n_null"]) == 8
     assert float(row["accuracy"]) >= 0.70
     assert float(row["false_positive_rate"]) <= 0.20
+
+
+def test_realistic_mock_challenge_is_specificity_first() -> None:
+    row = next(
+        csv.DictReader(
+            (ROOT / "data" / "derived" / "tcdr_realistic_mock_challenge_summary.csv").open()
+        )
+    )
+    assert int(row["n_challenges"]) == 32
+    assert int(row["n_null"]) == 10
+    assert float(row["false_positive_rate"]) <= 0.10
+    assert float(row["true_positive_rate"]) >= 0.35

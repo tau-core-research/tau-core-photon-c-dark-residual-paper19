@@ -38,6 +38,14 @@ rejects all 8 null cases and recovers 12 of 18 injected cases, while missing 6
 weak/borderline injections. This is intentionally conservative: the challenge
 demonstrates controlled false-positive behavior, not universal sensitivity.
 
+The v0.4 package adds a harder realistic-mock stress test with shared survey
+mask structure, foreground-like contamination, source selection bias,
+orientation-only controls, wrong-seed controls, and random controls. The frozen
+specificity-first classifier rejects all 10 null cases and recovers 11 of 22
+injected cases. This is a realistic nuisance robustness check, not a validation
+claim: the protocol remains conservative and misses many weak or borderline
+injections.
+
 The scientific value is protocol-level: the toys show a recovery/failure
 discipline for a morphology-seeded residual family and motivate a real-data
 TCDR-v4 ladder.
@@ -65,6 +73,9 @@ data/derived/tcdr_multiseed_robustness_summary.csv
 data/derived/tcdr_threshold_sensitivity.csv
 data/derived/tcdr_blind_challenge_results.csv
 data/derived/tcdr_blind_challenge_summary.csv
+data/derived/tcdr_realistic_mock_challenge_results.csv
+data/derived/tcdr_realistic_mock_challenge_summary.csv
+data/derived/tcdr_realistic_mock_threshold_curve.csv
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -84,11 +95,12 @@ The command:
 1. regenerates the TCDR synthetic toy outputs;
 2. runs the multi-seed robustness replay and threshold sensitivity sweep;
 3. runs the blind synthetic injection challenge with wrong-seed controls;
-4. copies figures into the paper source tree;
-5. compiles `paper19_submission_source/main.tex`;
-6. builds `arxiv_submission_source.zip`;
-7. runs public package tests;
-8. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
+4. runs the realistic-mock nuisance challenge with threshold-free diagnostics;
+5. copies figures into the paper source tree;
+6. compiles `paper19_submission_source/main.tex`;
+7. builds `arxiv_submission_source.zip`;
+8. runs public package tests;
+9. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
 
 ## arXiv Source Package
 
