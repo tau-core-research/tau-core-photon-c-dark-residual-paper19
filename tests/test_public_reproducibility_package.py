@@ -15,6 +15,7 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "derived" / "tcdr_summary.csv").exists()
     assert (ROOT / "data" / "derived" / "tcdr_multiseed_robustness_summary.csv").exists()
     assert (ROOT / "data" / "derived" / "tcdr_threshold_sensitivity.csv").exists()
+    assert (ROOT / "data" / "derived" / "tcdr_blind_challenge_summary.csv").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -70,3 +71,15 @@ def test_multiseed_robustness_has_null_and_positive_cases() -> None:
     positive_rows = [row for row in rows if float(row["tau_strength"]) > 0.0]
     assert positive_rows
     assert max(float(row["pass_rate_floor"]) for row in positive_rows) >= 0.75
+
+
+def test_blind_challenge_keeps_null_controls_visible() -> None:
+    row = next(
+        csv.DictReader(
+            (ROOT / "data" / "derived" / "tcdr_blind_challenge_summary.csv").open()
+        )
+    )
+    assert int(row["n_challenges"]) == 26
+    assert int(row["n_null"]) == 8
+    assert float(row["accuracy"]) >= 0.70
+    assert float(row["false_positive_rate"]) <= 0.20

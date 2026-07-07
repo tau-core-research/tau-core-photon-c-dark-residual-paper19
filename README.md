@@ -32,6 +32,12 @@ and shows stable recovery for TCDR-v1/v2 strong injections and TCDR-v3 strong
 split injection. The intermediate TCDR-v3 split case remains sensitivity
 limited and is reported as a caveat, not hidden.
 
+The v0.3 package adds a blinded synthetic injection challenge with realistic
+nuisance columns and a wrong-seed control. The frozen classifier correctly
+rejects all 8 null cases and recovers 12 of 18 injected cases, while missing 6
+weak/borderline injections. This is intentionally conservative: the challenge
+demonstrates controlled false-positive behavior, not universal sensitivity.
+
 The scientific value is protocol-level: the toys show a recovery/failure
 discipline for a morphology-seeded residual family and motivate a real-data
 TCDR-v4 ladder.
@@ -57,6 +63,8 @@ data/derived/tcdr_v3_example_data.csv
 data/derived/tcdr_multiseed_robustness.csv
 data/derived/tcdr_multiseed_robustness_summary.csv
 data/derived/tcdr_threshold_sensitivity.csv
+data/derived/tcdr_blind_challenge_results.csv
+data/derived/tcdr_blind_challenge_summary.csv
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -75,11 +83,12 @@ The command:
 
 1. regenerates the TCDR synthetic toy outputs;
 2. runs the multi-seed robustness replay and threshold sensitivity sweep;
-3. copies figures into the paper source tree;
-4. compiles `paper19_submission_source/main.tex`;
-5. builds `arxiv_submission_source.zip`;
-6. runs public package tests;
-7. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
+3. runs the blind synthetic injection challenge with wrong-seed controls;
+4. copies figures into the paper source tree;
+5. compiles `paper19_submission_source/main.tex`;
+6. builds `arxiv_submission_source.zip`;
+7. runs public package tests;
+8. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
 
 ## arXiv Source Package
 

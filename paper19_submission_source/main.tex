@@ -12,7 +12,7 @@
 
 \title{Photon-C Dark Residuals: A Synthetic Null/Time Split Protocol for Morphology-Seeded Tau Core Tests}
 \author{Tau Core Research}
-\date{Draft v0.2 -- 2026}
+\date{Draft v0.3 -- 2026}
 
 \begin{document}
 \maketitle
@@ -37,8 +37,11 @@ runs, reaches score 5 in the clean strong-injection toy, score 4 in the noisy
 strong-injection toy, and score 3 in the null/time split toy.  These are
 synthetic recovery results only.  They motivate a TCDR-v4 real-data protocol
 with halo, baryonic, dynamical, lensing, environment, survey, permutation, and
-out-of-sample controls.  The result should be read as a reproducible protocol
-and prevalidation scaffold, not as observational evidence or as a new
+out-of-sample controls.  A later blinded synthetic challenge adds realistic
+nuisance columns and a wrong-seed control: the frozen classifier rejects all
+null cases and recovers the stronger injected cases, while missing several
+weak/borderline injections.  The result should be read as a reproducible
+protocol and prevalidation scaffold, not as observational evidence or as a new
 gravitational law.
 \end{abstract}
 
@@ -413,6 +416,68 @@ synthetic protocol thresholds.
 the tradeoff between injected-positive recovery and null false positives under
 different \(p\)-value and \(\Delta R^2\) thresholds.}
 \label{fig:threshold-sensitivity}
+\end{figure}
+
+\section{Blinded Synthetic Injection Challenge}
+
+The next stress test is closer to a miniature challenge problem.  The script
+generates 26 synthetic challenge rows: 8 no-injection null cases and 18
+injected cases spanning weak, medium, and stronger seed strengths.  The
+scoring stage does not use the hidden injection label.  It uses a frozen rule:
+\[
+  p \le 0.05,\qquad
+  \Delta R^2_{\rm correct}\ge 0.020,\qquad
+  \Delta R^2_{\rm correct}-\Delta R^2_{\rm wrong}\ge 0.010.
+\]
+The wrong-seed model uses plausible morphology/environment columns with
+incorrect source-side alignment.  This is meant to test whether the correct
+source seed beats a wrong-family seed, not merely whether any extra columns
+improve the regression.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\begin{tabular}{L{0.42\linewidth}r}
+\toprule
+Quantity & Value\\
+\midrule
+Number of challenge mocks & 26\\
+Hidden injected mocks & 18\\
+No-injection null mocks & 8\\
+True positives & 12\\
+False positives & 0\\
+True negatives & 8\\
+False negatives & 6\\
+Accuracy & 0.769\\
+True-positive rate & 0.667\\
+False-positive rate & 0.000\\
+Median correct-seed \(\Delta R^2\) & 0.0100\\
+Median wrong-seed \(\Delta R^2\) & 0.0048\\
+\bottomrule
+\end{tabular}
+\caption{Blind synthetic injection challenge.  The outcome is deliberately
+conservative: the classifier protects null cases at the price of missing
+weak/borderline injected cases.}
+\label{tab:blind-challenge}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.78\linewidth]{figures/tcdr_blind_correct_vs_wrong.png}
+\caption{Correct-seed versus wrong-seed \(\Delta R^2\) in the blind challenge.
+Injected cases are blue and null cases are red.  Points above the dashed line
+favor the correct source-side seed over the wrong-seed control.}
+\label{fig:blind-correct-wrong}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.56\linewidth]{figures/tcdr_blind_confusion.png}
+\caption{Blind challenge confusion matrix.  The protocol produces no false
+positives in this synthetic challenge, but it misses 6 weak or borderline
+injections.  This should be read as controlled specificity, not universal
+sensitivity.}
+\label{fig:blind-confusion}
 \end{figure}
 
 \section{TCDR-v4 Real-Data Protocol Skeleton}

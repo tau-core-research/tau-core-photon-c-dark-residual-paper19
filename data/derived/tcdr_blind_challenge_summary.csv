@@ -1,0 +1,2 @@
+n_challenges,n_injected,n_null,true_positive,false_positive,true_negative,false_negative,accuracy,true_positive_rate,false_positive_rate,median_correct_delta_r2,median_wrong_delta_r2,median_wrong_margin_delta_r2
+26,18,8,12,0,8,6,0.7692307692307693,0.6666666666666666,0.0,0.009985071573038184,0.004845818243998434,0.006654087650887042
