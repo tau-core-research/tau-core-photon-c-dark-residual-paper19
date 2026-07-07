@@ -50,6 +50,13 @@ The scientific value is protocol-level: the toys show a recovery/failure
 discipline for a morphology-seeded residual family and motivate a real-data
 TCDR-v4 ladder.
 
+The v0.5 preparation step starts that real-data ladder without performing
+endpoint scoring. It adds a reproducible TCDR-v4 source manifest that separates
+source-side morphology/proxy inputs from endpoint dynamics inputs. In
+particular, SPARC rotation/mass-model products are endpoint/baseline data and
+are explicitly forbidden for morphology-label rescue, while S4G and Galaxy Zoo
+are source-side morphology routes that must be frozen before scoring.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -76,6 +83,7 @@ data/derived/tcdr_blind_challenge_summary.csv
 data/derived/tcdr_realistic_mock_challenge_results.csv
 data/derived/tcdr_realistic_mock_challenge_summary.csv
 data/derived/tcdr_realistic_mock_threshold_curve.csv
+data/source_manifests/tcdr_v4_real_data_source_manifest_v0_1.csv
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -96,11 +104,27 @@ The command:
 2. runs the multi-seed robustness replay and threshold sensitivity sweep;
 3. runs the blind synthetic injection challenge with wrong-seed controls;
 4. runs the realistic-mock nuisance challenge with threshold-free diagnostics;
-5. copies figures into the paper source tree;
-6. compiles `paper19_submission_source/main.tex`;
-7. builds `arxiv_submission_source.zip`;
-8. runs public package tests;
-9. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
+5. regenerates the TCDR-v4 real-data source manifest;
+6. copies figures into the paper source tree;
+7. compiles `paper19_submission_source/main.tex`;
+8. builds `arxiv_submission_source.zip`;
+9. runs public package tests;
+10. prints `PAPER19_PHOTON_C_DARK_RESIDUAL_REPRODUCTION_COMPLETE`.
+
+## Optional Real-Data Preflight
+
+The repository does not commit real survey data. To begin a local TCDR-v4
+endpoint preflight, download compact SPARC endpoint/baseline files into the
+gitignored `data/external/` area:
+
+```bash
+python scripts/download_tcdr_v4_sparc_endpoint.py --out-dir data/external/sparc_preflight
+```
+
+This downloads `Rotmod_LTG.zip`, `MassModels_Lelli2016c.mrt`, and
+`SPARC_Lelli2016c.mrt`, plus a local checksum manifest. These files are
+endpoint/baseline inputs only. They must not be used to choose or rescue
+source-side morphology labels.
 
 ## arXiv Source Package
 

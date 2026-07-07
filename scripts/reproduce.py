@@ -34,6 +34,7 @@ def main() -> None:
     run([sys.executable, "scripts/run_tcdr_robustness.py"])
     run([sys.executable, "scripts/run_tcdr_blind_challenge.py"])
     run([sys.executable, "scripts/run_tcdr_realistic_mock_challenge.py"])
+    run([sys.executable, "scripts/build_tcdr_v4_real_data_manifest.py"])
     run([sys.executable, "scripts/build_figures.py"])
     build_pdf()
     run([sys.executable, "scripts/build_arxiv_source.py"])

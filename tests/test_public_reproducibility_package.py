@@ -18,6 +18,7 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "derived" / "tcdr_blind_challenge_summary.csv").exists()
     assert (ROOT / "data" / "derived" / "tcdr_realistic_mock_challenge_summary.csv").exists()
     assert (ROOT / "data" / "derived" / "tcdr_realistic_mock_threshold_curve.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_real_data_source_manifest_v0_1.csv").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -37,6 +38,9 @@ def test_manuscript_claim_boundary() -> None:
         "does not detect dark matter residuals",
         "controlled synthetic protocol paper",
         "realistic nuisance robustness",
+        "real-data source manifest",
+        "SPARC dynamics products",
+        "endpoint/baseline inputs only",
         "TCDR-v4",
     ]
     for marker in required:
@@ -98,3 +102,20 @@ def test_realistic_mock_challenge_is_specificity_first() -> None:
     assert int(row["n_null"]) == 10
     assert float(row["false_positive_rate"]) <= 0.10
     assert float(row["true_positive_rate"]) >= 0.35
+
+
+def test_real_data_manifest_separates_source_labels_from_endpoints() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "source_manifests" / "tcdr_v4_real_data_source_manifest_v0_1.csv").open()
+        )
+    )
+    assert rows
+    endpoint_rows = [row for row in rows if "endpoint" in row["tcdr_role"]]
+    assert endpoint_rows
+    for row in endpoint_rows:
+        assert row["allowed_for_source_label"] == "no"
+    source_rows = [row for row in rows if row["allowed_for_source_label"] == "yes"]
+    assert source_rows
+    for row in source_rows:
+        assert row["allowed_for_endpoint_scoring"] == "no"
