@@ -24,6 +24,11 @@ and intentionally excludes `Vflat` and rotation-curve endpoint values. It is a
 candidate-review ledger for future external morphology lookup, not an endpoint
 analysis.
 
+The committed P0 S4G lookup artifact contains compact source-side morphology
+fields for matched P0 candidates only. It is derived from the public IRSA TAP
+`s4gcat` table and remains a source-freeze aid, not a rotation-curve endpoint
+analysis.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.

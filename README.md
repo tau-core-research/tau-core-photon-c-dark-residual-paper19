@@ -63,6 +63,12 @@ values. It currently lists 175 SPARC objects: 66 `P0_SOURCE_REVIEW`, 60
 `P1_SOURCE_REVIEW`, and 49 `P2_SOURCE_REVIEW` candidates for external
 morphology/source review.
 
+The first external source-side lookup checks the 66 P0 objects against the S4G
+catalogue through IRSA TAP. It finds 32 name-based S4G morphology matches and
+leaves 34 objects as `not_found_by_name` for alias/manual-source review. This
+is source-side morphology acquisition only; no SPARC endpoint residual is
+inspected.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -92,6 +98,8 @@ data/derived/tcdr_realistic_mock_threshold_curve.csv
 data/source_manifests/tcdr_v4_real_data_source_manifest_v0_1.csv
 data/source_manifests/tcdr_v4_sparc_source_freeze_queue_v0_1.csv
 data/source_manifests/tcdr_v4_sparc_source_freeze_queue_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_s4g_lookup_v0_1.csv
+data/source_manifests/tcdr_v4_p0_s4g_lookup_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -143,6 +151,16 @@ python scripts/build_tcdr_v4_sparc_source_freeze_queue.py
 
 This generates a candidate list for later S4G/Galaxy Zoo source-side morphology
 lookup. It does not read SPARC rotation residuals or run endpoint scoring.
+
+Then run the P0 S4G source-side lookup:
+
+```bash
+python scripts/build_tcdr_v4_p0_s4g_lookup.py
+```
+
+This uses IRSA TAP table `s4gcat` and records only source-side morphology
+columns such as type, bar/ring flags, position angle, ellipticity,
+concentration, and stellar-mass proxy fields.
 
 ## arXiv Source Package
 

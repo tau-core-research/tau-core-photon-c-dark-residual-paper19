@@ -625,6 +625,18 @@ rank objects for later S4G/Galaxy Zoo morphology lookup using quality,
 inclination, HI-extent availability, and catalogue-name queryability.  No
 endpoint residual is inspected.
 
+The first S4G lookup uses the IRSA TAP table \texttt{s4gcat} and source-side
+columns such as optical type, bar/ring flags, IR position angle, ellipticity,
+concentration, and stellar-mass proxy fields.  For the 66 P0 objects, the
+current name-based lookup returns:
+\begin{align*}
+  32 &\quad {\rm S4G\ matched\ by\ name},\\
+  34 &\quad {\rm not\ found\ by\ name}.
+\end{align*}
+The unmatched objects are not failures; they require alias review or a
+different source-side morphology route.  The lookup artifact is
+\texttt{data/source\_manifests/tcdr\_v4\_p0\_s4g\_lookup\_v0\_1.csv}.
+
 \begin{table}[H]
 \centering
 \scriptsize
