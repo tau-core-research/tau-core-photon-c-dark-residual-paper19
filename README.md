@@ -280,6 +280,19 @@ score fields, and writes the actual local endpoint curve packet only under
 `fixed_baryonic_mlr_disk_0p5_bulge_0p7_no_amplitude_fit`; this is a preflight
 carrier policy, not an endpoint fit.
 
+Run the first local holdout endpoint-scoring preflight:
+
+```bash
+python scripts/run_tcdr_v4_holdout_endpoint_scoring.py
+```
+
+This command uses only the frozen pilot split and the local SPARC endpoint
+packet under `data/external/`. Family amplitudes are fit on the
+`PILOT_TRAIN_POOL` only, then evaluated on the 8 `PILOT_HOLDOUT` objects
+against wrong-family controls. The outputs stay local under `data/external/`
+and are not part of the public release. This is diagnostic scoring, not
+population validation or a physical dark-residual claim.
+
 ## arXiv Source Package
 
 `arxiv_submission_source.zip` is generated from

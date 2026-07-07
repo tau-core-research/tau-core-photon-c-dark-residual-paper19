@@ -58,6 +58,12 @@ SPARC endpoint curve packet is written locally under `data/external/` and is
 not committed. The readiness manifest is not an endpoint score, baseline
 comparison, or observational claim.
 
+The optional holdout endpoint-scoring preflight writes its results only under
+`data/external/`. Those local outputs are diagnostic and are not part of the
+released source package. They must not be cited as population validation or as
+evidence for a physical dark residual without a separate frozen endpoint
+protocol and public-result promotion step.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.
