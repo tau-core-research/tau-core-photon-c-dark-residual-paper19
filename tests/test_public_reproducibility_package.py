@@ -29,6 +29,8 @@ def test_publication_artifacts_exist() -> None:
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_simbad_fallback_lookup_summary_v0_1.json").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_tier_manifest_v0_1.csv").exists()
     assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_tier_manifest_summary_v0_1.json").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_family_freeze_v0_1.csv").exists()
+    assert (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_family_freeze_summary_v0_1.json").exists()
 
 
 def test_summary_contains_expected_modules_and_scores() -> None:
@@ -56,6 +58,7 @@ def test_manuscript_claim_boundary() -> None:
         "S4G\\ coordinate\\ matched",
         "SIMBAD\\ morphology\\ type\\ available",
         "S4G\\_STRONG",
+        "K\\_BARRED\\_M2",
         "TCDR-v4",
     ]
     for marker in required:
@@ -222,3 +225,30 @@ def test_p0_source_tier_manifest_is_freeze_ready_without_endpoint_fields() -> No
     for row in rows:
         assert row["source_freeze_policy"] == "source_tier_may_be_frozen_before_endpoint_scoring"
         assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_for_source_tier"
+
+
+def test_p0_source_family_freeze_is_endpoint_blind() -> None:
+    rows = list(
+        csv.DictReader(
+            (ROOT / "data" / "source_manifests" / "tcdr_v4_p0_source_family_freeze_v0_1.csv").open()
+        )
+    )
+    assert len(rows) == 66
+    counts: dict[str, int] = {}
+    for row in rows:
+        counts[row["source_family_candidate"]] = counts.get(row["source_family_candidate"], 0) + 1
+    assert counts == {
+        "K_BARRED_M2": 30,
+        "K_COMPACT_EARLY_DISK": 5,
+        "K_DIFFUSE_LATE_DISK": 6,
+        "K_EXPONENTIAL_SPIRAL_DISK": 14,
+        "K_RING_RESONANCE": 10,
+        "K_UNFREEZABLE_IDENTITY_ONLY": 1,
+    }
+    forbidden_columns = {"Vflat", "vflat", "rotation_residual", "delta_r2", "score"}
+    assert forbidden_columns.isdisjoint(rows[0].keys())
+    assert sum(1 for row in rows if row["freeze_strength"] == "freeze_ready_homogeneous_s4g") == 43
+    assert sum(1 for row in rows if row["projection_caveat"] == "yes") == 10
+    for row in rows:
+        assert row["source_family_policy"] == "freeze_before_endpoint_scoring"
+        assert row["endpoint_data_policy"] == "do_not_use_rotation_residuals_for_family_selection"

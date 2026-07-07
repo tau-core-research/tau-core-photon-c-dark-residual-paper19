@@ -42,6 +42,10 @@ The committed P0 source-tier manifest combines S4G and SIMBAD source ledgers
 into a freeze-ready source-quality hierarchy. The tiers describe source
 availability only and must not be read as endpoint performance classes.
 
+The committed P0 source-family freeze maps source-side morphology tiers to
+candidate readout families. These family labels are allowed pre-endpoint
+hypotheses only; they are not fit results and do not use rotation residuals.
+
 No real galaxy, lensing, rotation-curve, cosmological, or survey catalogue data
 are included. The numerical results are methodology checks, not observational
 evidence.

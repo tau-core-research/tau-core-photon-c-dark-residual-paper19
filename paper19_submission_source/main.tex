@@ -677,6 +677,24 @@ endpoint scores, or claims that the corresponding readout family will improve
 a rotation curve.  The artifact is
 \path{data/source_manifests/tcdr_v4_p0_source_tier_manifest_v0_1.csv}.
 
+The first endpoint-blind family freeze maps these source tiers into candidate
+readout families using only source-side morphology rules:
+\begin{align*}
+  30 &\quad {\rm K\_BARRED\_M2},\\
+  14 &\quad {\rm K\_EXPONENTIAL\_SPIRAL\_DISK},\\
+  10 &\quad {\rm K\_RING\_RESONANCE},\\
+   6 &\quad {\rm K\_DIFFUSE\_LATE\_DISK},\\
+   5 &\quad {\rm K\_COMPACT\_EARLY\_DISK},\\
+   1 &\quad {\rm K\_UNFREEZABLE\_IDENTITY\_ONLY}.
+\end{align*}
+The selection grammar is deliberately simple: ring flags dominate ring
+families; bar flags or barred morphology select the barred family; late or
+irregular morphology selects diffuse late disks; early/S0 morphology selects
+compact early disks; otherwise the default is an exponential spiral disk.
+High ellipticity or high inclination is recorded only as a projection caveat,
+not as an endpoint correction.  The family-freeze artifact is
+\path{data/source_manifests/tcdr_v4_p0_source_family_freeze_v0_1.csv}.
+
 \begin{table}[H]
 \centering
 \scriptsize

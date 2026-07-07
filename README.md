@@ -87,6 +87,13 @@ The combined P0 source-tier manifest freezes this source hierarchy:
 some source-side morphology type, and 43 have homogeneous S4G structural
 morphology before any endpoint scoring.
 
+The first endpoint-blind morphology-family freeze maps those source tiers to
+candidate readout families by morphology alone: `K_BARRED_M2=30`,
+`K_EXPONENTIAL_SPIRAL_DISK=14`, `K_RING_RESONANCE=10`,
+`K_DIFFUSE_LATE_DISK=6`, `K_COMPACT_EARLY_DISK=5`, and
+`K_UNFREEZABLE_IDENTITY_ONLY=1`. These are source-side family candidates, not
+fit outcomes.
+
 ## Does Not Claim
 
 - It does not prove Tau Core.
@@ -124,6 +131,8 @@ data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv
 data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_summary_v0_1.json
 data/source_manifests/tcdr_v4_p0_source_tier_manifest_v0_1.csv
 data/source_manifests/tcdr_v4_p0_source_tier_manifest_summary_v0_1.json
+data/source_manifests/tcdr_v4_p0_source_family_freeze_v0_1.csv
+data/source_manifests/tcdr_v4_p0_source_family_freeze_summary_v0_1.json
 figures/*.png
 source_package_docs/
 source_package_figures/
@@ -215,6 +224,16 @@ python scripts/build_tcdr_v4_p0_source_tier_manifest.py
 
 This combines the name, coordinate, and SIMBAD fallback ledgers into a frozen
 source-tier hierarchy. It still does not inspect rotation endpoints.
+
+Build the endpoint-blind source-family freeze:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_family_freeze.py
+```
+
+This assigns candidate morphology/readout families from source-side morphology
+fields only. The output is not a score table and must not be interpreted as
+showing which family fits a galaxy.
 
 ## arXiv Source Package
 
