@@ -1,0 +1,10 @@
+{
+  "n_rows": 4224,
+  "n_shuffles": 64,
+  "n_galaxies_per_shuffle": 66,
+  "n_holdout_rows": 448,
+  "rng_seed": 19019,
+  "shuffle_policy": "endpoint_blind_strength_weighted_component_package_shuffle_v0_2_within_pilot_role_preserve_role_counts_and_weight_distribution_seed_19019",
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_shuffled_component_nulls",
+  "verdict": "The shuffled component nulls are frozen source-side controls. They preserve pilot-role component-weight distributions while breaking the galaxy-to-component assignment before endpoint scoring."
+}

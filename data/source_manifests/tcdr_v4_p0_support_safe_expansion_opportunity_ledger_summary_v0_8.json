@@ -1,0 +1,93 @@
+{
+  "n_rows": 66,
+  "expansion_opportunity_tier_counts": {
+    "TIER0_REPLAY_ELIGIBLE_NOW": 7,
+    "TIER1_FORMULA_COMPLETION_SAFE_SELECTOR": 3,
+    "TIER2_SUPPORT_OVERLAP_REVIEW_READY_FORMULA": 12,
+    "TIER3_COMPONENT_SOURCE_ACQUISITION_READY_FORMULA": 11,
+    "TIER4_NOT_NEAR_TERM_EXPANSION_READY": 33
+  },
+  "tier_galaxies": {
+    "TIER0_REPLAY_ELIGIBLE_NOW": [
+      "NGC0024",
+      "NGC2841",
+      "NGC5005",
+      "NGC7793",
+      "UGC04499",
+      "UGC06917",
+      "UGC06983"
+    ],
+    "TIER1_FORMULA_COMPLETION_SAFE_SELECTOR": [
+      "NGC3893",
+      "UGC00191",
+      "UGC12732"
+    ],
+    "TIER2_SUPPORT_OVERLAP_REVIEW_READY_FORMULA": [
+      "NGC1090",
+      "NGC2903",
+      "NGC3198",
+      "NGC3953",
+      "NGC3972",
+      "NGC3992",
+      "NGC4088",
+      "NGC4100",
+      "NGC4559",
+      "NGC5033",
+      "NGC5371",
+      "NGC5985"
+    ],
+    "TIER3_COMPONENT_SOURCE_ACQUISITION_READY_FORMULA": [
+      "NGC0801",
+      "NGC1003",
+      "NGC2403",
+      "NGC3917",
+      "NGC4183",
+      "NGC6503",
+      "NGC6946",
+      "UGC00128",
+      "UGC02885",
+      "UGC06446",
+      "UGC12632"
+    ],
+    "TIER4_NOT_NEAR_TERM_EXPANSION_READY": [
+      "ESO079-G014",
+      "ESO116-G012",
+      "NGC2955",
+      "NGC2998",
+      "NGC3109",
+      "NGC3521",
+      "NGC3741",
+      "NGC4157",
+      "NGC5055",
+      "NGC5585",
+      "NGC6195",
+      "NGC6674",
+      "NGC7331",
+      "UGC00731",
+      "UGC02487",
+      "UGC03205",
+      "UGC03546",
+      "UGC04325",
+      "UGC05005",
+      "UGC05414",
+      "UGC05721",
+      "UGC05750",
+      "UGC06399",
+      "UGC06614",
+      "UGC06786",
+      "UGC07323",
+      "UGC07399",
+      "UGC07524",
+      "UGC07603",
+      "UGC08490",
+      "UGC09133",
+      "UGC11820",
+      "UGCA442"
+    ]
+  },
+  "near_term_expandable_count_if_tier1_formula_completed": 10,
+  "near_term_review_queue_count_tier2_tier3": 23,
+  "endpoint_data_policy": "source_side_only_do_not_use_rotation_residuals_endpoint_scores_or_baseline_scores",
+  "claim_boundary": "support_safe_expansion_opportunity_ledger_not_endpoint_scoring",
+  "verdict": "The current support-safe replay pool can be expanded immediately only to the 7 Tier-0 objects. A bounded next expansion to 10 is possible if the 3 Tier-1 support-safe partial-formula objects get source-frozen formula completion. Tier-2 and Tier-3 objects need independent source-support review or a disk/component source rule before replay admission."
+}

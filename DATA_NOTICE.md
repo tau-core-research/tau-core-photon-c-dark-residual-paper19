@@ -97,6 +97,17 @@ endpoint-blind. It converts the component-mixture audit into a fixed component
 weight rule before endpoint scoring. It does not inspect endpoint curves,
 residuals, fitted amplitudes, wrong-family scores, or validation outcomes.
 
+The committed P0 shuffled-component null manifest is endpoint-blind as well.
+It preserves pilot-role component-weight distributions while shuffling the
+galaxy-to-component assignment. It is a frozen null-control artifact for later
+diagnostics, not a validation result.
+
+The committed source-strength-weighted v0.2 mixed-component kernel freeze and
+its shuffled null manifest are endpoint-blind refinements. They use only
+source-route component evidence: bar/ring strength proxies and spiral
+pitch/segment/span evidence. They do not inspect endpoint curves, residuals,
+fitted amplitudes, or validation outcomes.
+
 The optional holdout endpoint-scoring preflight writes its results only under
 `data/external/`. Those local outputs are diagnostic and are not part of the
 released source package. They must not be cited as population validation or as
@@ -128,6 +139,171 @@ The optional mixed-component scoring replay also writes only under
 same local holdout packet. Its current role is diagnostic: it improves several
 pure matched-family cases but still does not systematically beat calibrated
 wrong-family controls.
+
+The optional shuffled-component scoring replay also writes only under
+`data/external/`. It compares the source-frozen mixed kernel against the frozen
+shuffled-component null assignments. Its current role is diagnostic: the
+actual mixed kernel is slightly better than the median shuffled-null median,
+but too many shuffled nulls remain competitive for endpoint promotion.
+
+The optional source-strength-weighted mixed-component replay also writes only
+under `data/external/`. It tests whether the source-evidence-weighted v0.2
+freeze improves component selectivity. Its current role remains diagnostic and
+does not promote an endpoint claim.
+
+The optional radial/source-geometry mixed-component replay also writes only
+under `data/external/`. It stress-tests the v0.2 result by adding source-side
+radial-zone, primary-family hierarchy, and conservative projection-reliability
+factors before endpoint scoring. It is intentionally retained even though it
+does not improve on v0.2; this negative/cautionary refinement helps identify
+which source-side kernel upgrades are genuinely selective.
+
+The follow-up source-frozen formula-ladder import writes no endpoint data. It
+is a documentation-level route declaration that redirects the next TCDR-v4
+kernel step from family-template guessing to source-observable formula
+generation.
+
+The committed v0.4 source-frozen formula-compiler readiness manifest is also
+endpoint-blind. It records whether each P0 object has enough source-side
+observables for formula replay, without storing rotation residuals, RMSE
+values, or endpoint scores. The current readiness ledger identifies five
+formula-ready holdout galaxies and leaves the diffuse-partial/template-only
+cases out of the first formula-replay subset.
+
+The optional v0.4 formula-ready endpoint replay writes only under the
+gitignored `data/external/` directory. It requires local SPARC preflight data
+and is intentionally described as preflight scoring only, not population
+validation.
+
+The optional v0.4 formula-ready shuffled-component null replay also writes only
+under `data/external/`. It keeps the readiness-filtered holdout subset fixed
+while shuffling source component packages before endpoint scoring. The current
+author-local result is caveated: many shuffled nulls remain competitive, so the
+readiness-filtered scoring signal is not endpoint promotion.
+
+The optional v0.4 formula-ready component-ablation diagnostic also writes only
+under `data/external/`. It keeps the readiness-filtered holdout subset fixed
+and compares the full source-frozen component mix to component-only and
+leave-one-component-out variants without family-proxy fallback. The current
+author-local result is caveated: a `spiral_only` ablation slightly beats the
+full mix by median weighted RMSE, so the current source composition is not yet
+unique enough for endpoint promotion.
+
+The committed v0.5 source-composition uniqueness audit is endpoint-blind. It
+uses the frozen source-side component weights to mark whether a galaxy's
+bar/ring/spiral composition is uniquely selected, weakly selected, ambiguous,
+or uncovered by source-native components. It stores no rotation residuals,
+RMSE values, endpoint scores, or ablation outcomes.
+
+The optional source-composition-versus-ablation diagnostic writes only under
+`data/external/`. It compares the endpoint-blind source-dominant component to
+the local ablation winner after both artifacts are frozen. It is a diagnostic
+of source-selector weakness only and must not be used to choose a new kernel.
+
+The committed v0.6 support-aware selector audit is endpoint-blind. It refines
+the v0.5 source-composition audit by demoting weight-dominant selections whose
+bar/ring/spiral radial source supports overlap, are adjacent, or are missing.
+It stores no endpoint scores and is a selector-safety ledger, not a scoring
+artifact.
+
+The committed v0.7 support-safe expansion manifest is also endpoint-blind. It
+uses the v0.6 selector-safety ledger to declare which P0 objects are eligible
+for a later support-safe replay pool. It stores only source-side eligibility
+roles and explicitly forbids rotation residuals, endpoint scores, or baseline
+scores.
+
+The committed v0.8 expansion opportunity ledger remains endpoint-blind. It
+separates immediate replay eligibility from bounded expansion work: 7 objects
+are eligible now, 3 more need formula completion, 12 need overlapping-support
+review, and 11 need a disk or other component-source rule. It is a planning
+ledger, not endpoint scoring.
+
+The committed v0.9 support-safe formula-completion manifest is endpoint-blind.
+It closes the bounded 7-to-10 source-side pool by admitting the three Tier1
+objects through their source-dominant support-safe component route. It does not
+use rotation residuals, endpoint scores, or baseline scores.
+
+The optional support-safe pool LOOCV endpoint diagnostic writes only under
+`data/external/`. It scores the frozen 7-object and 10-object support-safe
+pools after source freeze, using leave-one-galaxy-out amplitude calibration.
+It is a local diagnostic only and is not part of the public source manifest.
+
+The optional support-safe failure ledger and formula-aware LOOCV replay also
+write only under `data/external/`. The failure ledger is interpretive only: it
+may classify a best-wrong win as source-visible secondary-component support,
+broad-family/top-component mismatch, or unexplained false-component
+competitiveness, but it must not choose a new kernel. The formula-aware replay
+uses the already frozen `support_safe_compiled_formula`; it is a diagnostic
+correction to the replay rule, not endpoint validation.
+
+The optional Paper8/Paper9 failure-overlay diagnostic also writes only under
+`data/external/`. It imports the earlier morphology-readout lesson that visible
+source morphology (`K_obs`) need not equal the readout-active kernel
+(`K_readout`), and the projection/history non-overlap rule that forbids reusing
+the same source token as both morphology and time/projection evidence. It may
+label a row as a strict survival, near tie, source-visible secondary component,
+`K_obs`/`K_readout` mismatch candidate, or source-gap blocker. It must not
+promote a new endpoint kernel by itself.
+
+The optional scoring-readiness and readiness-filtered scoring diagnostics also
+write only under `data/external/`. They may reuse only the frozen
+formula-aware local scoring rows and the Paper8/Paper9 route-permission
+ledger. They must not introduce new amplitudes, new morphology labels, new
+source tokens, or repaired kernels.
+
+The optional readiness-filtered metric-robustness diagnostic also writes only
+under `data/external/`. It compares the same allowed rows under weighted and
+unweighted RMSE, using the same frozen formula-aware detail table. Its
+companion figure script writes
+`figures/tcdr_readiness_filtered_metric_robustness.png` from that
+already-generated diagnostic table. It does not refit amplitudes, alter labels,
+or promote near ties.
+
+The optional mixed-route shuffle-control and route-closure diagnostics also
+write only under `data/external/`. They may test whether source-visible
+secondary-component rows survive shuffled formula-package controls, but they
+must preserve the already frozen source packages and may not use endpoint
+scores to choose a repaired component route. The optional source-gap external
+literature audit also writes only under `data/external/`; it records source-side
+support or anti-support for already blocked gap components and may not promote
+a replay route without a separate source-review step. The post-external
+route-closure artifact combines this audit with the existing route-closure
+ledger and is a permission ledger only: it does not refit amplitudes, alter
+labels, or turn a blocked row into an endpoint kernel. The post-external
+scoring-boundary summary joins this permission ledger to already generated
+scoring diagnostics and blanks score fields for blocked rows. It is therefore a
+claim-boundary artifact, not an additional endpoint fit. The associated
+post-external scoring-boundary figure is generated from this saved summary and
+does not recompute or alter scoring permissions.
+The allowed-row best-wrong failure diagnostic reads only the score-bearing rows
+and frozen source-composition manifests to decide whether a strict best-wrong
+failure has independent source-visible secondary-component support. It is a
+claim-boundary diagnostic only; it cannot promote a mixed kernel or relabel a
+row from endpoint scores.
+The allowed-failure source-acquisition worklist is a request ledger derived from
+that diagnostic. It records missing residual-blind source evidence needed for a
+possible future review while keeping endpoint replay and kernel-promotion
+permissions closed.
+The allowed-failure external source review is the bounded follow-up to that
+worklist. It records literature/source-side support for NGC2841 and UGC00191
+only as route-review context: NGC2841 gains caveated spiral/path review support,
+while UGC00191 gains only weak asymmetry support and no route-closing spiral
+geometry. The artifact still keeps endpoint replay and kernel-promotion
+permissions closed for both objects.
+
+The optional `K_obs`/`K_readout` source-review diagnostic also writes only
+under `data/external/`. It may inspect residual-blind source-side component
+weights and source-native geometry fields to decide whether a broad observed
+family label can support a readout relabel. It must not use the fact that a
+wrong-family endpoint control scored well. In the current local ledger, the
+NGC0024 broad disk/spiral rows remain blocked because the source ledger
+contains bar/ring support but no active spiral component or spiral geometry.
+
+The optional source-gap blocker ledger also writes only under
+`data/external/`. It inspects the rows already marked `SOURCE_GAP_STILL_BLOCKED`
+and reports which independent source-side component token is missing. It is a
+source-acquisition ledger only; it does not acquire new sources and does not
+authorize replay.
 
 No real endpoint curve packets, lensing maps, cosmological likelihood products,
 or population-validation survey products are included. The committed source

@@ -1,0 +1,30 @@
+{
+  "n_rows": 66,
+  "readiness_status_counts": {
+    "BLOCKED_UNFREEZABLE_SOURCE_FAMILY": 1,
+    "FALLBACK_TEMPLATE_ONLY_NOT_FORMULA_READY": 19,
+    "PARTIAL_FORMULA_COMPILER_CANDIDATE": 16,
+    "READY_FORMULA_COMPILER_REPLAY_CANDIDATE": 30
+  },
+  "holdout_readiness_status_counts": {
+    "FALLBACK_TEMPLATE_ONLY_NOT_FORMULA_READY": 1,
+    "PARTIAL_FORMULA_COMPILER_CANDIDATE": 1,
+    "READY_FORMULA_COMPILER_REPLAY_CANDIDATE": 5
+  },
+  "ready_holdout_galaxies": [
+    "NGC1090",
+    "NGC2841",
+    "NGC3198",
+    "NGC5033",
+    "NGC6503"
+  ],
+  "partial_holdout_galaxies": [
+    "UGC08490"
+  ],
+  "fallback_holdout_galaxies": [
+    "ESO116-G012"
+  ],
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_formula_compiler_readiness",
+  "claim_boundary": "source_frozen_formula_compiler_readiness_not_endpoint_validation",
+  "verdict": "This is a pre-scoring formula-compiler readiness manifest. It identifies which P0 galaxies have enough residual-blind source observables for source-frozen formula replay. It is not endpoint scoring and does not use rotation residuals, RMSE values, or endpoint scores."
+}

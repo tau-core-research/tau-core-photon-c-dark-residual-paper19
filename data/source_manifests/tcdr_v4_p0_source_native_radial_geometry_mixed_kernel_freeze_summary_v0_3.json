@@ -1,0 +1,41 @@
+{
+  "n_rows": 66,
+  "mixed_kernel_status_counts": {
+    "fallback_family_proxy_kernel": 42,
+    "mixed_radial_geometry_source_native_component_kernel": 17,
+    "single_radial_geometry_source_native_component_kernel": 7
+  },
+  "holdout_mixed_kernel_status_counts": {
+    "fallback_family_proxy_kernel": 3,
+    "mixed_radial_geometry_source_native_component_kernel": 3,
+    "single_radial_geometry_source_native_component_kernel": 1
+  },
+  "holdout_mixed_component_weights": [
+    {
+      "galaxy": "NGC1090",
+      "bar_component_weight": 0.4104110931676133,
+      "ring_component_weight": 0.2405168906388123,
+      "spiral_component_weight": 0.3490720161935744
+    },
+    {
+      "galaxy": "NGC5033",
+      "bar_component_weight": 0.0,
+      "ring_component_weight": 0.1129844025228165,
+      "spiral_component_weight": 0.8870155974771835
+    },
+    {
+      "galaxy": "NGC3198",
+      "bar_component_weight": 0.04689553553390852,
+      "ring_component_weight": 0.615401062795852,
+      "spiral_component_weight": 0.33770340167023954
+    }
+  ],
+  "train_component_support_counts": {
+    "bar": 16,
+    "spiral": 13,
+    "ring": 11
+  },
+  "weight_policy": "source_native_radial_geometry_mixed_component_freeze_v0_3_strength_times_radial_zone_times_hierarchy_times_projection_reliability_no_endpoint_inputs",
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_radial_geometry_mixed_component_kernel_freeze",
+  "verdict": "The v0.3 mixed-component weights are frozen from source-side component evidence, source-native radial location, primary-family hierarchy, and conservative projection reliability factors. No rotation curve residuals or endpoint scores are used."
+}

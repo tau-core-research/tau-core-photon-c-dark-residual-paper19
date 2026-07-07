@@ -1,0 +1,66 @@
+{
+  "n_rows": 66,
+  "uniqueness_status_counts": {
+    "NO_SOURCE_NATIVE_COMPONENTS": 42,
+    "SOURCE_COMPOSITION_AMBIGUOUS": 6,
+    "SOURCE_COMPOSITION_UNIQUE_CANDIDATE": 17,
+    "SOURCE_COMPOSITION_WEAKLY_UNIQUE_CANDIDATE": 1
+  },
+  "ready_formula_uniqueness_status_counts": {
+    "NO_SOURCE_NATIVE_COMPONENTS": 11,
+    "SOURCE_COMPOSITION_AMBIGUOUS": 6,
+    "SOURCE_COMPOSITION_UNIQUE_CANDIDATE": 12,
+    "SOURCE_COMPOSITION_WEAKLY_UNIQUE_CANDIDATE": 1
+  },
+  "ready_holdout_uniqueness_status_counts": {
+    "NO_SOURCE_NATIVE_COMPONENTS": 1,
+    "SOURCE_COMPOSITION_AMBIGUOUS": 1,
+    "SOURCE_COMPOSITION_UNIQUE_CANDIDATE": 3
+  },
+  "ready_holdout_galaxy_status": {
+    "NGC1090": {
+      "status": "SOURCE_COMPOSITION_AMBIGUOUS",
+      "top_component": "bar",
+      "top_component_weight": 0.4104110931676133,
+      "dominance_margin": 0.0613390769740389,
+      "positive_components": "bar;ring;spiral"
+    },
+    "NGC2841": {
+      "status": "SOURCE_COMPOSITION_UNIQUE_CANDIDATE",
+      "top_component": "ring",
+      "top_component_weight": 1.0,
+      "dominance_margin": 1.0,
+      "positive_components": "ring"
+    },
+    "NGC3198": {
+      "status": "SOURCE_COMPOSITION_UNIQUE_CANDIDATE",
+      "top_component": "ring",
+      "top_component_weight": 0.615401062795852,
+      "dominance_margin": 0.27769766112561256,
+      "positive_components": "bar;ring;spiral"
+    },
+    "NGC5033": {
+      "status": "SOURCE_COMPOSITION_UNIQUE_CANDIDATE",
+      "top_component": "spiral",
+      "top_component_weight": 0.8870155974771835,
+      "dominance_margin": 0.774031194954367,
+      "positive_components": "ring;spiral"
+    },
+    "NGC6503": {
+      "status": "NO_SOURCE_NATIVE_COMPONENTS",
+      "top_component": "none",
+      "top_component_weight": 0.0,
+      "dominance_margin": 0.0,
+      "positive_components": "none"
+    }
+  },
+  "threshold_policy": {
+    "strong_top_weight": 0.6,
+    "strong_margin": 0.2,
+    "weak_top_weight": 0.5,
+    "weak_margin": 0.1
+  },
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_source_composition_uniqueness",
+  "claim_boundary": "source_composition_uniqueness_audit_not_endpoint_validation",
+  "verdict": "This source-side audit identifies whether the frozen component composition is uniquely selected before endpoint scoring. Ambiguous ready-holdout objects explain why shuffled and ablation controls can remain competitive."
+}

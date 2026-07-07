@@ -1,0 +1,16 @@
+{
+  "n_rows": 66,
+  "mixed_kernel_status_counts": {
+    "fallback_family_proxy_kernel": 42,
+    "mixed_strength_weighted_source_native_component_kernel": 17,
+    "single_strength_weighted_source_native_component_kernel": 7
+  },
+  "holdout_mixed_kernel_status_counts": {
+    "fallback_family_proxy_kernel": 3,
+    "mixed_strength_weighted_source_native_component_kernel": 3,
+    "single_strength_weighted_source_native_component_kernel": 1
+  },
+  "weight_policy": "source_native_strength_weighted_mixed_component_freeze_v0_2_bar_ring_strength_proxy_spiral_pitch_segment_span_no_endpoint_inputs",
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_strength_weighted_mixed_component_kernel_freeze",
+  "verdict": "The v0.2 mixed-component weights are frozen from source-side component evidence. They refine v0.1 without using endpoint curves, residuals, or scores."
+}

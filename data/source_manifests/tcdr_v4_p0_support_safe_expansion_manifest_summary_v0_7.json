@@ -1,0 +1,41 @@
+{
+  "n_rows": 66,
+  "selector_expansion_role_counts": {
+    "EXISTING_SUPPORT_SAFE_HOLDOUT": 1,
+    "NOT_EXPANSION_READY_FORMULA_COMPILER_NOT_READY": 36,
+    "NOT_EXPANSION_READY_SELECTOR_NOT_SUPPORT_SAFE": 23,
+    "SUPPORT_SAFE_HOLDOUT_EXPANSION_CANDIDATE": 6
+  },
+  "support_safe_replay_pool_size": 7,
+  "support_safe_expansion_candidate_count": 6,
+  "support_safe_replay_pool_galaxies": [
+    "NGC0024",
+    "NGC2841",
+    "NGC5005",
+    "NGC7793",
+    "UGC04499",
+    "UGC06917",
+    "UGC06983"
+  ],
+  "support_safe_expansion_candidate_galaxies": [
+    "NGC0024",
+    "NGC5005",
+    "NGC7793",
+    "UGC04499",
+    "UGC06917",
+    "UGC06983"
+  ],
+  "support_safe_replay_pool_by_family": {
+    "K_BARRED_M2": 4,
+    "K_EXPONENTIAL_SPIRAL_DISK": 2,
+    "K_RING_RESONANCE": 1
+  },
+  "support_safe_replay_pool_by_top_component": {
+    "bar": 5,
+    "ring": 1,
+    "spiral": 1
+  },
+  "endpoint_data_policy": "source_side_only_do_not_use_rotation_residuals_endpoint_scores_or_baseline_scores",
+  "claim_boundary": "support_safe_expansion_manifest_not_endpoint_scoring",
+  "verdict": "This source-side manifest expands the future replay pool only to formula-ready objects whose component selector is support-safe. It is not an endpoint score and does not use rotation residuals."
+}

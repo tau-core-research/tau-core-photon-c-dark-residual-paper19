@@ -190,7 +190,8 @@ The command:
 7. regenerates the source-native kernel-coordinate audit, S4G bar/ring
    decomposition source-route artifact, endpoint-blind coordinate-freeze
    manifest, source-native component-mixture audit, and source-native
-   mixed-component kernel freeze;
+   mixed-component kernel freezes, shuffled-component null controls, and the
+   v0.4 source-frozen formula-compiler readiness manifest;
 8. copies figures into the paper source tree;
 9. compiles `paper19_submission_source/main.tex`;
 10. builds `arxiv_submission_source.zip`;
@@ -434,6 +435,17 @@ of `0.5` and lets source-visible secondary components share the remaining
 uncovered objects remain family-proxy fallbacks. This is a kernel-freeze
 artifact, not endpoint validation.
 
+Build the endpoint-blind shuffled-component null controls:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_shuffled_component_nulls.py
+```
+
+This manifest creates 64 deterministic source-side shuffles.  It preserves the
+component-weight distribution within each pilot role while breaking the
+galaxy-to-component assignment before endpoint scoring.  The artifact has 4224
+rows and uses seed `19019`.  It is a null-control freeze, not a scoring result.
+
 Run the optional mixed-component local scoring replay:
 
 ```bash
@@ -449,6 +461,389 @@ three mixed holdout objects, the mixed model beats the pure matched model in
 2/3 and the wrong-family mean in 1/3. This is not an endpoint validation
 claim; it shows that source-side mixed components are useful but not yet
 sufficiently selective.
+
+Run the optional shuffled-component local scoring replay:
+
+```bash
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_shuffled_mixed_components.py
+```
+
+This local diagnostic compares the source-frozen mixed kernel against the 64
+endpoint-blind shuffled component assignments.  In the current author-local
+run, the actual mixed kernel has median weighted RMSE `60.103 km/s`, while the
+median shuffled-null median is `60.371 km/s`; however, 25/64 shuffled nulls
+(`0.390625`) have median RMSE less than or equal to the actual mixed kernel.
+This is a caveated/weak selectivity result: the mixed rule is useful, but the
+present component weighting is not yet strong enough for endpoint promotion.
+
+Build the source-strength-weighted mixed-component kernel freeze:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_strength_weighted_mixed_kernel_freeze.py
+```
+
+This v0.2 source-side rule replaces the fixed primary/secondary split with
+component-evidence weights. Bar and ring use the frozen source strength
+proxies; spiral uses pitch, segment count, and radial span from the S4G/VizieR
+route artifact. It produces the same coverage classes as v0.1: 17 mixed
+kernels, 7 single-component kernels, and 42 family-proxy fallbacks. It is a
+source-side refinement, not endpoint tuning.
+
+Build and run the matching v0.2 shuffled null diagnostic:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_strength_weighted_shuffled_component_nulls.py
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_strength_weighted_mixed_components.py
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_strength_weighted_shuffled_mixed_components.py
+```
+
+The current author-local v0.2 replay improves the wrong-family mean beat count
+from `3/6` to `4/6`, and among mixed holdout objects from `1/3` to `2/3`. The
+actual v0.2 mixed median weighted RMSE is `59.746 km/s`, while the median
+shuffled-null median is `60.319 km/s`; however, `22/64` shuffled nulls
+(`0.34375`) remain at least as good. This is directionally stronger than v0.1,
+but still a caveated selectivity diagnostic, not endpoint promotion.
+
+Build and run the v0.3 radial/source-geometry stress refinement:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_native_radial_geometry_mixed_kernel_freeze.py
+python scripts/build_tcdr_v4_p0_source_native_radial_geometry_shuffled_component_nulls.py
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_radial_geometry_mixed_components.py
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_radial_geometry_shuffled_mixed_components.py
+```
+
+The v0.3 rule multiplies source evidence by endpoint-blind radial-zone,
+primary-family hierarchy, and conservative projection-reliability factors. It
+keeps the same coverage classes as v0.2. In the current author-local replay it
+does not improve on v0.2: it keeps the wrong-family mean beat count at `4/6`
+and mixed-holdout wrong-mean count at `2/3`, but the actual mixed median
+weighted RMSE weakens to `59.933 km/s` and the median wrong-mean margin shrinks
+to `0.120 km/s`. The shuffled-null fraction remains `22/64` (`0.34375`). This
+is useful as a source-side stress test, not as the preferred endpoint kernel.
+
+The next route is therefore not another hand-selected family template. Paper
+19 now returns to the Paper 8/Paper 9/common source-frozen readout formula
+ladder:
+
+```text
+source-native observables
+  -> source load and support window
+  -> dimensionally checked component formula
+  -> zero-source / known-limit guard
+  -> predeclared mixed composition rule
+  -> endpoint replay and shuffled-component controls
+```
+
+See:
+
+```text
+source_package_docs/tcdr_v4_source_frozen_formula_ladder_import.md
+```
+
+This records the next TCDR-v4 v0.4 target as a source-frozen formula compiler,
+not a new curve-selected or family-template kernel.
+
+Build the v0.4 formula-compiler readiness manifest:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_frozen_formula_compiler_readiness.py
+```
+
+This is still endpoint-blind. It classifies the 66 P0 objects into formula
+replay readiness states using only residual-blind source observables. The
+current ledger contains 30 `READY_FORMULA_COMPILER_REPLAY_CANDIDATE` objects,
+16 `PARTIAL_FORMULA_COMPILER_CANDIDATE` objects, 19 template-only fallbacks,
+and 1 unfreezable identity-only source. In the 7-object holdout, 5 objects are
+formula-ready (`NGC1090`, `NGC2841`, `NGC3198`, `NGC5033`, `NGC6503`), while
+`UGC08490` remains diffuse-partial and `ESO116-G012` remains template-only.
+
+If the local SPARC preflight files are present under `data/external/`, the
+formula-ready subset can be scored with:
+
+```bash
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_formula_compiler_ready.py
+```
+
+This local preflight replay scores only the five readiness-filtered holdout
+objects. In the current author-local run, the formula-ready mixed rule beats
+the fixed baryonic carrier in `5/5`, the wrong-family mean in `4/5`, and the
+best wrong-family control in `2/5`; the median wrong-mean margin is
+`0.576 km/s`. This is a scoring-direction signal for the source-frozen formula
+compiler route, not population validation.
+
+Run the corresponding readiness-filtered shuffled-component null:
+
+```bash
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_formula_compiler_ready_shuffled.py
+```
+
+This keeps the same five formula-ready holdout objects but replaces the
+source-frozen component packages by endpoint-blind shuffled component packages.
+In the current author-local run, the actual formula-ready median weighted RMSE
+is `60.471 km/s`, the median shuffled-null median is `60.483 km/s`, and
+`25/64` shuffled nulls are at least as good as the actual formula-ready kernel.
+Thus the formula-ready route is directionally useful, but it is not yet
+source-selective enough for endpoint promotion.
+
+Run the formula-ready component-ablation diagnostic:
+
+```bash
+python scripts/run_tcdr_v4_holdout_endpoint_scoring_formula_compiler_ready_component_ablation.py
+```
+
+This keeps the same five formula-ready holdout objects and the same
+train-pool-only amplitude policy, but compares the full source-frozen
+bar/ring/spiral mix against `bar_only`, `ring_only`, `spiral_only`, and
+leave-one-component-out variants. Ablation variants do not fall back to a
+family proxy when a component is absent. In the current author-local run, the
+full source mix has median weighted RMSE `60.456 km/s`, while the best ablation
+median is `60.340 km/s` for `spiral_only`; by object, the best variant is
+`spiral_only` for 2 galaxies, `ring_only` for 2 galaxies, and the full mix for
+1 galaxy. This explains why shuffled component packages remain competitive:
+the present source-frozen composition is not yet uniquely selected by the
+available source observables. The result is a component-specificity diagnostic,
+not a validation or kernel-promotion result.
+
+Build the endpoint-blind source-composition uniqueness audit:
+
+```bash
+python scripts/build_tcdr_v4_p0_source_composition_uniqueness_audit.py
+```
+
+This v0.5 audit uses only the frozen source-side component weights and tags
+each object as source-composition unique, weakly unique, ambiguous, or
+component-uncovered. In the current ledger, the 66 P0 objects split into 17
+unique, 1 weakly unique, 6 ambiguous, and 42 with no source-native
+bar/ring/spiral component. Among the five formula-ready holdout galaxies, 3
+are source-composition unique, 1 is ambiguous, and 1 has no source-native
+component coverage. This is the source-side explanation of the ablation result:
+formula readiness alone does not imply component-composition uniqueness.
+
+If the local ablation output is present under `data/external/`, the diagnostic
+alignment check can be run with:
+
+```bash
+python scripts/run_tcdr_v4_formula_ready_source_composition_vs_ablation_diagnostic.py
+```
+
+This check is explicitly post-source-freeze and endpoint-diagnostic only. In
+the current author-local run, the endpoint-blind top source component agrees
+with the local ablation winner in only `1/4` positive-source-component holdout
+galaxies (`1/3` among strongly unique source cases). Therefore the next
+kernel-development blocker is not amplitude fitting, but a better
+source-native rule for mapping source morphology to the readout-active
+component.
+
+Build the support-aware selector audit:
+
+```bash
+python scripts/build_tcdr_v4_p0_support_aware_component_selector_audit.py
+```
+
+This v0.6 audit keeps the v0.5 source weights frozen but demotes apparent
+dominant components when their source radial supports overlap or are adjacent.
+It is still endpoint-blind. Across the 66 P0 objects, only 10 remain
+support-aware selector-safe, while 14 are unresolved by overlapping/adjacent
+support and 42 are uncovered. Among the five formula-ready holdout galaxies,
+only `NGC2841` is selector-safe; `NGC1090`, `NGC3198`, and `NGC5033` are
+unresolved by support overlap/adjacency, and `NGC6503` is uncovered. This
+explains why the source selector should not be promoted yet: formula readiness
+does not imply support-safe component selection.
+
+Build the support-safe expansion manifest:
+
+```bash
+python scripts/build_tcdr_v4_p0_support_safe_expansion_manifest.py
+```
+
+This v0.7 manifest uses only the endpoint-blind v0.6 selector-safety ledger.
+It declares a future replay pool only for objects that are both formula-ready
+and support-safe. The resulting support-safe replay pool has 7 galaxies:
+`NGC0024`, `NGC2841`, `NGC5005`, `NGC7793`, `UGC04499`, `UGC06917`, and
+`UGC06983`. Of these, `NGC2841` is the existing support-safe holdout object,
+while the other 6 are expansion candidates from the train pool. This is a
+source-side eligibility manifest, not endpoint scoring.
+
+Build the support-safe expansion opportunity ledger:
+
+```bash
+python scripts/build_tcdr_v4_p0_support_safe_expansion_opportunity_ledger.py
+```
+
+This v0.8 ledger answers whether the pool can be enlarged further without
+using endpoint information. It separates the 66 P0 objects into tiers:
+7 are replay-eligible now; 3 more are support-safe but need source-frozen
+formula completion (`NGC3893`, `UGC00191`, `UGC12732`); 12 are formula-ready
+but need overlapping-support review; 11 are formula-ready but need a disk or
+other component-source rule; and 33 are not near-term expansion-ready. Thus
+the clean near-term path is 7 now, 10 after bounded formula completion, and
+larger expansion only after independent source-support work.
+
+Build the support-safe formula-completion manifest:
+
+```bash
+python scripts/build_tcdr_v4_p0_support_safe_formula_completion_manifest.py
+```
+
+This v0.9 manifest closes the bounded 7 -> 10 step without endpoint fields. It
+admits the three Tier1 objects by using their source-dominant support-safe
+component route instead of forcing the broad family label: `NGC3893` enters
+through a spiral component route, while `UGC00191` and `UGC12732` enter through
+bar component routes. The resulting 10-object source-side replay pool is:
+`NGC0024`, `NGC2841`, `NGC3893`, `NGC5005`, `NGC7793`, `UGC00191`,
+`UGC04499`, `UGC06917`, `UGC06983`, and `UGC12732`. This is formula-completion
+eligibility, not endpoint scoring.
+
+Run the local support-safe pool LOOCV endpoint diagnostic:
+
+```bash
+python scripts/run_tcdr_v4_support_safe_pool_loocv_scoring.py
+```
+
+This optional local script writes only under `data/external/sparc_preflight/`
+because it uses SPARC endpoint curves after the source pools are frozen. It
+scores the 7-object v0.7 pool and the 10-object v0.9 pool with leave-one-galaxy
+out amplitude calibration. In the current local run, the 7-object pool beats
+the baryonic carrier in `6/7`, the matched-component control in `5/7`, the
+wrong-component mean in `2/7`, and the best wrong component in `1/7`. The
+10-object pool beats the baryonic carrier in `9/10`, the matched-component
+control in `5/10`, the wrong-component mean in `5/10`, and the best wrong
+component in `3/10`. The 10-object expansion is directionally better, but it is
+still a local diagnostic rather than endpoint validation because strict
+wrong-component controls remain competitive.
+
+Build the support-safe failure ledger and run the formula-aware LOOCV replay:
+
+```bash
+python scripts/run_tcdr_v4_support_safe_pool_failure_and_formula_aware_scoring.py
+```
+
+This optional local script writes only under `data/external/sparc_preflight/`.
+It first explains which component wins when the candidate fails the strict
+best-wrong control. In the current ledger, 4/17 rows survive the strict
+best-wrong control, 4/17 are cases where the best wrong component is actually a
+source-visible secondary component, 2/17 are broad-disk-family/top-component
+mismatches, and 7/17 remain unexplained competitive false-component cases.
+
+The second half reruns LOOCV with the candidate using the frozen
+`support_safe_compiled_formula` rather than the top component alone. This
+formula-aware replay improves the 10-object pool to `10/10` against the
+baryonic carrier and `6/10` against the wrong-component mean, but it reaches
+only `2/10` against the best wrong component. Thus the compiled formula route
+is better aligned with the manifest, but it does not close the strict
+wrong-component blocker.
+
+Apply the Paper8/Paper9 failure-overlay diagnostic:
+
+```bash
+python scripts/build_tcdr_v4_paper8_paper9_failure_overlay.py
+```
+
+This optional local diagnostic does not select a new kernel. It re-reads the
+strict-control failures through the Paper8/Paper9 distinction between visible
+source morphology (`K_obs`) and readout-active kernel (`K_readout`), plus the
+Paper9 non-overlap rule for projection/history routes. In the current local
+overlay, 3/17 rows are strict-control survivals, 3/17 are near ties within
+`0.1 km/s`, 4/17 are source-visible secondary-component cases, 2/17 are
+broad-disk `K_obs`/`K_readout` mismatch candidates, and 5/17 remain blocked
+until independent spiral/projection/history source evidence exists. This is a
+failure taxonomy and route-permission ledger only, not endpoint validation and
+not a post-hoc family rescue.
+
+Build the scoring-readiness ledger and run the readiness-filtered local score:
+
+```bash
+python scripts/build_tcdr_v4_paper8_paper9_scoring_readiness_ledger.py
+python scripts/run_tcdr_v4_paper8_paper9_readiness_filtered_scoring.py
+python scripts/run_tcdr_v4_readiness_filtered_metric_robustness.py
+python scripts/build_tcdr_v4_readiness_filtered_metric_robustness_figure.py
+```
+
+The readiness ledger permits immediate replay only for current-formula strict
+survivals and near ties. Mixed, `K_obs`/`K_readout`, and projection/history
+routes remain blocked until source-side conditions close. In the current local
+readiness-filtered scoring run, the six allowed rows cover four unique
+galaxies (`NGC2841`, `NGC3893`, `NGC7793`, `UGC00191`) and beat the baryonic
+carrier in `6/6`, the wrong-component mean in `6/6`, and the best wrong
+component in `3/6`. The strict result remains limited because the three
+near-tie rows are robustness rows, not strict wins.
+The metric-robustness audit repeats the allowed-row comparison under both
+weighted RMSE and unweighted RMSE. Strict best-wrong survival remains `3/6`
+under both metrics, but wrong-component-mean survival falls from `6/6`
+weighted to `4/6` unweighted. This preserves the positive sub-ledger while
+keeping it diagnostic rather than validation-grade. The companion figure is
+written to `figures/tcdr_readiness_filtered_metric_robustness.png`.
+
+Test the mixed-route opening against shuffled formula-package controls:
+
+```bash
+python scripts/run_tcdr_v4_support_safe_mixed_route_shuffle_control.py
+python scripts/build_tcdr_v4_kobs_kreadout_source_review.py
+python scripts/build_tcdr_v4_paper8_paper9_scoring_route_closure.py
+python scripts/build_tcdr_v4_source_gap_blocker_ledger.py
+```
+
+The source non-overlap condition closes for the four mixed-route rows, but the
+shuffled formula-package control does not pass: `0/4` mixed rows beat the
+shuffle criterion at the predeclared `p <= 0.10` threshold. The final route
+closure therefore leaves only the six current-formula rows replay-ready and
+keeps `11/17` rows blocked or review-required. This is a useful negative
+control: source-visible secondary components are not automatically promoted to
+new endpoint kernels. The separate `K_obs`/`K_readout` source review closes
+the two NGC0024 broad-disk mismatch rows in the negative direction: the broad
+family label contains disk/spiral structure, but the frozen source ledger has
+bar/ring support, zero spiral component weight, and no source-native spiral
+geometry. The final route closure therefore marks those rows as
+`KOBS_KREADOUT_RELABEL_BLOCKED_BY_SOURCE_REVIEW`, not as replay-ready.
+The source-gap blocker ledger then inspects the remaining five blocked rows
+(`UGC04499`, `UGC06917`, and `UGC12732` across the two support-safe pools).
+All five are competitive spiral controls outside the frozen source family and
+lack independent source-side spiral support, so they remain source-acquisition
+tasks rather than replay candidates.
+
+The bounded external literature/source audit keeps the same rows blocked:
+
+```bash
+python scripts/build_tcdr_v4_source_gap_external_literature_audit.py
+python scripts/build_tcdr_v4_post_external_route_closure.py
+python scripts/build_tcdr_v4_post_external_scoring_boundary_summary.py
+python scripts/build_tcdr_v4_allowed_best_wrong_failure_diagnostic.py
+python scripts/build_tcdr_v4_allowed_failure_source_acquisition_worklist.py
+python scripts/build_tcdr_v4_allowed_failure_external_source_review.py
+python scripts/build_tcdr_v4_post_external_scoring_boundary_figure.py
+```
+
+`UGC04499` gains anti-spiral support from an external late-type/bulgeless
+source, `UGC06917` remains bar-only under the available source ledger, and
+`UGC12732` has weak non-bar caveats without source-native spiral geometry or an
+independent projection/history token. The audit writes
+`data/external/sparc_preflight/tcdr_v4_source_gap_external_literature_audit_local.csv`
+and does not promote any new replay route. The post-external route closure then
+records the final scoring permission state: six current-formula rows remain
+replay-ready, while eleven rows remain blocked or review-required. The
+post-external scoring-boundary summary then scores only those six allowed rows:
+weighted RMSE gives 6/6 versus baryonic, 6/6 versus wrong-component mean, and
+3/6 versus strict best-wrong; unweighted RMSE gives 4/6 versus wrong-component
+mean and 3/6 versus strict best-wrong. Blocked rows carry no scoring claim.
+The companion paper figure is generated from the frozen summary artifact at
+`figures/tcdr_post_external_scoring_boundary.png`.
+The allowed-row best-wrong failure diagnostic then checks whether the three
+strict best-wrong failures can be honestly promoted into source-visible mixed
+routes. It finds `0/3` source-visible best-wrong secondary components, so those
+rows remain near-tie or metric-sensitive control-pressure diagnostics rather
+than new mixed-kernel replay candidates.
+The follow-up source-acquisition worklist converts those failures into explicit
+residual-blind source requests: three row-level spiral/path/history requests
+across `NGC2841` and `UGC00191`, with endpoint replay and kernel promotion both
+kept at `no`.
+The bounded external source review then checks those requests without reading
+endpoint residuals. It finds caveated independent spiral/path evidence for
+`NGC2841` and only weak asymmetry support, not route-closing spiral geometry,
+for `UGC00191`. The artifact
+`data/external/sparc_preflight/tcdr_v4_allowed_failure_external_source_review_local.csv`
+keeps endpoint replay and kernel promotion at `no` for both galaxies; it only
+authorizes future source-side route review.
 
 ## arXiv Source Package
 

@@ -1,0 +1,58 @@
+{
+  "n_rows": 66,
+  "support_aware_selector_status_counts": {
+    "SUPPORT_AWARE_SELECTOR_SAFE_DOMINANT_DISJOINT": 3,
+    "SUPPORT_AWARE_SELECTOR_SAFE_SINGLE_COMPONENT": 7,
+    "SUPPORT_AWARE_SELECTOR_UNCOVERED": 42,
+    "SUPPORT_AWARE_SELECTOR_UNRESOLVED_OVERLAPPING_SUPPORT": 14
+  },
+  "ready_formula_support_aware_selector_status_counts": {
+    "SUPPORT_AWARE_SELECTOR_SAFE_DOMINANT_DISJOINT": 3,
+    "SUPPORT_AWARE_SELECTOR_SAFE_SINGLE_COMPONENT": 4,
+    "SUPPORT_AWARE_SELECTOR_UNCOVERED": 11,
+    "SUPPORT_AWARE_SELECTOR_UNRESOLVED_OVERLAPPING_SUPPORT": 12
+  },
+  "ready_holdout_support_aware_selector_status_counts": {
+    "SUPPORT_AWARE_SELECTOR_SAFE_SINGLE_COMPONENT": 1,
+    "SUPPORT_AWARE_SELECTOR_UNCOVERED": 1,
+    "SUPPORT_AWARE_SELECTOR_UNRESOLVED_OVERLAPPING_SUPPORT": 3
+  },
+  "n_ready_formula_selector_safe": 7,
+  "n_ready_holdout_selector_safe": 1,
+  "ready_holdout_selector_status": {
+    "NGC1090": {
+      "status": "SUPPORT_AWARE_SELECTOR_UNRESOLVED_OVERLAPPING_SUPPORT",
+      "reason": "ring_radius_adjacent_to_spiral_radial_span;bar_radius_inside_spiral_radial_span",
+      "top_component": "bar",
+      "positive_components": "bar;ring;spiral"
+    },
+    "NGC2841": {
+      "status": "SUPPORT_AWARE_SELECTOR_SAFE_SINGLE_COMPONENT",
+      "reason": "single_component_no_overlap",
+      "top_component": "ring",
+      "positive_components": "ring"
+    },
+    "NGC3198": {
+      "status": "SUPPORT_AWARE_SELECTOR_UNRESOLVED_OVERLAPPING_SUPPORT",
+      "reason": "ring_radius_adjacent_to_spiral_radial_span;bar_radius_adjacent_to_spiral_radial_span",
+      "top_component": "ring",
+      "positive_components": "bar;ring;spiral"
+    },
+    "NGC5033": {
+      "status": "SUPPORT_AWARE_SELECTOR_UNRESOLVED_OVERLAPPING_SUPPORT",
+      "reason": "ring_radius_inside_spiral_radial_span",
+      "top_component": "spiral",
+      "positive_components": "ring;spiral"
+    },
+    "NGC6503": {
+      "status": "SUPPORT_AWARE_SELECTOR_UNCOVERED",
+      "reason": "no_source_native_components",
+      "top_component": "none",
+      "positive_components": "none"
+    }
+  },
+  "endpoint_data_policy": "do_not_use_rotation_residuals_or_endpoint_scores_for_support_aware_selector",
+  "adjacent_support_fraction": 0.25,
+  "claim_boundary": "support_aware_component_selector_audit_not_endpoint_validation",
+  "verdict": "This endpoint-blind support-aware audit demotes weight-dominant component selections when their radial source supports overlap or when support data are missing. It distinguishes formula readiness from selector safety."
+}

@@ -1,0 +1,43 @@
+{
+  "n_rows": 66,
+  "support_safe_10_pool_role_counts": {
+    "NOT_IN_SUPPORT_SAFE_10_POOL": 56,
+    "SUPPORT_SAFE_10_POOL_READY_BY_COMPONENT_ROUTE_COMPLETION": 3,
+    "SUPPORT_SAFE_10_POOL_READY_CARRIED_FROM_V0_7": 7
+  },
+  "support_safe_10_pool_size": 10,
+  "support_safe_10_pool_galaxies": [
+    "NGC0024",
+    "NGC2841",
+    "NGC3893",
+    "NGC5005",
+    "NGC7793",
+    "UGC00191",
+    "UGC04499",
+    "UGC06917",
+    "UGC06983",
+    "UGC12732"
+  ],
+  "component_route_completed_galaxies": [
+    "NGC3893",
+    "UGC00191",
+    "UGC12732"
+  ],
+  "support_safe_10_pool_by_formula": {
+    "F_BAR_M2_SOURCE_FROZEN": 2,
+    "F_EXPONENTIAL_DISK_SCALE_TAIL_SOURCE_FROZEN": 1,
+    "F_EXPONENTIAL_DISK_WITH_SPIRAL_PITCH_SOURCE_FROZEN": 1,
+    "F_MIXED_BAR_SOURCE_NATIVE_COMPONENTS": 2,
+    "F_RING_RESONANCE_SOURCE_FROZEN": 1,
+    "F_SUPPORT_SAFE_BAR_COMPONENT_SOURCE_FROZEN": 2,
+    "F_SUPPORT_SAFE_SPIRAL_COMPONENT_SOURCE_FROZEN": 1
+  },
+  "support_safe_10_pool_by_top_component": {
+    "bar": 7,
+    "ring": 1,
+    "spiral": 2
+  },
+  "endpoint_data_policy": "source_side_only_do_not_use_rotation_residuals_endpoint_scores_or_baseline_scores",
+  "claim_boundary": "support_safe_formula_completion_manifest_not_endpoint_scoring",
+  "verdict": "The three Tier-1 objects can enter a support-safe 10-object pool by using their source-dominant support-safe component route rather than forcing the broad family label. This is source-side formula completion only, not endpoint scoring."
+}
