@@ -1,0 +1,39 @@
+{
+  "n_rows": 4,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "answer_validation_pass": true,
+  "guardrail_pass": true,
+  "reviewer_answers": {
+    "Q1_curve_identity": "figure_total_profile_not_isolated_component",
+    "Q2_normalization_mapping": "no_not_in_source",
+    "Q3_axis_or_units_issue": "no",
+    "Q4_allowed_use": "shape_only"
+  },
+  "confidence_counts": {
+    "high": 2,
+    "medium": 2
+  },
+  "accepted_source_side_shape_candidate": true,
+  "source_native_normalization_rule_found": false,
+  "axis_or_units_fix_found": false,
+  "component_identity_resolved_for_load": false,
+  "allowed_use": "shape_candidate_only_no_load",
+  "formula_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 4
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 4
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 4
+  },
+  "claim_boundary": "ngc2841_mass_profile_semantics_review_acceptance_not_scoring",
+  "final_status": "ACCEPT_SHAPE_ONLY_LOAD_FORMULA_BLOCKED",
+  "validation_summary_excerpt": "NGC2841 mass-profile semantics review - validation summary\n\nFilled file: review_response_template.csv\nRows filled: 4\nAllowed-answer validation: PASS\nForbidden-input guardrails: PASS\nEndpoint replay permission: must_be_no on all rows\nKernel promotion permission: must_be_no on all rows\nRotation curve / velocity usage: must_be_false on all rows\nEndpoint residual usage: must_be_false on all rows\nTau Core score / required lambda usage: must_be_false on all rows\n\nFinal verdict: source-side shape-only. No load-bearing normalized mass formula is authorized by this review package.\n",
+  "completion_notes_excerpt": "# Review completion notes - NGC2841 mass-profile semantics\n\n## Completed artifact\n\n`review_response_template.csv` has been filled with four source-side semantic answers.\n\n## Reviewer verdict\n\nThe displayed Zhang et al. mass-profile curves are useful as source-side morphology/shape information, but the included source materials do not provide an explicit source-native rule that maps the displayed `Sigma_star(R)` profile to the quoted integrated outer-disk stellar mass of `1.4e8 Msun` beyond about 30 kpc.\n\nThe safest interpretation is therefore:\n\n- do not promote the profile to a load-bearing normalized formula;\n- do not perform endpoint replay;\n- do not use any rotation curve, residual, RMSE, Tau Core score, required lambda, or required epsilon information;\n- retain the profile as `shape_only` unless an author/source-native component table or explicit normalization rule is obtained.\n\n## Key source-side reasoning\n\n1. The source text defines the plotted stellar profiles as mass surface-density profiles derived from photometry and color assumptions.\n2. The measured-color and constant outer-color variants are display/profile variants, not explicitly declared as the isolated outer-disk component normalized to the quoted integrated mass.\n3. The quoted `1.4 +/- 0.2 x 10^8 Msun` mass appears as a separate integrated outer-disk statement.\n4. The arXiv source package search found no machine-readable `Sigma_star(R)` or `Sigma_gas(R)` table and no explicit component-normalization mapping.\n5. The normalization audit shows tens-of-times mismatch under naive annular integration, so the dis",
+  "verdict": "The filled semantics review confirms that the displayed Zhang et al. mass profile is not source-resolved as the isolated outer component with a normalization to the quoted 1.4e8 Msun mass. No source-native normalization or axis/unit fix was found. The profile is accepted only as a shape candidate; load formula, kernel promotion, and endpoint replay remain closed.",
+  "next_allowed_action": "Use the profile only as source-side shape context, or obtain an author/source-native outer-component table before reopening load-formula derivation."
+}

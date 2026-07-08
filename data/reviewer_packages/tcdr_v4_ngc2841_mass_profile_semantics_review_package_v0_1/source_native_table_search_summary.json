@@ -1,0 +1,46 @@
+{
+  "n_rows": 3,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "arxiv_source_members": [
+    "Zhang_accepted_2col.tex",
+    "aastex61.cls",
+    "galaxy_panchrom.pdf",
+    "prof_masses1and2_4.pdf",
+    "prof_timescales1and2_4.pdf",
+    "profile_original.pdf",
+    "profile_withjpg.pdf"
+  ],
+  "machine_table_like_members": [],
+  "figure_members": [
+    "prof_masses1and2_4.pdf",
+    "prof_timescales1and2_4.pdf",
+    "profile_original.pdf",
+    "profile_withjpg.pdf"
+  ],
+  "text_checks": {
+    "stellar_gas_profile_figure_statement": true,
+    "measured_color_and_constant_color_variants": true,
+    "outer_3_to_1_ratio_statement": true,
+    "outer_integrated_mass_statement": true
+  },
+  "source_native_profile_table_found": false,
+  "component_normalization_resolved": false,
+  "formula_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 3
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 3
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 3
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 3
+  },
+  "claim_boundary": "ngc2841_mass_profile_source_native_table_search_not_scoring",
+  "verdict": "No source-native machine-readable Zhang et al. mass-profile table was found in the arXiv source package. The source text supports the semantics split between displayed surface-density profiles and the quoted integrated outer-disk mass, but does not resolve the normalization mapping. The profile remains shape-only.",
+  "next_allowed_action": "Either contact/ask a reviewer to confirm the Figure curve identity and component normalization, or obtain an independent source-native component model/table."
+}

@@ -1,0 +1,35 @@
+{
+  "n_rows": 8,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "strong_source_routes_inherited": [
+    "outer_hi_warp_halo_capacity",
+    "outer_stellar_hi_uv_capacity",
+    "outer_xuv_hi_starforming_capacity"
+  ],
+  "formula_freeze_status_counts": {
+    "not_frozen_needs_onset_priority_rule": 2,
+    "candidate_freezable_after_review": 2,
+    "not_frozen_lower_bound_requires_policy": 1,
+    "blocked_needs_source_native_geometry_extraction": 1,
+    "blocked_needs_residual_blind_component_weight_rule": 1,
+    "context_only_not_formula_freeze_field": 1
+  },
+  "candidate_numeric_or_lower_bound_fields": 5,
+  "blocked_formula_fields": 2,
+  "not_frozen_formula_fields": 3,
+  "endpoint_replay_permission_counts": {
+    "no": 8
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 8
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 8
+  },
+  "formula_ready": false,
+  "claim_boundary": "ngc2841_outer_capacity_formula_freeze_worklist_not_formula_not_scoring",
+  "verdict": "The NGC2841 outer-capacity route is source-supported but not formula-frozen. Several source-native scales are available, but the route is blocked by the outer onset priority rule, source-native tilted-ring geometry extraction, and a residual-blind component-weight rule. Endpoint replay remains closed.",
+  "next_allowed_action": "derive a source-side onset/weight policy and extract tilted-ring geometry before any outer-capacity kernel scoring"
+}

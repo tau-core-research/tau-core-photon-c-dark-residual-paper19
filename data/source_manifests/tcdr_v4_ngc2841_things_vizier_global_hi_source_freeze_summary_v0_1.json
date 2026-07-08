@@ -1,0 +1,37 @@
+{
+  "galaxy": "NGC 2841",
+  "catalog": "J/AJ/136/2563",
+  "source_reference": "Walter2008THINGS_VizieR_J_AJ_136_2563",
+  "source_url": "https://vizier.cds.unistra.fr/viz-bin/VizieR?-source=J/AJ/136/2563",
+  "n_spectrum_rows": 132,
+  "n_valid_flux_rows": 123,
+  "velocity_min_kms": 296.7,
+  "velocity_max_kms": 974.8,
+  "channel_width_kms_used": 5.199999999999989,
+  "integrated_positive_hi_flux_jy_kms_proxy": 183.31434210389813,
+  "distance_mpc_catalog": 14.100000381469727,
+  "inclination_deg_catalog": 74.0,
+  "position_angle_deg_catalog": 153.0,
+  "type_tt_catalog": 3,
+  "sfr_msun_per_yr_catalog": 0.20000000298023224,
+  "mhi_msun_from_spectrum_proxy": 8586377522.3279,
+  "global_hi_source_freeze_ready": true,
+  "radial_hi_surface_density_ready": false,
+  "positive_load_freeze_ready": false,
+  "endpoint_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 132
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 132
+  },
+  "positive_load_freeze_permission_counts": {
+    "no": 132
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 132
+  },
+  "claim_boundary": "ngc2841_things_vizier_global_hi_source_freeze_not_endpoint",
+  "verdict": "The THINGS/VizieR catalog supplies source-native NGC2841 global HI spectrum and basic geometry. This strengthens global HI support but does not provide the radial or 2D surface-density profile needed for a halo-capacity conversion.",
+  "next_allowed_action": "Acquire/cache a source-native THINGS moment-0 map or accepted radial HI surface-density profile; do not promote the global spectrum into a positive-load kernel."
+}

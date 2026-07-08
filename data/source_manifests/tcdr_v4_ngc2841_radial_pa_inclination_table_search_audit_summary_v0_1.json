@@ -1,0 +1,42 @@
+{
+  "n_rows": 4,
+  "search_queries": [
+    "NGC 2841 tilted ring position angle inclination table",
+    "NGC2841 PA inclination tilted ring table",
+    "NGC 2841 THINGS tilted ring model inclination position angle",
+    "NGC2841 rotcur PA incl table",
+    "\"NGC 2841\" \"position angle\" \"inclination\" \"radial\" \"table\"",
+    "\"NGC 2841\" \"PA\" \"inclination\" \"Table\" \"rotcur\""
+  ],
+  "source_status_counts": {
+    "radial_profile_figure_available_no_numeric_table_in_html": 1,
+    "scalar_pa_inclination_support_found_no_radial_table": 1,
+    "median_pa_inclination_support_found_radial_profile_figure_level": 1,
+    "no_primary_machine_readable_radial_pa_i_table_found": 1
+  },
+  "usable_now_counts": {
+    "review_digitization_candidate_only": 1,
+    "scalar_geometry_support_only": 1,
+    "scalar_geometry_crosscheck_only": 1,
+    "negative_source_search_result": 1
+  },
+  "has_source_native_numeric_radial_pa_inclination_table": false,
+  "has_source_native_numeric_scalar_pa_inclination_support": true,
+  "has_figure_level_radial_pa_inclination_profile": true,
+  "radial_kernel_formula_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 4
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 4
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 4
+  },
+  "forbidden_endpoint_inputs_used_counts": {
+    "no": 4
+  },
+  "claim_boundary": "ngc2841_radial_pa_inclination_table_search_audit_not_formula_not_scoring",
+  "verdict": "A bounded primary-source pass did not locate a source-native numeric radial PA/inclination table for NGC2841. It did locate scalar/summary PA/inclination support from THINGS/de Blok and Samurovic, and figure-level radial PA/i profiles from Bosma and Samurovic. Therefore the route is better supported, but the radial tilted-ring kernel remains blocked.",
+  "next_allowed_action": "Either obtain author/archive machine-readable tilted-ring PA/i values or run an independent reviewer digitization of the Bosma/Samurovic PA/i panels. Do not score or promote the kernel before that source-side step."
+}

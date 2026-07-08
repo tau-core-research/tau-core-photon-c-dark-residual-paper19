@@ -1,0 +1,26 @@
+{
+  "package_stem": "tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1",
+  "package_dir": "data/reviewer_packages/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1",
+  "zip_path": "data/reviewer_packages/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1.zip",
+  "downloads_zip_path": "/Users/jolcsak/Downloads/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1.zip",
+  "zip_sha256": "7f56fb9bedb3d5936179d271a5ae4a9d26afe262fea29b2e3874f3214b3d6337",
+  "downloads_zip_sha256": "7f56fb9bedb3d5936179d271a5ae4a9d26afe262fea29b2e3874f3214b3d6337",
+  "n_manifest_rows": 6,
+  "included_files": [
+    "README_REVIEWER.md",
+    "bosma1981_ngc2841_figure4_6_7.jpg",
+    "existing_coarse_candidate_do_not_copy.csv",
+    "radial_table_search_audit.csv",
+    "review_response_template.csv",
+    "source_native_scalar_pa_inclination_table.csv"
+  ],
+  "forbidden_inputs": "rotation_curve;Vobs;residual;RMSE;baseline_score;endpoint_rank;Bosma_Fig7c_rotation_velocity;Bosma_Fig7d_surface_density",
+  "uses_vobs_or_residual": "no",
+  "endpoint_replay_permission": "no",
+  "kernel_promotion_permission": "no",
+  "new_route_scoring_permission": "no",
+  "endpoint_data_policy": "source_side_only_do_not_use_rotation_residuals_endpoint_scores_or_baseline_scores",
+  "claim_boundary": "ngc2841_radial_pa_inclination_digitization_review_package_not_scoring",
+  "verdict": "Reviewer package prepared for independent source-side digitization of NGC2841 radial PA/inclination from Bosma Figure 7 panels a and b. The package is not an endpoint replay authorization.",
+  "next_allowed_action": "External reviewer completes review_response_template.csv. A separate source-side acceptance script may then check leakage flags, uncertainties, and consistency with scalar PA/i support before any formula-freeze decision."
+}

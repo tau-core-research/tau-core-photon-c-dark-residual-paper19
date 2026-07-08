@@ -1,0 +1,32 @@
+{
+  "n_rows": 20,
+  "n_derivation_rows": 4,
+  "n_projection_profile_rows": 16,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "i_ref_deg": 68.05999999999999,
+  "pa_ref_deg": 148.32,
+  "projection_factor_min": 0.8782630721958365,
+  "projection_factor_max": 1.0008452723172283,
+  "gamma_i_min": -0.0008452723172283072,
+  "gamma_i_max": 0.12173692780416345,
+  "outer_projection_factor": 0.8782630721958365,
+  "outer_gamma_i": 0.12173692780416345,
+  "derived_projection_sign": "negative_multiplicative_attenuation",
+  "added_capacity_sign_status": "not_derived_from_PA_i_alone",
+  "amplitude_load_status": "projection_factor_source_fixed;added_capacity_load_blocked",
+  "endpoint_replay_permission_counts": {
+    "no": 20
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 20
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 20
+  },
+  "claim_boundary": "ngc2841_projection_sign_load_derivation_not_scoring",
+  "verdict": "The PA/inclination profile does derive a strict projection/deprojection branch: increasing inclination relative to the inner reference produces a negative multiplicative attenuation with no fitted amplitude. It does not derive the positive added outer-capacity branch, because that would require a velocity-squared load not contained in the PA/i profile.",
+  "caveat": "Because the inner reference is an average over R<=10 kpc, a few inner rows can have a projection factor slightly above unity. This is retained as a digitization/reference caveat rather than clipped.",
+  "next_allowed_action": "Either freeze the projection-only attenuation branch as a non-endpoint control, or source-review an independent outer-capacity load for the positive added branch before scoring."
+}

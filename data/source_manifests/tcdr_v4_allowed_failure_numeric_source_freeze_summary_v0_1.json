@@ -1,0 +1,30 @@
+{
+  "n_rows": 5,
+  "n_galaxies": 2,
+  "galaxies": [
+    "NGC2841",
+    "UGC00191"
+  ],
+  "numeric_source_freeze_status_counts": {
+    "frozen_caveated_numeric_source": 4,
+    "not_frozen_missing_route_closing_source": 1
+  },
+  "ngc2841_r25_arcmin_source": 4.05,
+  "ngc2841_distance_mpc_source": 14.1,
+  "ngc2841_r25_kpc_computed": 16.61117115585603,
+  "ngc2841_break_0p45r25_kpc_computed": 7.475027020135214,
+  "formula_freeze_permission_counts": {
+    "no": 5
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 5
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 5
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 5
+  },
+  "claim_boundary": "allowed_failure_numeric_source_freeze_not_formula_not_scoring",
+  "verdict": "The bounded source pass freezes four caveated numeric NGC2841 spiral/path observables from Kendall et al. and Zhang et al. UGC00191 remains missing a route-closing numeric source. These values are source coordinates only; they do not authorize formula freeze or scoring."
+}

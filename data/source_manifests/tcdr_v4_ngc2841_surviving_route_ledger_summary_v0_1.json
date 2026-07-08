@@ -1,0 +1,38 @@
+{
+  "n_rows": 6,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "survival_class_counts": {
+    "closed_as_load_route_preserve_shape": 1,
+    "survives_as_composite_source_route_load_blocked": 1,
+    "survives_as_context_needs_radial_shape_and_load": 1,
+    "survives_as_negative_capacity_control": 1,
+    "survives_as_projection_control_not_positive_dark_residual": 1,
+    "survives_as_shape_route_load_blocked": 1
+  },
+  "shape_ready_route_count": 5,
+  "positive_load_ready_route_count": 0,
+  "endpoint_ready_route_count": 0,
+  "closed_route_count": 5,
+  "diagnostic_control_candidate_routes": [
+    "tilted_ring_projection_control"
+  ],
+  "preferred_next_route": "tilted_ring_projection_control",
+  "preferred_next_action": "If a replay is needed, run only a projection-control diagnostic/preflight. Do not reopen positive outer-capacity scoring until an independent velocity-squared load source is frozen.",
+  "formula_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 6
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 6
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 6
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 6
+  },
+  "claim_boundary": "ngc2841_surviving_route_ledger_not_scoring",
+  "verdict": "NGC2841 has several surviving source-side shape routes, but no positive outer-capacity load route is formula-ready. The Dragonfly mass profile is closed as a load route and preserved as shape-only. The only clean near-term replay direction is a projection-control diagnostic; a positive dark-residual endpoint remains blocked by missing independent velocity-squared load evidence."
+}

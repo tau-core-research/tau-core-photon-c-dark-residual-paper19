@@ -1,0 +1,53 @@
+{
+  "n_rows": 6,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "candidate_theorem_name": "NGC2841_TAU_SIDE_OUTER_CAPACITY_LOAD_THEOREM_SHELL_V0_1",
+  "candidate_formula_shell": "Delta_v_tau^2(R)=A_tau*K_outer(R)",
+  "formula_shell_dimension_status": "dimensionally_valid_if_A_tau_has_velocity_squared_units",
+  "theorem_ready": false,
+  "positive_load_freeze_ready": false,
+  "endpoint_ready": false,
+  "blocked_requirement_ids": [
+    "TLOAD_2_UNIT_MAP",
+    "TLOAD_3_AMPLITUDE_SOURCE"
+  ],
+  "blocked_requirement_roles": [
+    "velocity_squared_codomain",
+    "residual_blind_positive_scale"
+  ],
+  "ready_as_audit_constraint_ids": [
+    "TLOAD_5_LIMITS_AND_GAUGE",
+    "TLOAD_6_ENDPOINT_LEAKAGE"
+  ],
+  "partial_requirement_ids": [
+    "TLOAD_1_SUPPORT_FIELD",
+    "TLOAD_4_SIGN_RULE"
+  ],
+  "status_counts": {
+    "BLOCKED": 2,
+    "PARTIALLY_READY": 2,
+    "READY_AS_AUDIT_CONSTRAINT": 2
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 6
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 6
+  },
+  "positive_load_freeze_permission_counts": {
+    "no": 6
+  },
+  "theorem_promotion_permission_counts": {
+    "no": 6
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 6
+  },
+  "independent_multiplier_ready_from_previous_audit": false,
+  "previous_audit_endpoint_ready": false,
+  "claim_boundary": "ngc2841_tau_side_load_theorem_readiness_not_theorem_not_endpoint",
+  "verdict": "The minimal Tau-side load theorem shell is now explicit, but not proved. The zero-support/no-double-counting and leakage boundaries are ready as audit constraints, and the outer support/sign anatomy is partially ready. The decisive missing pieces are a Tau-side unit map into velocity-squared load and a protected residual-blind amplitude source A_tau. Therefore NGC2841 remains endpoint-blocked.",
+  "next_allowed_action": "Attack only the two blocked theorem pieces: derive R_load([K_outer]) in velocity-squared units, or find a protected Tau/source-native A_tau. Do not introduce additional gates or replay from the required residual scale."
+}

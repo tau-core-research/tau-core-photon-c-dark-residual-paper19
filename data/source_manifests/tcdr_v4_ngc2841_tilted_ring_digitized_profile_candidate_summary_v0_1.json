@@ -1,0 +1,58 @@
+{
+  "n_rows": 13,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "figure_url": "https://ned.ipac.caltech.edu/level5/March05/Bosma/Figures/figure4_6_7.jpg",
+  "figure_cache": "data/external/literature/bosma1981_ngc2841_figure4_6_7.jpg",
+  "figure_sha256": "f21c99f58e35a04401578573ad75e568b21ac387e81eb8e35ed02532eb5e66b1",
+  "figure_byte_size": 64171,
+  "figure_image_size_px": [
+    360,
+    805
+  ],
+  "digitized_panels_used": [
+    "figure7a_position_angle",
+    "figure7b_inclination"
+  ],
+  "digitized_panels_excluded": [
+    "figure7c_rotation_velocity",
+    "figure7d_surface_density"
+  ],
+  "radius_range_kpc": [
+    0.0,
+    37.0
+  ],
+  "position_angle_range_deg": [
+    148.0,
+    160.0
+  ],
+  "inclination_range_deg": [
+    68.0,
+    83.0
+  ],
+  "position_angle_delta_deg": 12.0,
+  "inclination_delta_deg": 15.0,
+  "digitization_status_counts": {
+    "candidate_profile_needs_independent_review": 13
+  },
+  "profile_use_permission_counts": {
+    "review_candidate_only_no_scoring": 13
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 13
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 13
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 13
+  },
+  "forbidden_endpoint_inputs_used_counts": {
+    "no": 13
+  },
+  "formula_ready": false,
+  "claim_boundary": "ngc2841_tilted_ring_digitized_profile_candidate_not_endpoint",
+  "verdict": "A residual-blind coarse tilted-ring profile candidate can be digitized from Bosma Figure 7 panels a and b only. It indicates an outer PA change of about 12.0 deg and an inclination change of about 15.0 deg over 0--37 kpc. Because the digitization is low-resolution and unreviewed, it is not a frozen formula input and does not authorize endpoint replay.",
+  "next_allowed_action": "independent reviewer digitization or source-native table lookup; after that, a geometry-only formula-freeze candidate may be built without using panel c or any endpoint residual"
+}

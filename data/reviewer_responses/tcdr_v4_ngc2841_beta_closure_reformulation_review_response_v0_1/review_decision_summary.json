@@ -1,0 +1,52 @@
+{
+  "package": "tcdr_v4_ngc2841_beta_closure_reformulation_review_response_v0_1",
+  "galaxy": "NGC2841",
+  "overall_verdict": "review_open_not_promoted",
+  "claim_boundary": "source_side_beta_closure_reformulation_review_response_not_endpoint",
+  "filled_questions": [
+    {
+      "question_id": "Q1_spin_route",
+      "reviewer_answer": "retain_as_context_only",
+      "evidence_quote_or_note": "Paper 9 supplies a residual-blind dimensionless Bullock-like proxy (lambda_spin≈0.02024, beta_cl≈1.08034), but the label review marks it review-required and not accepted as a direct source-native spin/halo-envelope measurement. Use only as caveated context; do not freeze spin normalization.",
+      "confidence": "high"
+    },
+    {
+      "question_id": "Q2_carrier_policy",
+      "reviewer_answer": "require_new_source_frozen_carrier",
+      "evidence_quote_or_note": "The multiplicative beta shell is dimensionally coherent only after an explicit source-frozen carrier velocity-squared field is declared. Current artifacts keep carrier freeze blocked; no carrier should be accepted from endpoint performance or post-hoc fit behavior.",
+      "confidence": "high"
+    },
+    {
+      "question_id": "Q3_k_beta_kernel",
+      "reviewer_answer": "require_new_source_native_radial_profile",
+      "evidence_quote_or_note": "Warped-HI/tilted-ring and scalar PA/inclination source context support the geometry route, but the summaries state that exact numeric radial PA/i or K_beta profile is not frozen. Bosma Figure 7 is figure-only; require residual-blind digitization or a source-native radial table.",
+      "confidence": "high"
+    },
+    {
+      "question_id": "Q4_route_status",
+      "reviewer_answer": "review_open_not_promoted",
+      "evidence_quote_or_note": "Given Q1 context-only spin proxy plus unresolved carrier and K_beta blockers, the route may remain open as a source-side beta/closure reformulation review, but formula-freeze, kernel-promotion, and endpoint replay remain closed.",
+      "confidence": "high"
+    }
+  ],
+  "permissions": {
+    "endpoint_replay_permission": "must_be_no",
+    "kernel_promotion_permission": "must_be_no",
+    "formula_freeze_permission": "must_be_no",
+    "uses_rotation_curve_or_velocity": "must_be_false",
+    "uses_endpoint_rotation_residual": "must_be_false",
+    "uses_tau_core_score_or_required_load": "must_be_false"
+  },
+  "allowed_next_actions": [
+    "keep NGC2841 beta/closure route open as source-side review only",
+    "seek direct/source-native spin or halo-envelope normalization if promotion is desired",
+    "define and freeze an endpoint-blind carrier policy before any formula review",
+    "obtain residual-blind digitized Bosma Figure 7 radial PA/i profile or source-native radial PA/i table before K_beta freeze"
+  ],
+  "blocked_actions": [
+    "endpoint replay",
+    "formula freeze",
+    "kernel promotion",
+    "using observed rotation-curve residuals, endpoint scores, or required-load diagnostics"
+  ]
+}

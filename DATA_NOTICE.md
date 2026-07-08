@@ -175,6 +175,21 @@ gitignored `data/external/` directory. It requires local SPARC preflight data
 and is intentionally described as preflight scoring only, not population
 validation.
 
+The optional NGC6503 clean scale-tail replay also writes only under
+`data/external/` plus a generated figure under `figures/` and
+`paper19_submission_source/figures/`. It uses the already frozen formula-ready
+scale-tail route and does not perform an NGC6503-specific kernel search or
+target-galaxy amplitude tuning. The current author-local result is a
+single-object preliminary positive control, not population validation.
+
+The optional NGC7793 support-safe spiral replay follows the same boundary. It
+writes only under `data/external/` plus generated figures and uses the
+source-frozen support-safe v0.9 spiral/scale-tail route with
+leave-one-galaxy-out amplitude freeze. The current author-local result beats
+the baryonic carrier and wrong-component controls but does not beat the matched
+spiral control, so it is recorded as a useful preliminary positive, not as
+endpoint validation.
+
 The optional v0.4 formula-ready shuffled-component null replay also writes only
 under `data/external/`. It keeps the readiness-filtered holdout subset fixed
 while shuffling source component packages before endpoint scoring. The current
@@ -290,6 +305,426 @@ only as route-review context: NGC2841 gains caveated spiral/path review support,
 while UGC00191 gains only weak asymmetry support and no route-closing spiral
 geometry. The artifact still keeps endpoint replay and kernel-promotion
 permissions closed for both objects.
+The allowed-failure formula-freeze readiness artifact is the next bounded
+source-side check. It asks whether the external source evidence is sufficient
+to freeze a new formula before scoring. It is not: NGC2841 is review-open but
+numeric-source-observable blocked for a spiral/path route, while UGC00191
+remains weak/asymmetry-only and not route-closing. Endpoint replay,
+kernel-promotion, and new-route scoring permissions remain closed.
+The allowed-failure numeric-observable worklist converts that blocker into
+explicit source-acquisition targets. It lists four NGC2841 spiral/path
+observables and one UGC00191 route-closing prerequisite. The artifact is
+source-only; it does not freeze a formula and does not authorize endpoint
+replay, kernel promotion, or new-route scoring.
+The allowed-failure numeric source-freeze artifact fills the four NGC2841
+fields from residual-blind literature/source values: Kendall et al. supply the
+spiral break, R25, and caveated pitch-angle source, while Zhang et al. supply
+the outer-warp/path coordinate. UGC00191 remains without a route-closing
+numeric source. These values are source coordinates only; they still do not
+authorize endpoint replay, kernel promotion, or new-route scoring.
+The allowed-failure spiral/path formula-freeze artifact is the next
+source-side step. It converts the four NGC2841 numeric coordinates into the
+caveated shell `F_CAVEATED_SPIRAL_PATH_WINDOW_SOURCE_FROZEN`, consisting of a
+bounded spiral radial window plus a bounded path/warp tail. The formula is
+dimension-checked and source-frozen, but it still does not fit an amplitude,
+read an endpoint curve, authorize endpoint replay, promote a kernel, or permit
+new-route scoring.
+The allowed-failure scoring preflight checks the numeric-observable worklist
+against the local source manifests and the formula-freeze artifact. It finds
+the four NGC2841 numeric spiral/path fields filled and formula-frozen, while
+UGC00191 remains route-review blocked. It is a scoring-facing stop ledger, not
+endpoint scoring; endpoint-replay, kernel-promotion, and new-route-scoring
+permissions remain closed.
+The allowed-failure spiral/path diagnostic scoring artifact is a separate local
+replay of that frozen NGC2841 formula shell. It uses the frozen spiral/path
+shape on NGC2841 but fits only a spiral-control amplitude on the other
+support-safe pool galaxies. The output may contain RMSE columns because it is a
+local diagnostic score artifact under `data/external/`; it is not a source
+manifest, does not alter the frozen route labels, and still records
+`endpoint_validation_claimed = no` and `kernel_promotion_permission = no`.
+The NGC2841 absolute residual-gap diagnostic is the cautionary companion to
+that score artifact. It records that the frozen spiral/path shell remains far
+below the observed curve, especially beyond 30 kpc, and therefore requires an
+independent outer path or dark-residual capacity source before any stronger
+readout claim can be made.
+The NGC2841 outer-capacity requirement audit is a second local diagnostic
+companion. It reads the already scored local replay and asks how large the
+path weight would have to be to close the remaining \(v^2\) gap if the
+source-frozen shape were left unchanged. The resulting required weight is not
+fed back into any formula and does not authorize kernel repair; it is retained
+only as a blocker showing that endpoint amplitude rescue is not acceptable for
+the present shell.
+
+The NGC2841 outer-capacity source-search manifest is the corresponding
+source-side follow-up. It records residual-blind literature support for three
+strong future route candidates--extended stellar/HI/UV disk structure,
+extended warped HI/tilted-ring structure, and XUV/HI outer star formation--plus
+three caveated path-context rows. It contains no endpoint score, rotation
+residual, or amplitude-fit field. All rows retain `endpoint_replay_permission =
+no` and `kernel_promotion_permission = no`; the manifest only authorizes a
+future source-side formula-freeze worklist.
+The NGC2841 outer-capacity formula-freeze worklist is that next worklist. It
+contains candidate source scales and lower bounds, but it deliberately keeps
+the route non-scoreable because the onset-priority rule, tilted-ring geometry
+profile, and residual-blind component-weight rule are not yet frozen. It is a
+source-side planning artifact, not a formula, endpoint replay, or validation
+result.
+The NGC2841 outer-capacity policy-freeze artifact then closes only the
+source-side onset-priority and component-weight parts of that worklist. It uses
+a nested onset policy and an equal-prior rule over the three strong source
+routes. It keeps the XUV exact-shape and tilted-ring geometry blockers open and
+therefore does not authorize endpoint replay, kernel promotion, or new-route
+scoring.
+The NGC2841 tilted-ring geometry source-review artifact sharpens the remaining
+geometry blocker. It records that the Bosma/NED source text supports a
+geometry-bearing warped-HI route: the outer HI orientation differs from the
+main body, the kinematical major axis changes in the outer parts, and a
+concentric-annulus tilted-ring model is explicitly constructed. However, the
+radial PA/inclination profile is exposed in the source as a figure rather than
+as a machine-readable table in the local representation. The artifact therefore
+keeps `formula_ready = false`: it supports the route, but does not freeze an
+exact numeric tilted-ring kernel or open endpoint scoring.
+The companion digitized-profile candidate caches Bosma Figure 7 locally and
+extracts a coarse, residual-blind PA/inclination profile from panels a and b
+only. It excludes the rotation-velocity panel c and surface-density panel d.
+The resulting candidate indicates a roughly 12 degree PA change and 15 degree
+inclination change across 0--37 kpc, but it remains
+`review_candidate_only_no_scoring` until independent digitization review or a
+source-native table is available.
+The source-native PA/inclination support table records the bounded primary
+source pass for numeric NGC2841 orientation data. THINGS/de Blok Table 1
+provides indicative global H I and LEDA inclinations, THINGS/de Blok Table 2
+provides average tilted-ring PA and inclination, and Samurovic et al. provide a
+median ROTCUR PA/inclination crosscheck. These rows are scalar geometry support
+only. They do not supply a source-native numeric radial PA/inclination table,
+so they do not freeze a radial tilted-ring kernel or authorize endpoint replay.
+The bounded radial-table search audit records the same result as a preserved
+negative source finding: no primary machine-readable NGC2841 radial PA/i table
+was located in the searched source set. This is a blocker, not a scoring
+failure. The next allowed actions are author/archive table acquisition or an
+independent reviewer digitization of the source figures.
+The radial PA/inclination digitization review package is the corresponding
+review handoff artifact. It includes the Bosma source image, a response
+template, scalar PA/i crosschecks, the previous coarse internal candidate
+clearly marked as non-authoritative, and the bounded search audit. The package
+forbids the rotation-velocity and surface-density panels and does not authorize
+endpoint replay by itself.
+The filled reviewer response has been accepted as a caveated source-side
+digitized radial PA/inclination profile. It passes leakage checks and supplies
+16 points over 0--37 kpc, with roughly 12.1 degrees of PA span and 13.8 degrees
+of inclination span. This closes the reviewer-digitization substep for a future
+formula-freeze review, but it does not itself freeze a formula or authorize
+endpoint replay.
+The accepted profile now also has a source-side tilted-ring geometry kernel
+review artifact. It defines a dimensionless `K_geom(R)` by normalizing the
+combined PA/inclination displacement from the inner `R <= 10 kpc` orientation
+mean. This freezes only the radial geometry shape for formula-freeze review.
+It deliberately does not freeze the sign, carrier, or amplitude rule, and it
+does not authorize endpoint replay, kernel promotion, or new-route scoring.
+The follow-up formula-rule review preserves that boundary. It records the
+geometry shape as frozen for formula review, records the fixed baryonic carrier
+as a reviewable candidate, and keeps the sign rule and amplitude/load rule
+blocked. This prevents the PA/i shape from being silently converted into a
+velocity correction by endpoint residuals.
+The projection sign/load derivation closes only the strict observer-projection
+subcase. From `v_los = v_c sin i`, the inclination profile implies
+`v_proj^2/v_carrier^2 = (sin i_ref/sin i(R))^2` when the carrier is referenced
+to the inner orientation. For NGC2841 this gives an outer factor of about
+0.878, or a maximum source-side projection attenuation of about 0.122. This is
+a negative multiplicative projection effect, not an added dark-residual load.
+The positive outer-capacity branch remains blocked until an independent
+velocity-squared load source is frozen.
+
+The NGC2841 outer-capacity load-source derivation is the immediate blocker
+ledger after the projection derivation. It preserves the projection-control
+branch as source-side ready, but records the Dragonfly extended stellar/HI/UV
+route, the warped-HI tilted-ring route, the XUV/HI route, and the composite
+positive outer-capacity shell as load-blocked. The artifact's central result is
+that route support, radial support, geometry, and equal source-side weights do
+not provide the velocity-squared load required by an additive
+`lambda K(R)` term. It is not endpoint scoring and grants no endpoint replay or
+kernel-promotion permission.
+
+The NGC2841 outer-capacity load-source search is a focused source-side follow-up
+to that blocker. It records the Dragonfly integrated outer stellar mass
+(`1.4 +/- 0.2e8 Msun` beyond the warp-dominated outer disk) and the reported
+outer stellar-to-gas surface-density ratio (`3:1`) as a source-native baryonic
+ceiling/control. The corresponding simple `G M / R` envelope is about
+`26.8 km^2/s^2` at `30 kpc`, or `5.17 km/s`, so it is not promoted as a dark
+residual load. The same artifact records the mass-surface-density profile PDF
+inside the arXiv source package as the best next reviewer-digitization route.
+
+The NGC2841 mass-profile digitization review package is that next route packaged
+for a reviewer without repository access. It includes the Dragonfly
+`prof_masses1and2_4.pdf` source figure, a rendered PNG, source-text excerpts,
+the local load-source search ledger, and a blank review response template. The
+template allows only source-side `Sigma_star(R)`, `Sigma_gas(R)`, and optional
+ratio digitization. Rotation curves, endpoint residuals, Tau Core scores, and
+required-lambda diagnostics are forbidden. The package grants no endpoint replay
+or kernel-promotion permission.
+
+The filled NGC2841 mass-profile review response is accepted only as a caveated
+source-side profile response. It passes leakage flags and contains 29 rows, but
+the follow-up normalisation audit blocks load promotion: naive annular
+integration of the measured-colour digitized profile over the outer disk is far
+larger than the quoted Zhang et al. outer-disk stellar mass. The profile is
+therefore retained as a shape candidate only until component/model
+normalization semantics are resolved. The semantics clarification localizes the
+issue to source-profile component identity and normalization rather than
+endpoint leakage; area/inclination conventions are not sufficient by themselves
+to absorb the discrepancy. A focused search of the local Zhang et al. arXiv
+source package found no machine-readable surface-density table; the source
+contains TeX and figure PDFs, so component normalization remains unresolved
+unless a source-native table/model or reviewer curve-identity confirmation is
+obtained. The follow-up semantics-review package is written under
+`data/reviewer_packages/` and copied to `~/Downloads/`; it asks only four
+source-side questions about curve identity, normalization mapping, possible
+axis/units explanation, and shape-only versus load-formula status. The filled
+semantics review answers these as: displayed figure profile is not the isolated
+outer component, no source-native normalization rule is present, no axis/unit
+fix explains the mismatch, and the profile remains `shape_only`. Therefore the
+accepted use is `shape_candidate_only_no_load`; endpoint replay and kernel
+promotion remain closed.
+The NGC2841 surviving-route ledger then consolidates the route state. It keeps
+the Dragonfly mass profile as shape-only, retains the tilted-ring branch only
+as projection-control/diagnostic candidate, and records the composite outer
+morphology route as source-supported but positive-load blocked. It finds no
+endpoint-ready route and no positive load-ready route.
+
+The NGC2841 projection-control preflight is the finite follow-up to that
+ledger. It freezes only the allowed diagnostic boundary for the tilted-ring
+branch: `tilted_ring_projection_control` is source-side, leakage-clean, and
+projection-control ready, but remains diagnostic-only. The preflight preserves
+the strict negative multiplicative projection/deprojection factor from the
+PA/inclination identity, records the outer projection factor of about 0.878 and
+the maximum attenuation cap of about 0.122, and explicitly blocks endpoint
+replay, kernel promotion, new-route scoring, and any positive additive
+dark-residual-load claim. A later replay, if requested, must be a separate
+diagnostic-control run that reads this frozen preflight unchanged.
+
+The NGC2841 projection-control diagnostic replay is that separate run. It reads
+the frozen preflight unchanged and then inspects the local SPARC mass-model
+rows only as a diagnostic control. The result is a preserved negative/control
+finding: the weighted RMSE worsens from about 144.88 km/s for the fixed
+baryonic carrier to about 150.95 km/s after applying the source-frozen
+projection factor, with a positive outer-zone penalty. This is consistent with
+the sign derivation, because the outer projection factor is below unity and
+therefore attenuates the carrier. It is not endpoint validation, not kernel
+promotion, and not evidence for a positive dark-residual load.
+
+The NGC2841 integrated outer baryonic ceiling control then freezes the one
+source-native velocity-squared quantity that survived the load-source search:
+the Dragonfly outer stellar mass plus the reported approximate 3:1
+stellar-to-gas surface-density ratio. The frozen control uses
+`Delta v^2 = G M_outer_baryon/R` only for `R >= 30 kpc`. It gives about
+26.8 km^2/s^2 at 30 kpc and is therefore correctly dimensioned but tiny. The
+diagnostic replay improves the weighted RMSE only from about 144.876 km/s to
+144.825 km/s. This is retained as a baryonic ceiling/control and explicitly
+not promoted as a dark-residual load, endpoint result, or kernel-promotion
+permission.
+
+The NGC2841 post-control positive-load gap diagnostic combines the frozen
+projection-control and integrated outer baryonic ceiling results without
+fitting any new parameter. The result is the present hard blocker: in the outer
+zone the median positive velocity-squared gap remains about
+65,313 km^2/s^2 after the known baryonic ceiling is included. The median
+ceiling contribution is only about 17.05 km^2/s^2, roughly 0.026% of the
+baryonic-carrier gap, and the projection control has the wrong sign for
+closing the deficit. This diagnostic is therefore used only to quantify the
+remaining load requirement; it grants no endpoint validation, no kernel
+promotion, and no route rescue.
+
+The NGC2841 required positive-load scale worklist converts the remaining
+post-control positive velocity-squared gap into a `G M / R`-equivalent scale
+for source-search triage. This file intentionally writes under
+`data/external/sparc_preflight/`, because it uses endpoint rotation data only
+after all relevant source-side controls are frozen. Its outer-zone median
+equivalent scale is about `6.88e11 Msun`, with an interquartile range of about
+`5.45e11--8.75e11 Msun`; the known integrated outer baryonic ceiling is below
+0.1% of this requirement. This is not a physical dark-matter mass claim and
+not an allowed endpoint amplitude. It is only a quantitative target for future
+residual-blind source-native channel searches or a Tau-side load theorem.
+
+The NGC2841 SPARC/THINGS HI/gas-load proxy freeze writes under
+`data/source_manifests/`. It reads only the source-derived `Rad` and `Vgas`
+columns from the local SPARC `Rotmod_LTG.zip` entry `NGC2841_rotmod.dat`; the
+observed velocity and error columns present in the same source file are ignored.
+The resulting outer kernel is a frozen lower-bound gas shape proxy, not a new
+positive dark-residual load. In the outer window it supplies only about 6.5%
+of the required post-control velocity-squared yardstick at the median, so a
+halo-capacity or extended-HI load conversion remains missing.
+
+The NGC2841 THINGS/VizieR global HI source freeze writes under
+`data/source_manifests/`. It queries the public VizieR mirror of the THINGS
+catalog (`J/AJ/136/2563`) and caches the NGC2841 global HI spectrum and catalog
+geometry. This is source-native global HI support, but not a radial
+surface-density map, not a velocity-squared load kernel, and not endpoint-ready
+positive dark-residual evidence.
+
+The NGC2841 THINGS/NED moment-0 radial profile freeze writes under
+`data/source_manifests/` and caches the NED-hosted THINGS natural- and
+robust-weighted MOM0 FITS products under
+`data/external/literature/ngc2841_things_ned/`. It uses only the source-native
+MOM0 maps and frozen THINGS catalogue geometry to derive a residual-blind
+radial shape/support profile. The output is not an absolute surface-density
+profile and not a positive dark-residual load kernel: the remaining blocker is
+the beam/unit/mass calibration and a source-frozen conversion to
+velocity-squared units.
+
+The NGC2841 THINGS/MOM0 beam-unit mass-conversion audit also writes under
+`data/source_manifests/`. It uses the CLEAN beam recorded in the FITS history
+and the standard HI mass conversion to check whether the MOM0 products recover
+the independent VizieR global HI flux. They do, at the source-side proxy level:
+the natural- and robust-weighted products recover about 96.0% and 98.8% of the
+VizieR global flux proxy. This authorizes only a mass-profile calibration
+artifact and a diagnostic enclosed-mass proxy. It does not authorize endpoint
+replay, positive-load freeze, or a disk-gravity dark-residual kernel.
+
+The NGC2841 MOM0 disk-load promotion review writes under
+`data/source_manifests/`. It promotes only the physical HI component as a
+source-frozen disk-load control with `lambda_HI=1`, and separately records the
+standard `1.36` HI+helium bookkeeping factor used in THINGS-based gas
+surface-density conversions. It does not promote an extra dark-residual or
+halo-capacity multiplier. The robust-weighted MOM0 product is retained as the
+primary source-side disk-load control because it has the smaller beam and closer
+global-flux match, while the natural-weighted product remains a cross-check. Any
+extra positive residual capacity still requires an independent source-native
+multiplier or a Tau-side load theorem.
+
+The NGC2841 halo-capacity conversion search ledger writes under
+`data/source_manifests/`. It separates five route types before any replay is
+allowed: the SPARC/THINGS gas proxy is retained only as a frozen lower bound;
+the THINGS/VizieR global HI spectrum is retained only as global support; the
+THINGS/NED MOM0 radial profile, mass-profile proxy, and physical HI disk-load
+control, including the standard HI+He bookkeeping control, are retained only as
+source-native support; Bosma-style HI scaling remains motivated but
+scale-blocked; and published NFW/ISO halo-fit parameters are rejected for
+source-freeze use because they are endpoint rotation-curve fits. The next
+blocker is an independent extra-capacity multiplier or Tau-side load theorem,
+not profile acquisition. No endpoint replay, kernel promotion, or positive-load
+freeze is authorized.
+
+The NGC2841 positive outer-capacity source-route re-audit writes under
+`data/source_manifests/`. It consolidates the post-control state without
+granting endpoint permission: tilted-ring projection is retained as an
+attenuation/control layer, the integrated Dragonfly outer baryonic mass is
+retained as a tiny baryonic ceiling, and the Dragonfly mass-profile material is
+retained as shape context only. The primary remaining positive-load candidate
+is still `outer_hi_warp_halo_capacity`, but now with the SPARC/THINGS gas proxy
+frozen only as a lower-bound HI/gas component; secondary candidates are XUV/HI
+outer capacity, diffuse-envelope capacity, history/environment context, and a
+Tau-side outer-capacity load theorem. The endpoint diagnostic scale appears in
+this artifact only as a search yardstick, not as a label, kernel, or amplitude
+selection input.
+
+The NGC2841 independent multiplier rejection audit writes under
+`data/source_manifests/`. It is a source-side guardrail artifact: the standard
+HI+He bookkeeping factor is accepted only as a physical-gas control, while
+Bosma-style HI scaling, XUV/HI outer support, diffuse-envelope support, and
+history/environment routes remain multiplier-blocked. The Tau-side load theorem
+route is kept open as theory work, and NFW/ISO halo-fit parameters are rejected
+because they are endpoint rotation-curve fits. No endpoint replay, kernel
+promotion, positive-load freeze, or new-route scoring is authorized.
+
+The NGC2841 Tau-side load theorem readiness audit writes under
+`data/source_manifests/`. It records the minimal conditional shell
+`Delta_v_tau^2(R)=A_tau*K_outer(R)` but does not promote it to a theorem. The
+outer support/sign anatomy is only partially ready, while no-double-counting
+and endpoint-leakage constraints are ready as audit boundaries. The remaining
+theorem blockers are the missing Tau-side unit map into velocity-squared load
+and the missing protected residual-blind amplitude source `A_tau`.
+
+The NGC2841 related-paper proxy-transfer audit writes under
+`data/source_manifests/`. It searches Paper 8 and Paper 9 machinery for a
+portable `A_tau` proxy. Paper 9 contributes a residual-blind dimensionless
+Bullock-disk spin proxy for NGC2841 (`lambda_spin` about `0.02024`, or
+`beta` about `1.08034` within that grammar), but this is relevant to a
+multiplicative beta/closure route rather than an additive velocity-squared
+load. Paper 8 contributes useful source-factored amplitude patterns such as
+`lambda_w=sigma*q*x_w*Vflat^2`, but those remain formula-conditional and require
+fresh source-side transfer review. The artifact therefore finds no direct
+additive `A_tau` proxy and grants no scoring permission.
+
+The NGC2841 multiplicative beta/closure reformulation preflight also writes
+under `data/source_manifests/`. It follows the related-paper audit by opening,
+but not promoting, a distinct multiplicative closure route with the shell
+`v_beta^2(R)=v_carrier^2(R)*[1+(beta_cl-1)*K_beta(R)]`. The artifact records
+that the shell is dimensionally coherent only if `beta_cl` and `K_beta` are
+dimensionless and the carrier supplies velocity-squared units. It keeps
+endpoint replay, kernel promotion, formula freeze, and reformulation-label
+promotion all set to `no`. The remaining source-side blockers are the
+beta/closure family-reformulation label, carrier freeze, and `K_beta(R)` freeze.
+It does not close the additive `A_tau` blocker.
+
+The NGC2841 beta/closure reformulation label review writes under
+`data/source_manifests/`. It combines Paper 9's predeclared beta-transfer
+candidate and weak NFW-preference rows, the Bullock-like spin conversion proxy,
+and Paper 19's warped-HI/tilted-ring source context. It authorizes preparation
+of a reviewer package only. The family label is not promoted, formula freeze is
+not allowed, and endpoint replay remains closed because the independent
+spin-route decision, source-frozen carrier, and source-frozen `K_beta(R)` are
+still missing.
+
+The filled NGC2841 beta/closure reformulation reviewer response is stored under
+`data/reviewer_responses/`, and its acceptance artifact writes under
+`data/source_manifests/`. The accepted decision keeps the route
+`review_open_not_promoted`: the Bullock-like spin proxy is context-only, the
+carrier requires a new source-frozen velocity-squared field, and `K_beta(R)`
+requires a residual-blind radial PA/inclination profile or source-native radial
+table. Endpoint replay, kernel promotion, and formula freeze remain closed.
+
+The NGC2841 beta/closure `K_beta` profile freeze review then writes under
+`data/source_manifests/`. It reuses the already accepted Bosma Fig. 7a/7b
+PA/inclination digitization through the tilted-ring geometry profile and
+freezes only the dimensionless radial shape
+`K_beta_shape(R)=minmax_0_1(K_geom_raw(R))`. This closes the source-native
+radial-profile part of the `K_beta` blocker for formula-freeze review only.
+It does not promote a kernel, does not freeze the spin normalization or carrier,
+and does not authorize endpoint replay or formula freeze.
+
+The NGC2841 beta/closure baryonic carrier freeze review also writes under
+`data/source_manifests/`. It reads only `Vgas`, `Vdisk`, and `Vbul` from the
+local SPARC rotmod member `NGC2841_rotmod.dat` and freezes the fixed-M/L
+velocity-squared carrier
+`v_carrier^2=sign(Vgas)Vgas^2 + 0.5 Vdisk^2 + 0.7 Vbul^2`. The `Vobs` and
+`errV` columns present in the same source file are explicitly forbidden and
+ignored. This closes only the carrier blocker for formula-freeze review; the
+spin/beta normalization remains context-only, and endpoint replay remains
+closed.
+
+The NGC2841 beta/closure context-formula freeze review writes under
+`data/source_manifests/`. It retires the remaining spin-normalization blocker
+for formula-review purposes by recasting the Paper 9 Bullock-like value as a
+caveated dimensionless `beta_context`, not as a direct physical spin
+measurement. The frozen review formula is
+`v_beta_context^2=v_carrier^2[1+(beta_context-1)K_beta_shape]`, with
+`K_beta_shape` interpolated onto the carrier grid. All terms are frozen for
+formula review, but endpoint replay, kernel promotion, and validation remain
+closed.
+
+The NGC2841 beta/closure endpoint authorization reviewer package writes under
+`data/reviewer_packages/` and is also copied to `~/Downloads/`. It contains the
+frozen beta-context formula, the `K_beta` profile, the carrier profile, and a
+review template. It contains no endpoint scores and grants no replay by itself.
+It exists only so an external reviewer can decide whether a separate preliminary
+control replay may read the frozen formula unchanged.
+
+The filled NGC2841 beta/closure endpoint-authorization response is stored under
+`data/reviewer_responses/`, and its acceptance artifact writes under
+`data/source_manifests/`. The accepted decision authorizes only a separate
+single-object preliminary endpoint/control replay. The future scoring script may
+read observed rotation data only after this authorization, must read the frozen
+`v_beta_context^2=v_carrier^2[1+(beta_context-1)K_beta_shape]` profile
+unchanged, and may not retune the formula, change the morphology/readout label,
+promote the kernel, or claim validation.
+
+The authorized NGC2841 beta/closure preliminary endpoint/control replay writes
+only under `data/external/sparc_preflight/`. It is allowed to read observed
+rotation data because the endpoint-authorization review has already accepted
+the frozen formula. The current local replay weakly improves the fixed-M/L
+baryonic carrier, but leaves a large remaining velocity gap. It is therefore a
+single-object preliminary control result, not endpoint validation and not a
+kernel promotion.
 
 The optional `K_obs`/`K_readout` source-review diagnostic also writes only
 under `data/external/`. It may inspect residual-blind source-side component

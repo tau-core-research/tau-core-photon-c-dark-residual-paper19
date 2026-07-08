@@ -1,0 +1,49 @@
+{
+  "n_rows": 5,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "strong_source_routes_inherited": [
+    "outer_hi_warp_halo_capacity",
+    "outer_stellar_hi_uv_capacity",
+    "outer_xuv_hi_starforming_capacity"
+  ],
+  "policy_ids_inherited": [
+    "P_NGC2841_HI_EXTENT_CONTEXT_V0_1",
+    "P_NGC2841_MAX_ENTROPY_STRONG_ROUTE_WEIGHTS_V0_1",
+    "P_NGC2841_NESTED_OUTER_ONSET_V0_1",
+    "P_NGC2841_XUV_LOWER_BOUND_USE_V0_1"
+  ],
+  "projection_control_ready": true,
+  "positive_added_capacity_load_ready": false,
+  "positive_added_capacity_formula_ready": false,
+  "load_blocker": "missing_independent_velocity_squared_load",
+  "formula_readiness_counts": {
+    "blocked_load_missing": 2,
+    "blocked_shape_and_load_missing": 1,
+    "not_formula_ready": 1,
+    "projection_control_ready_not_added_capacity": 1
+  },
+  "load_status_counts": {
+    "blocked_geometry_is_not_load": 1,
+    "blocked_missing_independent_velocity_squared_load": 1,
+    "blocked_missing_shape_and_velocity_squared_conversion": 1,
+    "blocked_missing_velocity_squared_conversion": 1,
+    "source_fixed_dimensionless_projection_factor_no_lambda": 1
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 5
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 5
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 5
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 5
+  },
+  "claim_boundary": "ngc2841_outer_capacity_load_source_derivation_not_scoring",
+  "verdict": "NGC2841 now has a source-side projection-control derivation and a source-supported composite outer-capacity route, but the positive added dark-residual branch remains blocked. Geometry, route support, radial support, and component weights do not by themselves supply the velocity-squared load required by lambda K(R).",
+  "next_allowed_action": "freeze one independent load route before scoring: either a source-native stellar/HI/XUV mass or surface-density conversion to velocity-squared units, a residual-blind train-only amplitude rule, or a Tau-side outer-capacity load theorem. Until then, only the projection-control branch may be used as a non-endpoint diagnostic/control."
+}

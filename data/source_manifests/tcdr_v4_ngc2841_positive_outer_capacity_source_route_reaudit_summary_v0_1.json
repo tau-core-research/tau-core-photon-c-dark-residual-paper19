@@ -1,0 +1,51 @@
+{
+  "n_rows": 8,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "primary_positive_load_candidates": [
+    "outer_hi_warp_halo_capacity"
+  ],
+  "secondary_positive_load_candidates": [
+    "outer_xuv_hi_starforming_capacity",
+    "diffuse_outer_envelope_capacity",
+    "history_environment_outer_load",
+    "tau_side_outer_capacity_load_theorem"
+  ],
+  "closed_control_routes": [
+    "tilted_ring_projection_control",
+    "known_integrated_outer_baryonic_ceiling",
+    "dragonfly_mass_profile_shape"
+  ],
+  "endpoint_ready": false,
+  "positive_load_ready": false,
+  "projection_dominated_interpretation_supported": false,
+  "outer_capacity_dominated_interpretation_supported": true,
+  "sourced_hi_gas_proxy_frozen": true,
+  "sourced_hi_gas_proxy_fraction_of_required_gap_median": 0.06458903383551547,
+  "sourced_hi_gas_proxy_fraction_of_required_gap_max": 0.07285290223085482,
+  "halo_capacity_or_extended_hi_load_still_missing": true,
+  "required_equivalent_load_scale_msun_yardstick": 687865530022.4062,
+  "required_scale_is_physical_mass_claim": false,
+  "outer_zone_median_positive_v2_gap_after_ceiling_control": 65312.98348173122,
+  "known_outer_baryon_ceiling_fraction_of_required": 0.00027129724687300196,
+  "endpoint_replay_permission_counts": {
+    "no": 8
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 8
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 8
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 8
+  },
+  "uses_endpoint_diagnostic_as_yardstick_counts": {
+    "no": 7,
+    "yes_not_for_label_or_kernel": 1
+  },
+  "claim_boundary": "ngc2841_positive_outer_capacity_source_route_reaudit_not_scoring",
+  "verdict": "NGC2841 should be treated as positive outer-capacity dominated rather than projection-dominated. The projection route and the known integrated outer baryonic ceiling are valid controls, and the Dragonfly mass profile remains shape-only. A SPARC/THINGS gas proxy is now frozen as a lower-bound HI/gas shape component, but it supplies only a small fraction of the required outer positive-load scale. The primary source-side next route remains HI warp/halo capacity, now specifically requiring a halo-capacity or extended-HI load conversion before any scoring or kernel promotion.",
+  "next_allowed_action": "Use the frozen SPARC/THINGS gas proxy as the lower-bound HI/gas component, then acquire or derive a source-native halo-capacity or extended-HI load conversion for NGC2841. Do not run endpoint scoring until that rule is frozen."
+}

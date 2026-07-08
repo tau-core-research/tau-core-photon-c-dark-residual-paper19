@@ -1,0 +1,55 @@
+{
+  "n_rows": 50,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "carrier_id": "V2_CARRIER_NGC2841_SPARC_FIXED_ML_BARYONIC_V0_1",
+  "carrier_policy": "fixed_baryonic_mlr_disk_0p5_bulge_0p7_no_endpoint_fit",
+  "carrier_expression": "v_carrier^2(R)=sign(Vgas)Vgas^2 + 0.5*Vdisk^2 + 0.7*Vbul^2",
+  "source_archive": "data/external/sparc_preflight/Rotmod_LTG.zip",
+  "source_member": "NGC2841_rotmod.dat",
+  "source_reference": "SPARC_Lelli2016c_Rotmod_LTG",
+  "ignored_endpoint_columns_present_in_source_file": [
+    "Vobs",
+    "errV"
+  ],
+  "dimension_check": "pass_velocity_squared_from_sparc_component_velocities",
+  "carrier_min_v2_km2s2": 11784.819420000002,
+  "carrier_max_v2_km2s2": 53501.630099999995,
+  "carrier_outer_median_v2_ge_30kpc_km2s2": 13899.90078,
+  "carrier_ready_for_beta_formula_freeze_review": true,
+  "carrier_promoted_as_physical_baseline": false,
+  "source_profile_leakage_free": true,
+  "resolved_blocker_id": "BETA_CARRIER_REQUIRES_NEW_SOURCE_FREEZE",
+  "resolved_blocker_status": "resolved_as_fixed_mlr_baryonic_velocity_squared_carrier",
+  "remaining_blockers": [
+    "BETA_SPIN_CONTEXT_ONLY_NOT_FREEZE"
+  ],
+  "full_formula_freeze_ready": false,
+  "formula_freeze_ready": false,
+  "endpoint_ready": false,
+  "kernel_promotion_ready": false,
+  "endpoint_replay_allowed": false,
+  "new_route_scoring_allowed": false,
+  "permission_counts": {
+    "endpoint_replay_permission": {
+      "no": 50
+    },
+    "formula_freeze_permission": {
+      "no": 50
+    },
+    "kernel_promotion_permission": {
+      "no": 50
+    },
+    "new_route_scoring_permission": {
+      "no": 50
+    },
+    "uses_vobs_or_residual": {
+      "no": 50
+    }
+  },
+  "forbidden_inputs": "Vobs;errV;rotation_curve;rotation_residual;RMSE;baseline_score;endpoint_rank;required_epsilon_fit;required_lambda_fit;observed_velocity_gap",
+  "claim_boundary": "ngc2841_beta_closure_baryonic_carrier_freeze_review_not_scoring",
+  "verdict": "The SPARC rotmod baryonic components support a fixed-M/L velocity-squared carrier for beta/closure formula-freeze review. This is a carrier field, not a fitted endpoint baseline, and it does not freeze beta/spin amplitude.",
+  "next_allowed_action": "Resolve the spin-normalization blocker or explicitly keep beta_cl as context-only before any endpoint replay."
+}

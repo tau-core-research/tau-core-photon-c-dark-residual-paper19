@@ -1,0 +1,61 @@
+{
+  "galaxy": "NGC2841",
+  "products": [
+    "NA",
+    "RO"
+  ],
+  "n_rows": 120,
+  "source_reference": "Walter2008THINGS_NED_Images_2008AJ_136_2563W",
+  "input_artifact": "data/source_manifests/tcdr_v4_ngc2841_things_mom0_beam_unit_mass_conversion_audit_v0_1.csv",
+  "formula_shell": "softened_axisymmetric_annular_disk_from_source_native_MOM0_HI_mass_profile",
+  "formula_shell_status": "source_frozen_physical_hi_disk_load_control_ready",
+  "primary_product_rule": "RO is the primary source-side product because it has the smaller beam and the closer integrated-flux match to the independent VizieR global spectrum; NA is retained as a cross-check product.",
+  "primary_product": "RO",
+  "amplitude_rule": "lambda_HI=1_physical_hi_mass_only_no_residual_fit",
+  "standard_gas_factor_rule": "optional_lambda_gas=1.36_standard_helium_correction_no_residual_fit",
+  "standard_helium_gas_factor": 1.36,
+  "softening_kpc": 0.5,
+  "angle_samples": 720,
+  "source_frozen_physical_hi_disk_load_control_ready": true,
+  "source_frozen_standard_hi_plus_helium_gas_control_ready": true,
+  "positive_dark_residual_load_ready": false,
+  "halo_capacity_multiplier_ready": false,
+  "endpoint_ready": false,
+  "product_summaries": [
+    {
+      "product": "NA",
+      "flux_ratio_to_vizier_global": 0.9601437601891961,
+      "integrated_hi_mass_msun_proxy": 8244156354.60735,
+      "outer_ge_30kpc_axisymmetric_disk_v2_max_km2s2_proxy": 1107.0894813993689,
+      "outer_ge_30kpc_axisymmetric_disk_v2_median_km2s2_proxy": 1027.9964647570282,
+      "outer_ge_30kpc_hi_plus_helium_disk_v2_max_km2s2_proxy": 1505.6416947031419,
+      "outer_ge_30kpc_hi_plus_helium_disk_v2_median_km2s2_proxy": 1398.0751920695584,
+      "inner_any_negative_raw_disk_v2": true
+    },
+    {
+      "product": "RO",
+      "flux_ratio_to_vizier_global": 0.9875497947496392,
+      "integrated_hi_mass_msun_proxy": 8479474901.0003805,
+      "outer_ge_30kpc_axisymmetric_disk_v2_max_km2s2_proxy": 1128.0459791621608,
+      "outer_ge_30kpc_axisymmetric_disk_v2_median_km2s2_proxy": 1043.7191126308694,
+      "outer_ge_30kpc_hi_plus_helium_disk_v2_max_km2s2_proxy": 1534.142531660539,
+      "outer_ge_30kpc_hi_plus_helium_disk_v2_median_km2s2_proxy": 1419.4579931779824,
+      "inner_any_negative_raw_disk_v2": true
+    }
+  ],
+  "endpoint_replay_permission_counts": {
+    "no": 120
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 120
+  },
+  "positive_load_freeze_permission_counts": {
+    "no": 120
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 120
+  },
+  "claim_boundary": "ngc2841_mom0_disk_load_promotion_review_not_endpoint",
+  "verdict": "The MOM0-derived HI mass profile can be promoted only to a source-frozen physical-HI disk-load control with lambda_HI=1, with an optional standard HI+helium gas bookkeeping factor of 1.36. It cannot yet be promoted to a positive dark-residual or halo-capacity kernel, because any additional multiplier would need an independent residual-blind source.",
+  "next_allowed_action": "If the theory needs extra outer capacity beyond physical HI, find an independent source-native multiplier or Tau-side load theorem. Do not infer a multiplier from the rotation residual."
+}

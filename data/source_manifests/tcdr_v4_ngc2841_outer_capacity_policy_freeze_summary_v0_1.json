@@ -1,0 +1,28 @@
+{
+  "n_rows": 4,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "policy_status_counts": {
+    "frozen_source_side_policy": 2,
+    "frozen_source_side_policy_with_shape_blocker": 1,
+    "frozen_source_side_policy_with_geometry_blocker": 1
+  },
+  "onset_priority_blocker_closed": true,
+  "component_weight_blocker_closed": true,
+  "xuv_exact_shape_blocker_closed": false,
+  "tilted_ring_geometry_blocker_closed": false,
+  "formula_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 4
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 4
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 4
+  },
+  "claim_boundary": "ngc2841_outer_capacity_policy_freeze_not_formula_not_scoring",
+  "verdict": "The NGC2841 outer-capacity branch now has a residual-blind onset policy and a residual-blind equal-strong-route component-weight policy. It remains not formula-ready because the exact XUV radial shape and the source-native tilted-ring geometry profile are still blocked.",
+  "next_allowed_action": "extract or source-review a tilted-ring geometry profile and, separately, an XUV/HI radial-shape policy before any endpoint replay"
+}

@@ -1,0 +1,11 @@
+validation_rows=29
+measured_color_rows=20
+constant_outer_color_rows=9
+radial_range_kpc=11.0-68.0
+quality_flag=caveated
+source_panel=Zhang2018_Fig_mass_surface_density_only
+forbidden_fields_consistent=true
+endpoint_replay_permission=no
+kernel_promotion_permission=no
+new_route_scoring_permission=no
+claim_boundary=source_side_mass_profile_digitization_only_not_scoring

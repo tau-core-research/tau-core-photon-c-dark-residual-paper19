@@ -1,0 +1,50 @@
+{
+  "K_beta_status": "blocked_requires_source_native_radial_profile",
+  "all_decisions_high_confidence": true,
+  "allowed_next_actions": [
+    "keep NGC2841 beta/closure route open as source-side review only",
+    "seek direct/source-native spin or halo-envelope normalization if promotion is desired",
+    "define and freeze an endpoint-blind carrier policy before any formula review",
+    "obtain residual-blind digitized Bosma Figure 7 radial PA/i profile or source-native radial PA/i table before K_beta freeze"
+  ],
+  "artifact": "tcdr_v4_ngc2841_beta_closure_reformulation_review_acceptance_v0_1.csv",
+  "beta_closure_route_status": "review_open_not_promoted",
+  "blocked_actions": [
+    "endpoint replay",
+    "formula freeze",
+    "kernel promotion",
+    "using observed rotation-curve residuals, endpoint scores, or required-load diagnostics"
+  ],
+  "blocked_requirement_ids": [
+    "BETA_SPIN_CONTEXT_ONLY_NOT_FREEZE",
+    "BETA_CARRIER_REQUIRES_NEW_SOURCE_FREEZE",
+    "BETA_K_REQUIRES_SOURCE_NATIVE_RADIAL_PROFILE"
+  ],
+  "carrier_status": "blocked_requires_new_source_frozen_carrier",
+  "claim_boundary": "ngc2841_beta_closure_reformulation_review_acceptance_not_endpoint",
+  "endpoint_ready": false,
+  "formula_freeze_ready": false,
+  "galaxy": "NGC2841",
+  "kernel_promotion_ready": false,
+  "n_rows": 4,
+  "next_allowed_action": "obtain_source_native_radial_profile_or_build_spin_carrier_review_package_before_formula_freeze",
+  "overall_verdict": "review_open_not_promoted",
+  "permission_counts": {
+    "endpoint_replay_permission": {
+      "no": 4
+    },
+    "formula_freeze_permission": {
+      "no": 4
+    },
+    "kernel_promotion_permission": {
+      "no": 4
+    },
+    "uses_vobs_or_residual": {
+      "no": 4
+    }
+  },
+  "review_response_accepted": true,
+  "review_response_claim_boundary": "source_side_beta_closure_reformulation_review_response_not_endpoint",
+  "spin_route_status": "context_only_not_spin_freeze",
+  "verdict": "The filled reviewer response is accepted as source-side review evidence. It keeps NGC2841 beta/closure open only as a review route: the Bullock spin proxy is context-only, the carrier must be newly source-frozen, and K_beta requires a residual-blind radial PA/i profile or native table. No endpoint replay, kernel promotion, or formula freeze is authorized."
+}

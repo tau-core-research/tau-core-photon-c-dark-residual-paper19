@@ -1,0 +1,49 @@
+{
+  "K_beta_freeze_ready": false,
+  "artifact": "tcdr_v4_ngc2841_beta_closure_reformulation_label_review_v0_1.csv",
+  "beta_cl_if_used": 1.0803447810919469,
+  "beta_closure_reformulation_review_open": true,
+  "blocked_requirement_ids": [
+    "BETA_2A_INDEPENDENT_SPIN_ROUTE_DECISION",
+    "BETA_2B_SOURCE_FROZEN_CARRIER",
+    "BETA_2C_SOURCE_FROZEN_K_BETA"
+  ],
+  "carrier_freeze_ready": false,
+  "claim_boundary": "ngc2841_beta_closure_reformulation_label_review_not_endpoint",
+  "composite_outer_morphology_support_present": true,
+  "endpoint_ready": false,
+  "formula_freeze_ready": false,
+  "galaxy": "NGC2841",
+  "lambda_spin": 0.0202436093494148,
+  "n_rows": 7,
+  "next_allowed_action": "prepare_reviewer_package_for_spin_route_carrier_and_K_beta_decisions_or_keep_route_review_open",
+  "paper9_nfw_preference_load": 0.0675675675675675,
+  "paper9_transfer_priority_class": "WEAK_NFW_PREFERENCE_TRANSFER_TARGET",
+  "paper9_transfer_priority_score": 0.669506742261588,
+  "permission_counts": {
+    "endpoint_replay_permission": {
+      "no": 7
+    },
+    "formula_freeze_permission": {
+      "no": 7
+    },
+    "kernel_promotion_permission": {
+      "no": 7
+    },
+    "reformulation_label_promotion_permission": {
+      "no": 7
+    },
+    "review_package_permission": {
+      "yes": 7
+    },
+    "uses_vobs_or_residual": {
+      "no": 7
+    }
+  },
+  "preflight_claim_boundary": "multiplicative_beta_closure_reformulation_preflight_not_endpoint",
+  "reformulation_label_promoted": false,
+  "review_package_permission": true,
+  "source_native_mean_inclination_deg": 72.06666666666666,
+  "tilted_ring_support_present": true,
+  "verdict": "NGC2841 has enough residual-blind source context to open a beta/closure reformulation review package: Paper 9 predeclares it as a transfer candidate, supplies a Bullock-like dimensionless lambda/beta proxy, and Paper 19 supplies high-inclination warped-HI/tilted-ring context. The label is not promoted because the spin normalization route remains review-required, the NFW preference is weak, and no carrier or K_beta profile is frozen."
+}

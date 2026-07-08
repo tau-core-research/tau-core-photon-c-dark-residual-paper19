@@ -1,0 +1,13 @@
+NGC2841 mass-profile semantics review - validation summary
+
+Filled file: review_response_template.csv
+Rows filled: 4
+Allowed-answer validation: PASS
+Forbidden-input guardrails: PASS
+Endpoint replay permission: must_be_no on all rows
+Kernel promotion permission: must_be_no on all rows
+Rotation curve / velocity usage: must_be_false on all rows
+Endpoint residual usage: must_be_false on all rows
+Tau Core score / required lambda usage: must_be_false on all rows
+
+Final verdict: source-side shape-only. No load-bearing normalized mass formula is authorized by this review package.

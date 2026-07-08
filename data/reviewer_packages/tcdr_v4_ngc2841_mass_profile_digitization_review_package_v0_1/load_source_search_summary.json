@@ -1,0 +1,43 @@
+{
+  "n_rows": 4,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "source_status_counts": {
+    "EXISTING_BARYONIC_CARRIER_NOT_NEW_OUTER_LOAD": 1,
+    "FORMULA_EXISTS_MAP_PROFILE_NOT_CACHED_FOR_LOAD": 1,
+    "PROMISING_LOAD_ROUTE_REQUIRES_REVIEW_DIGITIZATION": 1,
+    "SOURCE_NATIVE_BARYONIC_LOAD_CEILING_DERIVED": 1
+  },
+  "load_use_status_counts": {
+    "blocked_until_digitization_and_conversion_review": 1,
+    "blocked_until_hi_profile_cached_or_digitized": 1,
+    "carrier_crosscheck_only": 1,
+    "usable_as_baryonic_ceiling_control_not_dark_residual_load": 1
+  },
+  "outer_stellar_mass_msun": 140000000.0,
+  "outer_stellar_mass_err_msun": 20000000.0,
+  "outer_gas_mass_from_3to1_msun": 46666666.666666664,
+  "outer_baryonic_mass_from_3to1_msun": 186666666.66666666,
+  "v2_ceiling_30kpc_km2s2": 26.761217777777777,
+  "v2_ceiling_50kpc_km2s2": 16.056730666666667,
+  "v2_ceiling_70kpc_km2s2": 11.469093333333332,
+  "v_ceiling_30kpc_kms": 5.173124566234393,
+  "promoted_load_source_ready": false,
+  "best_next_source_route": "dragonfly_mass_surface_density_profile_digitization",
+  "endpoint_replay_permission_counts": {
+    "no": 4
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 4
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 4
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 4
+  },
+  "claim_boundary": "ngc2841_outer_capacity_load_source_search_not_scoring",
+  "verdict": "The search found a source-native baryonic load ceiling from the Dragonfly outer-disk mass and a stronger future route through digitizing the published stellar/gas mass-surface-density profile. It did not find a ready positive dark-residual lambda. Endpoint replay remains closed.",
+  "next_allowed_action": "Create a reviewer package for digitizing prof_masses1and2_4.pdf, or freeze the integrated outer baryonic mass ceiling as a non-endpoint control."
+}

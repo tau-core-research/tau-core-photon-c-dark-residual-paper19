@@ -572,6 +572,37 @@ best wrong-family control in `2/5`; the median wrong-mean margin is
 `0.576 km/s`. This is a scoring-direction signal for the source-frozen formula
 compiler route, not population validation.
 
+After the NGC2841 stress case, the cleanest single-object follow-up is NGC6503.
+Its source-frozen candidate is the exponential-disk scale-tail formula, with no
+source-native bar/ring/spiral mixture active. The focused replay can be run
+with:
+
+```bash
+python scripts/run_tcdr_v4_ngc6503_clean_scale_tail_endpoint_replay.py
+```
+
+The current local result is a clean preliminary positive: the candidate
+weighted RMSE is `58.074 km/s`, versus `58.672 km/s` for the fixed baryonic
+carrier, `58.182 km/s` for the pure matched exponential control, `59.208 km/s`
+for the wrong-family mean, and `58.661 km/s` for the best wrong-family control.
+This is useful because the improvement comes from the predeclared source-frozen
+scale-tail route, not from an NGC6503-specific kernel search or target-galaxy
+amplitude retuning.
+
+NGC7793 provides a second focused support-safe spiral/scale-tail case:
+
+```bash
+python scripts/run_tcdr_v4_ngc7793_support_safe_spiral_endpoint_replay.py
+```
+
+Here the support-safe candidate weighted RMSE is `19.543 km/s`, versus
+`23.991 km/s` for the fixed baryonic carrier, `23.653 km/s` for the
+wrong-component mean, and `23.331 km/s` for the best wrong-component control.
+It does not beat the matched spiral component control by itself
+(`19.532 km/s`), so it is not an overclaim. It is nevertheless a useful
+preliminary positive because the source-frozen spiral/scale-tail route beats
+the wrong-family controls with leave-one-galaxy-out amplitude freeze.
+
 Run the corresponding readiness-filtered shuffled-component null:
 
 ```bash
@@ -811,6 +842,14 @@ python scripts/build_tcdr_v4_post_external_scoring_boundary_summary.py
 python scripts/build_tcdr_v4_allowed_best_wrong_failure_diagnostic.py
 python scripts/build_tcdr_v4_allowed_failure_source_acquisition_worklist.py
 python scripts/build_tcdr_v4_allowed_failure_external_source_review.py
+python scripts/build_tcdr_v4_allowed_failure_formula_freeze_readiness.py
+python scripts/build_tcdr_v4_allowed_failure_numeric_observable_worklist.py
+python scripts/build_tcdr_v4_allowed_failure_numeric_source_freeze.py
+python scripts/build_tcdr_v4_allowed_failure_spiral_path_formula_freeze.py
+python scripts/build_tcdr_v4_allowed_failure_scoring_preflight.py
+python scripts/run_tcdr_v4_allowed_failure_spiral_path_diagnostic_scoring.py
+python scripts/build_tcdr_v4_ngc2841_absolute_residual_gap_diagnostic.py
+python scripts/build_tcdr_v4_ngc2841_outer_capacity_requirement_audit.py
 python scripts/build_tcdr_v4_post_external_scoring_boundary_figure.py
 ```
 
@@ -844,6 +883,748 @@ for `UGC00191`. The artifact
 `data/external/sparc_preflight/tcdr_v4_allowed_failure_external_source_review_local.csv`
 keeps endpoint replay and kernel promotion at `no` for both galaxies; it only
 authorizes future source-side route review.
+The follow-up formula-freeze readiness artifact then asks whether that source
+review is already enough to freeze a new score-bearing formula. It is not:
+`NGC2841` is review-open but blocked by missing numeric source-native
+spiral/path observables, while `UGC00191` remains weak/asymmetry-only and not a
+spiral/path formula candidate. The artifact
+`data/external/sparc_preflight/tcdr_v4_allowed_failure_formula_freeze_readiness_local.csv`
+keeps endpoint replay, kernel promotion, and new-route scoring at `no` for both
+objects.
+The final numeric-observable worklist turns that blocker into concrete
+source-acquisition targets: four NGC2841 spiral/path observables
+(`spiral_inner_kpc_source`, `spiral_outer_kpc_source`,
+`spiral_pitch_median_abs_deg_source`, and
+`warp_onset_or_path_environment_numeric_source`) plus one UGC00191
+route-closing prerequisite. This remains a source-only worklist, not formula
+freeze, endpoint replay, or scoring permission.
+The bounded numeric source-freeze pass then closes the NGC2841 side of that
+blocker with caveats: Kendall et al. provide a spiral break at `0.45 R25`, a
+quoted `R25 = 4.05 arcmin`, and an outer pitch-angle estimate of about `7 deg`;
+using the already frozen `14.1 Mpc` distance gives `spiral_inner_kpc_source =
+7.475`, `spiral_outer_kpc_source = 16.611`, and
+`spiral_pitch_median_abs_deg_source = 7.0`. Zhang et al. provide the
+outer-warp/path coordinate, frozen here as
+`warp_onset_or_path_environment_numeric_source = 30.0 kpc`. These are
+source coordinates only, with high-inclination/flocculent caveats.
+The scoring preflight then checks those requested observables against the local
+source manifests.  The new source-frozen formula artifact
+`data/source_manifests/tcdr_v4_allowed_failure_spiral_path_formula_freeze_v0_1.csv`
+then freezes the caveated NGC2841 shell
+`F_CAVEATED_SPIRAL_PATH_WINDOW_SOURCE_FROZEN`:
+
+```text
+K_sp(r)   = 0.5 [tanh((r-r_in)/sigma_edge) - tanh((r-r_out)/sigma_edge)]
+K_path(r) = 1 / (1 + exp(-(r-r_path)/sigma_path))
+K_total(r)= clip(K_sp(r) + epsilon_path K_path(r), 0, 1)
+```
+
+Here `r_in = 7.475 kpc`, `r_out = 16.611 kpc`, `r_path = 30.0 kpc`,
+and `epsilon_path = min(0.20, max(0.02, pitch_rad))` with the source pitch
+`7 deg`.  This is a source-side formula shell only: it does not fit an
+amplitude, read endpoint residuals, or authorize replay.
+The scoring preflight now finds `4/5` requested numeric/source route fields
+filled and formula-frozen for NGC2841, while UGC00191 still lacks a
+route-opening source field. The artifact
+`data/external/sparc_preflight/tcdr_v4_allowed_failure_scoring_preflight_local.csv`
+therefore keeps endpoint replay, kernel promotion, and new-route scoring at
+`no`. This is the current scoring-facing boundary, not an endpoint score.
+The bounded diagnostic replay can then be run explicitly:
+
+```bash
+python scripts/run_tcdr_v4_allowed_failure_spiral_path_diagnostic_scoring.py
+```
+
+This replay applies the source-frozen NGC2841 spiral/path formula shell to the
+local SPARC curve while fitting only a spiral-control amplitude on the other
+support-safe pool galaxies. In the current local run it improves the weighted
+RMSE relative to the previous NGC2841 formula, the best wrong-component
+control, and the baryonic carrier in both support-safe pools, with a median
+improvement of `1.179 km/s` against the previous formula and `1.149 km/s`
+against the best wrong control. This is a diagnostic score only:
+`endpoint_validation_claimed = no`, `kernel_promotion_permission = no`.
+The companion absolute-gap diagnostic,
+`data/external/sparc_preflight/tcdr_v4_ngc2841_absolute_residual_gap_diagnostic_local.csv`,
+records the cautionary part of the same result. The source-frozen spiral/path
+shell remains far below the observed NGC2841 rotation curve in absolute terms:
+the median predicted/observed velocity ratio is about `0.69` inside 10 kpc,
+`0.60` from 10--30 kpc, and only `0.43` beyond 30 kpc. The outer missing
+`v^2` fraction is about `0.81`. Therefore the replay is a directional
+improvement, not a sufficient NGC2841 readout. The next source-side target is
+an independent outer path or dark-residual capacity route, not endpoint
+amplitude tuning.
+
+The follow-up capacity-requirement audit,
+`data/external/sparc_preflight/tcdr_v4_ngc2841_outer_capacity_requirement_audit_local.csv`,
+asks a deliberately diagnostic question: how large would the path weight have
+to be if the present spiral/path shell were forced to close the remaining
+`v^2` gap without changing its source-frozen shape? The frozen cap is
+`epsilon_path = 0.122`, while the required median outer-zone value is about
+`26.3`, more than `200x` above the cap. This rules out endpoint amplitude rescue
+for the current shell. It does not promote a new kernel; it identifies the
+missing ingredient as a separate, independently sourced outer path or
+dark-residual capacity route.
+
+The source-side search for that missing route is recorded in
+`data/source_manifests/tcdr_v4_ngc2841_outer_capacity_source_search_v0_1.csv`
+and can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_outer_capacity_source_search.py
+```
+
+It does not use the rotation curve, endpoint residuals, RMSE values, or the
+capacity requirement as formula input. It records three strong independent
+source candidates for a future outer-capacity formula-freeze review: the
+Dragonfly extended stellar/HI/UV disk route, the Bosma extended HI warp and
+tilted-ring route, and the GALEX/XUV outer-disk star-formation route. Three
+additional rows are retained only as caveated path-context evidence. Endpoint
+replay and kernel promotion remain `no` for all rows; the artifact closes a
+source-search blocker, not the NGC2841 kernel.
+
+The next worklist,
+`data/source_manifests/tcdr_v4_ngc2841_outer_capacity_formula_freeze_worklist_v0_1.csv`,
+can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_outer_capacity_formula_freeze_worklist.py
+```
+
+It converts the source search into eight formula-freeze fields. Five fields
+already have candidate numeric or lower-bound source values (`20 kpc`,
+`30 kpc`, `70 kpc`, `2.5` Holmberg diameters, and `>=4 D25`), but the route is
+not formula-ready. The remaining blockers are the source-side onset-priority
+rule, the extraction of a source-native tilted-ring geometry profile, and a
+residual-blind component-weight rule for combining the stellar/HI/UV, warped
+HI, and XUV routes. The worklist keeps `formula_ready = false` and all scoring
+permissions closed.
+
+The bounded policy-freeze pass then closes two of those blockers without using
+endpoint information:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_outer_capacity_policy_freeze.py
+```
+
+It freezes a nested onset rule (`20 kpc` for the general outer-capacity ramp,
+`30 kpc` for the warp/path subchannel) and a maximum-entropy equal prior over
+the three strong source routes (`1/3`, `1/3`, `1/3`) while assigning zero
+primary formula weight to caveated context rows. It does not make the route
+scoreable: exact XUV radial shape and source-native tilted-ring geometry remain
+blocked, so `formula_ready = false`.
+
+The remaining tilted-ring blocker is narrowed by:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_tilted_ring_geometry_source_review.py
+```
+
+This source-review artifact records the Bosma/NED evidence that the NGC2841
+outer HI route is genuinely geometry-bearing: outer HI orientation differs from
+the main body, the kinematical major axis changes in the outer parts, and an
+annular tilted-ring model is constructed. It also records the blocker: the
+radial PA/inclination profile is available in the local source representation
+as a figure rather than as a machine-readable table. Therefore the result is
+`geometry_route_supported = true` but
+`exact_tilted_ring_numeric_profile_frozen = false`; endpoint replay, kernel
+promotion, and new-route scoring remain closed.
+
+A coarse review-candidate digitization of that figure can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_tilted_ring_digitized_profile_candidate.py
+```
+
+The script caches Bosma Figure 7 under
+`data/external/literature/bosma1981_ngc2841_figure4_6_7.jpg` and digitizes only
+the position-angle and inclination panels. It explicitly excludes the rotation
+velocity and surface-density panels from the candidate profile. The result is a
+low-resolution source-side profile candidate with an outer PA change of about
+`12 deg` and inclination change of about `15 deg` across `0--37 kpc`. It is
+`review_candidate_only_no_scoring`, not a frozen formula input.
+
+A source-native PA/inclination support table can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_source_native_pa_inclination_table.py
+```
+
+This artifact records primary-source numeric geometry summaries without reading
+endpoint residuals: THINGS/de Blok Table 1 lists the indicative global H I
+inclination (`69 deg`) and LEDA optical inclination (`61 deg`); THINGS/de Blok
+Table 2 gives the tilted-ring mean geometry (`<PA> = 152.6 deg`,
+`<i> = 73.7 deg`); and Samurovic et al. give median ROTCUR geometry
+(`PA = 150.7 deg`, `i = 73.5 deg`). These rows support the scalar geometry
+scale of the tilted-ring route and cross-check the Bosma digitized candidate.
+They do not close the radial-profile blocker: no source-native numeric radial
+PA/inclination table has been located in this pass, so endpoint replay and
+kernel promotion remain closed.
+
+A bounded radial-table search audit can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_radial_pa_inclination_table_search_audit.py
+```
+
+This artifact preserves the negative source result explicitly: Bosma and
+Samurovic expose radial PA/inclination shape at figure level, while de
+Blok/THINGS and Samurovic provide source-native scalar summaries. No primary
+machine-readable radial PA/i table was located in the bounded pass.
+
+The corresponding independent-review package can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package.py
+```
+
+It writes
+`data/reviewer_packages/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1.zip`
+and copies the same zip to `~/Downloads/`. The package asks an external
+reviewer to digitize only Bosma Figure 7 panels a and b. The rotation-velocity
+and surface-density panels are explicitly forbidden, as are all endpoint
+rotation curves, residuals, and baseline scores. A completed response can
+support a later source-side formula-freeze review, but the package itself does
+not authorize endpoint replay.
+
+The filled review response can be audited with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_acceptance.py
+```
+
+For the current completed response, the audit is leakage-clean and accepts a
+caveated source-side digitized radial PA/inclination profile: 16 points over
+`0--37 kpc`, PA span about `12.1 deg`, and inclination span about `13.8 deg`.
+This promotes the profile only to `formula_freeze_review_ready = true`; it does
+not set `formula_ready = true` and does not authorize endpoint replay.
+
+The accepted profile can then be converted into a source-side tilted-ring
+geometry kernel review artifact with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_tilted_ring_geometry_kernel_freeze_review.py
+```
+
+This writes
+`data/source_manifests/tcdr_v4_ngc2841_tilted_ring_geometry_kernel_freeze_review_v0_1.csv`
+and its JSON summary. The kernel is dimensionless:
+`K_geom(R)` is the normalized PA/inclination displacement from the inner
+`R <= 10 kpc` orientation mean. It is a shape-only source artifact with no
+sign, no carrier, and no amplitude. Therefore it is
+`formula_freeze_review_ready = true`, but `formula_ready = false`, and endpoint
+replay, kernel promotion, and new-route scoring remain closed.
+
+The corresponding formula-rule review can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_tilted_ring_formula_rule_review.py
+```
+
+This manifest separates what is frozen from what remains blocked. The geometry
+shape is frozen for formula review, and the fixed baryonic carrier is recorded
+as a reviewable candidate inherited from the TCDR-v4 preflight convention.
+However, the sign rule remains blocked because the same PA/i geometry can be
+read as either projection/attenuation or added outer-capacity support, and the
+amplitude/load rule remains blocked because the PA/i profile supplies no
+velocity-squared load scale. Endpoint replay remains closed.
+
+The source-side sign/load derivation can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_projection_sign_load_derivation.py
+```
+
+This derives only the strict projection branch. Using
+`v_los(R) = v_c(R) sin i(R)` and the inner `R <= 10 kpc` inclination as the
+reference, the projection branch is
+`v_proj^2/v_carrier^2 = (sin i_ref / sin i(R))^2`. For the accepted profile
+this gives an outer projection factor of about `0.878` and a maximum
+attenuation cap of about `0.122`. This fixes a negative multiplicative
+projection sign without fitting an amplitude. It does **not** derive the
+positive added outer-capacity branch, because that would require an independent
+velocity-squared load source.
+
+The follow-up load-source derivation can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_outer_capacity_load_source_derivation.py
+```
+
+It separates five channels: the strict projection control, the Dragonfly
+extended stellar/HI/UV capacity route, the warped-HI tilted-ring capacity route,
+the XUV/HI outer star-forming capacity route, and their composite positive
+outer-capacity shell. The conclusion is deliberately conservative:
+`projection_control_ready = true`, but
+`positive_added_capacity_load_ready = false`. Route support, radial support,
+geometry, and equal source-side weights do not by themselves supply the
+velocity-squared load needed by an additive
+`v_readout^2 = v_carrier^2 + lambda K(R)` formula. Endpoint replay and kernel
+promotion remain closed until an independent source-native load conversion,
+predeclared train-only amplitude rule, or Tau-side load theorem is frozen.
+
+A focused load-source search can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_outer_capacity_load_source_search.py
+```
+
+This search found one source-native baryonic ceiling/control from the Dragonfly
+outer-disk mass statement. Zhang et al. report an outer stellar mass of
+`1.4 +/- 0.2e8 Msun` beyond the warp-dominated `R > 30 kpc` region and an
+outer stellar-to-gas surface-density ratio of about `3:1`. Treating this as an
+outer baryonic mass ceiling gives only
+`v2_ceiling_30kpc ~= 26.8 km^2/s^2`, or `v ~= 5.17 km/s`, under the simple
+`G M / R` envelope. That is useful as a residual-blind baryonic control, but it
+is not a positive dark-residual load. The best next source-native route is to
+review-digitize `prof_masses1and2_4.pdf` from the Dragonfly arXiv source
+package and convert the stellar/gas surface-density profiles under a frozen
+disk-load rule.
+
+The corresponding external-review package can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_mass_profile_digitization_review_package.py
+```
+
+It writes
+`data/reviewer_packages/tcdr_v4_ngc2841_mass_profile_digitization_review_package_v0_1.zip`
+and also copies the same ZIP to
+`~/Downloads/tcdr_v4_ngc2841_mass_profile_digitization_review_package_v0_1.zip`
+for a reviewer without repository access. The package contains the original
+Dragonfly mass-profile PDF, a rendered PNG, a source-text excerpt, the
+load-source search ledger, and a `review_response_template.csv`. The requested
+review is strictly source-side: digitize only `Sigma_star(R)`, `Sigma_gas(R)`,
+and optionally `Sigma_star/Sigma_gas`; do not use rotation curves, endpoint
+residuals, Tau Core scores, or required-lambda diagnostics.
+
+The filled reviewer response can be accepted and audited with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_mass_profile_digitization_review_acceptance.py
+python scripts/build_tcdr_v4_ngc2841_mass_profile_normalization_audit.py
+python scripts/build_tcdr_v4_ngc2841_mass_profile_source_native_table_search.py
+python scripts/build_tcdr_v4_ngc2841_mass_profile_semantics_clarification.py
+python scripts/build_tcdr_v4_ngc2841_mass_profile_semantics_review_package.py
+python scripts/build_tcdr_v4_ngc2841_mass_profile_semantics_review_acceptance.py
+python scripts/build_tcdr_v4_ngc2841_surviving_route_ledger.py
+```
+
+The response passes the leakage flags and provides 29 caveated source-side
+profile rows. However, the normalisation audit blocks load promotion: naive
+annular integration of the digitized measured-color profile over `R >= 30 kpc`
+is about `46x` larger than the quoted Zhang et al. outer-disk stellar mass.
+Therefore the digitized profile is retained only as a shape candidate until the
+component/normalization semantics are resolved. Endpoint replay and kernel
+promotion remain closed. The follow-up semantics clarification localizes the
+blocker to source-profile component identity and normalization, not endpoint
+leakage. Area/inclination conventions alone are insufficient to explain the
+tens-of-times mismatch, so the next allowed action is a focused reviewer
+follow-up on curve identity/axis mapping or a source-native isolated-component
+table/model. A focused source-native table search found no machine-readable
+`Sigma_star(R)`/`Sigma_gas(R)` table in the Zhang et al. arXiv source package:
+the package contains TeX and figure PDFs, including `prof_masses1and2_4.pdf`.
+The TeX supports the split between displayed surface-density profiles and the
+quoted integrated outer-disk mass, but does not resolve the normalization
+mapping. The filled semantics review passes guardrails and closes the mass
+profile route as `ACCEPT_SHAPE_ONLY_LOAD_FORMULA_BLOCKED`: the displayed
+profile is not source-resolved as the isolated outer component, no
+source-native normalization rule or axis/unit fix was found, and the profile
+remains shape-only. Load formula, kernel promotion, and endpoint replay remain
+closed unless an author/source-native isolated-component table or explicit
+normalization rule is obtained.
+
+The follow-up NGC2841 surviving-route ledger consolidates the local result:
+five source-side shape/context routes survive, but zero positive
+outer-capacity load routes are formula-ready. The Dragonfly mass profile is
+closed as a load route and preserved only as shape context. The only clean
+near-term replay direction is a projection-control diagnostic/preflight from
+the tilted-ring PA/inclination branch; a positive dark-residual endpoint remains
+blocked by missing independent velocity-squared load evidence.
+
+That diagnostic boundary is frozen explicitly by:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_projection_control_preflight.py
+```
+
+The preflight records `tilted_ring_projection_control` as the only near-term
+route. It is leakage-clean and source-side only: the accepted PA/inclination
+profile supports a negative multiplicative projection/deprojection control with
+outer factor about `0.878`, but it does not authorize endpoint scoring, kernel
+promotion, or a positive additive dark-residual load. Any later projection
+replay must be a separate diagnostic run that reads this frozen preflight
+unchanged.
+
+The corresponding diagnostic replay can be regenerated with:
+
+```bash
+python scripts/run_tcdr_v4_ngc2841_projection_control_diagnostic_replay.py
+```
+
+The replay preserves the expected negative-control result. With the fixed
+baryonic carrier, the source-frozen projection control has weighted RMSE
+`150.95 km/s`, compared with `144.88 km/s` for the unmodified baryonic carrier.
+The outer-zone penalty is positive as well. This is not a failed endpoint; it
+confirms that the tilted-ring projection branch is an attenuation/control lane,
+not the missing positive dark-residual capacity for NGC2841.
+
+The integrated Dragonfly outer baryonic mass ceiling is frozen separately with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_integrated_outer_baryonic_ceiling_control_freeze.py
+python scripts/run_tcdr_v4_ngc2841_integrated_outer_baryonic_ceiling_control_diagnostic.py
+```
+
+This is the strongest source-native velocity-squared control currently
+available from the local Zhang et al. material, but it is very small:
+`Delta v^2 = G M_outer / R` gives only about `26.8 km^2/s^2` at `30 kpc`.
+The diagnostic replay moves the weighted RMSE from `144.876 km/s` to
+`144.825 km/s`, a tiny improvement. It is therefore preserved as a baryonic
+ceiling/control, not promoted as the positive dark-residual load.
+
+The remaining positive-load gap after both frozen controls is measured by:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_post_control_positive_load_gap_diagnostic.py
+```
+
+The outer-zone median positive velocity-squared gap remains about
+`65,313 km^2/s^2` after the baryonic ceiling control. The known outer baryonic
+ceiling contributes a median `17.05 km^2/s^2`, only about `0.026%` of the
+outer baryonic-carrier gap. Adding the projection control has the wrong sign
+for closure and increases the outer gap. This diagnostic does not fit or
+promote a kernel; it quantifies that the NGC2841 positive load must come from
+a different source-native channel or a Tau-side load theorem.
+
+The required-scale worklist can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_required_positive_load_scale_worklist.py
+```
+
+It converts the remaining positive `v^2` gap into a `G M / R`-equivalent scale
+only as a source-search yardstick. In the outer zone the median equivalent
+scale is about `6.88e11 Msun`, with interquartile range roughly
+`5.45e11--8.75e11 Msun`. This is not a physical dark-matter mass claim and
+must not be used as a fitted endpoint amplitude; it simply tells us that any
+successful source-native channel or Tau-side load theorem must operate at a
+much larger scale than the known integrated outer baryonic ceiling.
+
+The source-native SPARC/THINGS gas proxy can be frozen with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_sparc_hi_gas_load_proxy_freeze.py
+```
+
+This script reads only `Rad` and `Vgas` from `NGC2841_rotmod.dat` inside the
+local SPARC `Rotmod_LTG.zip`; observed velocities and errors in the source file
+are deliberately ignored. The frozen outer kernel is
+`max(Vgas^2, 0) / max_outer(max(Vgas^2, 0))` for `R >= 30 kpc`, and zero
+inside that window. It is a reproducible lower-bound HI/gas load proxy and
+shape kernel. It is not the missing positive dark-residual load: the outer
+median gas proxy is only about `6.5%` of the required post-control
+velocity-squared yardstick, and even the outer maximum is only about `7.3%`.
+
+The source-native THINGS/VizieR global HI packet can be frozen with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_things_vizier_global_hi_source_freeze.py
+```
+
+This script queries the public VizieR mirror of the THINGS catalog
+(`J/AJ/136/2563`) and caches the NGC2841 global HI spectrum and catalog
+geometry. It yields 132 spectral rows, 123 finite flux rows, catalog
+`D=14.1 Mpc`, `i=74 deg`, `PA=153 deg`, and a global positive-flux proxy of
+about `183.31 Jy km/s`, corresponding to about `8.59e9 Msun` under the standard
+HI-mass conversion at the catalog distance. This is useful source-side support
+for substantial HI content, but it is still not a radial surface-density map or
+velocity-squared load kernel.
+
+The source-native THINGS/NED moment-0 radial shape freeze can be regenerated
+with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_things_ned_mom0_radial_profile_freeze.py
+```
+
+This script uses NED-hosted THINGS natural- and robust-weighted NGC2841 MOM0
+FITS products, with the frozen THINGS catalog geometry `D=14.1 Mpc`,
+`i=74 deg`, and `PA=153 deg`, to construct a residual-blind deprojected radial
+MOM0 shape/support profile. It records 120 one-kpc radial-bin rows across the
+NA and RO products. Both products retain source-native MOM0 support out to the
+outermost 60 kpc bin at the 1% peak threshold, with outer `R >= 30 kpc` mean
+shape values of about `0.236` and `0.261`, and peak shape values of about
+`0.596` and `0.611`. This closes the profile-cache blocker. It does not close
+the physical positive-load blocker, because the beam/unit/mass conversion and a
+velocity-squared load rule still require a dedicated calibration audit.
+
+The MOM0 beam/unit mass-conversion audit can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_things_mom0_beam_unit_mass_conversion_audit.py
+```
+
+This audit uses the CLEAN beam recorded in the FITS history to convert the MOM0
+map sums into integrated HI-flux and HI-mass proxies. As a source-side
+calibration check, the NA and RO products give integrated flux ratios of about
+`0.960` and `0.988` relative to the VizieR global HI spectrum. This supports a
+residual-blind HI mass-profile proxy, with integrated HI masses of about
+`8.24e9 Msun` and `8.48e9 Msun`. The artifact also writes an enclosed
+spherical `G M(<R) / R` diagnostic for triage, but this is not a promoted disk
+gravity kernel, not a positive dark-residual load claim, and not endpoint-ready.
+The remaining blocker is a source-frozen disk-gravity/load-promotion review.
+
+The MOM0 disk-load promotion review can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_mom0_disk_load_promotion_review.py
+```
+
+This review promotes only the physical HI component to a source-frozen disk-load
+control with `lambda_HI=1`, and separately records the standard `1.36`
+HI+helium gas bookkeeping factor used in THINGS-based gas-surface-density work.
+It uses a softened axisymmetric annular disk integral over the MOM0-derived HI
+mass profile and chooses the RO product as the primary source-side product
+because it has the smaller beam and the closer global-flux match to VizieR; NA
+is retained as a cross-check. The outer `R >= 30 kpc` physical-HI disk-load
+proxy reaches about `1128 km^2/s^2` in the RO product and about
+`1107 km^2/s^2` in NA; the corresponding standard HI+He controls are about
+`1534 km^2/s^2` and `1506 km^2/s^2`. This is a reproducible physical-gas
+control, not a dark-residual kernel. Any extra halo-capacity or positive
+residual multiplier remains blocked unless it is supplied by an independent
+source-native rule or a Tau-side load theorem.
+
+The halo-capacity conversion search can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_halo_capacity_conversion_search_freeze.py
+```
+
+This ledger keeps the SPARC/THINGS gas proxy only as the frozen lower-bound
+component above, keeps the VizieR/THINGS global HI spectrum only as global
+HI support, and now keeps the THINGS/NED MOM0 radial profile and mass-profile
+proxy only as source-side support. It also records the MOM0-derived physical HI
+disk load as a `lambda_HI=1` control and the standard HI+He gas control with no
+residual-tuned multiplier. The next primary blocker is no longer profile
+acquisition, beam/unit conversion, or physical-gas disk-load review; it is the
+lack of an independent source-native multiplier or Tau-side load theorem for
+any extra positive residual capacity. Bosma-style HI scaling remains
+blocked until an independent scale is source-frozen, and published NFW/ISO
+halo-fit parameters are rejected as Tau source-freeze inputs because they are
+endpoint rotation-curve fits. The ledger still does not permit endpoint scoring,
+kernel promotion, or positive-load freeze.
+
+The source-route re-audit can then be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_positive_outer_capacity_source_route_reaudit.py
+```
+
+This artifact closes the NGC2841 projection route as an attenuation/control
+layer, closes the known integrated outer baryonic mass as a tiny ceiling
+control, and keeps the Dragonfly mass-profile material as shape context only.
+It records the SPARC/THINGS gas proxy as frozen lower-bound HI/gas support, but
+still keeps `outer_hi_warp_halo_capacity` blocked as the primary residual-blind
+positive-load candidate because a halo-capacity or extended-HI load conversion
+is still missing. XUV/HI, diffuse-envelope, history/environment, and Tau-side
+theorem routes remain secondary worklist entries. It does not permit endpoint
+scoring or kernel promotion.
+
+The independent multiplier rejection audit can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_independent_multiplier_rejection_audit.py
+```
+
+This final NGC2841 source-side guard separates a legitimate physical-gas
+bookkeeping control from any extra dark-residual multiplier. The standard
+HI+He factor remains usable only as a baryonic gas control. Bosma-style HI
+scaling, XUV/HI support, diffuse-envelope support, and history/environment
+routes are retained as source/context candidates but do not supply a
+source-frozen multiplier. Published NFW/ISO halo-fit parameters are rejected as
+endpoint-fit routes. Thus the next admissible positive-load step is either an
+independent source-native extra-capacity multiplier or a Tau-side load theorem,
+not a replay from the required residual scale.
+
+The Tau-side load theorem readiness audit can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_tau_side_load_theorem_readiness.py
+```
+
+This audit makes the minimal theorem shell explicit,
+`Delta_v_tau^2(R)=A_tau*K_outer(R)`, while keeping it blocked. The support
+field and positive-load route anatomy are only partially ready, and the
+no-double-counting plus endpoint-leakage boundaries are ready as audit
+constraints. The two theorem-level blockers are sharper now: no Tau-side unit
+map has been derived from the outer-capacity class into velocity-squared units,
+and no protected residual-blind amplitude source `A_tau` exists. Therefore the
+Tau-side route is a focused derivation target, not an endpoint permission.
+
+The related-paper proxy-transfer audit can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_related_paper_proxy_transfer_audit.py
+```
+
+This audit checks whether earlier Paper 8/9 proxy machinery can close the
+NGC2841 `A_tau` blocker. It finds a useful Paper 9 Bullock-disk spin proxy for
+NGC2841 (`lambda_spin ~= 0.02024`, corresponding to `beta ~= 1.08034` if used
+inside that beta-transfer grammar), but this is dimensionless and belongs to a
+multiplicative beta/closure route, not the present additive
+`Delta_v_tau^2=A_tau*K_outer` route. Paper 8's `lambda_w=sigma*q*x_w*Vflat^2`
+ansatz is a useful source-factored amplitude pattern, but remains
+formula-conditional and not directly transferable. The audit therefore finds no
+direct `A_tau` proxy; it only opens a possible future reclassification question:
+whether NGC2841 should be treated as a multiplicative beta/closure candidate
+instead of an additive outer-capacity candidate.
+
+The multiplicative beta/closure reformulation preflight can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_multiplicative_beta_closure_reformulation_preflight.py
+```
+
+This follow-up opens that reclassification question without scoring it. It
+uses the Paper 9 Bullock proxy only as a dimensionless beta-context signal and
+records the conditional shell
+`v_beta^2(R)=v_carrier^2(R)*[1+(beta_cl-1)*K_beta(R)]`, equivalently
+`Delta_v_beta^2(R)=(beta_cl-1)*K_beta(R)*v_carrier^2(R)`. The shell is
+dimensionally coherent if `beta_cl` and `K_beta` are dimensionless and the
+carrier has velocity-squared units. It does not authorize replay: a source-side
+beta/closure reformulation label, a source-frozen carrier, and a source-frozen
+`K_beta(R)` remain blocked prerequisites. The additive `A_tau` route remains
+blocked separately.
+
+The beta/closure reformulation label review can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_beta_closure_reformulation_label_review.py
+```
+
+This source-side review advances only the review status. It combines the Paper
+9 predeclared beta-transfer candidate row, the weak NFW-preference transfer
+priority, the Bullock-like spin conversion proxy, and Paper 19's
+high-inclination warped-HI/tilted-ring context. The verdict is
+`review_open_not_promoted`: NGC2841 has enough residual-blind context to prepare
+a beta/closure reviewer package, but not enough to promote the family label,
+freeze the formula, or run endpoint scoring. The remaining blockers are an
+independent spin-route decision, a source-frozen carrier, and a source-frozen
+`K_beta(R)`.
+
+The filled beta/closure reviewer response can be accepted with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_beta_closure_reformulation_review_acceptance.py
+```
+
+The reviewer keeps the route open but not promoted. The Bullock-like spin proxy
+is retained as context only, not as a frozen spin-normalization source; the
+carrier still requires a new source-frozen velocity-squared field; and
+`K_beta(R)` still requires a residual-blind radial PA/inclination profile or a
+source-native radial table. Endpoint replay, kernel promotion, and formula
+freeze remain closed.
+
+The beta/closure `K_beta(R)` profile freeze review can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_beta_closure_k_beta_profile_freeze_review.py
+```
+
+This follow-up uses the accepted Bosma Fig. 7a/7b PA/inclination digitization
+through the tilted-ring geometry profile to freeze only a caveated
+dimensionless radial shape,
+`K_beta_shape(R)=minmax_0_1(K_geom_raw(R))`. This resolves the radial-shape
+part of the `K_beta` blocker for a later formula-freeze review, but it does
+not freeze the spin normalization, sign, amplitude, or carrier. Full formula
+freeze and endpoint replay remain closed; the remaining blockers are the
+context-only spin route and the missing source-frozen velocity-squared carrier.
+
+The beta/closure baryonic carrier freeze review can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_beta_closure_baryonic_carrier_freeze_review.py
+```
+
+This artifact reads only the SPARC rotmod source-side component columns
+`Vgas`, `Vdisk`, and `Vbul` for NGC2841 and freezes the fixed-M/L carrier
+`v_carrier^2(R)=sign(Vgas)Vgas^2 + 0.5 Vdisk^2 + 0.7 Vbul^2`. The same file
+contains `Vobs` and `errV`, but these are recorded as forbidden endpoint
+columns and are not parsed into the artifact. This closes the carrier blocker
+for formula-freeze review only. The remaining blocker is the spin/beta
+normalization, because the Bullock-like proxy is still context-only and not a
+frozen beta amplitude. Endpoint replay remains closed.
+
+The beta/closure context-formula freeze review can be regenerated with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_beta_closure_context_formula_freeze_review.py
+```
+
+This final pre-endpoint step resolves the remaining spin-normalization blocker
+by not treating it as a physical spin measurement. Instead, the Paper 9
+Bullock-like value is frozen only as a caveated dimensionless `beta_context`
+coefficient inside
+`v_beta_context^2(R)=v_carrier^2(R)*[1+(beta_context-1)*K_beta_shape(R)]`.
+All terms are now frozen for formula review, with `K_beta_shape` interpolated
+onto the frozen carrier grid. This is still not endpoint authorization:
+endpoint replay, kernel promotion, and validation claims remain closed until a
+separate endpoint authorization review is prepared.
+
+The beta/closure endpoint authorization reviewer package can be regenerated
+with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_beta_closure_endpoint_authorization_reviewer_package.py
+```
+
+This writes a repo-local package and a copy under `~/Downloads/`. It contains
+only frozen formula-review artifacts and a `review_response_template.csv`.
+It contains no endpoint scores. A later replay may be prepared only if an
+external reviewer authorizes `authorize_endpoint_replay_preliminary_control`
+while preserving the no-retuning, no-relabeling, and no-validation boundaries.
+
+The filled endpoint-authorization response can be accepted with:
+
+```bash
+python scripts/build_tcdr_v4_ngc2841_beta_closure_endpoint_authorization_review_acceptance.py
+```
+
+The accepted response authorizes only a separate NGC2841 single-object
+preliminary endpoint/control replay. The scoring script may read observed
+rotation data only after this authorization, must read the frozen
+`v_beta_context^2(R)=v_carrier^2(R)*[1+(beta_context-1)*K_beta_shape(R)]`
+profile unchanged, and may not retune the formula, relabel the morphology or
+readout route, promote the kernel, or claim validation.
+
+The authorized preliminary replay can then be run with:
+
+```bash
+python scripts/run_tcdr_v4_ngc2841_beta_closure_endpoint_control_replay.py
+```
+
+The current local result is a weak positive control: the beta-context replay
+improves the fixed-M/L baryonic carrier by about `3.71 km/s` in weighted RMSE,
+but the remaining velocity gap is still large, especially in the outer zone.
+It is therefore retained as a preliminary endpoint/control replay, not as a
+validated or sufficient NGC2841 readout.
+
+## Draft-close interpretation
+
+The current draft can be closed as a controlled Photon-C dark residual protocol,
+not as observational validation. Its real-data lesson is deliberately bounded:
+source-frozen Tau kernels can move rotation curves in the correct direction
+against selected controls, but the present TCDR-v4 kernels are not yet complete
+curve predictors. `NGC6503` is the cleanest preliminary positive control,
+`NGC7793` is a caveated support-safe positive, and `NGC2841` remains a stress
+case where the score improves but the absolute readout capacity is insufficient.
+
+This points to the next required kernel class: not only morphology-labelled
+templates, but source-frozen observer-conditioned readout kernels that include
+projection, path, history, and capacity components where residual-blind source
+data justify them. Until such kernels are frozen and tested on a predeclared
+sample, the paper should claim protocol viability and directional evidence only,
+not a final Tau Core rotation-curve law.
 
 ## arXiv Source Package
 
@@ -853,12 +1634,13 @@ build products.
 
 ## Scope
 
-Paper 19 is a synthetic protocol paper. It extends the Paper 18 photon-lensing
-MAR direction toward a broader Photon-C/null-probe and dark-residual audit
-grammar. Its status is:
+Paper 19 is a controlled draft protocol with synthetic tests and preliminary
+real-data stress tests. It extends the Paper 18 photon-lensing MAR direction
+toward a broader Photon-C/null-probe and dark-residual audit grammar. Its
+status is:
 
 ```text
-CONTROLLED_SYNTHETIC_PHOTON_C_DARK_RESIDUAL_PROTOCOL
+CONTROLLED_PHOTON_C_DARK_RESIDUAL_DRAFT_PROTOCOL
 ```
 
 ## Relation to Other Tau Core Papers

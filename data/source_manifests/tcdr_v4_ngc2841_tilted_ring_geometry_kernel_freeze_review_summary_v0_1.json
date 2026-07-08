@@ -1,0 +1,44 @@
+{
+  "n_rows": 16,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "kernel_id": "K_NGC2841_TILTED_RING_PA_I_SOURCE_REVIEW_V0_1",
+  "kernel_expression": "K_geom(R)=normalize_0_1(sqrt(((PA(R)-<PA>_R<=10)/DeltaPA_max)^2 + ((i(R)-<i>_R<=10)/Deltai_max)^2)); source-review geometry shape only",
+  "baseline_rule": "inner_orientation_mean_over_R_le_10_kpc",
+  "inner_mean_position_angle_deg": 148.32,
+  "inner_mean_inclination_deg": 68.05999999999999,
+  "position_angle_normalization_delta_deg": 11.680000000000007,
+  "inclination_normalization_delta_deg": 13.740000000000009,
+  "kernel_min": 0.013534750783602422,
+  "kernel_max": 1.0,
+  "kernel_outer_value": 1.0,
+  "kernel_monotonic_increasing": false,
+  "formula_freeze_review_status_counts": {
+    "geometry_kernel_shape_review_ready_no_scoring": 16
+  },
+  "formula_ready_counts": {
+    "no": 16
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 16
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 16
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 16
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 16
+  },
+  "dimension_check": "pass_dimensionless_kernel_from_degrees_normalized_by_degree_spans",
+  "formula_ready": false,
+  "formula_freeze_review_ready": true,
+  "endpoint_replay_allowed": false,
+  "kernel_promotion_allowed": false,
+  "new_route_scoring_allowed": false,
+  "claim_boundary": "ngc2841_tilted_ring_geometry_kernel_freeze_review_not_scoring",
+  "verdict": "The accepted NGC2841 reviewer PA/inclination profile now supports a caveated source-side tilted-ring geometry kernel shape. This freezes only the dimensionless radial shape for formula-freeze review. It does not freeze sign, amplitude, or carrier, and it does not authorize endpoint replay or kernel promotion.",
+  "next_allowed_action": "source-review sign, carrier, and amplitude rules before any scoring script may read rotation data"
+}

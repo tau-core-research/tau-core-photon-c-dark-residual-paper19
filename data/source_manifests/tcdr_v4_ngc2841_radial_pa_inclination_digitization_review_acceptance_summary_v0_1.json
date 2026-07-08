@@ -1,0 +1,56 @@
+{
+  "n_rows": 16,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "filled_zip": "/Users/jolcsak/Downloads/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_FILLED_v0_1.zip",
+  "filled_zip_sha256": "a3b2e8ebae666d59c129b4b9ddf9f48ef28b59bac81d0113d4a56570d3b0ccae",
+  "response_csv": "data/reviewer_responses/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_response_v0_1.csv",
+  "response_csv_sha256": "f89ea6806fda0803218576d7bb5ef54a42464fcea91b8698c2809c567fdfd6f9",
+  "leakage_free": true,
+  "monotonic_radius": true,
+  "radius_unique": true,
+  "range_ok": true,
+  "enough_points": true,
+  "quality_flag_counts": {
+    "caveated": 16
+  },
+  "radius_range_kpc": [
+    0.0,
+    37.0
+  ],
+  "position_angle_range_deg": [
+    147.9,
+    160.0
+  ],
+  "inclination_range_deg": [
+    68.0,
+    81.8
+  ],
+  "position_angle_delta_outer_minus_inner_deg": 11.800000000000011,
+  "inclination_delta_outer_minus_inner_deg": 13.700000000000003,
+  "position_angle_span_deg": 12.099999999999994,
+  "inclination_span_deg": 13.799999999999997,
+  "inner_mean_position_angle_deg_r_le_10": 148.32,
+  "inner_mean_inclination_deg_r_le_10": 68.05999999999999,
+  "outer_mean_position_angle_deg_r_ge_20": 157.4875,
+  "outer_mean_inclination_deg_r_ge_20": 77.6125,
+  "profile_status": "accepted_caveated_source_side_digitized_radial_pa_inclination_profile",
+  "formula_ready": false,
+  "formula_freeze_review_ready": true,
+  "endpoint_replay_permission_counts": {
+    "no": 16
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 16
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 16
+  },
+  "forbidden_endpoint_inputs_used_counts": {
+    "no": 16
+  },
+  "claim_boundary": "ngc2841_radial_pa_inclination_digitization_review_acceptance_not_scoring",
+  "verdict": "The filled reviewer response is leakage-clean and supplies a caveated source-side digitized radial PA/inclination profile for NGC2841 from Bosma Figure 7 panels a and b only. It can support a later formula-freeze review, but it is not a formula freeze and does not authorize endpoint scoring.",
+  "next_allowed_action": "Build a geometry-profile formula-freeze review that uses this profile as a caveated source-side input, checks dimensions/limits, and still keeps endpoint scoring closed until formula ingredients are frozen."
+}

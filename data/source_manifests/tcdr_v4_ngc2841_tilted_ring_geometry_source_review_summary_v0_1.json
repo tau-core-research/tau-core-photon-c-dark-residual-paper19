@@ -1,0 +1,37 @@
+{
+  "n_rows": 6,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "source_status_counts": {
+    "accepted_qualitative_geometry_source": 2,
+    "accepted_model_geometry_source": 1,
+    "accepted_caveated_geometry_source": 1,
+    "figure_only_profile_available": 1,
+    "accepted_geometry_caveat": 1
+  },
+  "formula_freeze_status_counts": {
+    "support_only_numeric_profile_still_blocked": 2,
+    "numeric_profile_requires_digitization_or_table": 2,
+    "blocked_needs_source_side_digitization_or_native_table": 1,
+    "caveat_only_no_profile_freeze": 1
+  },
+  "geometry_route_supported": true,
+  "exact_tilted_ring_numeric_profile_frozen": false,
+  "digitization_or_native_table_required": true,
+  "endpoint_replay_permission_counts": {
+    "no": 6
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 6
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 6
+  },
+  "forbidden_endpoint_inputs_used_counts": {
+    "no": 6
+  },
+  "claim_boundary": "ngc2841_tilted_ring_geometry_source_review_not_formula_not_scoring",
+  "verdict": "Bosma/NED source text strongly supports a geometry-bearing warped-HI tilted-ring route for NGC2841, including an outer PA/orientation change and an annular tilted-ring model. It does not yet freeze an exact numeric PA/inclination profile because the available source profile is figure-only in the HTML representation. Formula freeze and endpoint replay remain closed.",
+  "next_allowed_action": "perform residual-blind digitization of Bosma Figure 7 or locate a source-native PA/inclination table; otherwise build only a scalar outer-capacity support shell with the geometry subchannel disabled"
+}

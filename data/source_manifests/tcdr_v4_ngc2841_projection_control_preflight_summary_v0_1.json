@@ -1,0 +1,36 @@
+{
+  "n_rows": 5,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "route_id": "tilted_ring_projection_control",
+  "preferred_next_route": "tilted_ring_projection_control",
+  "projection_control_preflight_ready": true,
+  "diagnostic_only": true,
+  "positive_load_ready": false,
+  "endpoint_ready": false,
+  "endpoint_replay_allowed": false,
+  "diagnostic_replay_permission": "separate_authorization_required",
+  "kernel_promotion_allowed": false,
+  "new_route_scoring_allowed": false,
+  "uses_vobs_or_residual_counts": {
+    "no": 5
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 5
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 5
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 5
+  },
+  "outer_projection_factor": 0.8782630721958365,
+  "outer_gamma_i": 0.12173692780416345,
+  "gamma_i_max": 0.12173692780416345,
+  "geometry_kernel_id": "K_NGC2841_TILTED_RING_PA_I_SOURCE_REVIEW_V0_1",
+  "source_profile_status": "accepted_caveated_source_side_digitized_radial_pa_inclination_profile",
+  "claim_boundary": "ngc2841_projection_control_preflight_not_endpoint_scoring",
+  "verdict": "NGC2841 has one clean near-term route: a tilted-ring projection-control preflight. The route is source-side and leakage-clean, and the strict projection identity fixes a negative multiplicative attenuation. It is not a positive dark-residual load, not endpoint scoring, and not kernel promotion.",
+  "next_allowed_action": "If the user requests a replay, build a separate diagnostic-only projection control replay that reads this frozen preflight unchanged. Do not use that replay to promote a positive outer-capacity branch."
+}

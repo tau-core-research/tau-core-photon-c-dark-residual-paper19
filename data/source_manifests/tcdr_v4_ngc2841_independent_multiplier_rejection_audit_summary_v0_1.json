@@ -1,0 +1,61 @@
+{
+  "n_rows": 7,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "control_ready_routes": [
+    "physical_hi_plus_helium_gas_control"
+  ],
+  "context_supported_multiplier_missing_routes": [
+    "bosma_hi_scaling_outer_disk",
+    "diffuse_outer_envelope_capacity",
+    "history_environment_outer_capacity",
+    "xuv_hi_outer_starforming_capacity"
+  ],
+  "theory_route_open": [
+    "tau_side_outer_capacity_load_theorem"
+  ],
+  "rejected_endpoint_fit_routes": [
+    "nfw_iso_halo_fit_parameters"
+  ],
+  "independent_multiplier_ready": false,
+  "positive_dark_residual_load_ready": false,
+  "endpoint_ready": false,
+  "claim_boundary": "ngc2841_independent_multiplier_rejection_audit_not_endpoint",
+  "source_status_counts": {
+    "CAVEATED_CONTEXT_ONLY": 1,
+    "ENDPOINT_FIT_ROUTE": 1,
+    "MOTIVATED_CONTEXT_ONLY": 1,
+    "SOURCE_FROZEN_PHYSICAL_GAS_CONTROL": 1,
+    "SOURCE_SUPPORTED_CONTEXT": 1,
+    "SOURCE_SUPPORTED_SHAPE_CONTEXT": 1,
+    "THEORY_ROUTE_OPEN": 1
+  },
+  "multiplier_status_counts": {
+    "CONTROL_READY_NOT_EXTRA_DARK_RESIDUAL_MULTIPLIER": 1,
+    "MULTIPLIER_MISSING": 1,
+    "MULTIPLIER_MISSING_COMPONENT_NORMALIZATION_MISSING": 1,
+    "MULTIPLIER_MISSING_OBSERVABLE_MISSING": 1,
+    "REJECTED_ENDPOINT_FIT": 1,
+    "REJECTED_NO_SOURCE_FROZEN_SCALE": 1,
+    "THEOREM_MISSING": 1
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 7
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 7
+  },
+  "positive_load_freeze_permission_counts": {
+    "no": 7
+  },
+  "independent_multiplier_ready_counts": {
+    "no": 7
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 6,
+    "yes_endpoint_fit_route_rejected": 1
+  },
+  "verdict": "The audit finds one source-frozen physical gas bookkeeping control (HI plus the standard helium factor) but no independent extra-capacity or positive dark-residual multiplier. XUV, diffuse-envelope, Bosma-style, and history/environment routes remain source/context supported but multiplier-blocked. NFW/ISO halo-fit parameters are rejected because they are endpoint fits. NGC2841 therefore remains endpoint-blocked.",
+  "next_allowed_action": "Either find an independent source-native extra-capacity multiplier, or derive a Tau-side outer-capacity load theorem. Do not replay the positive-load kernel from required residual scale."
+}

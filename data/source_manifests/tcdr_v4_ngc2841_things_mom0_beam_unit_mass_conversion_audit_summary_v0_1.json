@@ -1,0 +1,54 @@
+{
+  "galaxy": "NGC2841",
+  "products": [
+    "NA",
+    "RO"
+  ],
+  "n_rows": 120,
+  "source_reference": "Walter2008THINGS_NED_Images_2008AJ_136_2563W",
+  "calibration_reference_artifact": "data/source_manifests/tcdr_v4_ngc2841_things_ned_mom0_radial_profile_freeze_summary_v0_1.json",
+  "global_hi_reference_artifact": "data/source_manifests/tcdr_v4_ngc2841_things_vizier_global_hi_source_freeze_summary_v0_1.json",
+  "hi_mass_conversion": "M_HI_Msun=2.356e5*D_Mpc^2*S_HI_Jy_km_s",
+  "source_native_flux_consistency_ready": true,
+  "mass_profile_proxy_ready": true,
+  "disk_gravity_load_review_ready": false,
+  "positive_load_freeze_ready": false,
+  "endpoint_ready": false,
+  "product_summaries": [
+    {
+      "product": "NA",
+      "beam_area_pixels_from_history": 52.21314923835005,
+      "integrated_mom0_flux_jy_kms_proxy": 176.00812172424543,
+      "integrated_mom0_hi_mass_msun_proxy": 8244156354.60735,
+      "vizier_global_flux_jy_kms_proxy": 183.31434210389813,
+      "flux_ratio_to_vizier_global": 0.9601437601891961,
+      "outer_ge_30kpc_enclosed_spherical_v2_max_km2s2_proxy": 727.1492640973963,
+      "outer_ge_30kpc_sigma_hi_msun_pc2_median_proxy": 0.38503957806246625
+    },
+    {
+      "product": "RO",
+      "beam_area_pixels_from_history": 17.67229130225716,
+      "integrated_mom0_flux_jy_kms_proxy": 181.03204091936973,
+      "integrated_mom0_hi_mass_msun_proxy": 8479474901.0003805,
+      "vizier_global_flux_jy_kms_proxy": 183.31434210389813,
+      "flux_ratio_to_vizier_global": 0.9875497947496392,
+      "outer_ge_30kpc_enclosed_spherical_v2_max_km2s2_proxy": 740.3285974605766,
+      "outer_ge_30kpc_sigma_hi_msun_pc2_median_proxy": 0.3925804373693414
+    }
+  ],
+  "endpoint_replay_permission_counts": {
+    "no": 120
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 120
+  },
+  "positive_load_freeze_permission_counts": {
+    "no": 120
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 120
+  },
+  "claim_boundary": "ngc2841_things_mom0_beam_unit_mass_conversion_audit_not_endpoint",
+  "verdict": "The NED/THINGS MOM0 maps pass a source-side beam/unit consistency check: beam-area conversion gives integrated HI fluxes close to the VizieR global spectrum. A residual-blind HI mass-profile proxy can therefore be audited. This is still not an endpoint kernel or dark-residual load claim because disk gravity/load promotion has not been reviewed.",
+  "next_allowed_action": "Review whether the MOM0-derived HI mass profile may be promoted to a source-frozen extended-HI load family, including disk-gravity geometry and no-residual amplitude rules."
+}

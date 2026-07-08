@@ -1,0 +1,29 @@
+{
+  "n_rows": 2,
+  "galaxies": [
+    "NGC2841",
+    "UGC00191"
+  ],
+  "formula_freeze_status_counts": {
+    "frozen_caveated_source_formula_no_scoring": 1,
+    "not_frozen_route_review_blocked": 1
+  },
+  "formula_freeze_permission_counts": {
+    "no": 1,
+    "yes_source_formula_frozen_no_scoring": 1
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 2
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 2
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 2
+  },
+  "frozen_formula_ids": [
+    "F_CAVEATED_SPIRAL_PATH_WINDOW_SOURCE_FROZEN"
+  ],
+  "claim_boundary": "allowed_failure_spiral_path_formula_freeze_not_scoring",
+  "verdict": "NGC2841 now has a caveated source-frozen spiral/path formula shell built from the four numeric source coordinates. UGC00191 remains blocked. The artifact prepares scoring but does not authorize endpoint replay, kernel promotion, or new-route scoring."
+}

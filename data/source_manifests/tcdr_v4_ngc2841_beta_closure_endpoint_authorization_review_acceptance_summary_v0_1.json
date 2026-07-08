@@ -1,0 +1,70 @@
+{
+  "all_decisions_high_confidence": true,
+  "artifact": "tcdr_v4_ngc2841_beta_closure_endpoint_authorization_review_acceptance_v0_1.csv",
+  "authorized_formula": "v_beta_context^2(R)=v_carrier^2(R)*[1+(beta_context-1)*K_beta_shape(R)]",
+  "beta_context": 1.0803447810919469,
+  "beta_context_boundary": "caveated_context_coefficient_not_direct_spin_measurement",
+  "carrier_status": "fixed_mlr_baryonic_velocity_squared_carrier_for_formula_freeze_review",
+  "claim_boundary": "ngc2841_beta_closure_endpoint_authorization_review_acceptance_preliminary_control_only",
+  "conditions_for_valid_replay": [
+    "endpoint scoring script reads frozen formula profile unchanged",
+    "no formula term is retuned after observed rotation data are inspected",
+    "no morphology/readout label is changed from endpoint performance",
+    "result is reported as single-object preliminary endpoint/control replay, not validation",
+    "beta_context remains caveated context coefficient, not direct spin measurement"
+  ],
+  "endpoint_ready": true,
+  "endpoint_replay_authorized": true,
+  "endpoint_scope": "single_object_preliminary_endpoint_control_replay_only",
+  "formula_must_be_read_unchanged": true,
+  "formula_retuning_allowed": false,
+  "galaxy": "NGC2841",
+  "k_beta_status": "accepted_caveated_digitized_pa_inclination_profile_shape_for_formula_freeze_review",
+  "kernel_promotion_ready": false,
+  "legacy_blocked_review_artifact_present": true,
+  "legacy_blocked_review_disposition": "superseded_for_endpoint_authorization_by_later_k_beta_carrier_and_formula_freeze_reviews",
+  "morphology_relabel_allowed": false,
+  "n_rows": 4,
+  "next_allowed_action": "write_and_run_separate_endpoint_replay_script_that_reads_the_frozen_formula_unchanged",
+  "not_authorized": [
+    "empirical_validation_claim",
+    "kernel_promotion",
+    "morphology_or_readout_label_change_from_endpoint_performance",
+    "formula_retuning_after_endpoint_scoring",
+    "describing_beta_context_as_direct_physical_spin_measurement",
+    "multi-object or population claim"
+  ],
+  "overall_verdict": "authorize_endpoint_replay_preliminary_control",
+  "permission_counts": {
+    "endpoint_replay_permission": {
+      "yes": 4
+    },
+    "formula_retuning_allowed": {
+      "no": 4
+    },
+    "kernel_promotion_permission": {
+      "no": 4
+    },
+    "morphology_relabel_allowed": {
+      "no": 4
+    },
+    "uses_vobs_or_residual_in_review": {
+      "no": 4
+    },
+    "validation_claim_allowed": {
+      "no": 4
+    }
+  },
+  "review_response_accepted": true,
+  "review_response_claim_boundary": "ngc2841_beta_closure_endpoint_authorization_review_response_preliminary_control_only",
+  "scoring_script_may_read_vobs_after_authorization": true,
+  "source_side_evidence": [
+    "all_formula_terms_frozen_for_review=true",
+    "K_beta_profile_ready_for_formula_freeze_review=true",
+    "carrier_ready_for_beta_formula_freeze_review=true",
+    "physical_spin_claim=false",
+    "source_profile_leakage_free=true for K_beta and carrier artifacts"
+  ],
+  "validation_claim_allowed": false,
+  "verdict": "The filled endpoint authorization response is accepted. It authorizes only a separate NGC2841 single-object preliminary endpoint/control replay using the frozen beta-context formula unchanged. It does not authorize retuning, morphology/readout relabeling, kernel promotion, validation claims, or population claims."
+}

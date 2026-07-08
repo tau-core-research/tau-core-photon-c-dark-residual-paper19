@@ -1,0 +1,49 @@
+{
+  "n_rows": 50,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "formula_id": "F_NGC2841_BETA_CONTEXT_CLOSURE_REVIEW_V0_1",
+  "formula_expression": "v_beta_context^2(R)=v_carrier^2(R)*[1+(beta_context-1)*K_beta_shape(R)]",
+  "perturbation_expression": "Delta_v_beta_context^2(R)=(beta_context-1)*K_beta_shape(R)*v_carrier^2(R)",
+  "beta_context": 1.0803447810919469,
+  "lambda_spin_context": 0.0202436093494148,
+  "beta_context_source": "paper9_bullock_ngc2841_dimensionless_proxy_context",
+  "beta_context_role": "caveated_context_coefficient_not_direct_spin_measurement",
+  "dimension_check": "pass_beta_context_and_K_beta_dimensionless_carrier_supplies_velocity_squared",
+  "k_beta_profile_ready": true,
+  "carrier_ready": true,
+  "spin_blocker_disposition": "retired_for_formula_review_by_recasting_as_beta_context_not_spin_freeze",
+  "physical_spin_claim": false,
+  "all_formula_terms_frozen_for_review": true,
+  "formula_freeze_review_ready": true,
+  "endpoint_ready": false,
+  "endpoint_replay_allowed": false,
+  "kernel_promotion_ready": false,
+  "new_route_scoring_allowed": false,
+  "v_beta_context_min_kms": 112.83469393988723,
+  "v_beta_context_max_kms": 231.36147480227896,
+  "delta_v_beta_context2_min_km2s2": 24.03712955360613,
+  "delta_v_beta_context2_max_km2s2": 1335.220950215237,
+  "permission_counts": {
+    "endpoint_replay_permission": {
+      "no": 50
+    },
+    "formula_freeze_permission": {
+      "no": 50
+    },
+    "kernel_promotion_permission": {
+      "no": 50
+    },
+    "new_route_scoring_permission": {
+      "no": 50
+    },
+    "uses_vobs_or_residual": {
+      "no": 50
+    }
+  },
+  "forbidden_inputs": "Vobs;errV;rotation_curve;rotation_residual;RMSE;baseline_score;endpoint_rank;required_epsilon_fit;required_lambda_fit;observed_velocity_gap",
+  "claim_boundary": "ngc2841_beta_closure_context_formula_freeze_review_not_endpoint",
+  "verdict": "The NGC2841 beta/closure route is now formula-freeze-review ready as a caveated beta-context formula, not as a physical spin-normalization claim. The profile still grants no endpoint replay, no kernel promotion, and no validation claim.",
+  "next_allowed_action": "Prepare a separate endpoint authorization review if scoring is desired; the scoring script must read this frozen formula unchanged."
+}

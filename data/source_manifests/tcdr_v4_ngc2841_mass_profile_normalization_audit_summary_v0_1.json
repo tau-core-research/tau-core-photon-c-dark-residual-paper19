@@ -1,0 +1,34 @@
+{
+  "n_rows": 2,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "profile_variants": [
+    "constant_outer_color",
+    "measured_color"
+  ],
+  "reference_outer_stellar_mass_msun": 140000000.0,
+  "normalization_status_counts": {
+    "blocked_component_semantics_required": 2
+  },
+  "allowed_use_counts": {
+    "shape_candidate_only_no_load": 2
+  },
+  "normalization_blocked": true,
+  "formula_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 2
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 2
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 2
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 2
+  },
+  "claim_boundary": "ngc2841_mass_profile_normalization_audit_not_scoring",
+  "verdict": "The Dragonfly mass-profile digitization is leakage-free but not load-ready. Naive annular integration over the outer disk does not reproduce the quoted Zhang et al. outer-disk stellar mass, so the profile can only be retained as a shape candidate until component/normalization semantics are resolved.",
+  "next_allowed_action": "Ask the reviewer or source audit to identify whether the figure curve should be treated as total profile, outer-component profile, or renormalized shape; do not run endpoint scoring from this profile yet."
+}

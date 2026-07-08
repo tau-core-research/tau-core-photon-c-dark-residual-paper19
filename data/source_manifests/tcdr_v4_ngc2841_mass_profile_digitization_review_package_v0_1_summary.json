@@ -1,0 +1,28 @@
+{
+  "package_stem": "tcdr_v4_ngc2841_mass_profile_digitization_review_package_v0_1",
+  "package_dir": "data/reviewer_packages/tcdr_v4_ngc2841_mass_profile_digitization_review_package_v0_1",
+  "zip_path": "data/reviewer_packages/tcdr_v4_ngc2841_mass_profile_digitization_review_package_v0_1.zip",
+  "downloads_zip_path": "/Users/jolcsak/Downloads/tcdr_v4_ngc2841_mass_profile_digitization_review_package_v0_1.zip",
+  "zip_sha256": "9986ebfd03fa9f11a024b3a381225ce63eade4a9d0ef3a2fd844416cafdf832c",
+  "downloads_zip_sha256": "9986ebfd03fa9f11a024b3a381225ce63eade4a9d0ef3a2fd844416cafdf832c",
+  "png_rendered": true,
+  "n_manifest_rows": 7,
+  "included_files": [
+    "README_REVIEWER.md",
+    "Zhang_accepted_2col_excerpt.txt",
+    "load_source_search.csv",
+    "load_source_search_summary.json",
+    "prof_masses1and2_4.pdf",
+    "review_response_template.csv",
+    "zhang2018_mass_surface_density_profile.png"
+  ],
+  "forbidden_inputs": "rotation_curve;Vobs;residual;RMSE;baseline_score;endpoint_rank;required_epsilon_fit;required_lambda_fit;observed_velocity_gap",
+  "uses_vobs_or_residual": "no",
+  "endpoint_replay_permission": "no",
+  "kernel_promotion_permission": "no",
+  "new_route_scoring_permission": "no",
+  "endpoint_data_policy": "source_side_only_do_not_use_rotation_residuals_endpoint_scores_or_baseline_scores",
+  "claim_boundary": "ngc2841_mass_profile_digitization_review_package_not_scoring",
+  "verdict": "Reviewer package prepared for independent source-side digitization of the NGC2841 Dragonfly stellar/gas mass-surface-density profile. The package is not an endpoint replay authorization.",
+  "next_allowed_action": "External reviewer completes review_response_template.csv. A separate source-side acceptance script may then check leakage flags, units, monotonicity/caveats, and conversion readiness."
+}

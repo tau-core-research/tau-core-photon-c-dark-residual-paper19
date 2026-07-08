@@ -1,0 +1,46 @@
+{
+  "n_rows": 5,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "kernel_id": "K_NGC2841_TILTED_RING_PA_I_SOURCE_REVIEW_V0_1",
+  "rule_status_counts": {
+    "blocked_no_source_native_load_rule": 1,
+    "blocked_two_branch_source_interpretation": 1,
+    "blocked_until_formula_rules_frozen": 1,
+    "candidate_inherit_fixed_baryonic_carrier_policy": 1,
+    "frozen_for_formula_review_shape_only": 1
+  },
+  "allowed_formula_use_counts": {
+    "candidate_carrier_review_no_scoring": 1,
+    "no_amplitude_not_frozen": 1,
+    "no_endpoint_replay": 1,
+    "no_sign_not_frozen": 1,
+    "yes_shape_only_formula_review_no_scoring": 1
+  },
+  "formula_ready_counts": {
+    "no": 5
+  },
+  "formula_freeze_review_ready_counts": {
+    "no_blocked": 3,
+    "yes_caveated": 2
+  },
+  "blocked_rule_items": [
+    "amplitude_or_load_rule",
+    "endpoint_authorization",
+    "sign_rule"
+  ],
+  "candidate_review_rule_items": [
+    "carrier_rule"
+  ],
+  "frozen_review_rule_items": [
+    "geometry_kernel_shape"
+  ],
+  "formula_ready": false,
+  "endpoint_replay_allowed": false,
+  "kernel_promotion_allowed": false,
+  "new_route_scoring_allowed": false,
+  "claim_boundary": "ngc2841_tilted_ring_formula_rule_review_not_scoring",
+  "verdict": "The accepted NGC2841 geometry kernel supplies a source-side shape and a reviewable fixed-baryonic carrier candidate. It does not yet supply a single sign rule or an amplitude/load rule. Endpoint replay remains blocked; the next finite task is a source/theory-side sign-and-load review, not scoring.",
+  "next_allowed_action": "build a reviewer authorization package for the sign rule and load rule, or derive them from a declared Tau Core outer-capacity principle"
+}

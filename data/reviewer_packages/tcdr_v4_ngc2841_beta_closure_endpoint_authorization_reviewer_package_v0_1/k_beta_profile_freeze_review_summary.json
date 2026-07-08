@@ -1,0 +1,52 @@
+{
+  "n_rows": 16,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "k_beta_id": "K_BETA_NGC2841_PA_I_SOURCE_SHAPE_V0_1",
+  "k_beta_expression": "K_beta_shape(R)=minmax_0_1(K_geom_raw(R)); K_geom_raw=sqrt(((PA(R)-<PA>_R<=10)/DeltaPA_max)^2 + ((i(R)-<i>_R<=10)/Deltai_max)^2)",
+  "k_beta_source_basis": "accepted caveated Bosma Fig.7a PA and Fig.7b inclination digitization",
+  "dimension_check": "pass_dimensionless_profile_from_normalized_pa_inclination_shape",
+  "raw_shape_min": 0.0190592649258451,
+  "raw_shape_max": 1.408172579648509,
+  "k_beta_min": 0.0,
+  "k_beta_max": 1.0,
+  "k_beta_outer_value": 1.0,
+  "k_beta_monotonic_increasing": false,
+  "K_beta_profile_ready_for_formula_freeze_review": true,
+  "K_beta_kernel_promoted": false,
+  "source_profile_leakage_free": true,
+  "resolved_blocker_id": "BETA_K_REQUIRES_SOURCE_NATIVE_RADIAL_PROFILE",
+  "resolved_blocker_status": "resolved_as_caveated_digitized_pa_inclination_profile_shape",
+  "remaining_blockers": [
+    "BETA_SPIN_CONTEXT_ONLY_NOT_FREEZE",
+    "BETA_CARRIER_REQUIRES_NEW_SOURCE_FREEZE"
+  ],
+  "full_formula_freeze_ready": false,
+  "formula_freeze_ready": false,
+  "endpoint_ready": false,
+  "kernel_promotion_ready": false,
+  "endpoint_replay_allowed": false,
+  "new_route_scoring_allowed": false,
+  "permission_counts": {
+    "endpoint_replay_permission": {
+      "no": 16
+    },
+    "formula_freeze_permission": {
+      "no": 16
+    },
+    "kernel_promotion_permission": {
+      "no": 16
+    },
+    "new_route_scoring_permission": {
+      "no": 16
+    },
+    "uses_vobs_or_residual": {
+      "no": 16
+    }
+  },
+  "forbidden_inputs": "rotation_curve;Vobs;residual;RMSE;baseline_score;endpoint_rank;required_epsilon_fit;panel_c_rotation_velocity;panel_d_surface_density",
+  "claim_boundary": "ngc2841_beta_closure_k_beta_profile_freeze_review_not_scoring",
+  "verdict": "The accepted PA/inclination source profile closes only the K_beta radial-shape blocker for a later formula-freeze review. It does not freeze beta amplitude, spin normalization, sign, carrier, or any endpoint replay.",
+  "next_allowed_action": "Resolve the carrier and spin-normalization blockers with residual-blind source-side artifacts before any beta/closure endpoint scoring."
+}

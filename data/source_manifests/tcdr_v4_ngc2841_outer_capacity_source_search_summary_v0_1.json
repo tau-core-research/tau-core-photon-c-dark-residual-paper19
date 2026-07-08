@@ -1,0 +1,38 @@
+{
+  "n_rows": 6,
+  "n_strong_source_candidates": 3,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "source_status_counts": {
+    "STRONG_OUTER_CAPACITY_SOURCE_CANDIDATE": 1,
+    "STRONG_OUTER_PATH_HALO_SOURCE_CANDIDATE": 1,
+    "STRONG_XUV_HI_OUTER_CAPACITY_SOURCE_CANDIDATE": 1,
+    "CAVEATED_OUTER_HALO_SHAPE_SOURCE_CANDIDATE": 1,
+    "CAVEATED_VERTICAL_PATH_SOURCE_CANDIDATE": 1,
+    "CAVEATED_HOT_GAS_PATH_CONTEXT": 1
+  },
+  "source_route_counts": {
+    "outer_stellar_hi_uv_capacity": 1,
+    "outer_hi_warp_halo_capacity": 1,
+    "outer_xuv_hi_starforming_capacity": 1,
+    "outer_halo_shape_or_infall_path_context": 1,
+    "vertical_path_or_outflow_context": 1,
+    "hot_gas_halo_path_context": 1
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 6
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 6
+  },
+  "forbidden_endpoint_inputs_used_counts": {
+    "no": 6
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 6
+  },
+  "claim_boundary": "ngc2841_outer_capacity_source_search_not_formula_not_scoring",
+  "verdict": "Independent source-side literature does identify plausible outer-capacity routes for NGC2841. The strongest route is composite: extended stellar/HI/UV outer disk plus warped HI tilted-ring geometry plus XUV/HI outer star formation. This closes a source-search blocker only; it does not authorize endpoint replay or kernel promotion.",
+  "next_allowed_action": "build a residual-blind outer-capacity formula-freeze worklist using only source-native fields such as outer onset radius, outer extent, HI extent, XUV extent, warp/tilted-ring geometry, and caveated vertical/path flags"
+}

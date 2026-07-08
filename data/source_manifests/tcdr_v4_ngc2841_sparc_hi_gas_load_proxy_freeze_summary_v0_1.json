@@ -1,0 +1,45 @@
+{
+  "n_rows": 50,
+  "n_outer_rows_ge_30kpc": 17,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "source_archive": "data/external/sparc_preflight/Rotmod_LTG.zip",
+  "source_member": "NGC2841_rotmod.dat",
+  "source_reference": "SPARC_Lelli2016c_Rotmod_LTG;deBlok2008THINGS",
+  "source_url": "https://astroweb.case.edu/SPARC/",
+  "gas_load_proxy_freeze_ready": true,
+  "positive_dark_residual_load_ready": false,
+  "endpoint_ready": false,
+  "endpoint_replay_permission_counts": {
+    "no": 50
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 50
+  },
+  "positive_dark_residual_load_ready_counts": {
+    "no": 50
+  },
+  "gas_load_proxy_freeze_ready_counts": {
+    "yes": 50
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 50
+  },
+  "outer_max_vgas_kms": 68.98,
+  "outer_max_vgas2_positive_load_proxy_km2s2": 4758.240400000001,
+  "outer_median_vgas2_positive_load_proxy_km2s2": 4218.5025000000005,
+  "outer_median_required_positive_v2_gap_after_ceiling_km2s2": 65312.98348173122,
+  "outer_median_gas_proxy_fraction_of_required_gap": 0.06458903383551547,
+  "outer_max_gas_proxy_fraction_of_required_gap": 0.07285290223085482,
+  "frozen_kernel": "outer_hi_shape_kernel=max(Vgas^2,0)/max_outer(max(Vgas^2,0)) for R>=30kpc, else 0",
+  "ignored_endpoint_columns_present_in_source_file": [
+    "Vobs",
+    "errV"
+  ],
+  "forbidden_endpoint_inputs": "Vobs;errV;rotation_residual;RMSE;baseline_score;endpoint_rank;required_epsilon_fit;required_lambda_fit;observed_velocity_gap",
+  "endpoint_data_policy": "source_component_freeze_only_ignore_vobs_errv_endpoint_scores_and_rotation_residuals",
+  "claim_boundary": "ngc2841_sparc_hi_gas_load_proxy_freeze_not_positive_dark_residual",
+  "verdict": "The SPARC/THINGS NGC2841 gas contribution supplies a reproducible source-derived radial HI/gas load proxy and an outer HI shape kernel. Its outer amplitude is only a small fraction of the required positive outer-capacity yardstick, so it is frozen as a gas-load proxy/control, not as the missing positive dark-residual load.",
+  "next_allowed_action": "Use this frozen gas proxy as the lower-bound HI/gas shape component while searching for a source-native halo-capacity or extended-HI surface-density conversion. Do not score a new positive-load endpoint from this proxy alone."
+}

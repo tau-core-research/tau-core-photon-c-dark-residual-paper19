@@ -1,0 +1,60 @@
+{
+  "n_rows": 4,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "source_ids": [
+    "DEBLOK2008_THINGS_TABLE1_GLOBAL_INCLINATION",
+    "DEBLOK2008_THINGS_TABLE2_TILTED_RING_MEAN_PA_INCLINATION",
+    "SAMUROVIC2015_MEDIAN_ROTCUR_PA_INCLINATION",
+    "BOSMA1981_FIGURE7_PA_INCLINATION_PROFILE"
+  ],
+  "source_type_counts": {
+    "published_source_native_global_inclination_table": 1,
+    "published_source_native_tilted_ring_parameter_table": 1,
+    "published_source_native_median_pa_inclination_statement": 1,
+    "published_figure_radial_profile_not_machine_readable_table": 1
+  },
+  "profile_level_counts": {
+    "scalar_global_not_radial_profile": 1,
+    "source_native_scalar_tilted_ring_summary_not_radial_profile": 1,
+    "source_native_median_summary_not_radial_profile": 1,
+    "radial_profile_available_as_figure_only": 1
+  },
+  "formula_use_permission_counts": {
+    "support_context_only_no_formula_freeze": 1,
+    "scalar_geometry_support_only_no_radial_kernel_freeze": 1,
+    "scalar_geometry_crosscheck_only_no_radial_kernel_freeze": 1,
+    "review_candidate_only_requires_digitization_or_native_table": 1
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 4
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 4
+  },
+  "new_route_scoring_permission_counts": {
+    "no": 4
+  },
+  "forbidden_endpoint_inputs_used_counts": {
+    "no": 4
+  },
+  "has_source_native_numeric_pa_inclination_scalar": true,
+  "has_source_native_numeric_radial_pa_inclination_table": false,
+  "has_published_figure_radial_pa_inclination_profile": true,
+  "mean_source_native_pa_deg": 151.64999999999998,
+  "mean_source_native_inclination_deg": 72.06666666666666,
+  "position_angle_deg_values": [
+    152.6,
+    150.7
+  ],
+  "inclination_deg_values": [
+    69.0,
+    73.7,
+    73.5
+  ],
+  "formula_ready": false,
+  "claim_boundary": "ngc2841_source_native_pa_inclination_table_not_radial_formula_not_scoring",
+  "verdict": "The primary-source pass found source-native numeric PA/inclination summaries for NGC2841: de Blok et al. THINGS Table 2 gives <PA>=152.6 deg and <i>=73.7 deg, and Samurovic et al. give median PA=150.7 deg and i=73.5 deg. These values validate the scalar geometry scale of the tilted-ring route. They do not close the radial-profile blocker: the available radial PA/i shape remains Bosma figure-only or article-figure-level, not a source-native numeric radial table.",
+  "next_allowed_action": "Use the scalar PA/i rows only as source-native geometry support and crosscheck; keep endpoint scoring closed until an independently reviewed digitized radial profile or a source-native radial PA/i table is available."
+}

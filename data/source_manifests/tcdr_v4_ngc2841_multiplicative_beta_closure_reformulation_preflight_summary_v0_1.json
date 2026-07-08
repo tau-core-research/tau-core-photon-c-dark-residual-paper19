@@ -1,0 +1,44 @@
+{
+  "artifact": "tcdr_v4_ngc2841_multiplicative_beta_closure_reformulation_preflight_v0_1.csv",
+  "beta_cl_if_used": 1.0803447810919469,
+  "beta_proxy_available": true,
+  "blocked_requirement_ids": [
+    "BETA_2_FAMILY_REFORMULATION_LABEL",
+    "BETA_4_CARRIER",
+    "BETA_5_K_BETA_KERNEL"
+  ],
+  "claim_boundary": "multiplicative_beta_closure_reformulation_preflight_not_endpoint",
+  "dimension_status": "valid_if_carrier_velocity_squared_and_K_beta_dimensionless",
+  "endpoint_ready": false,
+  "formula_freeze_ready": false,
+  "formula_shell": "v_beta^2(R)=v_carrier^2(R)*[1+(beta_cl-1)*K_beta(R)]",
+  "lambda_spin": 0.0202436093494148,
+  "n_rows": 7,
+  "next_allowed_action": "build_source_side_label_reformulation_review_for_NGC2841_beta_closure_candidate",
+  "permission_counts": {
+    "endpoint_replay_permission": {
+      "no": 7,
+      "yes": 0
+    },
+    "formula_freeze_permission": {
+      "no": 7,
+      "yes": 0
+    },
+    "kernel_promotion_permission": {
+      "no": 7,
+      "yes": 0
+    },
+    "reformulation_label_promotion_permission": {
+      "no": 7,
+      "yes": 0
+    },
+    "uses_vobs_or_residual": {
+      "no": 7,
+      "yes": 0
+    }
+  },
+  "perturbation_shell": "Delta_v_beta^2(R)=(beta_cl-1)*K_beta(R)*v_carrier^2(R)",
+  "reformulation_open": true,
+  "source_label_promotion_ready": false,
+  "verdict": "Paper 9 opens a legitimate multiplicative beta/closure preflight direction for NGC2841, but it does not authorize replay. Source-side family reformulation, carrier freeze, and K_beta freeze remain required."
+}

@@ -1,0 +1,75 @@
+{
+  "n_rows": 5,
+  "galaxies": [
+    "NGC2841"
+  ],
+  "frozen_lower_bound_routes": [
+    "sparc_things_vgas_lower_bound"
+  ],
+  "frozen_global_hi_support_routes": [
+    "things_vizier_global_hi_spectrum"
+  ],
+  "frozen_mom0_radial_shape_routes": [
+    "things_moment0_radial_hi_surface_density"
+  ],
+  "next_primary_source_acquisition_target": "independent_extended_hi_multiplier_or_tau_side_load_theorem",
+  "rejected_endpoint_fit_routes": [
+    "nfw_iso_halo_fit_parameters"
+  ],
+  "positive_load_freeze_ready": false,
+  "endpoint_ready": false,
+  "hi_gas_lower_bound_fraction_of_required_gap_median": 0.06458903383551547,
+  "hi_gas_lower_bound_fraction_of_required_gap_max": 0.07285290223085482,
+  "global_hi_spectrum_freeze_ready": true,
+  "global_hi_spectrum_mhi_msun_proxy": 8586377522.3279,
+  "global_hi_spectrum_integrated_flux_jy_kms_proxy": 183.31434210389813,
+  "mom0_radial_profile_freeze_ready": true,
+  "mom0_beam_unit_mass_audit_ready": true,
+  "mom0_mass_profile_proxy_ready": true,
+  "mom0_disk_gravity_load_review_ready": true,
+  "mom0_physical_hi_disk_load_control_ready": true,
+  "mom0_standard_hi_plus_helium_gas_control_ready": true,
+  "mom0_standard_helium_gas_factor": 1.36,
+  "mom0_absolute_load_ready": true,
+  "mom0_positive_dark_residual_load_ready": false,
+  "mom0_na_outer_ge_30kpc_mean_shape": 0.236056119532832,
+  "mom0_na_outer_ge_30kpc_peak_shape": 0.5956549250480354,
+  "mom0_ro_outer_ge_30kpc_mean_shape": 0.26081651107157533,
+  "mom0_ro_outer_ge_30kpc_peak_shape": 0.6105700618031515,
+  "mom0_na_flux_ratio_to_vizier_global": 0.9601437601891961,
+  "mom0_ro_flux_ratio_to_vizier_global": 0.9875497947496392,
+  "mom0_primary_disk_load_product": "RO",
+  "mom0_na_outer_disk_v2_proxy": 1107.0894813993689,
+  "mom0_ro_outer_disk_v2_proxy": 1128.0459791621608,
+  "mom0_na_outer_hi_plus_helium_disk_v2_proxy": 1505.6416947031419,
+  "mom0_ro_outer_hi_plus_helium_disk_v2_proxy": 1534.142531660539,
+  "conversion_status_counts": {
+    "FROZEN_GLOBAL_HI_SUPPORT_RADIAL_CONVERSION_MISSING": 1,
+    "FROZEN_LOWER_BOUND_GAS_PROXY": 1,
+    "FROZEN_PHYSICAL_HI_DISK_LOAD_CONTROL_POSITIVE_RESIDUAL_MULTIPLIER_MISSING": 1,
+    "MOTIVATED_BUT_NO_SOURCE_FROZEN_SCALE": 1,
+    "REJECTED_FOR_SOURCE_FREEZE": 1
+  },
+  "positive_load_status_counts": {
+    "forbidden_as_tau_source_route": 1,
+    "insufficient_for_outer_capacity": 1,
+    "not_ready": 2,
+    "physical_hi_control_ready_positive_dark_residual_not_ready": 1
+  },
+  "endpoint_replay_permission_counts": {
+    "no": 5
+  },
+  "kernel_promotion_permission_counts": {
+    "no": 5
+  },
+  "positive_load_freeze_permission_counts": {
+    "no": 5
+  },
+  "uses_vobs_or_residual_counts": {
+    "no": 4,
+    "yes_endpoint_fit_route_rejected": 1
+  },
+  "claim_boundary": "ngc2841_halo_capacity_conversion_search_freeze_not_endpoint",
+  "verdict": "A lower-bound SPARC/THINGS gas proxy is frozen, and the NED-hosted THINGS moment-0 products now provide source-native radial MOM0 shape/support, a beam/unit-consistent HI mass-profile proxy, and a lambda=1 physical-HI disk-load control, with standard HI+helium gas bookkeeping tracked only as a physical-gas control. A THINGS/VizieR global HI spectrum strengthens global support, but these artifacts are not yet an accepted positive dark-residual or halo-capacity kernel. The blocker has advanced to the need for an independent source-native multiplier or Tau-side load theorem. Published NFW/ISO halo fits are explicitly rejected for source-freeze use because they are endpoint-fit baselines.",
+  "next_allowed_action": "If extra outer capacity beyond physical HI is needed, find an independent source-native multiplier or Tau-side load theorem. Do not infer a multiplier from the rotation residual, and do not use NFW/ISO fitted halo parameters for Tau source freeze."
+}
