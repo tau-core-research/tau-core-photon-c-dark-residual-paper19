@@ -467,6 +467,7 @@ def test_arxiv_zip_is_source_only() -> None:
     assert "refs.bib" in names
     assert "main.pdf" not in names
     assert any(name.startswith("figures/") and name.endswith(".png") for name in names)
+    assert not any(".pytest_cache" in name or "__pycache__" in name for name in names)
 
 
 def test_multiseed_robustness_has_null_and_positive_cases() -> None:

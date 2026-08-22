@@ -22,10 +22,15 @@ EXCLUDE_SUFFIXES = {
     ".run.xml",
     ".synctex.gz",
 }
+EXCLUDE_PARTS = {".pytest_cache", "__pycache__"}
 
 
 def should_include(path: Path) -> bool:
-    return path.is_file() and path.suffix not in EXCLUDE_SUFFIXES
+    return (
+        path.is_file()
+        and path.suffix not in EXCLUDE_SUFFIXES
+        and not any(part in EXCLUDE_PARTS for part in path.parts)
+    )
 
 
 def main() -> None:

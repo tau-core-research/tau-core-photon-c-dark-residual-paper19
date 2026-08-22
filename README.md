@@ -120,6 +120,15 @@ gitignored. No endpoint score or baseline comparison is run.
 - It does not provide observational evidence.
 - It is not a validated physical theory.
 
+## Source-Transport Boundary
+
+The null/time split does not derive a non-scalar photon transport. Scalar
+phase or clock holonomy may survive, but a full photon/polarization transport
+requires either an independently sourced full body connection or Kato
+transport of a varying, constant-rank, source-owned access projector. A TCDR
+score therefore remains a terminal association and cannot reconstruct the
+missing parent arrows or connection.
+
 ## Included Data
 
 Only compact synthetic derived artifacts are included:
