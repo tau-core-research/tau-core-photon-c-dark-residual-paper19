@@ -3,8 +3,8 @@
   "package_dir": "data/reviewer_packages/tcdr_v4_ngc2841_mass_profile_semantics_review_package_v0_1",
   "zip_path": "data/reviewer_packages/tcdr_v4_ngc2841_mass_profile_semantics_review_package_v0_1.zip",
   "downloads_zip_path": "/Users/jolcsak/Downloads/tcdr_v4_ngc2841_mass_profile_semantics_review_package_v0_1.zip",
-  "zip_sha256": "96e2f9db876cf2aed6d7cd00f46078697f1517d1ddcf284ae5c0e6d1d8f66a43",
-  "downloads_zip_sha256": "96e2f9db876cf2aed6d7cd00f46078697f1517d1ddcf284ae5c0e6d1d8f66a43",
+  "zip_sha256": "36f7b4ac81534c7540ae6eef2955c5131984b9f5e39197467fc6382d306081f2",
+  "downloads_zip_sha256": "36f7b4ac81534c7540ae6eef2955c5131984b9f5e39197467fc6382d306081f2",
   "n_manifest_rows": 11,
   "included_files": [
     "README_REVIEWER.md",

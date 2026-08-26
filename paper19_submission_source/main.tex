@@ -12,7 +12,7 @@
 
 \title{Photon-C Dark Residuals: A Synthetic Null/Time Split Protocol for Morphology-Seeded Tau Core Tests}
 \author{Tau Core Research}
-\date{Draft v0.5 -- 2026\\Last revised: 2026-08-22}
+\date{Draft v0.5 -- 2026\\Last revised: 2026-08-26}
 
 \begin{document}
 \maketitle
@@ -2092,6 +2092,23 @@ The protocol is designed to fail.  Failure occurs if:
 These failures would not disprove Tau Core globally, but they would block the
 TCDR dark-residual branch in the tested domain.
 
+\section{Full-4D physical-score boundary}
+
+The TCDR residual kernels and package scores do not reconstruct the source-side
+standard excess.  A physical Tau-over-standard score would require
+\[
+ E_K=(K_{HH}-K_{\rm std})-CK_{VV}^{-1}C^\dagger,
+ \qquad
+ \mu_\tau=\bigoplus_a\mathcal T_a[E_g],
+\]
+where $E_g$ is the common coframe push of $E_K$.  A nonzero mixed block is
+not enough, because a graph-normal completion can have $C\neq0$ and
+$E_K=0$.  Exact duplicate terminal directions must be removed, while all
+remaining cross-terminal covariance must be retained.  The present
+source-side kernels remain useful acquisition and falsification objects, but
+they do not yet provide this nonzero co-registered terminal packet.  Existing
+TCDR scores therefore remain unchanged and non-validating.
+
 \section{Discussion}
 
 The strongest result of this package is not the presence of high scores under
@@ -2118,6 +2135,15 @@ load, projection, or observer-conditioned component is not yet frozen.  This is
 the intended behavior of the protocol: a weak improvement is not promoted to a
 physical readout unless the source-side kernel is strong enough, operationally
 frozen, and resistant to controls.
+
+The foundation-level common-ancestor factorization does not promote these
+source-side kernels into a complete parent readout.  Such a promotion would
+require every admitted terminal to be constant on one source-owned
+\(\Xi_{OS}\)-fibre structure and the de-duplicated terminal stack to recover
+the same local quotient.  The present TCDR package tests neither condition.
+Its cross-terminal score is therefore compatible with several shared-source
+or common-systematics explanations and cannot establish universal Tau readout
+ancestry.
 
 The comparison with the earlier morphology/projection papers is also
 instructive.  Papers 8--9 found stronger object-level curve recovery in cases

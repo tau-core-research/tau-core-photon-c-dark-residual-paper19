@@ -3,8 +3,8 @@
   "package_dir": "data/reviewer_packages/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1",
   "zip_path": "data/reviewer_packages/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1.zip",
   "downloads_zip_path": "/Users/jolcsak/Downloads/tcdr_v4_ngc2841_radial_pa_inclination_digitization_review_package_v0_1.zip",
-  "zip_sha256": "7f56fb9bedb3d5936179d271a5ae4a9d26afe262fea29b2e3874f3214b3d6337",
-  "downloads_zip_sha256": "7f56fb9bedb3d5936179d271a5ae4a9d26afe262fea29b2e3874f3214b3d6337",
+  "zip_sha256": "b442c12302061088c5be575b3199418d42fb6df7df24fb575d3ede7be50bcb22",
+  "downloads_zip_sha256": "b442c12302061088c5be575b3199418d42fb6df7df24fb575d3ede7be50bcb22",
   "n_manifest_rows": 6,
   "included_files": [
     "README_REVIEWER.md",

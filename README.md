@@ -181,6 +181,13 @@ population-validation datasets are included. The committed source manifests do
 include compact source-side catalogue metadata needed to reproduce the
 endpoint-blind morphology and kernel-coordinate ledgers.
 
+## Full-4D Score Boundary
+
+The TCDR kernels do not reconstruct the source-side standard excess
+`E_K = (K_HH - K_std) - C K_VV^-1 C^dagger`. Their current scores remain
+diagnostic and non-validating; a later physical score requires one common
+coframe excess and the full covariance of its nonduplicated terminal images.
+
 ## Reproduce
 
 ```bash
