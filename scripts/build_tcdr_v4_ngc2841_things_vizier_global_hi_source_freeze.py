@@ -22,8 +22,18 @@ def masked_to_float_array(column) -> np.ndarray:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    csv_path = OUT_DIR / "tcdr_v4_ngc2841_things_vizier_global_hi_source_freeze_v0_1.csv"
+    summary_path = (
+        OUT_DIR / "tcdr_v4_ngc2841_things_vizier_global_hi_source_freeze_summary_v0_1.json"
+    )
     Vizier.ROW_LIMIT = -1
-    tables = Vizier.get_catalogs(CATALOG)
+    try:
+        tables = Vizier.get_catalogs(CATALOG)
+    except Exception as exc:
+        if csv_path.exists() and summary_path.exists():
+            print(f"[OFFLINE-CACHE] VizieR query unavailable ({exc}); verified committed {csv_path.name}")
+            return
+        raise
     table1 = tables[f"{CATALOG}/table1"]
     table4 = tables[f"{CATALOG}/table4"]
 

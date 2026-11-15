@@ -92,6 +92,9 @@ def run_scoring():
 
 
 def main() -> None:
+    if not mixed.base.has_external_sparc_mrt():
+        mixed.base.verify_clean_clone_committed_artifacts(ROOT)
+        return
     detail, summary, aggregate = run_scoring()
     detail.to_csv(OUT_DETAIL, index=False)
     summary.to_csv(OUT_SUMMARY, index=False)

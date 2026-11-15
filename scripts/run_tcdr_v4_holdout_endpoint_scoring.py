@@ -3,6 +3,7 @@ from __future__ import annotations
 import csv
 import json
 import math
+import os
 from pathlib import Path
 
 import numpy as np
@@ -15,6 +16,39 @@ EXTERNAL_DIR = ROOT / "data" / "external" / "sparc_preflight"
 PILOT = SOURCE_DIR / "tcdr_v4_p0_pilot_holdout_manifest_v0_1.csv"
 SAMPLE = EXTERNAL_DIR / "SPARC_Lelli2016c.mrt"
 MASS_MODELS = EXTERNAL_DIR / "MassModels_Lelli2016c.mrt"
+
+CLEAN_CLONE_SKIP_MESSAGE = (
+    "[SKIP-CLEAN-CLONE] Optional external SPARC MRT files not present; "
+    "verified committed derived artifacts"
+)
+
+
+def has_external_sparc_mrt(external_dir: Path | None = None) -> bool:
+    if os.environ.get("TCDR_FORCE_CLEAN_CLONE") == "1":
+        return False
+    if external_dir is not None:
+        return (
+            (external_dir / "SPARC_Lelli2016c.mrt").exists()
+            and (external_dir / "MassModels_Lelli2016c.mrt").exists()
+        )
+    return SAMPLE.exists() and MASS_MODELS.exists()
+
+
+def verify_clean_clone_committed_artifacts(root: Path = ROOT) -> None:
+    required = [
+        root / "data" / "derived" / "tcdr_summary.csv",
+        root / "data" / "derived" / "tcdr_multiseed_robustness_summary.csv",
+        root / "data" / "derived" / "tcdr_blind_challenge_summary.csv",
+        root / "data" / "derived" / "tcdr_realistic_mock_challenge_summary.csv",
+        root / "data" / "source_manifests" / "tcdr_v4_real_data_source_manifest_v0_1.csv",
+        root / "data" / "source_manifests" / "tcdr_v4_p0_pilot_holdout_manifest_v0_1.csv",
+        root / "data" / "source_manifests" / "tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv",
+        root / "data" / "source_manifests" / "tcdr_v4_p0_support_safe_formula_completion_manifest_v0_9.csv",
+    ]
+    missing = [str(p.relative_to(root)) for p in required if not p.exists()]
+    if missing:
+        raise FileNotFoundError(f"Missing committed clean-clone artifacts: {missing}")
+    print(CLEAN_CLONE_SKIP_MESSAGE)
 
 OUT_DETAIL = EXTERNAL_DIR / "tcdr_v4_p0_holdout_endpoint_scoring_detail_local.csv"
 OUT_SUMMARY = EXTERNAL_DIR / "tcdr_v4_p0_holdout_endpoint_scoring_summary_local.csv"
@@ -328,6 +362,9 @@ def run_scoring() -> tuple[pd.DataFrame, pd.DataFrame, dict[str, object]]:
 
 
 def main() -> None:
+    if not has_external_sparc_mrt():
+        verify_clean_clone_committed_artifacts(ROOT)
+        return
     detail, summary, aggregate = run_scoring()
     detail.to_csv(OUT_DETAIL, index=False, quoting=csv.QUOTE_MINIMAL)
     summary.to_csv(OUT_SUMMARY, index=False, quoting=csv.QUOTE_MINIMAL)

@@ -4,15 +4,17 @@
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
-\usepackage[hidelinks]{hyperref}
-\usepackage{float}
+\usepackage[hyphens]{url}
+\usepackage[hidelinks,breaklinks=true]{hyperref}
 \usepackage{array}
 
+\Urlmuskip=0mu plus 2mu\relax
+\setlength{\emergencystretch}{3em}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 \title{Photon-C Dark Residuals: A Synthetic Null/Time Split Protocol for Morphology-Seeded Tau Core Tests}
 \author{Tau Core Research}
-\date{Draft v0.5 -- 2026\\Last revised: 2026-08-26}
+\date{Last revised: 9 October 2026}
 
 \begin{document}
 \maketitle
@@ -143,8 +145,8 @@ curves are not identical probes; they are timelike or massive-matter-facing
 channels.  A Tau Core-compatible dark-residual programme may therefore compare
 two residual families:
 \begin{align}
-  R_{\rm null} &= \hbox{lensing-like residual},\\
-  R_{\rm time} &= \hbox{dynamics-like residual}.
+  R_{\rm null} &= \text{lensing-like residual},\\
+  R_{\rm time} &= \text{dynamics-like residual}.
 \end{align}
 The TCDR-v3 toy studies the split
 \begin{equation}
@@ -166,10 +168,10 @@ pre-registered galaxy morphology seeds:
 \[
   \theta_{\rm disk},\quad
   \theta_{\rm bar},\quad
-  \hbox{bar strength},\quad
+  \text{bar strength},\quad
   B/D,\quad
   r_{\rm break},\quad
-  \hbox{gas extent}.
+  \text{gas extent}.
 \]
 
 \paragraph{H2: Filament-boundary hypothesis.}
@@ -180,7 +182,7 @@ Residuals may correlate with environment or boundary variables:
   D_{\rm node},\quad
   \theta_{\rm tidal},\quad
   D_{\rm void},\quad
-  \hbox{isolation flag}.
+  \text{isolation flag}.
 \]
 
 \paragraph{H3: Null/time split hypothesis.}
@@ -290,7 +292,7 @@ The no-injection cases remain score 0.  At \(\tau=0.30\), the toy reaches
 \(\Delta R^2=0.1178\) and score 4.  At \(\tau=0.60\), it reaches
 \(\Delta R^2=0.2987\) and score 5.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.82\linewidth]{figures/tcdr_delta_r2.png}
 \caption{Additional explained variance from predeclared Tau seed variables in
@@ -309,7 +311,7 @@ more realistic nuisance structure.  It does not.  The no-injection case
 remains score 0, while \(\tau=0.30\) and \(\tau=0.60\) reach score 4 with
 permutation \(p\simeq0.001996\).
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.82\linewidth]{figures/tcdr_pvalues.png}
 \caption{Permutation control for the TCDR toys.  The horizontal line marks
@@ -335,7 +337,7 @@ The no-injection and very weak injection runs remain score 0.  The
 reach score 3.  This is weaker than the clean morphology toy, as expected,
 because the split is noisier and differential.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.80\linewidth]{figures/tcdr_v3_split_scatter.png}
 \caption{TCDR-v3 example split.  The plotted relation is between the
@@ -346,7 +348,7 @@ the fixed \(\tau=0.35\) example dataset.}
 
 \section{Numerical Summary}
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \scriptsize
 \begin{tabular}{llrrrr}
@@ -373,7 +375,7 @@ is synthetic and should not be read as empirical evidence.}
 \label{tab:summary}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.82\linewidth]{figures/tcdr_score.png}
 \caption{Toy TCDR score by injected morphology/readout strength.  The null
@@ -389,7 +391,7 @@ is brittle, the package also runs a 32-seed replay on the null and
 stronger-injection cases.  This is still synthetic, but it probes whether the
 reported pattern depends on one random draw.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \scriptsize
 \begin{tabular}{llrrrr}
@@ -412,7 +414,7 @@ score floor is zero.}
 \label{tab:multiseed}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.84\linewidth]{figures/tcdr_multiseed_passrate.png}
 \caption{Multi-seed replay pass fractions.  TCDR-v1 and TCDR-v2 strong
@@ -429,7 +431,7 @@ to \(0.953\), but the null false-positive fraction becomes \(0.031\).  These
 numbers are not discovery statistics; they are robustness checks for the
 synthetic protocol thresholds.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.78\linewidth]{figures/tcdr_threshold_sensitivity.png}
 \caption{Threshold sensitivity for the multi-seed replay.  The plot reports
@@ -454,7 +456,7 @@ incorrect source-side alignment.  This is meant to test whether the correct
 source seed beats a wrong-family seed, not merely whether any extra columns
 improve the regression.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \scriptsize
 \begin{tabular}{L{0.42\linewidth}r}
@@ -481,7 +483,7 @@ weak/borderline injected cases.}
 \label{tab:blind-challenge}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.78\linewidth]{figures/tcdr_blind_correct_vs_wrong.png}
 \caption{Correct-seed versus wrong-seed \(\Delta R^2\) in the blind challenge.
@@ -490,7 +492,7 @@ favor the correct source-side seed over the wrong-seed control.}
 \label{fig:blind-correct-wrong}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.56\linewidth]{figures/tcdr_blind_confusion.png}
 \caption{Blind challenge confusion matrix.  The protocol produces no false
@@ -528,7 +530,7 @@ This is a realistic nuisance robustness check, not a real survey analysis.
 The hidden injection labels are used only after scoring to build the confusion
 matrix.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \scriptsize
 \begin{tabular}{L{0.46\linewidth}r}
@@ -557,7 +559,7 @@ result.}
 \label{tab:realistic-mock}
 \end{table}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.80\linewidth]{figures/tcdr_realistic_candidate_vs_controls.png}
 \caption{Candidate seed versus strongest control in the realistic-mock stress
@@ -568,7 +570,7 @@ candidate source seed, but the frozen classifier also requires the \(p\)-value,
 \label{fig:realistic-candidate-controls}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.56\linewidth]{figures/tcdr_realistic_confusion.png}
 \caption{Confusion matrix for the realistic-mock stress test.  The zero
@@ -578,7 +580,7 @@ under harder nuisance structure.}
 \label{fig:realistic-confusion}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.76\linewidth]{figures/tcdr_realistic_threshold_curve.png}
 \caption{Threshold-free stress view for the realistic-mock challenge.  The
@@ -590,1439 +592,23 @@ to prevent over-reading a single frozen threshold.}
 
 \section{TCDR-v4 Real-Data Source Manifest}
 
-The move from synthetic toys to real data must begin with source-role
-separation, not with endpoint fitting.  The repository therefore includes a
-machine-generated manifest:
-\begin{center}
-\texttt{data/source\_manifests/tcdr\_v4\_real\_data\_source\_manifest\_v0\_1.csv}.
-\end{center}
-It is generated by:
-\begin{center}
-\texttt{python scripts/build\_tcdr\_v4\_real\_data\_manifest.py}.
-\end{center}
-
-The manifest records public source candidates and their allowed TCDR roles.
-The most important rule is that endpoint dynamics data may score a frozen
-candidate, but may not choose or rescue the source-side morphology label.  In
-particular, SPARC rotation-curve and mass-model products are endpoint/baseline
-data \cite{SPARCWebsite}.  S4G/IRSA products and Galaxy Zoo morphology
-catalogues are source-side morphology routes \cite{S4GIRSA,GalaxyZooData}.
-EDD/Cosmicflows-style distance and velocity products can provide distance or
-environment controls, but any amplitude use must be frozen before scoring
-\cite{EDDWebsite}.
-
-For local preflight only, the repository also provides an optional downloader:
-\begin{center}
-\texttt{python scripts/download\_tcdr\_v4\_sparc\_endpoint.py --out-dir data/external/sparc\_preflight}.
-\end{center}
-The downloaded files are ignored by git and are endpoint/baseline inputs only.
-They must not be used for source-label selection.
-
-After the SPARC sample table is available locally, the source-freeze queue is
-built by:
-\begin{center}
-\texttt{python scripts/build\_tcdr\_v4\_sparc\_source\_freeze\_queue.py}.
-\end{center}
-The script reads SPARC sample metadata only and intentionally excludes
-\(V_{\rm flat}\) and rotation-curve endpoint values.  Its current output
-contains 175 SPARC objects:
-\begin{align*}
-  66 &\quad {\rm P0\_SOURCE\_REVIEW},\\
-  60 &\quad {\rm P1\_SOURCE\_REVIEW},\\
-  49 &\quad {\rm P2\_SOURCE\_REVIEW}.
-\end{align*}
-The priority labels are source-review logistics, not evidence levels.  They
-rank objects for later S4G/Galaxy Zoo morphology lookup using quality,
-inclination, HI-extent availability, and catalogue-name queryability.  No
-endpoint residual is inspected.
-
-The first S4G lookup uses the IRSA TAP table \texttt{s4gcat} and source-side
-columns such as optical type, bar/ring flags, IR position angle, ellipticity,
-concentration, and stellar-mass proxy fields.  For the 66 P0 objects, the
-current name-based lookup returns:
-\begin{align*}
-  32 &\quad {\rm S4G\ matched\ by\ name},\\
-  34 &\quad {\rm not\ found\ by\ name}.
-\end{align*}
-The unmatched objects are not failures; they require alias review or a
-different source-side morphology route.  The lookup artifact is
-\path{data/source_manifests/tcdr_v4_p0_s4g_lookup_v0_1.csv}.
-
-A second resolver pass uses SIMBAD coordinates for the 34 name-unmatched
-objects and performs a 1 arcmin nearest-neighbour cross-match against S4G
-positions.  This adds:
-\begin{align*}
-  11 &\quad {\rm S4G\ coordinate\ matched},\\
-  23 &\quad {\rm still\ outside\ the\ S4G\ coordinate\ match\ radius}.
-\end{align*}
-Thus the present P0 S4G source-side coverage is 43/66 before endpoint scoring.
-This remains an availability ledger only; it is not a residual or rotation
-curve result.  The coordinate artifact is
-\path{data/source_manifests/tcdr_v4_p0_s4g_coordinate_lookup_v0_1.csv}.
-
-For the remaining 23 non-S4G P0 objects, a SIMBAD fallback pass resolves all
-23 object identities and provides morphology-type fields for 22:
-\begin{align*}
-  23 &\quad {\rm SIMBAD\ resolved},\\
-  22 &\quad {\rm SIMBAD\ morphology\ type\ available},\\
-   1 &\quad {\rm SIMBAD\ identity\ only}.
-\end{align*}
-This fallback is deliberately lower in the source hierarchy than S4G: it
-records catalogue identity, object type, morphology type, morphology bibcode,
-and aliases, but it is not a homogeneous infrared morphology measurement.  It
-is retained as a source-side fallback ledger only.  The artifact is
-\path{data/source_manifests/tcdr_v4_p0_simbad_fallback_lookup_v0_1.csv}.
-
-Combining the three source ledgers gives the first freeze-ready P0 source-tier
-manifest:
-\begin{align*}
-  32 &\quad {\rm S4G\_STRONG},\\
-  11 &\quad {\rm S4G\_COORD\_RESCUE},\\
-  22 &\quad {\rm SIMBAD\_FALLBACK},\\
-   1 &\quad {\rm SIMBAD\_IDENTITY\_ONLY}.
-\end{align*}
-Equivalently, all 66 P0 objects have an identity tier, 65 have some
-source-side morphology type, and 43 have homogeneous S4G structural morphology.
-These tiers are source-quality classes only.  They are not fit classes,
-endpoint scores, or claims that the corresponding readout family will improve
-a rotation curve.  The artifact is
-\path{data/source_manifests/tcdr_v4_p0_source_tier_manifest_v0_1.csv}.
-
-The first endpoint-blind family freeze maps these source tiers into candidate
-readout families using only source-side morphology rules:
-\begin{align*}
-  30 &\quad {\rm K\_BARRED\_M2},\\
-  14 &\quad {\rm K\_EXPONENTIAL\_SPIRAL\_DISK},\\
-  10 &\quad {\rm K\_RING\_RESONANCE},\\
-   6 &\quad {\rm K\_DIFFUSE\_LATE\_DISK},\\
-   5 &\quad {\rm K\_COMPACT\_EARLY\_DISK},\\
-   1 &\quad {\rm K\_UNFREEZABLE\_IDENTITY\_ONLY}.
-\end{align*}
-The selection grammar is deliberately simple: ring flags dominate ring
-families; bar flags or barred morphology select the barred family; late or
-irregular morphology selects diffuse late disks; early/S0 morphology selects
-compact early disks; otherwise the default is an exponential spiral disk.
-High ellipticity or high inclination is recorded only as a projection caveat,
-not as an endpoint correction.  The family-freeze artifact is
-\path{data/source_manifests/tcdr_v4_p0_source_family_freeze_v0_1.csv}.
-
-The next source-side artifact is a first homogeneous-S4G pilot holdout
-manifest.  It is generated from the already frozen family manifest by:
-\begin{center}
-\texttt{python scripts/build\_tcdr\_v4\_p0\_pilot\_holdout\_manifest.py}.
-\end{center}
-The selection is deterministic and endpoint-blind: within each homogeneous
-S4G source family, the script selects up to two objects, preferring entries
-without projection caveats and then sorting by galaxy name, while leaving at
-least one train object in every selected homogeneous family.  This calibration
-aware guard prevents small families from being exhausted into holdout before
-any family-level amplitude or control can be estimated.  The current
-artifact contains:
-\begin{align*}
-   7 &\quad {\rm PILOT\_HOLDOUT},\\
-  36 &\quad {\rm PILOT\_TRAIN\_POOL},\\
-  23 &\quad {\rm NON\_HOMOGENEOUS\_SOURCE\_TIER}.
-\end{align*}
-The holdout family counts are:
-\begin{align*}
-  2 &\quad {\rm K\_BARRED\_M2},\\
-  1 &\quad {\rm K\_DIFFUSE\_LATE\_DISK},\\
-  2 &\quad {\rm K\_EXPONENTIAL\_SPIRAL\_DISK},\\
-  2 &\quad {\rm K\_RING\_RESONANCE}.
-\end{align*}
-This is a scoring-preparation ledger only.  It does not inspect rotation
-residuals, fit amplitudes, compare baselines, or claim that the matched family
-improves any galaxy.  The CSV and JSON artifacts are stored in the repository
-source-manifest directory with the pilot-holdout prefix.
-
-Finally, the current local preflight checks endpoint availability for the
-frozen holdout without committing the endpoint curves.  The script
-\begin{center}
-\texttt{python scripts/build\_tcdr\_v4\_p0\_holdout\_endpoint\_packet.py}
-\end{center}
-requires the optional local SPARC preflight files and writes two classes of
-output.  The committed readiness manifest records only availability and coarse
-curve metadata:
-\begin{align*}
-  7   &\quad {\rm holdout\ objects\ with\ endpoint\ rows},\\
- 215  &\quad {\rm total\ local\ rotation\ points}.
-\end{align*}
-The actual SPARC endpoint curve packet is written only under
-\path{data/external/}, which is ignored by git.  The frozen carrier policy is
-\({\rm disk}\ M/L=0.5\) and \({\rm bulge}\ M/L=0.7\), with no amplitude fit.
-This is endpoint-readiness only: no score, residual comparison, baseline
-ranking, or physical claim is made at this stage.
-
-A separate optional local scoring preflight is provided only as a diagnostic.
-It fits non-negative family amplitudes on the \({\rm PILOT\_TRAIN\_POOL}\)
-and scores only the frozen holdout.  Families with fewer than two train
-galaxies are marked calibration-blocked and are not allowed to act as matched
-endpoint results or wrong-family controls.  This rule is deliberately
-conservative: an under-supported source family may remain endpoint-ready for
-future data, but it is not treated as a calibrated control in the present
-preflight.
-
-The current author-local scoring pass uses a train-pool-only
-specificity-first v4 kernel policy:
-\[
-{\rm train\_pool\_only\_specificity\_first\_v4\_penalty\_1p5\_no\_holdout\_shape\_tuning}.
-\]
-In that diagnostic run, six holdout galaxies are scoreable and one diffuse
-late-disk holdout is calibration-blocked.  The matched family improves the
-frozen baryonic carrier in \(6/6\) scoreable cases, beats the calibrated
-wrong-family mean in \(3/6\), and beats the best calibrated wrong family in
-\(2/6\).  The median wrong-family-mean minus matched weighted RMSE is
-\(-0.074\,{\rm km\,s^{-1}}\), while the median matched minus baryonic-carrier
-weighted RMSE is \(-0.392\,{\rm km\,s^{-1}}\).  This is a useful
-kernel-development diagnostic, not a validation result: the present
-source-family kernels are still too primitive for robust endpoint-level
-family separation.
-
-The companion kernel-specificity diagnosis makes the weakness more precise.
-Among the scoreable holdout objects, the calibrated wrong-family winners are
-not arbitrary: the ordinary exponential-disk kernel is the best calibrated
-family for both barred holdout objects and for both ring/resonance holdout
-objects where the matched family is not best.  Thus the present failure mode
-is not a request to increase amplitudes after seeing the endpoint curves.  It
-is a source-side requirement: barred systems need source-native bar length,
-strength, phase/orientation, and radial support; ring systems need
-source-native ring radius, width, and resonance/onset class; diffuse late
-disks need additional H I/low-surface-brightness train support before they can
-be scored.  The diagnostic script therefore records missing source-native
-coordinates rather than promoting a fitted endpoint result.
-
-To make that requirement reproducible, the public source package now includes
-an endpoint-blind source-native coordinate audit generated by:
-\begin{center}
-\path{python scripts/build_tcdr_v4_p0_source_native_kernel_coordinate_audit.py}.
-\end{center}
-Across the 66 P0 objects, the audit records:
-\[
-\begin{array}{rl}
-30 &: {\rm barred\ objects\ requiring\ bar\ decomposition},\\
-10 &: {\rm ring/resonance\ objects\ requiring\ ring\ decomposition},\\
-14 &: {\rm exponential\ disks\ with\ partial\ disk/H\,I\ proxy\ coordinates},\\
-6  &: {\rm diffuse\ late\ disks\ requiring\ more\ train\ support},\\
-5  &: {\rm compact\ early\ disks\ outside\ the\ first\ homogeneous\ S4G\ pilot},\\
-1  &: {\rm identity-only\ object\ not\ kernel-freeze\ ready}.
-\end{array}
-\]
-This audit does not read rotation residuals, endpoint scores, or fitted
-improvement margins.  Its purpose is to prevent the current binary
-bar/ring/disk labels from being mistaken for source-native kernel coordinates.
-
-The next source-route artifact asks whether the missing bar/ring coordinates
-are already available in machine-readable public catalogues.  It queries the
-S4G Pipeline 4 multi-component decomposition catalogue
-\cite{Salo2015S4GPipeline4} and the S4G morphological feature catalogue
-\cite{HerreraEndoqui2015S4GFeatures} through VizieR, using:
-\begin{center}
-\path{python scripts/build_tcdr_v4_p0_bar_ring_decomposition_source_route.py}.
-\end{center}
-Across the same 66 P0 objects, this source-route pass finds 31 objects with
-Pipeline 4 decomposition rows, 21 with feature-catalogue rows, and 16 with
-spiral pitch-angle rows.  Within the frozen family labels, 12 barred objects
-already have source-native bar features, 4 ring/resonance objects have
-source-native ring features, and 2 exponential spiral disks have source-native
-spiral pitch information.  The remaining barred/ring cases are still
-source-proxy cases requiring additional decomposition review.  This is not
-endpoint validation; it is a reproducible source-acquisition route for the
-next kernel-freeze iteration.
-
-The corresponding endpoint-blind coordinate-freeze artifact is generated by:
-\begin{center}
-\path{python scripts/build_tcdr_v4_p0_source_native_kernel_coordinate_freeze.py}.
-\end{center}
-It converts available S4G bar/ring angular radii into physical source
-coordinates using source-side sample distances and disk scales, while leaving
-uncovered objects on the proxy fallback.  The frozen v0.1 rule sets the bar
-kernel center to the S4G bar radius when available, sets the ring kernel
-center to the S4G ring radius when available, records spiral pitch information
-without using it to tune endpoint curves, and records all remaining objects as
-source-proxy fallbacks.  The current freeze contains 12
-source-native bar-radius objects, 4 source-native ring-radius objects, 2
-spiral-pitch-recorded disk objects, and 48 source-proxy fallback objects.
-
-An optional local endpoint replay using this coordinate-freeze rule improves
-the median matched-minus-baryonic-carrier weighted RMSE margin from
-\(-0.392\) to \(-0.682\,{\rm km\,s^{-1}}\), but it does not close the
-family-specific endpoint gate: matched families still beat the calibrated
-wrong-family mean in only \(3/6\) scoreable holdout cases and the best
-calibrated wrong family in \(2/6\).  This is a useful diagnostic rather than
-a validation result.  The interpretation is that source-native coordinates
-help several matched objects, but mixed or multi-component galaxies can also
-activate wrong-family controls unless the next rule separates components on
-the source side before endpoint scoring.
-
-The next committed source-side audit in this version therefore records
-component coexistence explicitly:
-\begin{center}
-\path{python scripts/build_tcdr_v4_p0_source_native_component_mixture_audit.py}.
-\end{center}
-It uses the same S4G source-route and coordinate-freeze artifacts and does not
-read endpoint curves.  Across the 66 P0 objects it finds 17
-source-native mixed/multicomponent cases, 42 objects with no source-native
-bar/ring/spiral component in the current S4G route, 4 single
-primary-component cases, and 3 single secondary-component-only cases.  In the
-7-object holdout, 3 galaxies are already mixed at source level:
-NGC1090 carries bar, ring, and spiral components; NGC5033 carries ring and
-spiral components; and NGC3198 carries bar, ring, and spiral components.  This
-does not make wrong-family controls ``correct''.  It means that, for mixed
-objects, a wrong-family control can be a source-visible secondary-component
-control rather than a pure false label.  The next fair endpoint test should
-therefore compare source-frozen mixed-component kernels against pure-family
-and shuffled-component controls.
-
-We therefore freeze the first mixed-component kernel rule as a separate
-endpoint-blind artifact:
-\begin{center}
-\path{python scripts/build_tcdr_v4_p0_source_native_mixed_component_kernel_freeze.py}.
-\end{center}
-It assigns primary component weight \(0.5\) and lets source-visible secondary
-components share the remaining \(0.5\) when multiple source-native components
-are present.  Single-component cases receive weight \(1.0\), and objects
-without source-native bar/ring/spiral support remain family-proxy fallbacks.
-The current freeze contains 17 mixed source-native component kernels, 7
-single-component kernels, and 42 fallback family-proxy kernels.  This artifact
-is still source-side only: it freezes a later endpoint test rule, not a fitted
-endpoint result.
-
-The matching null-control artifact is also frozen before endpoint scoring:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_source_native_shuffled_component_nulls.py}.
-\end{center}
-It creates 64 deterministic source-side shuffles using seed 19019.  The shuffle
-preserves component weights within each pilot role while breaking the
-galaxy/component assignment.  This tests whether source-native component
-placement matters, or whether arbitrary reassignment gives comparable scores.
-
-A local mixed-component replay then implements the first such diagnostic with
-one train-pool-fitted mixed amplitude and the frozen component-weight rule.  It beats
-the baryonic carrier in \(6/6\) scoreable cases and beats the pure matched
-family in \(4/6\), but it still beats the calibrated wrong-family mean in only
-\(3/6\) and the best wrong family in \(2/6\).  Among the three mixed holdout
-objects, it beats the pure matched family in \(2/3\) and the wrong-family mean
-in \(1/3\).  This is again diagnostic only: mixed components are useful, but
-the current rule is not yet selective enough for endpoint promotion.
-
-The shuffled-component replay preserves that caution.  The actual mixed kernel
-has median weighted RMSE \(60.103\,{\rm km\,s^{-1}}\) on the scoreable holdout
-set, while the median shuffled-null median is \(60.371\,{\rm km\,s^{-1}}\).
-However, \(25/64\) shuffled nulls, a fraction \(0.390625\), have median RMSE
-less than or equal to the actual mixed kernel.  Therefore the mixed-component
-direction is useful but not yet source-selective enough for endpoint
-promotion.  The next honest step is not amplitude adjustment, but a more
-source-native component rule and a larger shuffled-component null suite.
-
-We implement that first refinement as a v0.2 source-strength-weighted freeze:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_source_native_strength_weighted_mixed_kernel_freeze.py}.
-\end{center}
-The v0.2 rule keeps the same endpoint-blind component coverage, but replaces
-the fixed \(0.5/0.5\) split by source-evidence weights.  Bar and ring weights
-use the frozen source strength proxies; spiral weight uses pitch, segment
-count, and radial span from the source-route artifact.  The matching shuffled
-nulls are generated by
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_source_native_strength_weighted_shuffled_component_nulls.py}.
-\end{center}
-In the author-local diagnostic replay, v0.2 improves the wrong-family mean
-beat count from \(3/6\) to \(4/6\), and among mixed holdout objects from
-\(1/3\) to \(2/3\).  The actual v0.2 mixed median weighted RMSE is
-\(59.746\,{\rm km\,s^{-1}}\), while the median shuffled-null median is
-\(60.319\,{\rm km\,s^{-1}}\).  However, \(22/64\) shuffled nulls still have
-median RMSE less than or equal to the actual v0.2 kernel.  This is
-directionally stronger than v0.1, but it remains a caveated selectivity
-diagnostic rather than endpoint promotion.
-
-We then run a deliberately stricter v0.3 source-side stress refinement:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_source_native_radial_geometry_mixed_kernel_freeze.py}.
-\end{center}
-This rule multiplies the v0.2 source evidence by endpoint-blind radial-zone
-factors, a primary-family hierarchy factor, and a conservative projection
-reliability factor.  It preserves the same coverage classes as v0.2: 17 mixed
-kernels, 7 single-component kernels, and 42 family-proxy fallbacks.  In the
-current author-local replay it does not improve on v0.2.  It keeps the
-wrong-family mean beat count at \(4/6\) and the mixed-holdout wrong-mean count
-at \(2/3\), but the actual mixed median weighted RMSE weakens to
-\(59.933\,{\rm km\,s^{-1}}\), the median wrong-mean margin shrinks to
-\(0.120\,{\rm km\,s^{-1}}\), and the shuffled-null fraction remains
-\(22/64=0.34375\).  We therefore retain v0.3 as a negative/cautionary
-source-side stress test rather than as the preferred endpoint kernel.  This is
-important methodologically: adding more source-side geometry does not
-automatically improve the score, so the mixed-component route is not acting as
-a universal post-hoc rescue term.
-
-The resulting methodological decision is to stop treating the next step as a
-search for another family-template kernel.  Paper 19 instead returns to the
-source-frozen readout formula ladder developed in the morphology-forward and
-projection-readout work.  In that ladder a component is endpoint-eligible only
-after its source observables, support window, load or amplitude rule,
-dimension check, zero-source limit, and composition rule are frozen before
-endpoint scoring.  Schematically, the next TCDR-v4 kernel layer should be
-\[
-{\rm source\ observables}_a
-  \longrightarrow
-  \{\Lambda_a,\;W_a(R),\;K_a(R\mid {\rm source}_a)\}
-  \longrightarrow
-  \Delta v_a^2(R)=\Lambda_a K_a(R),
-\]
-followed by a predeclared composition rule
-\[
-\Delta v_{\rm TCDR}^2(R)
-  =
-  {\rm Compose}_a\{\Delta v_a^2(R)\}.
-\]
-Here the family label is only an audit handle for expected components; it is
-not itself the formula selector.  This distinction is the main lesson of the
-v0.1--v0.3 sequence: component templates can diagnose where source
-specificity is missing, but the next non-ad-hoc route is a source-frozen
-formula compiler.  The repository therefore records this route in
-\path{source_package_docs/tcdr_v4_source_frozen_formula_ladder_import.md}.
-
-The first implementation of that route is a v0.4 formula-compiler readiness
-ledger:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_source_frozen_formula_compiler_readiness.py}.
-\end{center}
-This script is still endpoint-blind.  It asks only whether the source side
-contains the observables needed by a concrete formula replay: for example a
-bar radius for an \(m=2\) bar term, a ring radius for a resonance term, a disk
-scale for an exponential/scale-tail term, and the additional diffuse/HI
-support required by a diffuse late-disk term.  In the current P0 ledger,
-30/66 objects are formula-replay candidates, 16/66 are partial candidates,
-19/66 remain template-only fallbacks, and one object is unfreezable at this
-stage.  In the 7-object holdout, five galaxies are formula-ready:
-NGC1090, NGC2841, NGC3198, NGC5033, and NGC6503.  UGC08490 remains
-diffuse-partial and ESO116-G012 remains template-only.  These exclusions are
-important: they prevent the formula route from being rescued by objects for
-which the source observables are still missing.
-
-As an author-local preflight, the repository also provides
-\begin{center}
-\path{scripts/run_tcdr_v4_holdout_endpoint_scoring_formula_compiler_ready.py}.
-\end{center}
-This replay uses the readiness ledger as a frozen filter before endpoint
-scoring and scores only the five formula-ready holdout objects.  In the
-current local SPARC run, the formula-ready mixed rule beats the fixed baryonic
-carrier in \(5/5\), the wrong-family mean in \(4/5\), and the best wrong-family
-control in \(2/5\), with a median wrong-mean margin of
-\(0.576\,{\rm km\,s^{-1}}\).  This is a scoring-direction result for the
-source-frozen formula-compiler route, not a population-validation claim.
-
-NGC6503 is the cleanest single-object example in this subset.  Unlike the
-NGC2841 stress case, its formula-ready route is a simple exponential-disk
-scale-tail candidate with no active source-native bar/ring/spiral mixture.  A
-focused replay gives weighted RMSE \(58.074\,{\rm km\,s^{-1}}\), compared with
-\(58.672\,{\rm km\,s^{-1}}\) for the fixed baryonic carrier,
-\(58.182\,{\rm km\,s^{-1}}\) for the pure matched exponential control,
-\(59.208\,{\rm km\,s^{-1}}\) for the wrong-family mean, and
-\(58.661\,{\rm km\,s^{-1}}\) for the best wrong-family control.  This is still
-a single-object preliminary result, but it is a cleaner positive control than
-NGC2841 because the candidate beats each immediate comparator without an
-object-specific kernel search or target-galaxy amplitude retuning.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.86\linewidth]{figures/tcdr_v4_ngc6503_clean_scale_tail_endpoint_replay.png}
-\caption{NGC6503 clean scale-tail preliminary replay.  The highlighted
-source-frozen scale-tail candidate is compared with the observed SPARC rotation
-curve, the fixed baryonic carrier, the pure matched exponential control, and
-the best wrong-family control.  The replay is single-object and preliminary:
-it illustrates a clean formula-ready positive control, not population
-validation.}
-\label{fig:ngc6503-clean-scale-tail}
-\end{figure}
-
-NGC7793 gives a second focused support-safe spiral/scale-tail replay.  In this
-case the source-frozen candidate gives weighted RMSE
-\(19.543\,{\rm km\,s^{-1}}\), compared with
-\(23.991\,{\rm km\,s^{-1}}\) for the fixed baryonic carrier,
-\(23.653\,{\rm km\,s^{-1}}\) for the wrong-component mean, and
-\(23.331\,{\rm km\,s^{-1}}\) for the best wrong-component control.  The
-candidate does not beat the matched spiral component control
-\((19.532\,{\rm km\,s^{-1}})\), so this case is not promoted as a complete
-selector victory.  Its value is narrower but still useful: under the frozen
-support-safe spiral/scale-tail route and leave-one-galaxy-out amplitude rule,
-the source-matched family beats the wrong-family controls by a substantial
-margin.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.86\linewidth]{figures/tcdr_v4_ngc7793_support_safe_spiral_endpoint_replay.png}
-\caption{NGC7793 support-safe spiral/scale-tail preliminary replay.  The
-candidate is compared with the observed SPARC rotation curve, the fixed
-baryonic carrier, the matched spiral component control, and the best
-wrong-component control.  This is not a population validation result; it is a
-focused support-safe replay showing that the source-matched spiral route beats
-wrong-family controls while remaining essentially tied with the matched spiral
-component.}
-\label{fig:ngc7793-support-safe-spiral}
-\end{figure}
-
-The corresponding readiness-filtered shuffled-component null is
-\begin{center}
-\path{scripts/run_tcdr_v4_holdout_endpoint_scoring_formula_compiler_ready_shuffled.py}.
-\end{center}
-It keeps the same five formula-ready holdout galaxies but shuffles the
-source-component packages before endpoint scoring.  In the current local run,
-the actual formula-ready median weighted RMSE is
-\(60.471\,{\rm km\,s^{-1}}\), while the median shuffled-null median is
-\(60.483\,{\rm km\,s^{-1}}\), and \(25/64\) shuffled nulls are at least as good
-as the actual formula-ready kernel.  Thus v0.4 is a useful scoring-direction
-step, but it is not yet source-selective enough for endpoint promotion.
-
-We also run a component-ablation diagnostic:
-\begin{center}
-\path{scripts/run_tcdr_v4_holdout_endpoint_scoring_formula_compiler_ready_component_ablation.py}.
-\end{center}
-This keeps the same five formula-ready holdout objects and the same
-train-pool-only amplitude policy, but compares the full source-frozen
-bar/ring/spiral mix against bar-only, ring-only, spiral-only, and
-leave-one-component-out variants.  The ablation variants do not fall back to a
-family-proxy kernel when a component is absent.  In the current local run, the
-full source mix has median weighted RMSE \(60.456\,{\rm km\,s^{-1}}\), while
-the best ablation median is \(60.340\,{\rm km\,s^{-1}}\) for the spiral-only
-variant.  By object, the best variant is spiral-only for two galaxies,
-ring-only for two galaxies, and the full source mix for one galaxy.  This
-diagnoses the same blocker as the shuffled null: the available source
-observables do not yet select a unique component composition strongly enough
-for endpoint promotion.  It is a source-specificity diagnostic, not a
-validation result.
-
-We therefore add a source-side uniqueness audit:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_source_composition_uniqueness_audit.py}.
-\end{center}
-This audit stores no endpoint scores.  It uses the frozen component weights to
-classify each P0 object as source-composition unique, weakly unique,
-ambiguous, or component-uncovered.  In the current ledger, the 66 P0 objects
-split into 17 unique, 1 weakly unique, 6 ambiguous, and 42 with no
-source-native bar/ring/spiral component.  Among the five formula-ready holdout
-galaxies, three are source-composition unique, one is ambiguous, and one has
-no source-native component coverage.  Thus formula readiness is not yet the
-same as component-composition uniqueness.
-
-As a post-freeze diagnostic only, we then compare the source-dominant component
-to the local ablation winner:
-\begin{center}
-\path{scripts/run_tcdr_v4_formula_ready_source_composition_vs_ablation_diagnostic.py}.
-\end{center}
-In the current local run, the source-dominant component agrees with the
-ablation winner in only \(1/4\) positive-source-component holdout galaxies,
-or \(1/3\) among strongly unique source cases.  This is not used to choose a
-new kernel.  It identifies the next blocker: a source-native rule must map the
-frozen morphology to the readout-active component more reliably before the
-formula route can be promoted.
-
-The next source-side refinement is therefore a support-aware selector audit:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_support_aware_component_selector_audit.py}.
-\end{center}
-This v0.6 audit keeps the frozen source weights, but demotes apparently
-dominant components when their radial source supports overlap or are adjacent.
-It is endpoint-blind.  Across the 66 P0 objects, only 10 remain
-support-aware selector-safe, 14 are unresolved by overlapping/adjacent support,
-and 42 are source-native component-uncovered.  In the formula-ready holdout
-subset, only NGC2841 is selector-safe; NGC1090, NGC3198, and NGC5033 are
-unresolved by support overlap or adjacency, and NGC6503 is uncovered.  This
-explains why the current source selector is not ready for endpoint promotion:
-formula readiness does not imply support-safe component selection.
-
-The bounded expansion step is therefore not to tune amplitudes, but to form a
-support-safe replay pool from source-side information alone:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_support_safe_expansion_manifest.py}.
-\end{center}
-This v0.7 manifest uses the endpoint-blind selector-safety ledger to admit only
-objects that are both formula-ready and support-safe.  It yields a 7-object
-future replay pool: NGC0024, NGC2841, NGC5005, NGC7793, UGC04499, UGC06917,
-and UGC06983.  NGC2841 is the existing support-safe holdout object; the other
-six are expansion candidates drawn from the train pool.  This is an eligibility
-manifest, not an endpoint score, and it uses no rotation residuals or baseline
-performance fields.
-
-The pool can be expanded further only in tiered form.  The v0.8 opportunity
-ledger,
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_support_safe_expansion_opportunity_ledger.py},
-\end{center}
-keeps endpoint information forbidden and classifies all 66 P0 objects.  It
-finds 7 replay-eligible objects now, 3 additional support-safe objects requiring
-source-frozen formula completion, 12 formula-ready objects requiring
-overlapping-support review, 11 formula-ready objects requiring a disk or other
-component-source rule, and 33 objects that are not near-term expansion-ready.
-Thus the immediate pool is 7; a bounded near-term expansion to 10 is possible
-after formula completion, while larger expansion requires independent
-source-support work.
-
-The bounded completion step is implemented as:
-\begin{center}
-\path{scripts/build_tcdr_v4_p0_support_safe_formula_completion_manifest.py}.
-\end{center}
-This v0.9 manifest admits the three Tier1 objects by replacing broad-family
-forcing with their source-dominant support-safe component route.  NGC3893
-enters through a spiral component route, while UGC00191 and UGC12732 enter
-through bar component routes.  The resulting 10-object source-side replay pool
-is NGC0024, NGC2841, NGC3893, NGC5005, NGC7793, UGC00191, UGC04499, UGC06917,
-UGC06983, and UGC12732.  This is formula-completion eligibility only; endpoint
-curves, residuals, baseline scores, and holdout performance are still forbidden
-inputs.
-
-After the pools are frozen, a local endpoint diagnostic can be run:
-\begin{center}
-\path{scripts/run_tcdr_v4_support_safe_pool_loocv_scoring.py}.
-\end{center}
-This script writes only under \path{data/external/} because it uses SPARC
-endpoint curves.  It performs leave-one-galaxy-out amplitude calibration within
-the frozen support-safe pool.  In the current local run, the 7-object pool
-beats the baryonic carrier in \(6/7\), the matched-component control in \(5/7\),
-the wrong-component mean in \(2/7\), and the best wrong component in \(1/7\).
-The 10-object pool beats the baryonic carrier in \(9/10\), the
-matched-component control in \(5/10\), the wrong-component mean in \(5/10\),
-and the best wrong component in \(3/10\).  Thus the 7-to-10 expansion is
-directionally useful, but the strict wrong-component controls remain
-competitive.  This is a local scoring diagnostic, not endpoint validation.
-
-A follow-up failure ledger asks what the strict-control failures mean before
-any new kernel is proposed:
-\begin{center}
-\path{scripts/run_tcdr_v4_support_safe_pool_failure_and_formula_aware_scoring.py}.
-\end{center}
-Across the 7-object and 10-object ledgers, 4/17 rows already survive the strict
-best-wrong control, 4/17 failures are cases where the best wrong component is a
-source-visible secondary component, 2/17 are broad-family/top-component
-mismatches, and 7/17 remain unexplained competitive false-component cases.
-The same script also performs a formula-aware LOOCV replay in which the
-candidate reads the frozen \texttt{support\_safe\_compiled\_formula} rather
-than the top component alone.  This improves the 10-object pool to \(10/10\)
-against the baryonic carrier and \(6/10\) against the wrong-component mean, but
-only \(2/10\) against the best wrong component.  The conclusion is narrow:
-compiled-formula awareness is a manifest-consistent correction to the replay
-rule, not a validation result, and the strict best-wrong blocker remains open.
-
-Finally, the local Paper8/Paper9 overlay diagnostic re-reads these outcomes
-through the earlier morphology-readout distinction between visible source
-morphology, \(K_{\rm obs}\), and the readout-active kernel, \(K_{\rm readout}\),
-together with the projection/history non-overlap rule.  The overlay is not a
-kernel selector.  In the current run, it classifies the 17 ledger rows into
-3 strict-control survivals, 3 near ties within \(0.1\,{\rm km\,s^{-1}}\), 4
-source-visible secondary-component cases, 2 broad-disk \(K_{\rm obs}\) versus
-\(K_{\rm readout}\) mismatch candidates, and 5 rows blocked until independent
-spiral/projection/history source evidence exists.  This converts the
-best-wrong blocker into a finite route-permission ledger: mixed or relabel
-routes are allowed only after source-side non-overlap and shuffle controls,
-while unexplained projection/source-gap rows remain blocked.
-
-The next scoring-facing step therefore filters, rather than repairs, the
-ledger.  A scoring-readiness script permits immediate replay only for
-current-formula strict survivals and near ties; mixed, \(K_{\rm obs}\) versus
-\(K_{\rm readout}\), and projection/history routes remain blocked until their
-source-side conditions close.  In the current local readiness-filtered scoring
-run, the six allowed rows cover four unique galaxies (NGC2841, NGC3893,
-NGC7793, and UGC00191).  They beat the baryonic carrier in \(6/6\), the
-wrong-component mean in \(6/6\), and the best wrong component in \(3/6\).  The
-strict result is deliberately not promoted beyond this, because the remaining
-three allowed rows are near-tie robustness rows rather than strict wins.
-A metric-robustness audit repeats the allowed-row comparison using the same
-frozen formula-aware detail table under both weighted and unweighted RMSE.
-Strict best-wrong survival remains \(3/6\) under both metrics, while
-wrong-component-mean survival falls from \(6/6\) weighted to \(4/6\)
-unweighted.  This supports a bounded positive sub-ledger, but not a
-validation-grade endpoint result.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.92\linewidth]{figures/tcdr_readiness_filtered_metric_robustness.png}
-\caption{\textbf{Readiness-filtered metric robustness.}  The figure shows the
-best-wrong margin for the six current-formula rows allowed by the Paper8/Paper9
-readiness ledger.  Positive values mean that the candidate formula beats the
-best wrong-component control under the stated metric.  The strict best-wrong
-count is \(3/6\) under both weighted and unweighted RMSE, but several weighted
-near-tie rows weaken under unweighted RMSE.  This is retained as a robustness
-diagnostic, not endpoint validation.}
-\label{fig:readiness-metric-robustness}
-\end{figure}
-
-The mixed-route opening was then tested directly rather than assumed.  For the
-four rows in which a source-visible secondary component explains the best-wrong
-control, the source non-overlap condition closes: the relevant bar/ring
-supports are source-side disjoint under the support-aware ledger.  However, a
-64-shuffle formula-package control does not pass for any of the four rows at
-the predeclared \(p\leq 0.10\) threshold.  The remaining two
-\(K_{\rm obs}\) versus \(K_{\rm readout}\) rows are the NGC0024 broad-disk
-cases.  A separate source-side review blocks their spiral readout relabel:
-the broad family label contains disk/spiral structure, but the frozen source
-ledger has bar/ring support, zero spiral component weight, and no source-native
-spiral geometry.  The final route-closure ledger therefore leaves only the six
-current-formula rows replay-ready and keeps 11/17 rows blocked: 5 source-gap
-rows, 4 mixed-route shuffle-control failures, and 2 source-review-blocked
-\(K_{\rm obs}\)/\(K_{\rm readout}\) relabels.  These negative results are
-retained: source-visible secondary components or broad observed-family labels
-are not, by themselves, enough to promote new endpoint kernels.
-A final source-gap ledger inspects the 5 source-gap rows and finds that all are
-competitive spiral controls outside the frozen source family, without
-independent source-side spiral support.  They therefore remain source-acquisition
-tasks rather than replay candidates.
-We then performed a bounded external literature/source audit of these same
-source-gap rows, recorded in
-\path{scripts/build_tcdr_v4_source_gap_external_literature_audit.py}.  This
-audit does not close the blocker.  UGC04499 gains an anti-spiral source-side
-constraint: it appears in a late-type/bulgeless study as a featureless disk
-without large-scale spiral structure \cite{DamasSegovia2012Bulgeless}.
-UGC06917 remains a bar-dominated source route under the available S4G manifest
-without an independent spiral/projection/history token.  UGC12732 has useful
-non-bar caveats from star-formation morphology and global H\,I/kinematic
-catalogues \cite{DiazGarcia2020SFbars,Murugeshan2020AngularMomentum}, but no
-source-native spiral geometry or independent path/history token sufficient to
-promote the competitive spiral control.  The route permission therefore remains
-\texttt{keep\_source\_gap\_blocked} for all five source-gap rows.
-The resulting post-external route-closure artifact,
-\path{data/external/sparc_preflight/tcdr_v4_post_external_route_closure_local.csv},
-keeps the same six current-formula rows replay-ready and leaves the other
-eleven rows blocked: five source-gap rows after external audit, four mixed-route
-shuffle-control failures, and two source-review-blocked
-\(K_{\rm obs}\)/\(K_{\rm readout}\) relabels.
-The final scoring-boundary summary,
-\path{data/external/sparc_preflight/tcdr_v4_post_external_scoring_boundary_local.csv},
-therefore treats only those six current-formula rows as score-bearing.  On that
-permission-filtered subset, the weighted score beats the baryonic carrier and
-the wrong-component mean in \(6/6\), while strict best-wrong survival remains
-\(3/6\).  Under the unweighted RMSE robustness metric, wrong-component-mean
-survival falls to \(4/6\) and best-wrong survival remains \(3/6\).  Blocked rows
-carry no scoring claim in this summary.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.94\linewidth]{figures/tcdr_post_external_scoring_boundary.png}
-\caption{\textbf{Post-external scoring boundary.}  The left panel gives the
-final route-closure ledger after the bounded external source audit.  Only the
-six current-formula rows remain replay-ready; the other eleven rows are blocked
-by source gaps, mixed-route shuffle controls, or source-review relabel blockers.
-The right panel reports control survival only on those six allowed rows.
-Blocked rows are intentionally score-blank and carry no scoring claim.  This is
-a local diagnostic boundary, not population validation.}
-\label{fig:post-external-scoring-boundary}
-\end{figure}
-
-\begin{sloppypar}
-Finally, we ask whether the three strict best-wrong failures inside the
-score-bearing subset can be upgraded into source-visible mixed routes.  The
-diagnostic artifact
-\path{data/external/sparc_preflight/tcdr_v4_allowed_best_wrong_failure_diagnostic_local.csv}
-joins the six allowed rows to the frozen source-composition ledger.  It finds
-zero source-visible best-wrong secondary components among the three strict
-failures.  These rows are therefore not promoted to mixed kernels from the
-endpoint score.  They remain near-tie or metric-sensitive control-pressure
-diagnostics, and the next honest improvement path is additional residual-blind
-source evidence rather than endpoint-driven kernel repair.
-The corresponding source-acquisition worklist,
-\path{data/external/sparc_preflight/tcdr_v4_allowed_failure_source_acquisition_worklist_local.csv},
-contains three row-level requests across two galaxies, NGC2841 and UGC00191.
-All three requests ask for independent spiral/path/history evidence and keep
-both endpoint replay and kernel promotion set to \texttt{no}.  Thus the paper
-does not convert the remaining best-wrong pressure into a new route; it records
-exactly what source-side evidence would be needed before such a route could be
-reviewed.
-The first bounded external source-review artifact,
-\path{data/external/sparc_preflight/tcdr_v4_allowed_failure_external_source_review_local.csv},
-then separates source-side review from endpoint permission.  For NGC2841,
-independent morphology/path evidence exists: ESA/Hubble identifies the object
-as a flocculent spiral with short spiral arms \cite{ESAHubbleNGC2841}, and
-Dragonfly reports an extended stellar disk with an outer warp
-\cite{Zhang2018NGC2841Dragonfly}; the ring component remains independently
-consistent with the molecular/ring morphology route already used in the source
-ledger \cite{YoungScoville1982MolecularRings}.  This is enough to mark a future
-NGC2841 spiral/path route as source-reviewable, but not enough to score it.  For
-UGC00191, the source pass is weaker: the S4G outer-feature catalogue gives only
-a tentative asymmetry flag for UGC 191 \cite{Laine2014S4GOuterFeatures}, and
-the DensePak LSB study provides H$\alpha$/kinematic coverage without
-source-native spiral geometry \cite{KuzioDeNaray2008LSBMassModels}.  Thus
-UGC00191 remains a weak asymmetry/path review case, not a route-closing spiral
-case.  Both rows keep endpoint replay and kernel promotion set to
-\texttt{no}.
-The follow-up formula-freeze readiness artifact,
-\path{data/external/sparc_preflight/tcdr_v4_allowed_failure_formula_freeze_readiness_local.csv},
-then asks whether the source review is already sufficient to freeze a new
-score-bearing formula.  It is not.  NGC2841 is review-open but blocked by
-missing numeric source-native spiral/path observables, such as spiral radial
-extent, pitch, or warp/path-environment coordinates.  UGC00191 remains
-weak/asymmetry-only and not a spiral/path formula candidate.  Endpoint replay,
-kernel promotion, and new-route scoring remain closed for both galaxies.
-Finally, the numeric-observable worklist,
-\path{data/external/sparc_preflight/tcdr_v4_allowed_failure_numeric_observable_worklist_local.csv},
-turns this blocker into concrete acquisition targets rather than a new fit.
-For NGC2841 it requests four residual-blind quantities: spiral inner radius,
-spiral outer radius, median absolute pitch angle, and a numeric warp-onset or
-path-environment coordinate.  For UGC00191 it requests route-closing
-spiral/path-history evidence before any formula-freeze review can open.  This
-worklist is source-only and carries no endpoint replay, kernel promotion, or
-new-route scoring permission.
-The bounded numeric source-freeze pass then closes the NGC2841 numeric part of
-the blocker, with explicit caveats.  Kendall et al. report for NGC2841
-\(R_{25}=4.05\) arcmin, a possible break at \(0.45R_{25}\), and an outer
-spiral pitch angle of about \(7^\circ\), while emphasizing that the high
-inclination and complex flocculent structure make a single pitch angle
-problematic \cite{KendallClarkeKennicutt2011SpiralI,KendallClarkeKennicutt2015SpiralII}.
-Using the already frozen \(14.1\) Mpc distance gives
-\(\texttt{spiral\_inner\_kpc\_source}=7.475\) and
-\(\texttt{spiral\_outer\_kpc\_source}=16.611\).  The pitch field is frozen as
-\(\texttt{spiral\_pitch\_median\_abs\_deg\_source}=7.0\), and the Dragonfly
-outer-warp result supplies
-\(\texttt{warp\_onset\_or\_path\_environment\_numeric\_source}=30.0\) kpc
-\cite{Zhang2018NGC2841Dragonfly}.  These are caveated source coordinates, not
-endpoint-derived kernel parameters.
-The source-frozen formula artifact,
-\path{data/source_manifests/tcdr_v4_allowed_failure_spiral_path_formula_freeze_v0_1.csv},
-then converts those coordinates into a caveated spiral/path shell,
-\(\texttt{F\_CAVEATED\_SPIRAL\_PATH\_WINDOW\_SOURCE\_FROZEN}\), without
-reading any endpoint curve:
-\[
-K_{\rm sp}(r)=\frac{1}{2}\left[
-\tanh\!\left(\frac{r-r_{\rm in}}{\sigma_{\rm edge}}\right)
--
-\tanh\!\left(\frac{r-r_{\rm out}}{\sigma_{\rm edge}}\right)
-\right],
-\]
-\[
-K_{\rm path}(r)=\frac{1}{1+\exp[-(r-r_{\rm path})/\sigma_{\rm path}]},
-\qquad
-K_{\rm total}(r)=
-\operatorname{clip}\!\left(K_{\rm sp}(r)+\epsilon_{\rm path}K_{\rm path}(r),0,1\right).
-\]
-Here \(r_{\rm in}=7.475\) kpc, \(r_{\rm out}=16.611\) kpc,
-\(r_{\rm path}=30.0\) kpc,
-\(\sigma_{\rm edge}=\max[0.15(r_{\rm out}-r_{\rm in}),0.5\,{\rm kpc}]\),
-\(\sigma_{\rm path}=\max[0.2r_{\rm path},1.0\,{\rm kpc}]\), and
-\(\epsilon_{\rm path}=\min[0.20,\max(0.02,7^\circ\ {\rm in\ radians})]\).
-The expression is a source-frozen formula shell only.  It defines the next
-possible replay object; it does not fit an amplitude, promote a kernel, or
-authorize endpoint scoring.
-The scoring preflight,
-\path{data/external/sparc_preflight/tcdr_v4_allowed_failure_scoring_preflight_local.csv},
-then checks those requested fields against the local source manifests.  It finds
-\(4/5\) requested numeric/source route fields filled locally and linked to the
-source-frozen NGC2841 formula shell.  Thus NGC2841 has advanced to
-formula-frozen-but-replay-unauthorized status, while UGC00191 remains blocked
-because the route review is not open.
-Endpoint replay, kernel promotion, and new-route scoring all remain set to
-\texttt{no}.  This is the current scoring-facing boundary: it is a
-machine-readable reason to require a separate replay authorization before
-scoring, not an endpoint score.
-
-A bounded diagnostic replay is included only after this boundary is recorded.
-The script
-\path{scripts/run_tcdr_v4_allowed_failure_spiral_path_diagnostic_scoring.py}
-applies the frozen NGC2841 spiral/path shell to the local SPARC curve, but fits
-only a spiral-control amplitude on the other support-safe pool galaxies.  In
-the present local run, the source-frozen shell improves the weighted RMSE over
-the previous NGC2841 formula, the best wrong-component control, and the
-baryonic carrier in both support-safe pools.  The median improvement is
-\(1.179\ {\rm km\,s^{-1}}\) relative to the previous formula and
-\(1.149\ {\rm km\,s^{-1}}\) relative to the best wrong-component control.  This
-is a diagnostic score, not a validation claim: the artifact keeps
-\(\texttt{endpoint\_validation\_claimed}=\texttt{no}\) and
-\(\texttt{kernel\_promotion\_permission}=\texttt{no}\).
-\end{sloppypar}
-
-\begin{table}[H]
-\centering
-\small
-\caption{Bounded NGC2841 allowed-failure diagnostic replay.  The spiral/path
-shell shape is source-frozen; the amplitude is fit only on the other galaxies
-in the corresponding support-safe pool.  Lower weighted RMSE is better.  This
-table is a diagnostic replay record, not endpoint validation.}
-\label{tab:ngc2841-spiral-path-diagnostic}
-\begin{tabular}{lrrrr}
-\toprule
-Pool & Previous formula & Best wrong & Spiral/path shell & Gain vs best wrong\\
-\midrule
-support-safe 7 & 144.412 & 144.360 & 143.045 & 1.315\\
-support-safe 10 & 144.496 & 144.487 & 143.505 & 0.982\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.94\linewidth]{figures/tcdr_ngc2841_spiral_path_diagnostic_replay.png}
-\caption{NGC2841 allowed-failure diagnostic replay.  The purple curve is the
-source-frozen spiral/path shell, evaluated after the source-side boundary has
-been recorded.  The amplitude is fit only on other support-safe pool galaxies.
-The shaded band marks the frozen spiral-support window and the dotted vertical
-line marks the frozen path/warp coordinate.  The figure visualizes the same
-diagnostic replay as Table~\ref{tab:ngc2841-spiral-path-diagnostic}; it is not
-an endpoint-validation figure.}
-\label{fig:ngc2841-spiral-path-diagnostic}
-\end{figure}
-
-\begin{sloppypar}
-The same run also records an absolute residual-gap diagnostic.  This is the
-critical cautionary result: although the source-frozen spiral/path shell is
-directionally better than the previous local formula, it remains far below the
-observed NGC2841 curve.  The median predicted/observed velocity ratio is about
-0.69 inside 10 kpc, 0.60 from 10--30 kpc, and only 0.43 beyond 30 kpc.  The
-outer missing-\(v^2\) fraction is about 0.81.  Thus the replay should not be
-read as a sufficient NGC2841 rotation readout.  It is evidence that the
-allowed-failure spiral/path shell points in the right direction, but it also
-exposes a large outer capacity deficit.  The next source-side target is an
-independent outer path or dark-residual capacity route, not endpoint amplitude
-tuning.
-\end{sloppypar}
-
-\begin{sloppypar}
-A separate capacity-requirement audit makes the same failure mode sharper.  It
-asks how large the path weight would have to be if the present source-frozen
-spiral/path shell were forced to close the remaining \(v^2\) gap without
-changing the shell shape or fitting the target galaxy.  The frozen value is
-\(\epsilon_{\rm path}=0.122\), while the required median outer-zone value is
-about \(26.3\), more than \(200\) times larger.  This is not a new formula and
-is not used to repair the curve.  It is a blocker diagnostic: the current
-spiral/path shell is too small in absolute capacity, so any further NGC2841
-improvement requires an independently sourced outer path or dark-residual
-capacity route rather than endpoint amplitude rescue.
-\end{sloppypar}
-
-\begin{sloppypar}
-A residual-blind source search then identifies such a route as plausible but
-not yet formula-frozen.  The source-search ledger records three strong
-outer-capacity candidates for NGC2841: the Dragonfly extended stellar/HI/UV
-disk, traced to about 70 kpc and beginning to warp in the low-surface-brightness
-outer disk \cite{Zhang2018NGC2841Dragonfly}; the extended warped HI and
-tilted-ring picture, including an HI extent of roughly 2.5 Holmberg diameters
-and a flat rotation field traced to about 36 kpc \cite{Bosma1981NGC2841HI};
-and the GALEX/XUV outer-disk route, where NGC2841 shows outer UV/HI structure
-and star-forming complexes well outside the bright optical disk
-\cite{Thilker2007XUVDisks}.  Additional warp/infall, radio-continuum, and
-hot-gas context is retained only as caveated path evidence
-\cite{ShenSellwood2006WarpInfall,Braun2007WesterborkSINGS,Chandra2006NGC2841}.
-This artifact closes a source-search blocker, not a scoring gate:
-endpoint replay and kernel promotion remain forbidden until a separate
-source-native outer-capacity formula freeze is declared.
-\end{sloppypar}
-
-\begin{sloppypar}
-The corresponding formula-freeze worklist keeps that declaration blocked.  It
-records candidate source-native scales for the route--approximately 20 kpc for
-the onset of the outer stellar/gas capacity, 30 kpc for the warp/path onset,
-70 kpc for the outer stellar-disk extent, an HI extent proxy of about 2.5
-Holmberg diameters, and an XUV lower bound of at least \(4D_{25}\).  These
-numbers are not fitted to the rotation curve.  The route remains
-non-scoreable, however, because three source-side decisions are still missing:
-an onset-priority rule, a source-native tilted-ring geometry extraction, and a
-residual-blind component-weight rule for combining the stellar/HI/UV, warped
-HI, and XUV channels.  Thus the worklist narrows the next task without
-promoting a new NGC2841 kernel.
-\end{sloppypar}
-
-\begin{sloppypar}
-A bounded policy-freeze pass closes two of these items without using endpoint
-information.  The onset rule is nested rather than competitive: the 20 kpc
-Dragonfly scale is used as the start of the general outer-capacity ramp, while
-the 30 kpc warp scale is used only for the warp/path subchannel.  The
-component-weight rule is a maximum-entropy source prior: the three strong
-source routes receive equal prior weights, while caveated vertical or hot-gas
-context receives no primary formula weight.  This still does not produce a
-scoreable kernel.  The exact XUV radial shape and the source-native tilted-ring
-geometry profile remain blocked, so the branch remains at policy-freeze status,
-not formula freeze.
-\end{sloppypar}
-
-\begin{sloppypar}
-A subsequent source-review pass narrows the tilted-ring blocker without closing
-it.  The Bosma/NED material supports a geometry-bearing warped-HI route: the
-outer HI orientation differs from the main body, the kinematical major axis
-changes in the outer parts, and Bosma constructs an annular tilted-ring model
-whose rings are allowed to have distinct sky orientations
-\cite{Bosma1981NGC2841HI}.  The same review also records why this still is not
-a formula freeze.  The radial position-angle/inclination profile is available
-in the local source representation as a figure, not as a machine-readable
-profile table.  Thus the route is source-supported but the exact numeric
-tilted-ring kernel remains blocked pending residual-blind figure digitization
-or a source-native table.
-\end{sloppypar}
-
-\begin{sloppypar}
-For traceability we also add a coarse digitized-profile candidate from the same
-source figure.  The candidate uses only the position-angle and inclination
-panels of Bosma Figure 7 and explicitly excludes the rotation-velocity and
-surface-density panels.  In this low-resolution source-side digitization the
-orientation changes by roughly \(12^\circ\) in position angle and \(15^\circ\)
-in inclination across 0--37 kpc.  This is useful because it turns the geometry
-blocker into a concrete review target.  It is not yet a formula input: the
-candidate remains review-only until an independent digitization or
-source-native profile table confirms it.
-\end{sloppypar}
-
-\begin{sloppypar}
-We then add a stricter source-native PA/inclination table pass.  This pass does
-not recover a radial profile table, but it does locate published numeric
-orientation summaries that are independent of the TCDR endpoint score.  The
-THINGS tilted-ring analysis lists NGC~2841 with an indicative global H I
-inclination of \(69^\circ\) and LEDA optical inclination of \(61^\circ\), and
-its tilted-ring model table gives \(\langle{\rm PA}\rangle=152.6^\circ\) and
-\(\langle i\rangle=73.7^\circ\) \cite{deBlok2008THINGS}.  A later ROTCUR-based
-analysis gives a consistent median geometry, \({\rm PA}=150.7^\circ\) and
-\(i=73.5^\circ\) \cite{Samurovic2015NGC2841}.  These values strengthen the
-scalar geometry support for the warped-HI tilted-ring route and cross-check the
-Bosma figure digitization.  They do not by themselves freeze the needed radial
-PA/inclination kernel: the source-native numeric radial table remains missing,
-so kernel promotion and endpoint replay remain closed.
-\end{sloppypar}
-
-\begin{sloppypar}
-Finally, a bounded radial-table search audit preserves the negative source
-result rather than hiding it.  The audit checks the Bosma/NED, THINGS/de Blok,
-Samurovi\'c, and targeted primary-source search routes.  It finds scalar
-source-native PA/inclination support and figure-level radial PA/inclination
-profiles, but no primary machine-readable radial PA/inclination table.  This is
-a source-acquisition blocker, not a failed endpoint result: the next allowed
-step is author/archive table acquisition or independent reviewer digitization
-of the source figures, still without using endpoint residuals.
-\end{sloppypar}
-
-\begin{sloppypar}
-To make that next step reproducible, the repository now also builds an
-independent-review package for the NGC~2841 radial PA/inclination profile.  The
-package contains the Bosma source image, a response template, scalar PA/i
-crosschecks, the previous coarse candidate explicitly marked as
-non-authoritative, and the negative radial-table search audit.  The reviewer is
-asked to digitize only the PA and inclination panels; the rotation-velocity and
-surface-density panels are forbidden.  The package is therefore a source-side
-handoff artifact, not an endpoint replay authorization.
-\end{sloppypar}
-
-\begin{sloppypar}
-The completed reviewer response passes the leakage audit.  It supplies a
-caveated source-side PA/inclination profile with 16 points over \(0\)--37 kpc,
-using only Bosma Figure 7 panels a and b.  The accepted profile has a PA span of
-about \(12.1^\circ\) and an inclination span of about \(13.8^\circ\), consistent
-with the scalar THINGS/Samurovi\'c orientation support.  This moves the
-NGC~2841 tilted-ring geometry input to formula-freeze-review readiness, but not
-to formula-ready or endpoint-ready status.
-\end{sloppypar}
-
-\begin{sloppypar}
-We then convert the accepted profile into a source-side tilted-ring geometry
-kernel review artifact.  The resulting dimensionless shape kernel is
-\[
-K_{\rm geom}(R)=
-\operatorname{norm}_{[0,1]}
-\left[
-\left(
-{ {\rm PA}(R)-\langle{\rm PA}\rangle_{R\leq 10\,{\rm kpc}}
- \over \Delta{\rm PA}_{\rm max}}
-\right)^2+
-\left(
-{ i(R)-\langle i\rangle_{R\leq 10\,{\rm kpc}}
- \over \Delta i_{\rm max}}
-\right)^2
-\right]^{1/2}.
-\]
-For the current reviewer profile the inner reference values are
-\(\langle{\rm PA}\rangle_{R\leq10}=148.32^\circ\) and
-\(\langle i\rangle_{R\leq10}=68.06^\circ\).  The normalization spans are
-\(\Delta{\rm PA}_{\rm max}=11.68^\circ\) and
-\(\Delta i_{\rm max}=13.74^\circ\).  This is not a velocity correction and not
-a promoted endpoint kernel: it freezes only the residual-blind radial geometry
-shape.  The sign, carrier, and amplitude rule remain source-review blockers, so
-endpoint replay and kernel promotion remain closed.
-\end{sloppypar}
-
-\begin{sloppypar}
-A final formula-rule review makes the remaining blocker explicit.  The geometry
-shape is frozen for formula review, and the fixed baryonic carrier is retained
-only as a reviewable preflight carrier convention.  The sign rule is not
-frozen: the same PA/inclination geometry could be interpreted either as a
-projection/attenuation correction,
-\[
-v_{\rm readout}^2(R)=v_{\rm carrier}^2(R)\,[1-\gamma K_{\rm geom}(R)],
-\]
-or as an added outer-capacity lane,
-\[
-v_{\rm readout}^2(R)=v_{\rm carrier}^2(R)+\lambda K_{\rm geom}(R).
-\]
-Choosing between these branches by looking at the NGC~2841 rotation residual
-would be leakage.  The amplitude or load rule is also blocked, because the
-PA/inclination profile supplies a radial shape but no velocity-squared scale.
-Thus the branch has a source-side shape kernel and a candidate carrier, but it
-does not yet have a scoreable readout formula.
-\end{sloppypar}
-
-\begin{sloppypar}
-One sign/load statement can nevertheless be derived without endpoint data: the
-strict projection branch.  For a circular tilted ring,
-\[
-v_{\rm los}(R)=v_c(R)\sin i(R).
-\]
-If the carrier is referenced to the inner orientation
-\(i_{\rm ref}=\langle i\rangle_{R\leq10}=68.06^\circ\), then changing only the
-inclination readout gives
-\[
-{v_{\rm proj}^2(R)\over v_{\rm carrier}^2(R)}
-=
-\left({\sin i_{\rm ref}\over \sin i(R)}\right)^2 .
-\]
-This quantity is dimensionless and multiplies a velocity-squared carrier.  For
-the accepted NGC~2841 profile, the outermost value is about \(0.878\), so the
-maximum source-side projection attenuation is about \(0.122\).  This closes the
-sign of the projection-only subcase: increasing the outer inclination relative
-to the inner reference gives a negative multiplicative attenuation, not an
-additive boost.  The small inner-region values slightly above unity are retained
-as a reference-grid/digitization caveat rather than clipped.  The positive
-outer-capacity formula remains unproved from PA/inclination alone, because an
-additive term \(\lambda K_{\rm geom}\) requires an independent
-velocity-squared load \(\lambda\).
-\end{sloppypar}
-
-\begin{sloppypar}
-The subsequent load-source ledger therefore treats the positive branch as a
-separate source obligation rather than as a consequence of the geometry
-kernel.  It distinguishes the strict projection control from three
-source-supported outer-capacity routes: the Dragonfly extended stellar/HI/UV
-route, the warped-HI tilted-ring route, and the GALEX/XUV outer-disk route.
-The source search and policy freeze establish route support, radial support,
-and equal strong-route weights, but none of these objects has velocity-squared
-units.  The composite additive shell
-\[
-v_{\rm readout}^2(R)=v_{\rm carrier}^2(R)+
-\lambda_{\rm outer}\,[w_{\rm ext}K_{\rm ext}+w_{\rm warp}K_{\rm geom}
-+w_{\rm xuv}K_{\rm xuv}]
-\]
-therefore remains blocked until \(\lambda_{\rm outer}\) is supplied by an
-independent source-native mass/surface-density conversion, a predeclared
-train-only amplitude rule, or a Tau-side load theorem.  This is a negative
-guardrail result: geometry and source-route presence are not silently promoted
-to an added dark-residual load.
-\end{sloppypar}
-
-\begin{sloppypar}
-A focused load-source search finds one useful source-native control but not a
-ready dark-residual load.  Zhang et al. report that the stellar mass in the
-warp-dominated outer disk beyond \(\sim30\,{\rm kpc}\) is
-\(1.4\pm0.2\times10^8\,M_\odot\), and that beyond \(\sim20\,{\rm kpc}\) the
-stellar-to-gas surface-density ratio is approximately \(3{:}1\)
-\cite{Zhang2018NGC2841Dragonfly}.  Interpreting this only as an outer baryonic
-ceiling gives
-\[
-v_{\rm ceil}^2(R)={G M_{\rm outer,baryon}\over R},
-\]
-with \(M_{\rm outer,baryon}\simeq1.87\times10^8\,M_\odot\).  At
-\(R=30\,{\rm kpc}\) this is only \(26.8\,{\rm km^2\,s^{-2}}\), or
-\(v_{\rm ceil}\simeq5.17\,{\rm km\,s^{-1}}\).  This is a legitimate
-source-side baryonic control, but it is not the missing positive
-dark-residual load.  The stronger future route is to review-digitize the
-published Dragonfly stellar/gas mass-surface-density profile and apply a
-frozen disk-load conversion before any endpoint replay.
-The present package therefore includes a reviewer template for digitizing only
-\(\Sigma_\star(R)\), \(\Sigma_{\rm gas}(R)\), and their ratio from the
-Dragonfly mass-profile figure; rotation curves, endpoint residuals, Tau Core
-scores, and required-\(\lambda\) diagnostics are explicitly forbidden.
-The filled response passes these leakage checks, but it also exposes a new
-source-side blocker: naive annular integration of the digitized measured-colour
-profile over \(R\geq30\,{\rm kpc}\) is not directly compatible with the quoted
-outer-disk stellar mass.  We therefore retain the digitized mass profile only
-as a caveated shape candidate.  It cannot yet be promoted to a load-bearing
-formula without resolving the component and normalization semantics of the
-published profile.  A separate semantics-clarification audit localizes the
-problem to the identity and normalization of the source profile rather than to
-endpoint leakage: the filled response remains residual-blind, but area or
-inclination conventions alone are too small to explain the tens-of-times
-integral mismatch.  The allowed next step is therefore not scoring, but either
-a focused reviewer confirmation of curve identity and axis mapping or a
-source-native table/model for the isolated outer component.
-We searched the local Zhang et al. arXiv source package for such a source-native
-table.  This was a negative source finding: the package contains the accepted
-TeX file and figure PDFs, including the mass-profile figure, but no
-machine-readable \(\Sigma_\star(R)\) or \(\Sigma_{\rm gas}(R)\) table.  The TeX
-source supports the separation between the displayed surface-density profiles,
-the measured-colour/constant-colour variants, the outer \(3{:}1\) ratio, and
-the integrated \(R\gtrsim30\,{\rm kpc}\) stellar-mass statement, but it does
-not provide the missing component-normalization map.
-We therefore packaged the remaining question as a source-side semantics review.
-The filled response passes the guardrails and gives a conservative verdict: the
-displayed figure profile is not source-resolved as the isolated outer component,
-no source-native normalization rule is present, no axis/unit interpretation
-explains the mismatch, and the accepted use is shape-only.  The mass-profile
-route is therefore closed as a load formula in this version:
-\(\texttt{ACCEPT\_SHAPE\_ONLY\_LOAD\_FORMULA\_BLOCKED}\).  It remains useful
-as source-side morphology context, but it grants no endpoint replay or
-kernel-promotion permission.
-The subsequent surviving-route ledger makes the NGC2841 status explicit.  The
-Dragonfly mass-profile route is closed as a load route and preserved only as
-shape context; the tilted-ring branch survives as a projection-control
-diagnostic candidate, not as a positive dark-residual load; the composite
-outer-morphology and XUV/HI routes remain source-supported but load-blocked.
-Thus NGC2841 currently has source-side morphology information, but no
-formula-ready positive outer-capacity load route.
-We therefore freeze a separate projection-control preflight rather than an
-endpoint.  This preflight records \(\texttt{tilted\_ring\_projection\_control}\)
-as the only clean near-term route, with the PA/inclination-derived outer
-projection factor \(0.878\) and attenuation cap \(0.122\).  It explicitly keeps
-endpoint replay, kernel promotion, new-route scoring, and any positive
-additive dark-residual-load claim closed.  If a replay is later requested, it
-must be a diagnostic projection-control run that reads the frozen preflight
-unchanged, not a route-promotion or curve-rescue step.
-Running that diagnostic control gives the expected negative/control outcome.
-Applied to the fixed baryonic carrier, the projection factor changes the
-weighted RMSE from \(144.88\,{\rm km\,s^{-1}}\) to
-\(150.95\,{\rm km\,s^{-1}}\); the outer zone also worsens.  This is not treated
-as an endpoint failure of Tau Core.  It is the intended guardrail result: the
-tilted-ring projection branch is an attenuation control, and it cannot supply
-the missing positive outer-capacity load for NGC~2841.
-The integrated Dragonfly outer baryonic mass gives the complementary
-source-native ceiling control.  Using the reported outer stellar mass together
-with the approximate \(3{:}1\) stellar-to-gas ratio gives
-\(\Delta v^2=G M_{\rm outer}/R\), active only beyond \(30\,{\rm kpc}\), with
-\(\Delta v^2(30\,{\rm kpc})\simeq26.8\,{\rm km^2\,s^{-2}}\).  This has the
-right dimensions but is tiny.  In diagnostic replay it changes the weighted
-RMSE only from \(144.876\,{\rm km\,s^{-1}}\) to
-\(144.825\,{\rm km\,s^{-1}}\).  We therefore preserve it as a baryonic ceiling
-control, not as a positive dark-residual load.
-Combining the frozen controls makes the remaining blocker quantitative.  In the
-outer zone the median positive velocity-squared gap is still about
-\(6.53\times10^4\,{\rm km^2\,s^{-2}}\) after the baryonic ceiling is included,
-while the median ceiling contribution is only about
-\(17.05\,{\rm km^2\,s^{-2}}\), roughly \(2.6\times10^{-4}\) of the outer
-baryonic-carrier gap.  The projection control has the wrong sign for closing
-this deficit.  Thus the NGC~2841 positive-load problem is not solved by known
-outer baryons or projection geometry; it requires a different source-native
-channel or a Tau-side load theorem before any endpoint claim is possible.
-As a source-search yardstick, the remaining outer gap corresponds to a median
-\(G M/R\)-equivalent scale of about \(6.88\times10^{11}\,M_\odot\), with an
-interquartile range \(5.45\text{--}8.75\times10^{11}\,M_\odot\).  This is not
-a physical dark-matter mass measurement and is not used as a fitted amplitude;
-it only fixes the order of magnitude that any future residual-blind positive
-load route would have to address.
-We can, however, freeze one source-derived lower-bound gas component.  The
-SPARC mass-model package provides an NGC~2841 rotmod file with a gas
-contribution \(V_{\rm gas}(R)\), constructed from the same SPARC/THINGS mass
-model lineage used for the baryonic component \cite{SPARCWebsite,
-deBlok2008THINGS}.  In the freeze script we read only \(R\) and
-\(V_{\rm gas}\); observed velocities and errors present in the same file are
-ignored.  The frozen outer shape kernel is
-\(\max(V_{\rm gas}^2,0)/\max_{\rm outer}\max(V_{\rm gas}^2,0)\) for
-\(R\ge30\,{\rm kpc}\), and zero inside that window.  This supplies a
-reproducible HI/gas shape proxy, but not the missing positive residual load:
-the outer median \(V_{\rm gas}^2\) is only about \(6.5\%\) of the required
-post-control \(v^2\) yardstick, and even the outer maximum is only about
-\(7.3\%\).
-A second source freeze uses the public VizieR mirror of the THINGS catalogue
-\cite{Walter2008THINGS}.  It caches the NGC~2841 global HI spectrum and
-catalogue geometry, giving 132 spectral rows, 123 finite flux rows, catalogue
-\(D=14.1\) Mpc, \(i=74^\circ\), and \({\rm PA}=153^\circ\).  Integrating the
-positive flux-density entries with the catalogue channel spacing gives a
-global HI-flux proxy of about \(183.31\,{\rm Jy\,km\,s^{-1}}\), corresponding
-to \(\sim8.6\times10^9\,M_\odot\) under the standard HI mass conversion at the
-catalogue distance.  This strengthens global HI support, but it is still not a
-radial surface-density map and not a velocity-squared load kernel.
-A third source freeze uses the NED-hosted THINGS natural- and robust-weighted
-moment-0 products for NGC~2841 \cite{Walter2008THINGS}.  With the same frozen
-catalogue geometry, the script constructs a residual-blind deprojected radial
-MOM0 shape/support profile in one-kpc bins.  The output records 120 source-side
-rows across the two products.  Both products retain MOM0 support out to the
-outermost 60 kpc bin at the one-percent peak threshold; beyond \(30\,{\rm kpc}\)
-the mean normalized MOM0 shape is about \(0.236\) for the natural-weighted
-product and \(0.261\) for the robust-weighted product, while the corresponding
-outer peak shapes are about \(0.596\) and \(0.611\).  This closes the
-profile-cache blocker in a source-native way.  It does not close the physical
-load blocker: an absolute beam/unit/mass calibration and a frozen conversion to
-velocity-squared load units are still required before endpoint replay.
-The beam/unit calibration can nevertheless be audited without opening the
-endpoint.  Using the CLEAN beam recorded in the FITS history, the MOM0 sums
-recover integrated HI-flux proxies of \(176.0\) and
-\(181.0\,{\rm Jy\,km\,s^{-1}}\) for the natural- and robust-weighted products,
-respectively.  These are \(0.960\) and \(0.988\) times the independent VizieR
-global flux proxy above.  Under the standard HI-mass conversion this corresponds
-to source-side HI mass-profile proxies with total masses of about
-\(8.24\times10^9\,M_\odot\) and \(8.48\times10^9\,M_\odot\).  The audit writes
-an enclosed \(GM(<R)/R\) diagnostic only as a triage quantity.  It is not a
-promoted disk-gravity kernel, not a positive dark-residual load claim, and not
-an endpoint replay.
-The disk-load promotion review then permits only the physical HI component to
-be used as a source-frozen control, with \(\lambda_{\rm HI}=1\) fixed by the
-MOM0-derived HI mass profile.  It also records the standard \(1.36\) helium
-bookkeeping factor used in THINGS-based gas surface-density conversions
-\cite{Leroy2008SFE}.  The review uses a softened axisymmetric annular disk
-integral and selects the robust-weighted product as the primary source-side
-control because it has the smaller beam and the closer integrated flux match to
-VizieR; the natural-weighted product is retained as a cross-check.  In the outer
-\(R\ge30\,{\rm kpc}\) region, the resulting physical-HI disk-load proxy reaches
-about \(1128\,{\rm km^2\,s^{-2}}\) for the robust-weighted product and
-\(1107\,{\rm km^2\,s^{-2}}\) for the natural-weighted product; the corresponding
-standard HI+He gas controls are about \(1534\) and
-\(1506\,{\rm km^2\,s^{-2}}\).  This is a physical-gas control only.  It is not a
-dark-residual or halo-capacity kernel, because any multiplier beyond the
-standard baryonic gas bookkeeping would need an independent source-native rule
-or a Tau-side load theorem.
-A separate halo-capacity conversion search ledger then distinguishes the
-allowed and forbidden source routes before any replay is opened.  The
-SPARC/THINGS gas route is retained only as the lower-bound component just
-described, the VizieR/THINGS global HI spectrum is retained only as global
-support, and the THINGS/NED MOM0 profile, mass-profile proxy, and physical-HI
-disk-load control, including the standard HI+He bookkeeping control, are
-retained only as source-side support.  The primary next blocker is therefore no
-longer profile acquisition, beam/unit conversion, or physical-gas disk-load
-construction, but the absence of an independent extra-capacity multiplier or
-Tau-side load theorem.  Bosma-style HI scaling is recorded as motivated context
-but remains scale-blocked until an independent coefficient is source-frozen.
-Published NFW/ISO halo parameters are rejected as Tau source-freeze inputs
-because they are rotation-curve endpoint fits.  The ledger therefore improves
-the anatomy of the blocker, but it still authorizes no endpoint replay, kernel
-promotion, or positive-load freeze.
-A final source-route re-audit then separates closed controls from remaining
-positive-load candidates.  The tilted-ring route is closed as an attenuation
-control, the known integrated outer baryonic mass is closed as a tiny ceiling
-control, and the Dragonfly mass-profile material is retained only as shape
-context.  The primary residual-blind route left open is the extended HI
-warp/halo-capacity channel, now with the SPARC/THINGS gas proxy frozen only as
-a lower-bound gas component; XUV/HI outer support, diffuse-envelope support,
-history/environment context, and a Tau-side outer-capacity load theorem remain
-secondary worklist routes.  None of these entries authorizes endpoint scoring.
-The next admissible step is source acquisition: a halo-capacity or extended-HI
-load conversion, with a frozen conversion to velocity-squared units, must be
-obtained before any new NGC~2841 positive-load kernel can be replayed.  After
-the NED/THINGS freeze above, this means an independently justified extra-load
-source, not another attempt to locate or calibrate the radial HI profile.
-We therefore add a bounded independent-multiplier rejection audit.  It accepts
-the standard HI+He factor only as a physical gas bookkeeping control, not as an
-extra dark-residual multiplier.  Bosma-style HI scaling, XUV/HI outer support,
-diffuse-envelope support, and history/environment routes remain source/context
-supported but multiplier-blocked; the Tau-side load-theorem route is retained
-as theory work; and NFW/ISO halo-fit parameters are rejected because they are
-endpoint rotation-curve fits.  This audit is negative in the useful sense: it
-records that the current NGC~2841 source package still has no independent
-extra-capacity multiplier and authorizes no endpoint replay, kernel promotion,
-positive-load freeze, or new-route scoring.
-We also record the corresponding Tau-side theorem-readiness shell,
-\(\Delta v_\tau^2(R)=A_\tau K_{\rm outer}(R)\).  This formula is dimensionally
-admissible only if \(A_\tau\) is independently supplied in velocity-squared
-units.  The support-field and sign anatomy are partially ready, and the
-no-double-counting and endpoint-leakage constraints are ready as audit
-boundaries.  The theorem itself remains blocked because neither a Tau-side unit
-map \(R_{\rm load}([K_{\rm outer}])\to{\rm km^2\,s^{-2}}\) nor a protected,
-residual-blind amplitude source \(A_\tau\) has been derived.
-Finally, we audit whether earlier Tau Core galaxy papers already contain a
-portable proxy for this missing amplitude.  Paper~9 contributes a
-residual-blind Bullock-disk spin proxy for NGC~2841,
-\(\lambda_{\rm spin}\simeq0.02024\), corresponding to
-\(\beta\simeq1.08034\) within that beta-transfer grammar.  This is useful
-context for a possible multiplicative closure or beta route, but it is
-dimensionless and is not an additive velocity-squared \(A_\tau\).  Paper~8
-contains source-factored amplitude forms such as
-\(\lambda_w=\sigma q x_w V_{\rm flat}^2\), but those remain
-formula-conditional and cannot be transplanted into NGC~2841 without a fresh
-source-side freeze of \(q\), \(x_w\), sign, and carrier scale.  Thus the
-related-paper audit sharpens the option space but does not close the
-positive-load blocker.
-We therefore open only a preflight reformulation shell for the Paper~9 signal,
-not an endpoint replay.  In that route the Bullock proxy would enter a
-multiplicative closure correction,
-\[
-v_\beta^2(R)=v_{\rm carrier}^2(R)
-\left[1+(\beta_{\rm cl}-1)K_\beta(R)\right],
-\]
-or equivalently
-\(\Delta v_\beta^2(R)=(\beta_{\rm cl}-1)K_\beta(R)v_{\rm carrier}^2(R)\).
-This is dimensionally different from the additive
-\(A_\tau K_{\rm outer}(R)\) route: \(\beta_{\rm cl}\) and \(K_\beta\) are
-dimensionless, while the carrier supplies the velocity-squared units.  The
-preflight artifact keeps this route blocked until three source-side ingredients
-exist: an independent beta/closure reformulation label for NGC~2841, a frozen
-carrier, and a frozen \(K_\beta(R)\).  It does not rescue the additive
-\(A_\tau\) route.
-A follow-up source-side label review then checks whether this reformulation is
-even reviewable.  It combines the Paper~9 predeclared transfer-candidate row,
-the weak NFW-preference transfer-priority row, the Bullock-like spin conversion
-proxy, and the Paper~19 high-inclination warped-HI/tilted-ring context.  The
-result is \emph{review open, not promoted}: NGC~2841 has enough residual-blind
-context to prepare a beta/closure reviewer package, but not enough to promote a
-matched family label, freeze the formula, or run endpoint scoring.  The
-remaining blockers are an independent spin-route decision, a source-frozen
-carrier, and a source-frozen \(K_\beta(R)\).
-The first filled reformulation reviewer response confirms this conservative status.  The
-Bullock-like spin proxy is retained as context only, not as a frozen
-spin-normalization source; the carrier must be newly source-frozen; and
-\(K_\beta(R)\) requires either residual-blind digitization of the radial
-PA/inclination source profile or a source-native radial table.  Thus the
-beta/closure route remains alive as source-side review, while endpoint replay,
-kernel promotion, and formula freeze remain closed.
-The radial-shape part of this blocker can now be narrowed using the accepted
-Bosma Fig.~7a/7b PA/inclination digitization.  The follow-up
-\(K_\beta\)-profile artifact reuses the tilted-ring geometry profile and
-defines only a dimensionless source-side shape
-\[
-K_{\beta,{\rm shape}}(R)=
-{\rm minmax}_{[0,1]}\!\left[
-\left(
-\frac{(\mathrm{PA}(R)-\langle\mathrm{PA}\rangle_{R\le10})^2}
-     {\Delta\mathrm{PA}_{\max}^2}
-+
-\frac{(i(R)-\langle i\rangle_{R\le10})^2}
-     {\Delta i_{\max}^2}
-\right)^{1/2}
-\right].
-\]
-This closes only the source-native radial-shape requirement for a later
-formula-freeze review.  It does not freeze the spin normalization, sign,
-amplitude, or velocity-squared carrier.  Consequently the full beta/closure
-formula remains blocked, and endpoint scoring remains forbidden.
-The carrier part can also be separated without scoring.  A second follow-up
-reads only the SPARC rotmod baryonic component columns \(V_{\rm gas}\),
-\(V_{\rm disk}\), and \(V_{\rm bul}\), while treating the \(V_{\rm obs}\) and
-error columns present in the same source file as forbidden endpoint fields.
-With the same fixed-M/L bookkeeping used elsewhere in the preflight, it freezes
-\[
-v_{\rm carrier}^2(R)=
-\operatorname{sign}(V_{\rm gas})V_{\rm gas}^2
-+0.5\,V_{\rm disk}^2
-+0.7\,V_{\rm bul}^2 .
-\]
-This supplies a dimensionally valid velocity-squared carrier for
-formula-freeze review, not an endpoint-fitted baseline.  After these two
-source-side refinements, the remaining beta/closure blocker is the
-spin-normalization step: the Bullock-like \(\beta_{\rm cl}\) proxy is still
-context-only and has not been promoted to a frozen beta amplitude.
-We remove that last blocker only by weakening its interpretation.  The
-Bullock-like value is not promoted to a direct source-native spin measurement;
-it is frozen only as a caveated dimensionless context coefficient
-\(\beta_{\rm context}=1.08034\) for formula-review use.  The resulting frozen
-review profile is
-\[
-v_{\beta,{\rm context}}^2(R)=
-v_{\rm carrier}^2(R)
-\left[1+(\beta_{\rm context}-1)K_{\beta,{\rm shape}}(R)\right],
-\]
-with \(K_{\beta,{\rm shape}}\) interpolated onto the carrier grid.  This
-retirement of the spin-normalization blocker is therefore not a physical spin
-claim.  It only produces an endpoint-blind formula-freeze-review object; a
-separate authorization step is still required before any scoring script may
-read observed rotation data.
-We therefore package the next step as an endpoint-authorization review rather
-than as a replay.  The package contains the frozen formula, the \(K_\beta\)
-profile, the carrier profile, and a response template; it contains no endpoint
-scores.  Authorization, if granted, would permit only a separate preliminary
-control replay that reads the frozen profile unchanged and preserves the
-no-retuning and no-relabeling constraints.
-The filled endpoint-authorization response grants exactly this bounded
-permission.  It authorizes a separate NGC~2841 single-object preliminary
-endpoint/control replay of the frozen
-\(v_{\beta,{\rm context}}^2\) profile.  It does not authorize formula
-retuning, morphology or readout relabeling, kernel promotion, population
-claims, or empirical validation claims.  Thus the next executable step is a
-separate scoring script, not a further formula change.
-The authorized replay is a weak positive control.  It improves the fixed-M/L
-baryonic carrier from \(144.88\,{\rm km\,s^{-1}}\) to
-\(141.17\,{\rm km\,s^{-1}}\) weighted RMSE, a gain of about
-\(3.71\,{\rm km\,s^{-1}}\).  The outer-zone median remaining velocity gap is
-still about \(154\,{\rm km\,s^{-1}}\), so this replay does not solve the
-NGC~2841 capacity problem.  Its status is therefore
-\emph{preliminary endpoint/control replay}, not validation or kernel
-promotion.
-\end{sloppypar}
-
-\begin{table}[H]
+\subsection{Source-Role Separation, Freeze Queue, and P0 Tier Hierarchy}
+
+The transition from synthetic toys to real galaxy data begins with strict
+source-role separation rather than endpoint fitting.  The committed artifact
+\path{data/source_manifests/tcdr_v4_real_data_source_manifest_v0_1.csv}
+(generated by \path{scripts/build_tcdr_v4_real_data_manifest.py} and summarized
+in Table~\ref{tab:real-data-manifest}) partitions public astronomical products
+into disjoint roles: SPARC dynamics products (rotation curves and mass models)
+are endpoint/baseline inputs only \cite{SPARCWebsite}, whereas S4G/IRSA and
+Galaxy Zoo catalogues supply source-side morphology labels
+\cite{S4GIRSA,GalaxyZooData}, and EDD/Cosmicflows products provide distance or
+environment controls frozen prior to scoring \cite{EDDWebsite}.  An optional
+downloader (\path{scripts/download_tcdr_v4_sparc_endpoint.py}) retrieves local
+SPARC preflight files into \path{data/external/sparc_preflight/}; those files
+are gitignored and remain endpoint/baseline inputs only.
+
+\begin{table}[htbp]
 \centering
 \scriptsize
 \setlength{\tabcolsep}{3pt}
@@ -2043,6 +629,342 @@ artifact, not a data analysis.  It fixes which public data products are allowed
 to define source-side labels and which are endpoint/baseline quantities.}
 \label{tab:real-data-manifest}
 \end{table}
+
+From SPARC sample metadata alone (excluding \(V_{\rm flat}\) and rotation
+residuals), \path{scripts/build_tcdr_v4_sparc_source_freeze_queue.py} ranks all
+175 SPARC galaxies into logistics queues by quality, inclination, H\,I extent
+availability, and queryability:
+\begin{align*}
+  66 &\quad {\rm P0\_SOURCE\_REVIEW},\\
+  60 &\quad {\rm P1\_SOURCE\_REVIEW},\\
+  49 &\quad {\rm P2\_SOURCE\_REVIEW}.
+\end{align*}
+Across the 66 P0 galaxies, three sequential residual-blind resolver passes
+establish the committed source-tier hierarchy
+(\path{tcdr_v4_p0_source_tier_manifest_v0_1.csv}):
+\begin{align*}
+  32 &\quad {\rm S4G\ matched\ by\ name}\ ({\rm S4G\_STRONG}),\\
+  11 &\quad {\rm S4G\ coordinate\ matched}\ ({\rm S4G\_COORD\_RESCUE},\ \le 1'),\\
+  22 &\quad {\rm SIMBAD\ morphology\ type\ available}\ ({\rm SIMBAD\_FALLBACK}),\\
+   1 &\quad {\rm SIMBAD\_IDENTITY\_ONLY}.
+\end{align*}
+Thus 43/66 P0 galaxies possess homogeneous S4G infrared structural morphology,
+while 23 rely on lower-hierarchy SIMBAD fallback records (for example, classic
+nearby spirals such as NGC~2403 carry SIMBAD \(\mathrm{SAcd}\) morphology
+outside the \(1'\) S4G match radius and are therefore held in
+\texttt{NON\_HOMOGENEOUS\_SOURCE\_TIER} rather than mixed into the homogeneous
+S4G pilot).
+
+An endpoint-blind family rule (\path{tcdr_v4_p0_source_family_freeze_v0_1.csv})
+maps the 66 P0 objects into six candidate readout classes:
+\begin{align*}
+  30 &\quad {\rm K\_BARRED\_M2}, &
+  14 &\quad {\rm K\_EXPONENTIAL\_SPIRAL\_DISK},\\
+  10 &\quad {\rm K\_RING\_RESONANCE}, &
+   6 &\quad {\rm K\_DIFFUSE\_LATE\_DISK},\\
+   5 &\quad {\rm K\_COMPACT\_EARLY\_DISK}, &
+   1 &\quad {\rm K\_UNFREEZABLE\_IDENTITY\_ONLY}.
+\end{align*}
+Within the 43 homogeneous S4G galaxies, the deterministic selector script
+(\path{scripts/build_tcdr_v4_p0_pilot_holdout_manifest.py}) assigns up to two
+low-inclination-caveat objects per family while keeping at least one calibration
+galaxy in the train pool:
+\begin{align*}
+   7 &\quad {\rm PILOT\_HOLDOUT}\ (2\ {\rm barred},\ 1\ {\rm diffuse},\ 2\ {\rm spiral},\ 2\ {\rm ring}),\\
+  36 &\quad {\rm PILOT\_TRAIN\_POOL},\\
+  23 &\quad {\rm NON\_HOMOGENEOUS\_SOURCE\_TIER}.
+\end{align*}
+Checking local endpoint availability
+(\path{tcdr_v4_p0_holdout_endpoint_readiness_v0_1.csv}) confirms 7 holdout
+galaxies totaling 215 rotation points under the fixed baryonic carrier policy
+(\(\text{disk } M/L = 0.5\), \(\text{bulge } M/L = 0.7\), no amplitude fit).
+This committed ledger records endpoint-readiness only; curve values and
+diagnostic scores stay in \path{data/external/}.
+
+\subsection{Master Progression and Gate-Audit Ledger (v0.1--v0.9)}
+
+When scored with broad family templates trained on \texttt{PILOT\_TRAIN\_POOL}
+(requiring \(\ge 2\) train galaxies per calibrated family), the 6 scoreable
+holdout galaxies beat the fixed baryonic carrier in \(6/6\) cases (median
+weighted RMSE margin \(-0.392\,{\rm km\,s^{-1}}\)), but beat the calibrated
+wrong-family mean in only \(3/6\) and the best wrong family in \(2/6\) (median
+wrong-mean margin \(-0.074\,{\rm km\,s^{-1}}\)).  Because barred and ring
+galaxies frequently activate generic exponential-disk templates unless radial
+component coordinates are specified on the source side, the TCDR-v4 development
+proceeded through a strict sequence of endpoint-blind source audits and
+gate-filtered diagnostics (\texttt{v0.1} through \texttt{v0.9}), consolidated in
+Table~\ref{tab:master-progression-ledger}.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{L{0.12\linewidth}L{0.25\linewidth}L{0.29\linewidth}L{0.26\linewidth}}
+\toprule
+Stage & Source-frozen input / rule & Key coverage \& quantitative outcome & Gate verdict\\
+\midrule
+Preflight v0.0 & Broad S4G family templates; min-2 train calibration guard & \(6/6\) beat carrier (\(-0.392\,{\rm km\,s^{-1}}\)); \(3/6\) beat wrong-mean; \(2/6\) beat best-wrong; 1 diffuse holdout blocked & Specificity insufficient; source-native bar/ring/spiral radii required\\
+Coordinate \& Mix v0.1 & S4G Pipeline 4 + feature radii \cite{Salo2015S4GPipeline4,HerreraEndoqui2015S4GFeatures}; \(0.5/0.5\) primary/secondary mix; 64 shuffles & 31 P4, 21 feature, 16 pitch rows (17 mixed, 7 single, 42 fallback); mixed RMSE \(60.103\) vs null \(60.371\,{\rm km\,s^{-1}}\) (\(25/64\) nulls \(\le\) actual) & Multi-component coexistence confirmed (NGC~1090, NGC~3198, NGC~5033); shuffle gate open\\
+Strength-Weighted v0.2 & Evidence-weighted bar/ring strengths and spiral pitch/segment/span & Wrong-mean beat rises to \(4/6\) (\(2/3\) on mixed holdout); median RMSE \(59.746\) vs null \(60.319\,{\rm km\,s^{-1}}\) (\(22/64\) nulls \(\le\) actual) & Directional gain over v0.1, but not yet shuffle-selective for promotion\\
+Radial Stress v0.3 & Multiplies v0.2 by zone, hierarchy, and inclination reliability factors & Keeps \(4/6\) wrong-mean, but median RMSE weakens to \(59.933\,{\rm km\,s^{-1}}\) (margin \(0.120\,{\rm km\,s^{-1}}\); \(22/64\) nulls \(\le\) actual) & Retained as cautionary negative stress test; retires ad-hoc template tuning\\
+Formula Compiler v0.4 & Source-frozen \(\Delta v_a^2(R)=\Lambda_a K_a(R)\) readiness filter & \(30/66\) P0 ready; 5 holdout ready (NGC~1090, NGC~2841, NGC~3198, NGC~5033, NGC~6503): \(5/5\) carrier, \(4/5\) wrong-mean (\(0.576\,{\rm km\,s^{-1}}\)), \(2/5\) best-wrong; \(25/64\) nulls \(\le\) actual & Ablation matches dominant source component in \(1/4\) mixed cases; uniqueness audit needed\\
+Selector Audit v0.5--v0.6 & Composition uniqueness (v0.5) + radial support-overlap demotion (v0.6) & \(17\) unique / \(6\) ambiguous in v0.5; \(10/66\) support-safe in v0.6 (holdout: NGC~2841 safe; NGC~1090, NGC~3198, NGC~5033 overlap; NGC~6503 pure disk fallback) & Explains ablation ambiguity: overlapping bar/ring/spiral windows block naive selection\\
+Support-Safe Pool v0.7--v0.9 & Formula-ready + support-safe expansion (v0.7: 7) \& Tier-1 completion (v0.8--v0.9: 10) & Pool-7 LOOCV: \(6/7\) carrier, \(2/7\) wrong-mean, \(1/7\) best-wrong; Pool-10 LOOCV: \(9/10\) carrier (\(10/10\) compiled), \(5/10\) (\(6/10\)) wrong-mean, \(3/10\) (\(2/10\)) best-wrong & Expands clean testbed to 10 galaxies; strict best-wrong control pressure isolated\\
+Post-External Boundary & Paper 8/9 \(K_{\rm obs}\)/\(K_{\rm readout}\) overlay + external literature audit \cite{DamasSegovia2012Bulgeless,DiazGarcia2020SFbars,Murugeshan2020AngularMomentum} & \(6/17\) rows replay-ready across 4 galaxies (NGC~2841, NGC~3893, NGC~7793, UGC~00191): \(6/6\) carrier \& wrong-mean (\(4/6\) unweighted), \(3/6\) best-wrong; \(11/17\) blocked & Final permission-filtered diagnostic boundary; blocked rows carry zero score claim\\
+\bottomrule
+\end{tabular}
+\caption{Master progression and gate-audit ledger across TCDR-v4 source
+manifests (\texttt{v0.0}--\texttt{v0.9}) and post-external route closure.  Every manifest
+selection rule is frozen before reading SPARC rotation residuals.}
+\label{tab:master-progression-ledger}
+\end{table}
+
+The central methodological transition occurs between \texttt{v0.3} and \texttt{v0.4}.
+Because adding heuristic radial multipliers in \texttt{v0.3} degraded holdout RMSE
+rather than improving it---confirming that mixed weights do not act as a
+post-hoc rescue term---the protocol replaces family-template fitting with a
+source-frozen formula compiler:
+\begin{align}
+  {\rm source\ observables}_a
+  &\longrightarrow
+  \{\Lambda_a,\;W_a(R),\;K_a(R\mid {\rm source}_a)\}
+  \longrightarrow
+  \Delta v_a^2(R)=\Lambda_a K_a(R),\\
+  \Delta v_{\rm TCDR}^2(R)
+  &=\operatorname{Compose}_a\{\Delta v_a^2(R)\}.
+\end{align}
+Under this source-frozen compiler grammar (specified in the repository note
+\path{source_package_docs/tcdr_v4_source_frozen_formula_ladder_import.md}),
+a component enters scoring only when its source observables, radial support
+window \(W_a(R)\), load/amplitude rule \(\Lambda_a\), dimensional check, and
+zero-source limit are frozen beforehand.  In the \texttt{v0.4} readiness audit, five
+holdout galaxies qualify (NGC~1090, NGC~2841, NGC~3198, NGC~5033, and NGC~6503),
+while UGC~08490 (diffuse-partial) and ESO~116-G012 (template-only) are excluded
+prior to scoring.  However, multi-component holdout galaxies such as NGC~3198,
+NGC~1090, and NGC~5033 exhibit overlapping or adjacent bar, ring, and spiral
+radial supports (\texttt{v0.6}), leaving only \(10/66\) P0 galaxies strictly
+support-safe.
+
+Combining \texttt{v0.4} formula readiness with \texttt{v0.6} support safety yields the
+7-galaxy \texttt{v0.7} pool (NGC~0024, NGC~2841, NGC~5005, NGC~7793, UGC~04499,
+UGC~06917, UGC~06983), which expands in \texttt{v0.9} to 10 galaxies via source-dominant
+component completion for NGC~3893 (spiral) and UGC~00191, UGC~12732 (bar).
+Across the combined 17 pool-evaluation rows (\texttt{7 + 10}), applying the Papers~8--9
+distinction between observed morphology \(K_{\rm obs}\) and readout-active
+kernel \(K_{\rm readout}\)---followed by a 64-shuffle mixed-route test
+(\(p \le 0.10\) failed on \(4/4\) disjoint secondary-component rows), an
+NGC~0024 relabel block (zero source-native spiral geometry), and a bounded
+external literature audit on the 5 source-gap rows (finding an anti-spiral
+bulgeless disk in UGC~04499 \cite{DamasSegovia2012Bulgeless}, bar-only S4G
+support in UGC~06917, and non-bar H\,I/star-formation caveats without spiral
+geometry in UGC~12732 \cite{DiazGarcia2020SFbars,Murugeshan2020AngularMomentum})---leaves
+exactly \(6/17\) rows replay-ready and \(11/17\) rows blocked
+(Figures~\ref{fig:readiness-metric-robustness} and
+\ref{fig:post-external-scoring-boundary}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.88\linewidth]{figures/tcdr_readiness_filtered_metric_robustness.png}
+\caption{\textbf{Readiness-filtered metric robustness.}  Best-wrong margin for
+the six current-formula rows permitted by the Paper~8/Paper~9 readiness ledger.
+Strict best-wrong survival remains \(3/6\) under both weighted and unweighted
+RMSE, while wrong-component-mean survival shifts from \(6/6\) weighted to
+\(4/6\) unweighted.}
+\label{fig:readiness-metric-robustness}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.90\linewidth]{figures/tcdr_post_external_scoring_boundary.png}
+\caption{\textbf{Post-external scoring boundary.}  Left: final route-closure
+ledger after the external source audit (\(6/17\) replay-ready rows; \(11/17\)
+blocked by source gaps, mixed-route shuffle controls, or \(K_{\rm obs}\)/\(K_{\rm readout}\)
+relabel blocks).  Right: control survival on the six score-bearing rows.}
+\label{fig:post-external-scoring-boundary}
+\end{figure}
+
+\subsection{Single-Galaxy Preliminary Replays and the NGC 2841 Capacity Stress Audit}
+
+Within the permission-filtered framework, three single-galaxy replays clarify
+the operational regimes of TCDR-v4 without claiming population validation.
+
+\paragraph{NGC 6503 (clean scale-tail positive control).}
+In the \texttt{v0.4} formula-ready holdout, NGC~6503 carries a pure exponential-disk
+scale-tail candidate free of bar/ring/spiral support overlap.  Without
+target-galaxy retuning, the source-frozen candidate achieves weighted RMSE
+\(58.074\,{\rm km\,s^{-1}}\), outperforming the fixed baryonic carrier
+(\(58.672\,{\rm km\,s^{-1}}\)), the pure matched exponential control
+(\(58.182\,{\rm km\,s^{-1}}\)), the wrong-family mean
+(\(59.208\,{\rm km\,s^{-1}}\)), and the best wrong-family control
+(\(58.661\,{\rm km\,s^{-1}}\); Figure~\ref{fig:ngc6503-clean-scale-tail}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.84\linewidth]{figures/tcdr_v4_ngc6503_clean_scale_tail_endpoint_replay.png}
+\caption{NGC~6503 clean scale-tail preliminary replay against the observed SPARC
+rotation curve, fixed baryonic carrier, pure matched exponential control, and
+best wrong-family control.}
+\label{fig:ngc6503-clean-scale-tail}
+\end{figure}
+
+\paragraph{NGC 7793 (support-safe spiral/scale-tail replay).}
+Under leave-one-galaxy-out calibration in the support-safe pool, the
+source-frozen NGC~7793 candidate yields weighted RMSE
+\(19.543\,{\rm km\,s^{-1}}\), beating the fixed baryonic carrier
+(\(23.991\,{\rm km\,s^{-1}}\)), wrong-component mean
+(\(23.653\,{\rm km\,s^{-1}}\)), and best wrong-component control
+(\(23.331\,{\rm km\,s^{-1}}\)), while tying the matched spiral component
+control (\(19.532\,{\rm km\,s^{-1}}\); Figure~\ref{fig:ngc7793-support-safe-spiral}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.84\linewidth]{figures/tcdr_v4_ngc7793_support_safe_spiral_endpoint_replay.png}
+\caption{NGC~7793 support-safe spiral/scale-tail preliminary replay under LOOCV
+calibration, beating wrong-family controls while remaining tied with the matched
+spiral component.}
+\label{fig:ngc7793-support-safe-spiral}
+\end{figure}
+
+\paragraph{NGC 2841 (spiral/path diagnostic and outer-capacity gate audit).}
+Among the allowed rows experiencing strict best-wrong control pressure (across
+NGC~2841 and UGC~00191), residual-blind literature review leaves UGC~00191
+closed (tentative outer asymmetry and DensePak kinematics lack spiral geometry
+\cite{Laine2014S4GOuterFeatures,KuzioDeNaray2008LSBMassModels}), whereas
+NGC~2841 exhibits independent flocculent-spiral, molecular-ring, and Dragonfly
+outer-warp coordinates
+\cite{ESAHubbleNGC2841,YoungScoville1982MolecularRings,Zhang2018NGC2841Dragonfly}.
+Freezing published residual-blind scales at \(D=14.1\,{\rm Mpc}\)---inner/outer
+spiral radii \(r_{\rm in}=7.475\,{\rm kpc}\), \(r_{\rm out}=16.611\,{\rm kpc}\)
+and pitch \(7^\circ\) \cite{KendallClarkeKennicutt2011SpiralI,KendallClarkeKennicutt2015SpiralII},
+plus warp onset \(r_{\rm path}=30.0\,{\rm kpc}\) \cite{Zhang2018NGC2841Dragonfly}---defines
+the caveated shell (\path{tcdr_v4_allowed_failure_spiral_path_formula_freeze_v0_1.csv}):
+\begin{equation}
+  K_{\rm sp}(r)=\frac{1}{2}\!\left[
+    \tanh\!\left(\frac{r-r_{\rm in}}{\sigma_{\rm edge}}\right)
+    -\tanh\!\left(\frac{r-r_{\rm out}}{\sigma_{\rm edge}}\right)
+  \right],
+  \quad
+  K_{\rm path}(r)=\frac{1}{1+\exp[-(r-r_{\rm path})/\sigma_{\rm path}]},
+\end{equation}
+with \(K_{\rm total}(r)=\operatorname{clip}(K_{\rm sp}(r)+\epsilon_{\rm path}K_{\rm path}(r),0,1)\),
+\(\sigma_{\rm edge}=\max[0.15(r_{\rm out}-r_{\rm in}),0.5\,{\rm kpc}]\),
+\(\sigma_{\rm path}=\max[0.2r_{\rm path},1.0\,{\rm kpc}]\), and
+\(\epsilon_{\rm path}=\min[0.20,\max(0.02,7^\circ\text{ in rad})]=0.122\).
+Evaluated with amplitudes fit only on the remaining support-safe galaxies, this
+shell beats both the prior formula and the best wrong control in both pools
+(Table~\ref{tab:ngc2841-spiral-path-diagnostic} and
+Figure~\ref{fig:ngc2841-spiral-path-diagnostic}).
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Bounded NGC~2841 allowed-failure diagnostic replay (weighted RMSE in
+\({\rm km\,s^{-1}}\)).  Amplitudes are fit exclusively on other support-safe
+pool galaxies.}
+\label{tab:ngc2841-spiral-path-diagnostic}
+\begin{tabular}{lrrrr}
+\toprule
+Pool & Previous formula & Best wrong & Spiral/path shell & Gain vs best wrong\\
+\midrule
+support-safe 7 & 144.412 & 144.360 & 143.045 & 1.315\\
+support-safe 10 & 144.496 & 144.487 & 143.505 & 0.982\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.90\linewidth]{figures/tcdr_ngc2841_spiral_path_diagnostic_replay.png}
+\caption{NGC~2841 allowed-failure diagnostic replay corresponding to
+Table~\ref{tab:ngc2841-spiral-path-diagnostic}.  Shaded band: frozen spiral
+window; dotted line: \(30\,{\rm kpc}\) warp/path coordinate.}
+\label{fig:ngc2841-spiral-path-diagnostic}
+\end{figure}
+
+Crucially, the absolute residual-gap audit prevents over-interpreting this
+directional gain: the predicted-to-observed velocity ratio falls from \(0.69\)
+(\(<10\,{\rm kpc}\)) and \(0.60\) (\(10\text{--}30\,{\rm kpc}\)) to \(0.43\)
+beyond \(30\,{\rm kpc}\) (an outer missing-\(v^2\) fraction of \(0.81\),
+requiring \(\epsilon_{\rm path}\simeq 26.3\) vs.\ frozen \(0.122\)).  To test
+whether independent residual-blind outer-disk data can supply the missing
+\(6.53\times 10^4\,{\rm km^2\,s^{-2}}\) outer capacity
+(\(G M/R\)-equivalent yardstick \(6.88\times 10^{11}\,M_\odot\)) without
+endpoint fitting, four source-native routes were audited across Dragonfly,
+warped-H\,I, XUV, and continuum/hot-gas datasets
+\cite{Zhang2018NGC2841Dragonfly,Bosma1981NGC2841HI,Thilker2007XUVDisks,ShenSellwood2006WarpInfall,Braun2007WesterborkSINGS,Chandra2006NGC2841}:
+\begin{enumerate}
+  \item \textbf{Tilted-ring geometry and projection attenuation:}
+  Cross-checking published scalar THINGS and ROTCUR orientations
+  (\(\langle{\rm PA}\rangle=152.6^\circ\), \(\langle i\rangle=73.7^\circ\)
+  \cite{deBlok2008THINGS}; \({\rm PA}=150.7^\circ\), \(i=73.5^\circ\)
+  \cite{Samurovic2015NGC2841}) against a leakage-audited 16-point reviewer
+  digitization of Bosma Fig.~7a/b over \(0\text{--}37\,{\rm kpc}\)
+  (\(\langle{\rm PA}\rangle_{R\le 10}=148.32^\circ\),
+  \(\langle i\rangle_{R\le 10}=68.06^\circ\),
+  \(\Delta{\rm PA}_{\max}=11.68^\circ\), and \(\Delta i_{\max}=13.74^\circ\)
+  \cite{Bosma1981NGC2841HI}) freezes the dimensionless radial shape
+  \begin{equation}
+    K_{\rm geom}(R)=
+    \operatorname{norm}_{[0,1]}\!\left[
+      \left(\frac{{\rm PA}(R)-\langle{\rm PA}\rangle_{R\le 10\,{\rm kpc}}}{\Delta{\rm PA}_{\max}}\right)^2
+      +\left(\frac{i(R)-\langle i\rangle_{R\le 10\,{\rm kpc}}}{\Delta i_{\max}}\right)^2
+    \right]^{1/2}.
+  \end{equation}
+  For a circular tilted ring \(v_{\rm los}(R)=v_c(R)\sin i(R)\), referencing
+  inclination to \(i_{\rm ref}=68.06^\circ\) fixes the projection-only branch
+  without endpoint inspection:
+  \begin{equation}
+    \frac{v_{\rm proj}^2(R)}{v_{\rm carrier}^2(R)}
+    =\left(\frac{\sin i_{\rm ref}}{\sin i(R)}\right)^2,
+  \end{equation}
+  which reaches \(0.878\) in the outer disk (attenuation \(0.122\)) and worsens
+  carrier weighted RMSE from \(144.88\) to \(150.95\,{\rm km\,s^{-1}}\),
+  proving that pure tilted-ring projection has the opposite sign to an added
+  outer load.
+
+  \item \textbf{Dragonfly outer baryonic ceiling:}
+  Combining the \(R\gtrsim 30\,{\rm kpc}\) stellar mass
+  (\(1.4\pm 0.2\times 10^8\,M_\odot\)) with the \(3{:}1\) outer stellar-to-gas
+  ratio \cite{Zhang2018NGC2841Dragonfly} yields
+  \(M_{\rm outer,baryon}\simeq 1.87\times 10^8\,M_\odot\) and ceiling
+  \begin{equation}
+    v_{\rm ceil}^2(R)=\frac{G M_{\rm outer,baryon}}{R},
+  \end{equation}
+  giving only \(26.8\,{\rm km^2\,s^{-2}}\) at \(30\,{\rm kpc}\)
+  (\(144.876\to 144.825\,{\rm km\,s^{-1}}\) RMSE).  Digitized surface-density
+  curves lack isolated-component normalization in the published source package
+  and remain locked as
+  \texttt{ACCEPT\_\allowbreak SHAPE\_\allowbreak ONLY\_\allowbreak LOAD\_\allowbreak FORMULA\_\allowbreak BLOCKED}.
+
+  \item \textbf{THINGS/NED H\,I mass-profile and disk-load controls:}
+  Residual-blind freezes of SPARC \(V_{\rm gas}(R)\) (\(6.5\%\) of outer gap),
+  VizieR THINGS global H\,I flux (\(183.31\,{\rm Jy\,km\,s^{-1}}\),
+  \(8.6\times 10^9\,M_\odot\) \cite{Walter2008THINGS}), and 1-kpc deprojected
+  NED natural and robust MOM0 profiles (\(176.0\) and
+  \(181.0\,{\rm Jy\,km\,s^{-1}}\)) produce softened axisymmetric physical-H\,I
+  disk controls of \(1128\) and \(1107\,{\rm km^2\,s^{-2}}\) beyond
+  \(30\,{\rm kpc}\) (\(1534\) and \(1506\,{\rm km^2\,s^{-2}}\) with the
+  \(1.36\) He factor \cite{Leroy2008SFE}).  Published NFW/ISO halo parameters
+  are rejected as endpoint fits, leaving any additive
+  \(\Delta v_\tau^2(R)=A_\tau K_{\rm outer}(R)\) blocked until an independent
+  velocity-squared load theorem or source multiplier exists.
+
+  \item \textbf{Caveated multiplicative \(\beta\)-closure control replay:}
+  Importing Paper~9's residual-blind Bullock spin context
+  (\(\lambda_{\rm spin}\simeq 0.02024\), \(\beta_{\rm context}=1.08034\)) on top
+  of the fixed-\(M/L\) SPARC baryonic carrier
+  \(v_{\rm carrier}^2(R)=\operatorname{sign}(V_{\rm gas})V_{\rm gas}^2+0.5V_{\rm disk}^2+0.7V_{\rm bul}^2\)
+  and normalized \(K_{\beta,{\rm shape}}(R)\equiv K_{\rm geom}(R)\) defines
+  \begin{equation}
+    v_{\beta,{\rm context}}^2(R)
+    =v_{\rm carrier}^2(R)\bigl[1+(\beta_{\rm context}-1)K_{\beta,{\rm shape}}(R)\bigr].
+  \end{equation}
+  In bounded single-object control replay, this profile lowers weighted RMSE
+  from \(144.88\) to \(141.17\,{\rm km\,s^{-1}}\) (\(\Delta=-3.71\,{\rm km\,s^{-1}}\)),
+  while leaving a median outer velocity deficit of \(\sim 154\,{\rm km\,s^{-1}}\).
+  It is therefore retained strictly as a preliminary endpoint/control replay,
+  not kernel promotion or capacity closure.
+\end{enumerate}
 
 \section{TCDR-v4 Real-Data Protocol Skeleton}
 
@@ -2156,90 +1078,55 @@ readout kernel, combining the source-side morphological body with projection,
 path, history, and capacity information before endpoint scoring.  This is a
 research direction, not a result already established by this paper.
 
-% BEGIN OBSERVER UPDATE 20260914
-\section{Observer realization: inherited results and physical boundary}
-\label{sec:observer-update-20260914}
-The current observer programme distinguishes a conditional mathematical
-construction from an occupied physical measuring system. The source order
-remains base plus one universal seed, stabilized morphological response,
-observer--source restriction, shared descriptor, and resolved terminal
-readouts. Neither a detector nor an empirical residual constructs the parent
-body backwards. Dynamics below concern downstream subsystems only.
+\section{Upstream Ownership, Inherited Results, and Scope Boundary}
+\label{sec:upstream-ownership-boundary}
 
-The canonical observer-origin derivation, Sections 22--26, owns the following
-results. The existing joint source action fixes static and frequency-dependent
-response together. Variation of the BRAC potential couples to the field
-square; a linear field coupling is a distinct comparator unless derived by
-expansion about an occupied background. Fixed canonical means select a unique
-coherent state in a finite positive harmonic packet only if there is no excess
-fluctuation energy. This is a free/asymptotic preparation statement, not the
-ground state of an interacting detector. For the existing coupled harmonic
-pair, the joint ground is pure but either local subsystem is mixed, with its
-covariance fixed by the complete joint Hamiltonian.
+This protocol paper operates strictly downstream of the foundational Tau Core
+derivation ledgers and imports only bounded mathematical specializations within
+its synthetic and source-manifest scope:
+\begin{itemize}
+  \item \textbf{Source selection, gradient/inertial descent, and finite laboratory:}
+  Foundation Paper~I and Paper~III fix the upstream seed-to-body and geometric
+  readout architecture; Foundation Paper~IV and \texttt{TD-0} retain sole
+  ownership of physical source selection; and Foundation Paper~V together with
+  the temporal synthesis and seed--body companion own clock descent and the
+  gradient/inertial distinction.  In the reproducible finite laboratory
+  (\url{https://github.com/tau-core-research/tau-core-theory/tree/main/experiments/seed_evolution_lab}),
+  the common-cone construction uses the frozen body Hessian while local support
+  and kinetic/gradient forms are supplied as inputs, so chart speeds rescale
+  under same-body kinetic changes and Maxwell polarization, quantized photon
+  energy, and contact exchange remain conditional recoveries rather than
+  source-selected SI constants or gravitational derivations.
 
-These are conditional derivations and internal numerical checks. The actual
-observer--source context, physical preparation process, kinetic/energy
-calibration and stable operational resolution remain unproved. The existing
-ORA-T1 selector conditionally chooses stable quantizers when the occupied
-context, admissible partition family and positive closure barrier are supplied;
-it does not establish those physical premises. A computed ground state is not
-a preparation mechanism, and a covariance or optimal abstract measurement is
-not an implemented stable quantizer $Q_{OS}$.
+  \item \textbf{Observer contact, state preparation, and instrument bridge:}
+  The canonical observer-origin derivation (Sections 22--26) and the
+  body--readout technical companion establish joint static/frequency BRAC
+  response, quadratic field coupling, free/asymptotic coherent-state uniqueness
+  at zero excess fluctuation energy, and mixed local marginal covariance of the
+  pure coupled harmonic ground state (provenance ledger:
+  \url{https://github.com/tau-core-research/tau-core-theory/blob/main/docs/tau_rqm_instrument_to_record_bridge_001.md}).
+  Upstream Theorem CPR1(b,c), v1.0 (2026-09-28) in
+  \href{https://github.com/tau-core-research/tau-core-higgs-module-paper4/blob/main/paper4_full_derivation/full_derivation.pdf#nameddest=cpr1}{Paper~4 / Paper~V, \emph{Full Derivation Ledger for the Branch A Higgs Module}}
+  (section ``Conditional source preparation and time-resolved access'') and
+  \href{https://github.com/tau-core-research/tau-core-higgs-module-paper4/blob/main/paper4_full_derivation/full_derivation.pdf#nameddest=msi1}{MSI1, v1.0}
+  (``Source work, bilinear mass pairing and independent selection'', 2026-10-09)
+  show that access-specific null directions are not complete-channel nulls and
+  positive source work does not uniquely select a bilinear mass pairing.
 
-\paragraph{Ownership and use.}
-The central observer-origin note owns the new contact, state and covariance
-derivations; the body-readout technical companion carries the consolidated
-mathematics. Foundation Papers IV, V and VI retain physical-selection,
-clock-descent and quantum-readout ownership, respectively. This paper imports
-only the consequences within its scope. No observational dataset, baseline,
-frozen coefficient, score or empirical conclusion is revised by this update.
-The reproducibility supplement records the source hashes and the exact
-conditional/physical distinction.
-
-
-\paragraph{Consequence for this paper.}
-Different terminal labels are not independent information sources without a factorization or novelty proof. A nonzero correlation is not automatically a standard-orthogonal Tau signal.
-% END OBSERVER UPDATE 20260914
-
-% BEGIN LAB UPDATE 20260915
-\section{Finite source-to-readout implementation and its scope}
-The current finite laboratory is a reproducible implementation, not a new Nature-selection theorem. The common-cone example uses the full frozen body Hessian but supplies the local support and kinetic/gradient forms. A same-body kinetic rescaling changes its chart speed. Maxwell polarization, quantized photon energy and contact exchange therefore remain conditional recoveries rather than source-selected SI constants, gravity or detector occupation.
-\paragraph{Ownership and reproducibility.}
-The seed--body companion owns the finite minimum/Hessian example, the body--readout companion its ordered access and contact reduction, and the terminal companion its conditional propagation boundary. The physical-source papers retain the source-selection obligation. Code, declared priors, adverse controls and provenance are available at \url{https://github.com/tau-core-research/tau-core-theory/tree/main/experiments/seed_evolution_lab}. Numerical tests are internal evidence only; no published empirical score is changed.
-% END LAB UPDATE 20260915
-
-% BEGIN STATE UPDATE 20260918
-\section{Source identification and recovery}
-The current observer audit separates a conditional forward construction from physical source selection. A frozen body, occupied observer incidence, preparation, complete instrument and stable resolution can determine records without selecting those inputs from Nature. Equal effects do not fix postmeasurement states, and symmetry within a chosen interaction family does not exclude other symmetric couplings. Different terminal labels are not independent information sources without a factorization or novelty proof. A nonzero correlation is not automatically a standard-orthogonal Tau signal.
-
-\paragraph{Dependency and claim ownership.}
-Foundation VI and the body--readout technical companion own the finite instrument/access proof; Foundation IV and TD-0 retain physical source selection; Foundation V, the temporal synthesis and seed--body companion own the gradient/inertial distinction. This paper inherits only the stated specialization. Canonical assumptions, countermodels and calibration audits are in \url{https://github.com/tau-core-research/tau-core-theory/blob/main/docs/tau_rqm_instrument_to_record_bridge_001.md}. No physical seed, Nature occupation or Tau-exclusive observation is established by this update. Existing empirical endpoint definitions and scores are unchanged.
-% END STATE UPDATE 20260918
-
-% BEGIN PAIR READOUT UPDATE 20260927
-\section{Conditional source preparation and time-resolved access}
-The common-operator scalar--Dirac completion now supports an explicit
-conditional chain from interaction vertices to pair transfer and joint
-readout. Nonzero vertices do not select occupation. Relational coherence
-can be generated from an occupied number-diagonal pair even while both
-local mean fields vanish. In a declared resonant rotating-wave and Markov
-loss model, finite-window emission retains this coherence information,
-whereas an all-time count discards it. This is standard-compatible quantum
-recovery, not a Tau-specific observational residual.
-Different terminal labels are not independent information sources without a factorization or novelty proof. A nonzero correlation is not automatically a standard-orthogonal Tau signal.
-\paragraph{Dependency ownership and limits.}
-The P4 common-source assembly owns the scalar/Yukawa benchmark and finite
-preparation calculations; Foundation VI and the body--readout companion
-inherit the joint-access mathematics. Foundation IV and TD-0 retain
-physical source selection, and Foundation V retains clock descent.
-The parent remains atemporal: the evolution above is a conditional
-downstream 4D model, not parent memory or a derived morphogenetic time.
-Physical initial occupation, a gauge-complete realization, detector
-amplification, absolute calibration and stable observer-relative $Q_{OS}$
-remain unselected. No empirical endpoint or score is changed.
-The canonical derivation and reproducible numerical sources are linked at
-\url{https://github.com/tau-core-research/tau-core-theory/blob/main/docs/tau_core_p4_nonabelian_particle_common_source_assembly_001.md}.
-% END PAIR READOUT UPDATE 20260927
+  \item \textbf{Surviving-source instruments and terminal claim boundary:}
+  Foundation Paper~VI / Paper~VII-A owns the conditional quantizer selector
+  \texttt{ORA-T1} and
+  \href{https://github.com/tau-core-research/tau-core-quantum-readout-foundation-paper-vi/blob/main/paperVI_submission_source/main.pdf#nameddest=oir1}{OIR1(a--c), v1.0}
+  (``Output statistics, surviving-source instruments and apparatus scope'',
+  2026-10-09), separating ideal optical transfer, absorptive count records, and
+  retained-source QND operations while requiring Bose/Gaussian photon
+  completions to retain actual input preparation and noise.  Across all upstream
+  modules, physical source occupation, detector/clock calibration, and an
+  implemented stable quantizer \(Q_{OS}\) remain open assumptions; distinct
+  terminal labels are not independent information sources without a
+  factorization proof, and no synthetic or preflight score in this paper is
+  altered by upstream reconciliation.
+\end{itemize}
 
 \section{Conclusion}
 
@@ -2247,11 +1134,11 @@ Paper 19 promotes the Photon-C dark residual package into a reproducible draft
 protocol with preliminary real-data stress tests.  The package defines a
 careful test ladder:
 \begin{align*}
-  \hbox{source-side seeds}
-  &\rightarrow \hbox{standard controls}\\
-  &\rightarrow \hbox{Tau-extended recovery}\\
-  &\rightarrow \hbox{permutation/null tests}\\
-  &\rightarrow \hbox{real-data TCDR-v4 protocol}.
+  \text{source-side seeds}
+  &\rightarrow \text{standard controls}\\
+  &\rightarrow \text{Tau-extended recovery}\\
+  &\rightarrow \text{permutation/null tests}\\
+  &\rightarrow \text{real-data TCDR-v4 protocol}.
 \end{align*}
 The current status is therefore
 \[

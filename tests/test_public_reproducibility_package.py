@@ -204,55 +204,40 @@ def test_publication_artifacts_exist() -> None:
         / "source_manifests"
         / "tcdr_v4_allowed_failure_spiral_path_formula_freeze_summary_v0_1.json"
     ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_allowed_failure_scoring_preflight_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_allowed_failure_spiral_path_diagnostic_scoring_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc2841_absolute_residual_gap_diagnostic_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc2841_beta_closure_endpoint_control_replay_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc6503_clean_scale_tail_endpoint_replay_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc7793_support_safe_spiral_endpoint_replay_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc2841_outer_capacity_requirement_audit_summary_local.json"
-    ).exists()
+    sparc_ext = ROOT / "data" / "external" / "sparc_preflight"
+    has_sparc_ext = (
+        (sparc_ext / "SPARC_Lelli2016c.mrt").exists()
+        and (sparc_ext / "MassModels_Lelli2016c.mrt").exists()
+    )
+    if has_sparc_ext:
+        assert (
+            sparc_ext
+            / "tcdr_v4_allowed_failure_scoring_preflight_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_allowed_failure_spiral_path_diagnostic_scoring_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc2841_absolute_residual_gap_diagnostic_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc2841_beta_closure_endpoint_control_replay_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc6503_clean_scale_tail_endpoint_replay_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc7793_support_safe_spiral_endpoint_replay_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc2841_outer_capacity_requirement_audit_summary_local.json"
+        ).exists()
     assert (
         ROOT
         / "data"
@@ -283,40 +268,30 @@ def test_publication_artifacts_exist() -> None:
         / "source_manifests"
         / "tcdr_v4_ngc2841_projection_control_preflight_summary_v0_1.json"
     ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc2841_projection_control_diagnostic_replay_summary_local.json"
-    ).exists()
+    if has_sparc_ext:
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc2841_projection_control_diagnostic_replay_summary_local.json"
+        ).exists()
     assert (
         ROOT
         / "data"
         / "source_manifests"
         / "tcdr_v4_ngc2841_integrated_outer_baryonic_ceiling_control_freeze_summary_v0_1.json"
     ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc2841_integrated_outer_baryonic_ceiling_control_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc2841_post_control_positive_load_gap_summary_local.json"
-    ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "sparc_preflight"
-        / "tcdr_v4_ngc2841_required_positive_load_scale_worklist_summary_local.json"
-    ).exists()
+    if has_sparc_ext:
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc2841_integrated_outer_baryonic_ceiling_control_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc2841_post_control_positive_load_gap_summary_local.json"
+        ).exists()
+        assert (
+            sparc_ext
+            / "tcdr_v4_ngc2841_required_positive_load_scale_worklist_summary_local.json"
+        ).exists()
     assert (
         ROOT
         / "data"
@@ -407,13 +382,9 @@ def test_publication_artifacts_exist() -> None:
         / "source_manifests"
         / "tcdr_v4_ngc2841_tilted_ring_digitized_profile_candidate_summary_v0_1.json"
     ).exists()
-    assert (
-        ROOT
-        / "data"
-        / "external"
-        / "literature"
-        / "bosma1981_ngc2841_figure4_6_7.jpg"
-    ).exists()
+    lit_dir = ROOT / "data" / "external" / "literature"
+    if lit_dir.exists() and any(lit_dir.iterdir()):
+        assert (lit_dir / "bosma1981_ngc2841_figure4_6_7.jpg").exists()
     assert (ROOT / "figures" / "tcdr_ngc2841_spiral_path_diagnostic_replay.png").exists()
 
 
@@ -4019,3 +3990,48 @@ def test_p0_holdout_endpoint_readiness_excludes_endpoint_values() -> None:
         assert row["endpoint_policy"] == "endpoint_values_local_only_not_committed"
         assert row["score_policy"] == "readiness_only_no_endpoint_score"
         assert row["source_label_policy"] == "source_family_already_frozen_before_endpoint_packet"
+
+
+def test_clean_clone_reproducibility_guard(tmp_path: Path, monkeypatch, capsys) -> None:
+    import sys
+
+    scripts_dir = str(ROOT / "scripts")
+    if scripts_dir not in sys.path:
+        sys.path.insert(0, scripts_dir)
+    import reproduce
+    import run_tcdr_v4_holdout_endpoint_scoring as endpoint_base
+
+    expected_msg = (
+        "[SKIP-CLEAN-CLONE] Optional external SPARC MRT files not present; "
+        "verified committed derived artifacts"
+    )
+
+    # Mode 1: Clean-clone mode (absent external SPARC MRT files)
+    monkeypatch.delenv("TCDR_FORCE_CLEAN_CLONE", raising=False)
+    assert reproduce.has_external_sparc_inputs(tmp_path) is False
+    assert endpoint_base.has_external_sparc_mrt(tmp_path / "data" / "external" / "sparc_preflight") is False
+
+    monkeypatch.setenv("TCDR_FORCE_CLEAN_CLONE", "1")
+    mode = reproduce.run_external_or_verify(ROOT)
+    out = capsys.readouterr().out
+    assert mode == "clean_clone_verified"
+    assert expected_msg in out
+
+    endpoint_base.main()
+    out_endpoint = capsys.readouterr().out
+    assert expected_msg in out_endpoint
+
+    # Mode 2: External SPARC MRT files present (live scoring guard detection + live scoring if local MRT present)
+    monkeypatch.delenv("TCDR_FORCE_CLEAN_CLONE", raising=False)
+    sim_sparc = tmp_path / "data" / "external" / "sparc_preflight"
+    sim_sparc.mkdir(parents=True, exist_ok=True)
+    (sim_sparc / "SPARC_Lelli2016c.mrt").write_text("# mock mrt\n", encoding="utf-8")
+    (sim_sparc / "MassModels_Lelli2016c.mrt").write_text("# mock mass models\n", encoding="utf-8")
+    assert reproduce.has_external_sparc_inputs(tmp_path) is True
+    assert endpoint_base.has_external_sparc_mrt(sim_sparc) is True
+
+    if reproduce.has_external_sparc_inputs(ROOT):
+        detail, summary, aggregate = endpoint_base.run_scoring()
+        assert not detail.empty
+        assert not summary.empty
+        assert aggregate["n_scoreable_holdout_galaxies"] == 6

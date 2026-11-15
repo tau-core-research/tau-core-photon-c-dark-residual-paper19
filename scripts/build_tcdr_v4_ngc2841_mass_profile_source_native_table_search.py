@@ -41,6 +41,8 @@ def _tex_contains(fragment: str) -> bool:
 
 
 def build_source_native_table_search() -> tuple[pd.DataFrame, dict[str, object]]:
+    if not ZHANG_TAR.exists() and OUT_CSV.exists() and OUT_JSON.exists():
+        return pd.read_csv(OUT_CSV), json.loads(OUT_JSON.read_text(encoding="utf-8"))
     members = _tar_members()
     machine_table_like = [
         name

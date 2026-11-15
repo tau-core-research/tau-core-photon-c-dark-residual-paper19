@@ -1669,22 +1669,8 @@ CONTROLLED_PHOTON_C_DARK_RESIDUAL_DRAFT_PROTOCOL
   residual-classification protocol with null/time split toys and a real-data
   TCDR-v4 skeleton.
 
-<!-- BEGIN OBSERVER UPDATE 20260914 -->
-## Observer realization update (2026-09-14)
+## Upstream Ownership, Inherited Results, and Scope Boundary
 
-Different terminal labels are not independent information sources without a factorization or novelty proof. A nonzero correlation is not automatically a standard-orthogonal Tau signal.
-
-The manuscript distinguishes inherited BRAC contact, conditional coherent-state
-selection and interacting local covariance from physical observer identification,
-preparation and stable resolution. Those physical claims remain open. No
-empirical score was changed. The [dependency and source-result ledger](data/derived/observer_update_2026_09_14.json) records the assumptions and controls.
-<!-- END OBSERVER UPDATE 20260914 -->
-
-<!-- BEGIN LAB UPDATE 20260915 -->
-## Finite lab integration (2026-09-15)
-
-The manuscript imports the scope-specific source, body, observer or terminal
-result from the current lab. Supplied priors, conditional recovery and physical
-selection remain separate. No SI constant, viable universe or Tau-specific
-signal is newly established. See the [source and ownership ledger](data/derived/lab_update_2026_09_15.json).
-<!-- END LAB UPDATE 20260915 -->
+- **Source selection and finite laboratory:** Foundation Papers I, III, IV (`TD-0`), and V retain physical source selection, geometric readout, and clock/inertial descent; numerical checks in [`seed_evolution_lab`](https://github.com/tau-core-research/tau-core-theory/tree/main/experiments/seed_evolution_lab) and [`lab_update_2026_09_15.json`](data/derived/lab_update_2026_09_15.json) remain conditional internal recoveries rather than SI-constant or gravitational derivations.
+- **Observer contact and conditional access (`CPR1`, `MSI1`):** Inherited BRAC contact, coherent-state uniqueness, and coupled harmonic covariance ([`observer_update_2026_09_14.json`](data/derived/observer_update_2026_09_14.json), [`state_update_20260918.json`](data/derived/state_update_20260918.json)) together with [Paper 4 / Paper V `CPR1(b,c)`](https://github.com/tau-core-research/tau-core-higgs-module-paper4/blob/main/paper4_full_derivation/full_derivation.pdf#nameddest=cpr1) ([`pair_readout_update_20260927.json`](data/derived/pair_readout_update_20260927.json)) and [`MSI1 v1.0`](https://github.com/tau-core-research/tau-core-higgs-module-paper4/blob/main/paper4_full_derivation/full_derivation.pdf#nameddest=msi1) distinguish access-specific nulls and positive work from complete-channel nulls or unique mass pairings.
+- **Surviving-source instruments (`OIR1`) and terminal boundary:** [Foundation VI / Paper VII-A `OIR1(a–c) v1.0`](https://github.com/tau-core-research/tau-core-quantum-readout-foundation-paper-vi/blob/main/paperVI_submission_source/main.pdf#nameddest=oir1) and `ORA-T1` ([`publication_state_20261009.json`](data/derived/publication_state_20261009.json)) separate ideal optical transfer, absorptive count records, and retained-source QND operations; physical source occupation, detector calibration, and operational `Q_OS` remain open, and no synthetic or preflight score in Paper 19 is altered.

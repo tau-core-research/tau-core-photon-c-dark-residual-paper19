@@ -232,7 +232,13 @@ def build_source_route() -> tuple[pd.DataFrame, dict[str, object]]:
 
 
 def main() -> None:
-    detail, summary = build_source_route()
+    try:
+        detail, summary = build_source_route()
+    except Exception as exc:
+        if OUT_DETAIL.exists() and OUT_SUMMARY.exists():
+            print(f"[OFFLINE-CACHE] VizieR query unavailable ({exc}); verified committed {OUT_DETAIL.name}")
+            return
+        raise
     detail.to_csv(OUT_DETAIL, index=False, quoting=csv.QUOTE_MINIMAL)
     OUT_SUMMARY.write_text(json.dumps(summary, indent=2), encoding="utf-8")
     print(f"WROTE {OUT_DETAIL}")
