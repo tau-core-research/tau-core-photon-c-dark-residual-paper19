@@ -5,6 +5,7 @@ type: software
 authors:
   - family-names: "Olcsak"
     given-names: "Jozsef"
+    orcid: "https://orcid.org/0009-0003-7311-6522"
 repository-code: "https://github.com/tau-core-research/tau-core-photon-c-dark-residual-paper19"
 date-released: "2026-08-22"
 version: "v0.4"
